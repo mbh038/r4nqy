@@ -138,7 +138,7 @@ For example, lets create a new data frame for just the *setosa* species of iris:
 
 ```{r}
 setosa <- iris |>
-  filter(Species == "setosa") # filter picks out rows according to criteria being satisfied in some column
+  filter(species == "setosa") # filter picks out rows according to criteria being satisfied in some column
 glimpse(setosa)
 ```
 
@@ -146,7 +146,7 @@ or maybe we just want the numeric columns:
 
 ```{r}
 iris_numeric <- iris |>
-  select(-Species) # select() retains or leaves out particular columns. Here, we leave out the Species column.
+  select(-species) # select() retains or leaves out particular columns. Here, we leave out the species column.
 glimpse(iris_numeric)
 ```
 
@@ -156,9 +156,9 @@ We nearly always want to do this. For example, let's find the mean petal widths 
 
 ```{r}
 petal_summary<-iris |>
-  group_by(Species) |>
-  summarise(mean.Pwidth = mean(Petal.Width),
-            se.Pwidth = sd(Petal.Width/sqrt(n())))
+  group_by(species) |>
+  summarise(mean.Pwidth = mean(petal_width),
+            se.Pwidth = sd(petal_width/sqrt(n())))
 petal_summary
 ```
 
@@ -174,10 +174,10 @@ We could plot a bar plot with error bars, working from the summary data frame th
 
 ```{r}
 petal_summary |>
-  ggplot(aes(x = Species, y = mean.Pwidth)) +
+  ggplot(aes(x = species, y = mean.Pwidth)) +
   geom_col(fill="#a6bddb") + # this is the geom that gives us a bar plot when we have already done the calculations
   geom_errorbar(aes(ymin = mean.Pwidth - se.Pwidth, ymax = mean.Pwidth + se.Pwidth), width = 0.15) +
-  labs( x = "Species",
+  labs( x = "species",
         y = "Mean petal width (mm)",
         caption = "Error bars are ± one standard error of the mean") + # important to say what these error bars denote
   theme_cowplot()
@@ -199,10 +199,10 @@ Here are three other plot types that do show the distribution of petal widths fo
 
 ```{r}
 iris |>
-  ggplot(aes(x=Species, y=Petal.Width)) + # what we want to plot
+  ggplot(aes(x=species, y=petal_width)) + # what we want to plot
   geom_boxplot(fill="#a6bddb",notch=TRUE) + # what kind of plot we want
   geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
-  labs (x = "Species",
+  labs (x = "species",
         y = "Petal Width (mm)") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
@@ -215,10 +215,10 @@ A useful alternative to the box plot, especially when the data set is large, is 
 
 ```{r}
 iris |>
-  ggplot(aes(x=Species, y=Petal.Width)) + # what we want to plot
+  ggplot(aes(x = species, y = petal_width)) + # what we want to plot
   geom_violin(fill="#a6bddb",notch=TRUE) + # what kind of plot we want
   #geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
-  labs (x = "Species",
+  labs (x = "species",
         y = "Petal Width (mm)") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
@@ -232,11 +232,11 @@ A bit like a violin plot. This needs the package `ggridges` to be installed.
 ```{r}
 library(ggridges)
 iris |>
-  ggplot(aes(x=Petal.Width,y=Species)) + # what we want to plot
+  ggplot(aes(x = petal_width,y = species)) + # what we want to plot
   geom_density_ridges(fill="#a6bddb") + # what kind of plot we want
   #geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
   labs (x = "Petal Width (mm)",
-        y = "Species") +
+        y = "species") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
 
@@ -246,12 +246,12 @@ Having seen the summary and one of these plots of the data, would you be incline
 
 Only now do we move on to the statistical analysis to try to answer our intial question(s). But by now, after the summary and plot(s), we may already have a pretty good idea what that answer will turn out to be.
 
-The exact form of the analysis could take many forms. In a typical ecology project you might carry out several types of analysis, each one complementing the other. Here, an appropriate analysis might be to use the linear model in the form of a one-way ANOVA, since we have one factor (Species) with three levels (*setosa*, *versicolor* and *virginica*) and an output variable that is numeric and likely to be normally distributed. We can use the `lm()` function for this.
+The exact form of the analysis could take many forms. In a typical ecology project you might carry out several types of analysis, each one complementing the other. Here, an appropriate analysis might be to use the linear model in the form of a one-way ANOVA, since we have one factor (species) with three levels (*setosa*, *versicolor* and *virginica*) and an output variable that is numeric and likely to be normally distributed. We can use the `lm()` function for this.
 
 #### Create the model object
 
 ```{r}
-pw.model <-lm (Petal.Width ~ Species, data = iris)
+pw.model <-lm (petal_width ~ species, data = iris)
 ```
 
 #### Check the validity of the model
@@ -321,4 +321,3 @@ Lastly, the adjusted $R^2$ tells us the proportion of variation of petal width t
 You would say something like
 
 We find evidence that petal widths are not the same acros thhree species of iris, with *virginica* \> *versicolor* \> *setosa*. (ANOVA, df = 2, p \< 0.001)
-
