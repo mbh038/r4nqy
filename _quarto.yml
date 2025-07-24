@@ -12,6 +12,7 @@ book:
     - index.qmd
     - intro.qmd
     - workflow.qmd
+    - t-test-2-sample.qmd
     - ANOVA_how_it_works.qmd
     - summary.qmd
     - references.qmd

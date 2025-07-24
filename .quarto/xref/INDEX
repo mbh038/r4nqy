@@ -16,5 +16,8 @@
   },
   "workflow.qmd": {
     "workflow.html": "27714e38"
+  },
+  "t-test-2-sample.qmd": {
+    "t-test-2-sample.html": "0f253b84"
   }
 }
