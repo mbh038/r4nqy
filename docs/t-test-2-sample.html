@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ANOVA_how_it_works.html" rel="next">
+<link href="./test_for_difference_non_parametric.html" rel="next">
 <link href="./workflow.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -166,14 +166,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ANOVA principles</span></span></a>
+  <a href="./test_for_difference_non_parametric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ANOVA principles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -194,10 +194,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="header-section-number">3.1</span> Preliminaries</a></li>
   <li><a href="#motivation-and-example" id="toc-motivation-and-example" class="nav-link" data-scroll-target="#motivation-and-example"><span class="header-section-number">3.2</span> Motivation and example</a></li>
-  <li><a href="#the-two-sample-t-test" id="toc-the-two-sample-t-test" class="nav-link" data-scroll-target="#the-two-sample-t-test"><span class="header-section-number">3.3</span> The two-sample <em>t</em>-test</a>
+  <li><a href="#pros-and-cons-of-the-t-test" id="toc-pros-and-cons-of-the-t-test" class="nav-link" data-scroll-target="#pros-and-cons-of-the-t-test"><span class="header-section-number">3.3</span> Pros and cons of the <em>t</em>-test</a>
   <ul class="collapse">
-  <li><a href="#pros-of-the-t-test" id="toc-pros-of-the-t-test" class="nav-link" data-scroll-target="#pros-of-the-t-test"><span class="header-section-number">3.3.1</span> Pros of the <em>t</em>-test</a></li>
-  <li><a href="#cons-of-the-t-test" id="toc-cons-of-the-t-test" class="nav-link" data-scroll-target="#cons-of-the-t-test"><span class="header-section-number">3.3.2</span> Cons of the <em>t</em>-test</a></li>
+  <li><a href="#pros" id="toc-pros" class="nav-link" data-scroll-target="#pros"><span class="header-section-number">3.3.1</span> Pros</a></li>
+  <li><a href="#cons" id="toc-cons" class="nav-link" data-scroll-target="#cons"><span class="header-section-number">3.3.2</span> Cons</a></li>
   </ul></li>
   <li><a href="#the-workflow" id="toc-the-workflow" class="nav-link" data-scroll-target="#the-workflow"><span class="header-section-number">3.4</span> The workflow</a>
   <ul class="collapse">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#step-one-summarise-the-data" id="toc-step-one-summarise-the-data" class="nav-link" data-scroll-target="#step-one-summarise-the-data"><span class="header-section-number">3.5</span> Step One: Summarise the data</a></li>
   <li><a href="#step-two-plot-the-data" id="toc-step-two-plot-the-data" class="nav-link" data-scroll-target="#step-two-plot-the-data"><span class="header-section-number">3.6</span> Step Two: Plot the data</a></li>
-  <li><a href="#step-three-carry-out-statistical-analysis" id="toc-step-three-carry-out-statistical-analysis" class="nav-link" data-scroll-target="#step-three-carry-out-statistical-analysis"><span class="header-section-number">3.7</span> Step Three: Carry out statistical analysis</a>
+  <li><a href="#step-three-check-that-the-data-meet-the-criteria-required-for-a-t-test" id="toc-step-three-check-that-the-data-meet-the-criteria-required-for-a-t-test" class="nav-link" data-scroll-target="#step-three-check-that-the-data-meet-the-criteria-required-for-a-t-test"><span class="header-section-number">3.7</span> Step Three: Check that the data meet the criteria required for a <em>t-test</em></a>
   <ul class="collapse">
   <li><a href="#are-the-data-normally-distributed" id="toc-are-the-data-normally-distributed" class="nav-link" data-scroll-target="#are-the-data-normally-distributed"><span class="header-section-number">3.7.1</span> Are the data normally distributed?</a></li>
   <li><a href="#normality-test---analytical-method" id="toc-normality-test---analytical-method" class="nav-link" data-scroll-target="#normality-test---analytical-method"><span class="header-section-number">3.7.2</span> Normality test - analytical method</a></li>
@@ -245,6 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preliminaries" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">3.1</span> Preliminaries</h2>
 <p>In this exercise we find out how to use R to run a two-sample <em>t</em>-test, to determine whether there is evidence to reject the hypothesis that two samples are drawn from the same population.</p>
+<p>Two-sample <em>t</em>-tests are used when we have two independent sets of numerical data, and we want to know whether the data provide evidence that the sets are drawn from different populations.</p>
 <p>The exercise is based on Chapter 5: <a href="https://www.amazon.co.uk/Getting-Started-Andrew-P-Beckerman/dp/0198787847/ref=asc_df_0198787847/?tag=googshopuk-21&amp;linkCode=df0&amp;hvadid=310872601819&amp;hvpos=&amp;hvnetw=g&amp;hvrand=10507669566166636114&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1006537&amp;hvtargid=pla-420690501286&amp;psc=1&amp;th=1&amp;psc=1">Beckerman, Childs and Petchey: Getting Started with R</a>.</p>
 </section>
 <section id="motivation-and-example" class="level2" data-number="3.2">
@@ -258,18 +259,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>and our alternate, two-sided hypothesis is:</p>
 <p><em>There is a difference between airborne ozone concentrations in the east and the west of the city.</em></p>
 </section>
-<section id="the-two-sample-t-test" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="the-two-sample-t-test"><span class="header-section-number">3.3</span> The two-sample <em>t</em>-test</h2>
-<p>This can be used when we have two independent sets of numerical data, and our question is whether the data provide evidence that the sets are drawn from different populations.</p>
-<section id="pros-of-the-t-test" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="pros-of-the-t-test"><span class="header-section-number">3.3.1</span> Pros of the <em>t</em>-test</h3>
+<section id="pros-and-cons-of-the-t-test" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="pros-and-cons-of-the-t-test"><span class="header-section-number">3.3</span> Pros and cons of the <em>t</em>-test</h2>
+<section id="pros" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="pros"><span class="header-section-number">3.3.1</span> Pros</h3>
 <ul>
 <li>It can be used when the data set is small.</li>
 <li>It can still be used when the data set is large. So…if in doubt, just use the <em>t</em>-test, (Kind of, the data do need to fulfil some criteria, but being few in number is fine. See below).</li>
 </ul>
 </section>
-<section id="cons-of-the-t-test" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="cons-of-the-t-test"><span class="header-section-number">3.3.2</span> Cons of the <em>t</em>-test</h3>
+<section id="cons" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="cons"><span class="header-section-number">3.3.2</span> Cons</h3>
 <ul>
 <li>It assumes that the data are drawn from a normally distributed population. There are various ways to test if it is plausible tha this is the case, and you should try at least one of them, but with small samples, just where the <em>t</em>-test is most useful, it can be difficult to tell. In the end we can also appeal to reason: is there good reason to suppose that the data would or would not be normally distributed?</li>
 <li>When comparing the means of two samples both samples should have approximately the same variance, which is a measure of the spread of the data. You need to check that this is at least <em>approximately</em> the case, or have reason to suppose that it should be. (Note: in an actual <em>t</em>-test, it is possible to ignore this requirement - see below).</li>
@@ -424,8 +424,8 @@ dbl (1): ozone
 <p>In addition, do the data look as though each group is drawn from a normally distributed population? One of the types of graphs gives you no indication of that while the other two do. Which is the odd one out? Even when looking at the other two figures, when there are so few data it’s kind of hard to tell, no?</p>
 <p>Let’s now do some stats.</p>
 </section>
-<section id="step-three-carry-out-statistical-analysis" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="step-three-carry-out-statistical-analysis"><span class="header-section-number">3.7</span> Step Three: Carry out statistical analysis</h2>
+<section id="step-three-check-that-the-data-meet-the-criteria-required-for-a-t-test" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="step-three-check-that-the-data-meet-the-criteria-required-for-a-t-test"><span class="header-section-number">3.7</span> Step Three: Check that the data meet the criteria required for a <em>t-test</em></h2>
 <section id="are-the-data-normally-distributed" class="level3" data-number="3.7.1">
 <h3 data-number="3.7.1" class="anchored" data-anchor-id="are-the-data-normally-distributed"><span class="header-section-number">3.7.1</span> Are the data normally distributed?</h3>
 <p>We can go about establishing this in three ways: using an analytical test of normality, using a graphical method and by thinking about what kind of data we have. Let’s consider these in turn.</p>
@@ -460,7 +460,7 @@ dbl (1): ozone
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99024, p-value = 0.6842</code></pre>
+W = 0.98844, p-value = 0.5414</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -468,7 +468,7 @@ W = 0.99024, p-value = 0.6842</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.96263, p-value = 0.006219</code></pre>
+W = 0.92306, p-value = 2.054e-05</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a hig <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, an a very low <em>p</em>-value for the data that we knew were not.</p>
@@ -495,7 +495,7 @@ W = 0.96263, p-value = 0.006219</code></pre>
 <p>Confession: I don’t normally bother with numerical tests for normality such as Shapiro-Wilk. I usually use a graphical method instead.</p>
 <p>For an overview of how normally distributed and non-normally distributed data looks when plotted in histograms, box plots and quantile-quntile plots, see <a href="https://rpubs.com/mbh038/725314">this review</a></p>
 <p>We have already seen two ways of plotting the data that might help suggest whether it is plausible that the data are drawn from normally distributed populations. Histograms and box plots both indicate how data is distributed, and for normally distributed data both would be symmetrical. Well, they would be, more or less, if the data set was large enough but for small data sets it can be quite hard to tell from either type of plot whether the data are drawn from a normally distributed population.</p>
-<p>A better type of plot for making this judgement call is the quantile-quantile or ‘QQ’ plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.</p>
+<p>A better type of plot for making this call is the quantile-quantile or ‘QQ’ plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>ozone)) <span class="sc">+</span></span>
@@ -984,8 +984,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ANOVA_how_it_works.html" class="pagination-link" aria-label="ANOVA principles">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ANOVA principles</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./test_for_difference_non_parametric.html" class="pagination-link" aria-label="Tests for difference - non parametric">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -13,8 +13,8 @@ book:
     - intro.qmd
     - workflow.qmd
     - t-test-2-sample.qmd
+    - test_for_difference_non_parametric.qmd
     - ANOVA_how_it_works.qmd
-    - summary.qmd
     - references.qmd
 
 bibliography: references.bib

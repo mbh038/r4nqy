@@ -26,16 +26,16 @@ and our alternate, two-sided hypothesis is:
 
 *There is a difference between airborne ozone concentrations in the east and the west of the city.*
 
-## The two-sample *t*-test
 
-This can be used when we have two independent sets of numerical data, and our question is whether the data provide evidence that the sets are drawn from different populations.
 
-### Pros of the *t*-test
+## Pros and cons of the *t*-test
+
+### Pros
 
 -   It can be used when the data set is small.
 -   It can still be used when the data set is large. So...if in doubt, just use the *t*-test, (Kind of, the data do need to fulfil some criteria, but being few in number is fine. See below).
 
-### Cons of the *t*-test
+### Cons
 
 -   It assumes that the data are drawn from a normally distributed population. There are various ways to test if it is plausible tha this is the case, and you should try at least one of them, but with small samples, just where the *t*-test is most useful, it can be difficult to tell. In the end we can also appeal to reason: is there good reason to suppose that the data would or would not be normally distributed?
 -   When comparing the means of two samples both samples should have approximately the same variance, which is a measure of the spread of the data. You need to check that this is at least *approximately* the case, or have reason to suppose that it should be. (Note: in an actual *t*-test, it is possible to ignore this requirement - see below).
@@ -152,7 +152,9 @@ In addition, do the data look as though each group is drawn from a normally dist
 
 Let's now do some stats.
 
-## Step Three: Carry out statistical analysis
+## Step Three: Check that the data meet the criteria required for a *t-test*
+
+
 
 ### Are the data normally distributed?
 
@@ -208,7 +210,7 @@ For an overview of how normally distributed and non-normally distributed data lo
 
 We have already seen two ways of plotting the data that might help suggest whether it is plausible that the data are drawn from normally distributed populations. Histograms and box plots both indicate how data is distributed, and for normally distributed data both would be symmetrical. Well, they would be, more or less, if the data set was large enough but for small data sets it can be quite hard to tell from either type of plot whether the data are drawn from a normally distributed population.
 
-A better type of plot for making this judgement call is the quantile-quantile or 'QQ' plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.
+A better type of plot for making this call is the quantile-quantile or 'QQ' plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.
 
 ```{r}
 ozone |>

@@ -19,5 +19,8 @@
   },
   "t-test-2-sample.qmd": {
     "t-test-2-sample.html": "0f253b84"
+  },
+  "test_for_difference_non_parametric.qmd": {
+    "test_for_difference_non_parametric.html": "0aeddcde"
   }
 }
