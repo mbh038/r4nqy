@@ -23,7 +23,7 @@ Thus, formally,  we need another kind of test for a difference. Broadly, we need
 
 There are many non-parametric tests out there. Here we will look at only one - the **Wilcoxon Rank Sum Test**, often referred to as a **Mann-Whitney U** test for a difference. We can use this for the scenario we have painted above, where we have two sets of data and we wish to know if these provide evidence that the populations from which the samples have been drawn are in fact different.
 
-### Example
+## Example
 
 This example uses actual data gathered by an Honours Project student.
 
@@ -33,7 +33,7 @@ Each scale used consists of 15 questions or 'Likert items', each of which is ans
 
 The student got responses from 374 people, 86 of whom were not "marine" users, while the other 288 say that they *were* marine users. The total scores from each respondent were recorded for each type of survey and stored in the file `wellness.csv` which you should find on the module Moodle site / Teams page. Please put this file in the `data` folder of your R project.
 
-### Script
+## Script
 
 The first few chunks of this script carry out the same old-same old that we see in script after script: load packages, load data, summarise data , plot data.
 
@@ -43,13 +43,13 @@ Try also to 'Knit' the script by clicking on the Knit button at the top of the s
 
 If you want to create your own script to use with your own data then you can copy and paste into it any code chunks that would be of use and adapt them as necessary.
 
-#### Load packages
+### Load packages
 ```{r}
 library(tidyverse)
 library(here)
 ```
 
-#### Load data
+### Load data
 
 Our data set is in a `.csv` file which we have placed in the data folder within our project folder.
 
@@ -61,7 +61,7 @@ wellness<-read_csv(filepath)
 glimpse(wellness)
 ```
 
-#### Summarise the data
+### Summarise the data
 
 We'll calculate the median score (50th percentile) and the 25th and 75th percentile scores. For ordinal data, these summary statistics are well defined, whereas means and standard deviations are not.
 
@@ -71,7 +71,7 @@ wellness |>
   summarise(median.score=median(total_score),iqr_25=quantile(total_score,0.25),iqr_75=quantile(total_score,0.75))
 ```
 
-#### Plot the data
+### Plot the data
 
 Box plots are particularly suitable for ordinal data since they show the 25th and 75th percentiles of the data (the bottom and top of the box) plus the 50th percentile aka the median, which is the thick line across each box. All of these percentiles are well defined quantities for ordinal data.
 
@@ -86,7 +86,7 @@ wellness |>
 
 Looking at the plot, what do you think each scale suggests about whether proximity to the sea makes a difference to wellbeing?
 
-#### Wilcoxon-Mann-Whitney U test
+### Wilcoxon-Mann-Whitney U test
 
 First let's pull out the scores as measured by the WEMWBS scale and do a test for a difference between the scores of marine users and those of non-marine users. We can use the `filter()` function to do this.
 
@@ -104,11 +104,11 @@ We might report this results as follows, first using a plain English statement o
 We find evidence, according to the WEMWBS scale, that the wellbeing score is 4.5 or about 10% higher for people exposed to a marine environment (Mann-Whitney U, W = 9077.5, p < 0.001).
 
 
-### Exercise
+## Exercise
 
 Adapt the code of the last chunk so that you can do the same test but for data as recorded by the nep scale
 
-### When should I use this Wilcoxon-Mann-Whitney U test?
+## When should I use this Wilcoxon-Mann-Whitney U test?
 
 The test we have used here is an example of a *non-parametric* test. This means that it does not assume that the data follow a known mathematical distribution and, further, that it can be used with ordinal data.
 
@@ -118,7 +118,7 @@ In another setting where we still had just one factor (eg zone of a rocky shore)
 
 In this example we used the Mann-Whitney U test because the data were ordinal and thus not suitable to use with a parametric test (but see below!). Where we can, we usually try to use a parametric test as they are more powerful than their non-parametric equivalents, meaning, if there is a trend or a difference in the data, they are better able to detect it.  However those parametric tests (t-test, ANOVA, pearson correlation, PCA, GLM to name but a few) typically require not only that the data are numerical but also a host of other things, including that they follow a particular distribution, usually (but not always) the normal distribution, and this is often not the case with real biological data. Often, especially with count data, there are lots of zeros, or the data distribution is heavily skewed, usually to the right. In these cases, providing the data are independent of each other, we can usually still use a non-parametric test such as we have here. it might not be the most powerful test we can use (GLMs are typically way better if you can use them), but it will work.
 
-### Hang on!
+## Hang on!
 
 The eagle eyed among you may have spotted a massive flaw in the line of argument presented above. We said that ordinal data can't be added up, can't be used to calculate averages and so on. Thus we can't run parametric tests on them and have to look for alternatives, namely, non-parametric tests.
 

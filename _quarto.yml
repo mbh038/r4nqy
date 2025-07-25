@@ -29,3 +29,7 @@ format:
 
 editor: visual
 
+execute: 
+  warning: false
+  message: false
+
