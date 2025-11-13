@@ -10,7 +10,7 @@ library(gt)
 
 In this document we consider tests for difference where there are two levels being compared.
 
-# Test finder flow chart
+## Test finder flow chart
 
 First, use this flowchart to see if a two-sample t-test or its non-parametric counterpart the Mann-Whitney-U test is appropriate for your question, your study design and your data:
 
@@ -55,11 +55,11 @@ flowchart TD
 
 If this chart suggests you need something other than the two sample t-test or Mann-Whitney test, you need to go to the descriptions of that test.
 
-# Two sample t-test: the parametric case
+## Two sample t-test: the parametric case
 
 In this exercise we find out how to run a two-sample *t*-test, to determine whether there is evidence to reject the hypothesis that two samples are drawn from the same population.
 
-## When to use the two-sample *t*-test
+### When to use the two-sample *t*-test
 
 -   It can be used when we have two independent samples of **numerical** (not ordinal) response data, and our question is whether the data provide evidence that the samples are drawn from different populations. Even when this criterion is met and the data are numerical and independent, the normality criterion described below still needs to be met. That apart, two common examples where we have two sets of data but we should not use the two sample *t*-test are:
 
@@ -77,7 +77,7 @@ In this exercise we find out how to run a two-sample *t*-test, to determine whet
 
 -   We only use it when we are comparing two samples, one for each of the two levels of a single factor. When we have samples for more than two levels and we use the *t*-test to look for a difference between any two of them, it becomes increasingly likely, the more pairs of samples we compare, that we will decide that we have found a difference because we got a *p*-value that was less than some pre-determined threshold (which could be anything, but is most often chosen to be 0.05) even if in reality there is none. This is the problem of high false positive rates arising from multiple pairwise testing and is where ANOVA comes in. *t*-tests are only used to detect evidence for a difference between two groups, not more. ANOVAs (or their non-parametric equivalent) are used when we are looking for differences between more than two groups.
 
-## Motivation and example
+### Motivation and example
 
 In our example we will consider the impact of pesticide use on the masses of shells of garden snails (*Cornu aspersum*), as measured in gardens around a city, ten from randomly selected gardens that have used a range of pesticides for at least two years and ten that are from randomly selected gardens that have not ever used pesticides. We leave aside here the issue of how those gardens were identified and how randomisation was ensured.
 
@@ -95,7 +95,7 @@ and a suitable **alternate, two-sided hypothesis** is:
 
 *There is a difference between shell masses.*
 
-## The data
+### The data
 
 Suppose we had our data arranged in a spreadsheet in three columns, one giving the garden ID, G1 to G20, one telling us whether pesticides were used in the garden, yes or no, and one telling us the masses in grams of the snail shells from each garden. Afficioados of R will see that this is 'tidy' data. Each variable (ID, pesticide use, shell mass) occurs in only one column, rather than being spread across several. It turns out that this way of storing your data makes it much easier to analyse.
 
@@ -318,7 +318,7 @@ Can you think of another example?
 
 -   If you only have **one sample** of replicates and want to compare its mean value to a threshold, then you use a one sample t-test. You might do this, for example, if you had collected sediment samples from an estuary, measured the concentration in those samples of some pollutant such as pathogens from sewage, or phosphates from farm runoff, and then wanted to see if the water was compliant with water quality thresholds as dictated by, say, the Water Framework Directive.
 
-# The non-parametric case
+## The non-parametric case
 
 A common scenario is that we have two sets of measurements, and we want to see if there is evidence that they are drawn from different populations. For some data types we can use a *t*-test to do this, but for others we cannot.
 
@@ -341,7 +341,7 @@ Thus, formally, we need another kind of test for a difference. Broadly, we need 
 
 There are many non-parametric tests out there. Here we will look at only one - the **Wilcoxon Rank Sum Test**, often referred to as a **Mann-Whitney U** test for a difference. We can use this for the scenario we have painted above, where we have two sets of data and we wish to know if these provide evidence that the populations from which the samples have been drawn are in fact different.
 
-## Example
+### Example
 
 This example uses actual data gathered by a student at Newquay University Centre.
 
@@ -351,7 +351,7 @@ Each scale used consists of 15 questions or 'Likert items', each of which is ans
 
 The student got responses from 374 people, 86 of whom were not "marine" users, while the other 288 say that they *were* marine users. The total scores from each respondent were recorded for each type of survey and stored in the file `wellness.csv` which you should find on the module Moodle site / Teams page. Please put this file in the `data` folder of your R project.
 
-## Script
+### Script
 
 Code chunks for a script to carry out the analysis of this data are provided below. To use them you should create a new Quarto document using File/New File/Quarto document, from which you delete all the exemplar material below the yaml section at the top. The first few chunks of this script carry out the same old-same old that we see in script after script: load packages, load data, summarise data , plot data. Copy and paste any chunks you want to use into your own script then adapt them as necessary.
 
@@ -359,14 +359,14 @@ You can run your script by running each chunk in sequence, which you do by click
 
 Try also to 'Render' the script by clicking on the Render button at the top of the script pane.
 
-### Load packages
+#### Load packages
 
 ```{r, echo = TRUE}
 library(tidyverse)
 library(here)
 ```
 
-### Load data
+#### Load data
 
 Our data set is in a `.csv` file which we have placed in the data folder within our project folder.
 
@@ -378,7 +378,7 @@ wellness<-read_csv(filepath)
 glimpse(wellness)
 ```
 
-### Summarise the data
+#### Summarise the data
 
 We'll calculate the median score (50th percentile) and the 25th and 75th percentile scores. For ordinal data, these summary statistics are well defined, whereas means and standard deviations are not.
 
@@ -388,7 +388,7 @@ wellness |>
   summarise(median.score=median(total_score),iqr_25=quantile(total_score,0.25),iqr_75=quantile(total_score,0.75))
 ```
 
-### Plot the data
+#### Plot the data
 
 Box plots are particularly suitable for ordinal data since they show the 25th and 75th percentiles of the data (the bottom and top of the box) plus the 50th percentile aka the median, which is the thick line across each box. All of these percentiles are well defined quantities for ordinal data.
 
@@ -403,7 +403,7 @@ wellness |>
 
 Looking at the plot, what do you think each scale suggests about whether proximity to the sea makes a difference to wellbeing?
 
-### Wilcoxon-Mann-Whitney U test
+#### Wilcoxon-Mann-Whitney U test
 
 First let's pull out the scores as measured by the WEMWBS scale and do a test for a difference between the scores of marine users and those of non-marine users. We can use the `filter()` function to do this.
 
@@ -426,11 +426,11 @@ We might report this results as follows, first using a plain English statement o
 
 *We find evidence, according to the WEMWBS scale, that the wellbeing score is 4.5 or about 10% higher for people exposed to a marine environment (Mann-Whitney U, W = 9077.5, p \< 0.001).*
 
-## Exercise
+### Exercise
 
 Adapt the code of the last chunk so that you can do the same test but for data as recorded by the nep scale
 
-## When should I use this Wilcoxon-Mann-Whitney U test?
+### When should I use this Wilcoxon-Mann-Whitney U test?
 
 The test we have used here is an example of a *non-parametric* test. This means that it does not assume that the data follow a known mathematical distribution and, further, that it can be used with ordinal data.
 
@@ -440,7 +440,7 @@ In another setting where we still had just one factor (eg zone of a rocky shore)
 
 In this example we used the Mann-Whitney U test because the data were ordinal and thus not suitable to use with a parametric test (but see below!). Where we can, we usually try to use a parametric test as they are more powerful than their non-parametric equivalents, meaning, if there is a trend or a difference in the data, they are better able to detect it. However those parametric tests (t-test, ANOVA, pearson correlation, PCA, GLM to name but a few) typically require not only that the data are numerical but also a host of other things, including that they follow a particular distribution, usually (but not always) the normal distribution, and this is often not the case with real biological data. Often, especially with count data, there are lots of zeros, or the data distribution is heavily skewed, usually to the right. In these cases, providing the data are independent of each other, we can usually still use a non-parametric test such as we have here. it might not be the most powerful test we can use (GLMs are typically way better if you can use them), but it will work.
 
-## Hang on!
+### Hang on!
 
 The eagle eyed among you may have spotted a massive flaw in the line of argument presented above. We said that ordinal data can't be added up, can't be used to calculate averages and so on. Thus we can't run parametric tests on them and have to look for alternatives, namely, non-parametric tests.
 
@@ -454,13 +454,13 @@ de Winter, J. F. C., & Dodou, D. (2010). Five-Point Likert Items: t test versus 
 
 For an enlightening discussion of this paper, see [this blog by Jim Frost](https://statisticsbyjim.com/hypothesis-testing/analyze-likert-scale-data/)
 
-# Paired data
+## Paired data
 
 Often one has a sample of replicated data where each element has a counterpart in another matched sample - paired data. A common scenario for this is when there are data for the same individual at two different points in time, for example before and after some event such as the application of a treatment.
 
 In order to determine whether there is a difference between the two sets, one should take the paired aspect into account and not simply match the whole before-set against the whole after-set without doing this. That would be to throw away the information whereby there is likely to be a greater degree of correlation between the responses of an individual before and after the event than there is between any randomly chosen pairs of individuals before and after the event.
 
-## Which test: paired t-test or Wilcoxon signed rank test?
+### Which test: paired t-test or Wilcoxon signed rank test?
 
 There is a choice between at least two tests: the parametric paired t-test and the non-parametric Wilcoxon signed rank test. Ideally one would use the t-test since it is more powerful than the Wilcoxon test. This means several things, but in particular it means that, all else being equal, it can detect a small difference with higher probability than the Wilcoxon test can.
 
@@ -474,15 +474,15 @@ The t-test, an example of a so-called parametric test, is actually pretty robust
 
 So, you typically use this test when you would like to use the paired t-test, but you cannot because one or both of the data sets is way off being normally distributed or is ordinal.
 
-### Null Hypotheses
+#### Null Hypotheses
 
 In both the t-test and the Wilcoxon signed rank tests, the null hypothesis is the usual 'nothing going on', 'there is no difference' scenario, but there is a subtle difference between them that reflects the different information that they use. In the Wilcoxon signed rank test the null is that the difference between the *medians* of pairs of observations is zero. This is different from the null hypothesis of the paired t–test, which is that the difference between the *means* of pairs is zero.
 
-### Test output
+#### Test output
 
 Both tests will give a p value. This is the probability that the mean (t-test) or median (Wilcoxon signed rank) paired differences between the corresponding before and after sample elements would be equal to or greater than it actually is for the data if the null hypothesis were true. If the p value is less than some pre-decided 'significance level', usually taken to be 0.05, then we reject the null hypothesis. If it is not, then we fail to reject the null hypothesis.
 
-## Example
+### Example
 
 We will use as an example a data set from Laureysens et al. (2004) that has measurements of metal content in the wood of 13 poplar clones growing in a polluted area, once from each clone in August and once again from each of them in November. The idea was to investigate the extent to which poplars could absorb metals from the soil and thus be useful in cleaning that up. Under a null hypothesis, there would be no change in the metal concentrations in the plant tissue of each clone between August and November. Under an alternate hypothesis, there would be.
 
@@ -565,7 +565,7 @@ All parts of the output have meaning and are useful, but here we will focus on j
 -   the p value is equal to 0.040. Hence, if we have chosen the usual significance value of 0.05, we can take this to mean that there is evidence of a significant difference between the August and November values.
 -   the lower and upper bounds of the 95% confidence interval are (-9.52, -0.28). YOu can think of this interval as the range of values within which the difference can plausibly lie, at the 95% confidence level. The key thing is that this range does not encompass zero. This means that we can be confident at the 95% level that there is a non-zero change on going from August to November, and, in particular, that the August value is lower than the November value.
 
-## The non-parametric alternative: The Wilcoxon signed rank test
+### The non-parametric alternative: The Wilcoxon signed rank test
 
 To be safe, because of that outlier, let us test for difference using the Wilcoxon signed rank test. In R this is done using the function `wilcox.test()`, with the argument `paired` set to `TRUE`.
 
@@ -575,7 +575,7 @@ wilcox.test(poplars$August, poplars$November, paired = TRUE)
 
 We see that the conclusion (in this case) is the same.
 
-## Relation to one-sample paired test
+### Relation to one-sample paired test
 
 The two-sample paired tests as we have done above are the same as doing a one-sample test to see if the differences between the August and November paired values is different from zero. This is true whether we do a t-test or a Wilcoxon signed rank test.
 
