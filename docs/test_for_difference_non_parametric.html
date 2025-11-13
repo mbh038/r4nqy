@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Tests for difference - non parametric – r4nqy</title>
+<title>3&nbsp; Tests for difference - non parametric – r4nqy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./test_for_difference_non_parametric.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./test_for_difference_non_parametric.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -178,31 +178,49 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./t-test-2-sample.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two-sample <em>t</em>-test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Two-sample <em>t</em>-test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./test_for_difference_non_parametric.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ANOVA principles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -221,18 +239,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example"><span class="header-section-number">4.1</span> Example</a></li>
-  <li><a href="#script" id="toc-script" class="nav-link" data-scroll-target="#script"><span class="header-section-number">4.2</span> Script</a>
+  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example"><span class="header-section-number">3.1</span> Example</a></li>
+  <li><a href="#script" id="toc-script" class="nav-link" data-scroll-target="#script"><span class="header-section-number">3.2</span> Script</a>
   <ul class="collapse">
-  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">4.2.1</span> Load packages</a></li>
-  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">4.2.2</span> Load data</a></li>
-  <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link" data-scroll-target="#summarise-the-data"><span class="header-section-number">4.2.3</span> Summarise the data</a></li>
-  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">4.2.4</span> Plot the data</a></li>
-  <li><a href="#wilcoxon-mann-whitney-u-test" id="toc-wilcoxon-mann-whitney-u-test" class="nav-link" data-scroll-target="#wilcoxon-mann-whitney-u-test"><span class="header-section-number">4.2.5</span> Wilcoxon-Mann-Whitney U test</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">3.2.1</span> Load packages</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">3.2.2</span> Load data</a></li>
+  <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link" data-scroll-target="#summarise-the-data"><span class="header-section-number">3.2.3</span> Summarise the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">3.2.4</span> Plot the data</a></li>
+  <li><a href="#wilcoxon-mann-whitney-u-test" id="toc-wilcoxon-mann-whitney-u-test" class="nav-link" data-scroll-target="#wilcoxon-mann-whitney-u-test"><span class="header-section-number">3.2.5</span> Wilcoxon-Mann-Whitney U test</a></li>
   </ul></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">4.3</span> Exercise</a></li>
-  <li><a href="#when-should-i-use-this-wilcoxon-mann-whitney-u-test" id="toc-when-should-i-use-this-wilcoxon-mann-whitney-u-test" class="nav-link" data-scroll-target="#when-should-i-use-this-wilcoxon-mann-whitney-u-test"><span class="header-section-number">4.4</span> When should I use this Wilcoxon-Mann-Whitney U test?</a></li>
-  <li><a href="#hang-on" id="toc-hang-on" class="nav-link" data-scroll-target="#hang-on"><span class="header-section-number">4.5</span> Hang on!</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">3.3</span> Exercise</a></li>
+  <li><a href="#when-should-i-use-this-wilcoxon-mann-whitney-u-test" id="toc-when-should-i-use-this-wilcoxon-mann-whitney-u-test" class="nav-link" data-scroll-target="#when-should-i-use-this-wilcoxon-mann-whitney-u-test"><span class="header-section-number">3.4</span> When should I use this Wilcoxon-Mann-Whitney U test?</a></li>
+  <li><a href="#hang-on" id="toc-hang-on" class="nav-link" data-scroll-target="#hang-on"><span class="header-section-number">3.5</span> Hang on!</a></li>
   </ul>
 </nav>
     </div>
@@ -241,7 +259,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></h1>
 </div>
 
 
@@ -266,32 +284,32 @@ window.Quarto = {
 \]</span></p>
 <p>But trying doing the same to five responses of a Likert scale survey. Say the responses you had to five Likert items (individual questions) were “strongly disagree”, “strongly agree”, “mildly disagree”, “strongly disagree” and “don’t care either way”. If you tried to calculate a ‘mean’ response you would be attempting to add up all these responses and to divide the ‘sum’ by five, like this:</p>
 <p><span class="math display">\[\text{mean response}=\frac{\text{stongly disagree}+\text{strongly agree}+\text{mildly disagree}+\text{stongly disagree}+\text{don't care either way}}{5} = ?
-\]</span> This sum makes no sense, I hope you will agree. It makes no sense, not because we are using words to describe our responses, but because, as these are ordinal data, we do not know the size of the gaps between the different points on the scale. Is the difference in agreement between the lowest two, “strongly disagree” and “midly disagree” the same as the gap between the highest two, “mildly agree” and “strongly agree”? We don’t know, mainly because ‘agreement’ is not something that can be measured easily using something like a weighing machine. And if we don’t know, then we shouldn’t really be adding these responses up or dividing them by anything.</p>
-<p>Nevertheless, ordinal data are very common, since they are typically what is generated by survey data, where for example repondents may answer a series of questions (‘items’), each with typically five possible responses, but maybe more or fewer, these responses being ordinal in the sense that there is a definite order to them. They might encompass responses like those above, say, or something similar like “very unhappy” to “very happy”. They are also common in clinical and veterinary practice where ordinal pain scores are widely used - patients being asked (if they are human) or assessed as to their level of pain on a scale of 1-10, for example. Note that even if the pain value is recorded as a number it is actually a label, that could just as well have been recorded as one of a series of letters, A, B, C etc or emojis, or any symbol you like. You can’t take the average of a set of faces!</p>
+\]</span> This sum makes no sense, I hope you will agree. It makes no sense, not because we are using words to describe our responses, but because, these being ordinal data, we do not know the size of the gaps between the different points on the scale. Is the difference in agreement between the lowest two, “strongly disagree” and “mildly disagree” the same as the gap between the highest two, “mildly agree” and “strongly agree”? We don’t know, mainly because ‘agreement’ is not even something that is well-defined in a quantifiable way - it can’t be measured easily using something like a weighing machine. And if this is the case then we shouldn’t really be adding these responses up or dividing them by anything.</p>
+<p>Nevertheless, ordinal data are very common, since they are typically what is generated by survey data where, for example, repondents may answer a series of questions (‘items’), each with typically five possible responses, but maybe more or fewer, these responses being ordinal in the sense that there is a definite order to them. They might encompass responses like those above, say, or something similar like “very unhappy” to “very happy”. They are also common in clinical and veterinary practice where ordinal pain scores are widely used - patients being asked (if they are human) or assessed as to their level of pain on some numerical scale such as 1-10. Note that even if the pain value is recorded as a number it is actually a label, that could just as well have been recorded as one of a series of letters, A, B, C etc or emojis, or any symbol you like. You can’t take the average of a set of faces!</p>
 <p>Thus, formally, we need another kind of test for a difference. Broadly, we need to use some form of <em>non-parametric</em> test where we do not assume that the data has any form of distribution, and where, often, we do not use the actual values of the measurements in our dataset but instead use only their <em>ranks</em>. The smallest value would be given rank 1, the next rank 2 and so on.</p>
 <p>There are many non-parametric tests out there. Here we will look at only one - the <strong>Wilcoxon Rank Sum Test</strong>, often referred to as a <strong>Mann-Whitney U</strong> test for a difference. We can use this for the scenario we have painted above, where we have two sets of data and we wish to know if these provide evidence that the populations from which the samples have been drawn are in fact different.</p>
-<section id="example" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="example"><span class="header-section-number">4.1</span> Example</h2>
+<section id="example" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.1</span> Example</h2>
 <p>This example uses actual data gathered by an Honours Project student.</p>
 <p>The student wished to assess peoples’ sense of wellbeing using two different sets of questions designed to assess this. The scales chosen were the Warwick–Edinburgh Mental Well-being Scale (WEMWBS) and the New Ecological Paradigm (NEP) Scale. The student wished in particular to determine whether this sense of well-being was affected by whether a person often and actively frequented the coast and made it and the sea a substantive part of their life in one way or another. ie to find out whether there was evidence to support the notion that it could be good for your mental wellbeing to be by the sea and to make it part of your life.</p>
 <p>Each scale used consists of 15 questions or ‘Likert items’, each of which is answered on a 5 point ordinal scale, where a score of 1 indicates lowest wellbeing and a score of 5 indicates highest wellbeing. Thus each respondent could score anything from 15 to 75.</p>
 <p>The student got responses from 374 people, 86 of whom were not “marine” users, while the other 288 say that they <em>were</em> marine users. The total scores from each respondent were recorded for each type of survey and stored in the file <code>wellness.csv</code> which you should find on the module Moodle site / Teams page. Please put this file in the <code>data</code> folder of your R project.</p>
 </section>
-<section id="script" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="script"><span class="header-section-number">4.2</span> Script</h2>
+<section id="script" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="script"><span class="header-section-number">3.2</span> Script</h2>
 <p>The first few chunks of this script carry out the same old-same old that we see in script after script: load packages, load data, summarise data , plot data.</p>
 <p>You can run this script by running each chunk in sequence, which you do by clicking the green arrow in the top-right corner of each chunk.</p>
 <p>Try also to ‘Knit’ the script by clicking on the Knit button at the top of the script pane.</p>
 <p>If you want to create your own script to use with your own data then you can copy and paste into it any code chunks that would be of use and adapt them as necessary.</p>
-<section id="load-packages" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">4.2.1</span> Load packages</h3>
+<section id="load-packages" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">3.2.1</span> Load packages</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="load-data" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="load-data"><span class="header-section-number">4.2.2</span> Load data</h3>
+<section id="load-data" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="load-data"><span class="header-section-number">3.2.2</span> Load data</h3>
 <p>Our data set is in a <code>.csv</code> file which we have placed in the data folder within our project folder.</p>
 <p>Note that this data set has been stored in ‘tidy’ form: each variable appears in only column, and each observation appears in only one row.</p>
 <div class="cell">
@@ -308,8 +326,8 @@ $ total_score &lt;dbl&gt; 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51
 </div>
 </div>
 </section>
-<section id="summarise-the-data" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">4.2.3</span> Summarise the data</h3>
+<section id="summarise-the-data" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">3.2.3</span> Summarise the data</h3>
 <p>We’ll calculate the median score (50th percentile) and the 25th and 75th percentile scores. For ordinal data, these summary statistics are well defined, whereas means and standard deviations are not.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wellness <span class="sc">|&gt;</span></span>
@@ -327,8 +345,8 @@ $ total_score &lt;dbl&gt; 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51
 </div>
 </div>
 </section>
-<section id="plot-the-data" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">4.2.4</span> Plot the data</h3>
+<section id="plot-the-data" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">3.2.4</span> Plot the data</h3>
 <p>Box plots are particularly suitable for ordinal data since they show the 25th and 75th percentiles of the data (the bottom and top of the box) plus the 50th percentile aka the median, which is the thick line across each box. All of these percentiles are well defined quantities for ordinal data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wellness <span class="sc">|&gt;</span></span>
@@ -347,8 +365,8 @@ $ total_score &lt;dbl&gt; 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51
 </div>
 <p>Looking at the plot, what do you think each scale suggests about whether proximity to the sea makes a difference to wellbeing?</p>
 </section>
-<section id="wilcoxon-mann-whitney-u-test" class="level3" data-number="4.2.5">
-<h3 data-number="4.2.5" class="anchored" data-anchor-id="wilcoxon-mann-whitney-u-test"><span class="header-section-number">4.2.5</span> Wilcoxon-Mann-Whitney U test</h3>
+<section id="wilcoxon-mann-whitney-u-test" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="wilcoxon-mann-whitney-u-test"><span class="header-section-number">3.2.5</span> Wilcoxon-Mann-Whitney U test</h3>
 <p>First let’s pull out the scores as measured by the WEMWBS scale and do a test for a difference between the scores of marine users and those of non-marine users. We can use the <code>filter()</code> function to do this.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>WEMWBS<span class="ot">&lt;-</span>wellness <span class="sc">|&gt;</span> <span class="fu">filter</span>(scale<span class="sc">==</span><span class="st">"WEMWBS"</span>)</span>
@@ -368,19 +386,19 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>We find evidence, according to the WEMWBS scale, that the wellbeing score is 4.5 or about 10% higher for people exposed to a marine environment (Mann-Whitney U, W = 9077.5, p &lt; 0.001).</p>
 </section>
 </section>
-<section id="exercise" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="exercise"><span class="header-section-number">4.3</span> Exercise</h2>
+<section id="exercise" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="exercise"><span class="header-section-number">3.3</span> Exercise</h2>
 <p>Adapt the code of the last chunk so that you can do the same test but for data as recorded by the nep scale</p>
 </section>
-<section id="when-should-i-use-this-wilcoxon-mann-whitney-u-test" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="when-should-i-use-this-wilcoxon-mann-whitney-u-test"><span class="header-section-number">4.4</span> When should I use this Wilcoxon-Mann-Whitney U test?</h2>
+<section id="when-should-i-use-this-wilcoxon-mann-whitney-u-test" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="when-should-i-use-this-wilcoxon-mann-whitney-u-test"><span class="header-section-number">3.4</span> When should I use this Wilcoxon-Mann-Whitney U test?</h2>
 <p>The test we have used here is an example of a <em>non-parametric</em> test. This means that it does not assume that the data follow a known mathematical distribution and, further, that it can be used with ordinal data.</p>
 <p>We used the Mann-Whitney U test in particular because we were testing for a difference, and because the factor of interest - marine exposure - had just two levels - Yes or No.&nbsp;This test is only suitable when there are just two levels, so you can think of it as as a non-parametric alternative to a t-test.</p>
 <p>In another setting where we still had just one factor (eg zone of a rocky shore) but there were more than two levels (eg low, mid and high zones of the shore) and we decided that we wanted to do a non-parametric test for a difference, then we would probably use the Kruskal-Wallis test, which you can think of as the non-parametric alternative to a one-way ANOVA.</p>
 <p>In this example we used the Mann-Whitney U test because the data were ordinal and thus not suitable to use with a parametric test (but see below!). Where we can, we usually try to use a parametric test as they are more powerful than their non-parametric equivalents, meaning, if there is a trend or a difference in the data, they are better able to detect it. However those parametric tests (t-test, ANOVA, pearson correlation, PCA, GLM to name but a few) typically require not only that the data are numerical but also a host of other things, including that they follow a particular distribution, usually (but not always) the normal distribution, and this is often not the case with real biological data. Often, especially with count data, there are lots of zeros, or the data distribution is heavily skewed, usually to the right. In these cases, providing the data are independent of each other, we can usually still use a non-parametric test such as we have here. it might not be the most powerful test we can use (GLMs are typically way better if you can use them), but it will work.</p>
 </section>
-<section id="hang-on" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="hang-on"><span class="header-section-number">4.5</span> Hang on!</h2>
+<section id="hang-on" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="hang-on"><span class="header-section-number">3.5</span> Hang on!</h2>
 <p>The eagle eyed among you may have spotted a massive flaw in the line of argument presented above. We said that ordinal data can’t be added up, can’t be used to calculate averages and so on. Thus we can’t run parametric tests on them and have to look for alternatives, namely, non-parametric tests.</p>
 <p>And yet, these non-parametric tests are usually run on the output of Likert <em>scales</em> such as we have considered here, where for each person we have a number of Likert <em>Items</em> (ie individual questions) that together constitute the <em>scale</em>, that each generate a score 1-5, then we <em>add up the scores</em> to get a total score. But that means we are adding up ordinal data!!!</p>
 <p>It turns out that you actually get much the same results with Likert scale data if you analyse them using supposedly inappropriate parametric tests such as a 2-sample <em>t</em>-test as you do if you use a non-parametric test such as the one we considered here, the Mann-Whitney test.</p>
@@ -812,12 +830,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./t-test-2-sample.html" class="pagination-link" aria-label="Two-sample *t*-test">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two-sample <em>t</em>-test</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Two-sample <em>t</em>-test</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ANOVA_how_it_works.html" class="pagination-link" aria-label="ANOVA principles">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ANOVA principles</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ANOVA_how_it_works.html" class="pagination-link" aria-label="Analysis of Variance aka ANOVA">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
