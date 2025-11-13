@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Chi-squared analysis of count data – r4nqy</title>
+<title>6&nbsp; Chi-squared analysis of count data – r4nqy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chi-square.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chi-square.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,38 +160,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./t-test-2-sample.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Two-sample <em>t</em>-test</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./test_for_difference_non_parametric.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></span></a>
+  <a href="./tests_for_difference_two_levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi-square.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -210,26 +204,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#when-to-use-chi-square-analysis" id="toc-when-to-use-chi-square-analysis" class="nav-link active" data-scroll-target="#when-to-use-chi-square-analysis"><span class="header-section-number">7.1</span> When to use chi-square analysis</a></li>
-  <li><a href="#example-tossing-a-coin" id="toc-example-tossing-a-coin" class="nav-link" data-scroll-target="#example-tossing-a-coin"><span class="header-section-number">7.2</span> Example: tossing a coin</a></li>
-  <li><a href="#example-throwing-a-dice" id="toc-example-throwing-a-dice" class="nav-link" data-scroll-target="#example-throwing-a-dice"><span class="header-section-number">7.3</span> Example: throwing a dice</a></li>
-  <li><a href="#example-mendelian-inheritance" id="toc-example-mendelian-inheritance" class="nav-link" data-scroll-target="#example-mendelian-inheritance"><span class="header-section-number">7.4</span> Example: Mendelian inheritance</a></li>
-  <li><a href="#chi-square-goodness-of-fit-test" id="toc-chi-square-goodness-of-fit-test" class="nav-link" data-scroll-target="#chi-square-goodness-of-fit-test"><span class="header-section-number">7.5</span> Chi-square Goodness of Fit Test</a></li>
-  <li><a href="#chi-square-goodness-of-fit-test-in-r" id="toc-chi-square-goodness-of-fit-test-in-r" class="nav-link" data-scroll-target="#chi-square-goodness-of-fit-test-in-r"><span class="header-section-number">7.6</span> Chi-square Goodness of Fit Test in R</a></li>
-  <li><a href="#example-mendelian-pea-plants" id="toc-example-mendelian-pea-plants" class="nav-link" data-scroll-target="#example-mendelian-pea-plants"><span class="header-section-number">7.7</span> Example: Mendelian pea plants</a></li>
-  <li><a href="#doing-the-chi-square-test-in-r" id="toc-doing-the-chi-square-test-in-r" class="nav-link" data-scroll-target="#doing-the-chi-square-test-in-r"><span class="header-section-number">7.8</span> Doing the chi-square test in R</a></li>
-  <li><a href="#output-of-chi-square-goodness-of-fit-test" id="toc-output-of-chi-square-goodness-of-fit-test" class="nav-link" data-scroll-target="#output-of-chi-square-goodness-of-fit-test"><span class="header-section-number">7.9</span> Output of chi-square goodness of fit test:</a></li>
-  <li><a href="#reporting-the-result-in-english" id="toc-reporting-the-result-in-english" class="nav-link" data-scroll-target="#reporting-the-result-in-english"><span class="header-section-number">7.10</span> Reporting the result in English</a>
+  <li><a href="#when-to-use-chi-square-analysis" id="toc-when-to-use-chi-square-analysis" class="nav-link active" data-scroll-target="#when-to-use-chi-square-analysis"><span class="header-section-number">6.1</span> When to use chi-square analysis</a></li>
+  <li><a href="#example-tossing-a-coin" id="toc-example-tossing-a-coin" class="nav-link" data-scroll-target="#example-tossing-a-coin"><span class="header-section-number">6.2</span> Example: tossing a coin</a></li>
+  <li><a href="#example-throwing-a-dice" id="toc-example-throwing-a-dice" class="nav-link" data-scroll-target="#example-throwing-a-dice"><span class="header-section-number">6.3</span> Example: throwing a dice</a></li>
+  <li><a href="#example-mendelian-inheritance" id="toc-example-mendelian-inheritance" class="nav-link" data-scroll-target="#example-mendelian-inheritance"><span class="header-section-number">6.4</span> Example: Mendelian inheritance</a></li>
+  <li><a href="#chi-square-goodness-of-fit-test" id="toc-chi-square-goodness-of-fit-test" class="nav-link" data-scroll-target="#chi-square-goodness-of-fit-test"><span class="header-section-number">6.5</span> Chi-square Goodness of Fit Test</a></li>
+  <li><a href="#chi-square-goodness-of-fit-test-in-r" id="toc-chi-square-goodness-of-fit-test-in-r" class="nav-link" data-scroll-target="#chi-square-goodness-of-fit-test-in-r"><span class="header-section-number">6.6</span> Chi-square Goodness of Fit Test in R</a></li>
+  <li><a href="#example-mendelian-pea-plants" id="toc-example-mendelian-pea-plants" class="nav-link" data-scroll-target="#example-mendelian-pea-plants"><span class="header-section-number">6.7</span> Example: Mendelian pea plants</a></li>
+  <li><a href="#doing-the-chi-square-test-in-r" id="toc-doing-the-chi-square-test-in-r" class="nav-link" data-scroll-target="#doing-the-chi-square-test-in-r"><span class="header-section-number">6.8</span> Doing the chi-square test in R</a></li>
+  <li><a href="#output-of-chi-square-goodness-of-fit-test" id="toc-output-of-chi-square-goodness-of-fit-test" class="nav-link" data-scroll-target="#output-of-chi-square-goodness-of-fit-test"><span class="header-section-number">6.9</span> Output of chi-square goodness of fit test:</a></li>
+  <li><a href="#reporting-the-result-in-english" id="toc-reporting-the-result-in-english" class="nav-link" data-scroll-target="#reporting-the-result-in-english"><span class="header-section-number">6.10</span> Reporting the result in English</a>
   <ul class="collapse">
-  <li><a href="#caution" id="toc-caution" class="nav-link" data-scroll-target="#caution"><span class="header-section-number">7.10.1</span> Caution</a></li>
+  <li><a href="#caution" id="toc-caution" class="nav-link" data-scroll-target="#caution"><span class="header-section-number">6.10.1</span> Caution</a></li>
   </ul></li>
-  <li><a href="#exercise-1-is-this-coin-a-fair-coin" id="toc-exercise-1-is-this-coin-a-fair-coin" class="nav-link" data-scroll-target="#exercise-1-is-this-coin-a-fair-coin"><span class="header-section-number">7.11</span> Exercise 1: Is this coin a fair coin?</a></li>
-  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1"><span class="header-section-number">7.12</span> Solution 1</a></li>
-  <li><a href="#solution-1-continued" id="toc-solution-1-continued" class="nav-link" data-scroll-target="#solution-1-continued"><span class="header-section-number">7.13</span> Solution 1 (continued)</a></li>
-  <li><a href="#exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign" id="toc-exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign" class="nav-link" data-scroll-target="#exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign"><span class="header-section-number">7.14</span> Exercise 2: Is a scientist’s competence associated with their astrological star sign?</a></li>
-  <li><a href="#exercise-2-continued" id="toc-exercise-2-continued" class="nav-link" data-scroll-target="#exercise-2-continued"><span class="header-section-number">7.15</span> Exercise 2 (continued)</a></li>
-  <li><a href="#solution-2" id="toc-solution-2" class="nav-link" data-scroll-target="#solution-2"><span class="header-section-number">7.16</span> Solution 2</a></li>
-  <li><a href="#solution-2-continued" id="toc-solution-2-continued" class="nav-link" data-scroll-target="#solution-2-continued"><span class="header-section-number">7.17</span> Solution 2 (continued)</a></li>
+  <li><a href="#exercise-1-is-this-coin-a-fair-coin" id="toc-exercise-1-is-this-coin-a-fair-coin" class="nav-link" data-scroll-target="#exercise-1-is-this-coin-a-fair-coin"><span class="header-section-number">6.11</span> Exercise 1: Is this coin a fair coin?</a></li>
+  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1"><span class="header-section-number">6.12</span> Solution 1</a></li>
+  <li><a href="#solution-1-continued" id="toc-solution-1-continued" class="nav-link" data-scroll-target="#solution-1-continued"><span class="header-section-number">6.13</span> Solution 1 (continued)</a></li>
+  <li><a href="#exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign" id="toc-exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign" class="nav-link" data-scroll-target="#exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign"><span class="header-section-number">6.14</span> Exercise 2: Is a scientist’s competence associated with their astrological star sign?</a></li>
+  <li><a href="#exercise-2-continued" id="toc-exercise-2-continued" class="nav-link" data-scroll-target="#exercise-2-continued"><span class="header-section-number">6.15</span> Exercise 2 (continued)</a></li>
+  <li><a href="#solution-2" id="toc-solution-2" class="nav-link" data-scroll-target="#solution-2"><span class="header-section-number">6.16</span> Solution 2</a></li>
+  <li><a href="#solution-2-continued" id="toc-solution-2-continued" class="nav-link" data-scroll-target="#solution-2-continued"><span class="header-section-number">6.17</span> Solution 2 (continued)</a></li>
   </ul>
 </nav>
     </div>
@@ -238,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></h1>
 </div>
 
 
@@ -255,8 +249,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="when-to-use-chi-square-analysis" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="when-to-use-chi-square-analysis"><span class="header-section-number">7.1</span> When to use chi-square analysis</h2>
+<section id="when-to-use-chi-square-analysis" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="when-to-use-chi-square-analysis"><span class="header-section-number">6.1</span> When to use chi-square analysis</h2>
 <p>A chi-square analysis is used when our data are in the form of</p>
 <ul>
 <li>raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc.</li>
@@ -266,16 +260,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>What we do is compare the counts we got to some <em>expected</em> value according either to the long term results of chance or to some prior theory.</p>
 </section>
-<section id="example-tossing-a-coin" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="example-tossing-a-coin"><span class="header-section-number">7.2</span> Example: tossing a coin</h2>
+<section id="example-tossing-a-coin" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="example-tossing-a-coin"><span class="header-section-number">6.2</span> Example: tossing a coin</h2>
 <ul>
 <li><p>If we were tossing a fair coin 1000 times we would expect 500 heads and 500 tails, ie heads and tails in the proportion 1:1.</p></li>
 <li><p><span style="color: blue;">In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but probably not exactly 500 of each.</span></p></li>
 <li><p><strong>How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?</strong></p></li>
 </ul>
 </section>
-<section id="example-throwing-a-dice" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="example-throwing-a-dice"><span class="header-section-number">7.3</span> Example: throwing a dice</h2>
+<section id="example-throwing-a-dice" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="example-throwing-a-dice"><span class="header-section-number">6.3</span> Example: throwing a dice</h2>
 <ul>
 <li><p><span style="color: blue;">If we threw a fair dice a large number of times we would expect each possible score, from 1 to 6, to occur the same number of times.</span></p></li>
 <li><p>ie each score would occur 1/6th of the time.</p></li>
@@ -283,8 +277,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?</strong></p></li>
 </ul>
 </section>
-<section id="example-mendelian-inheritance" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="example-mendelian-inheritance"><span class="header-section-number">7.4</span> Example: Mendelian inheritance</h2>
+<section id="example-mendelian-inheritance" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="example-mendelian-inheritance"><span class="header-section-number">6.4</span> Example: Mendelian inheritance</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -296,8 +290,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>How far from 3:1 would the yellow:green ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p>
 </section>
-<section id="chi-square-goodness-of-fit-test" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test"><span class="header-section-number">7.5</span> Chi-square Goodness of Fit Test</h2>
+<section id="chi-square-goodness-of-fit-test" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test"><span class="header-section-number">6.5</span> Chi-square Goodness of Fit Test</h2>
 <ul>
 <li><p><span style="color: blue;">In a chi-square ‘<strong>goodness of fit</strong>’ test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores, pea colour etc).</span></p></li>
 <li><p>We have an idea of how these counts should be distributed under some <strong>null hypothesis</strong> (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc).</p></li>
@@ -305,16 +299,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We are testing how well our actual counts ‘fit’ the expected values.</p></li>
 </ul>
 </section>
-<section id="chi-square-goodness-of-fit-test-in-r" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test-in-r"><span class="header-section-number">7.6</span> Chi-square Goodness of Fit Test in R</h2>
+<section id="chi-square-goodness-of-fit-test-in-r" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test-in-r"><span class="header-section-number">6.6</span> Chi-square Goodness of Fit Test in R</h2>
 <ul>
 <li><p><span style="color: blue;">In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome.</span></p></li>
 <li><p>The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct.</p></li>
 <li><p><span style="color: blue;">If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.</span></p></li>
 </ul>
 </section>
-<section id="example-mendelian-pea-plants" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="example-mendelian-pea-plants"><span class="header-section-number">7.7</span> Example: Mendelian pea plants</h2>
+<section id="example-mendelian-pea-plants" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="example-mendelian-pea-plants"><span class="header-section-number">6.7</span> Example: Mendelian pea plants</h2>
 <ul>
 <li><span style="color: blue;">Suppose we have self-fertilized an F1 generation of pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 130 are yellow and 46 are green.</span></li>
 </ul>
@@ -325,8 +319,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><span style="color: blue;">Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.</span></p></li>
 </ul>
 </section>
-<section id="doing-the-chi-square-test-in-r" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="doing-the-chi-square-test-in-r"><span class="header-section-number">7.8</span> Doing the chi-square test in R</h2>
+<section id="doing-the-chi-square-test-in-r" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="doing-the-chi-square-test-in-r"><span class="header-section-number">6.8</span> Doing the chi-square test in R</h2>
 <p>We type this function into the console pane of RStudio:</p>
 <p><code>chisq.test(c(130,46),p=c(0.75,0.25))</code></p>
 <p>We have given the function <code>chisq.test()</code> two <em>arguments</em>, separated by a comma:</p>
@@ -335,8 +329,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>the second argument <code>p = c(0.75,0.25)</code> is another vector, this time of the proportions in which we <em>expect</em> the two colours to appear. If these proportions were all equal, as is common but not the case here, then we could leave out this argument, since that is the default presumption.</p></li>
 </ul>
 </section>
-<section id="output-of-chi-square-goodness-of-fit-test" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="output-of-chi-square-goodness-of-fit-test"><span class="header-section-number">7.9</span> Output of chi-square goodness of fit test:</h2>
+<section id="output-of-chi-square-goodness-of-fit-test" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="output-of-chi-square-goodness-of-fit-test"><span class="header-section-number">6.9</span> Output of chi-square goodness of fit test:</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">130</span>, <span class="dv">46</span>), <span class="at">p =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -355,17 +349,17 @@ X-squared = 0.12121, df = 1, p-value = 0.7277</code></pre>
 <li><p>In other words, our data are consistent at the 5% significance level with the predictions of simple Mendelian inheritance.</p></li>
 </ul>
 </section>
-<section id="reporting-the-result-in-english" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="reporting-the-result-in-english"><span class="header-section-number">7.10</span> Reporting the result in English</h2>
+<section id="reporting-the-result-in-english" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="reporting-the-result-in-english"><span class="header-section-number">6.10</span> Reporting the result in English</h2>
 <p>In English, we might report this result as:</p>
 <p><em>We found counts of 130 yellow plants and 46 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 0.12, p=0.73).</em></p>
-<section id="caution" class="level3" data-number="7.10.1">
-<h3 data-number="7.10.1" class="anchored" data-anchor-id="caution"><span class="header-section-number">7.10.1</span> Caution</h3>
+<section id="caution" class="level3" data-number="6.10.1">
+<h3 data-number="6.10.1" class="anchored" data-anchor-id="caution"><span class="header-section-number">6.10.1</span> Caution</h3>
 <p>Note that we do not say we have proved Mendelian inheritance to be correct. We haven’t. We never prove things in science. We haven’t said anything about the truth of the null hypothesis. All we can say is whether our data are or are not consistent with the null hypothesis. In this case they are. We then report the test we used and the values of the test statistic and p-value. Other tests might give you other details to report too.</p>
 </section>
 </section>
-<section id="exercise-1-is-this-coin-a-fair-coin" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="exercise-1-is-this-coin-a-fair-coin"><span class="header-section-number">7.11</span> Exercise 1: Is this coin a fair coin?</h2>
+<section id="exercise-1-is-this-coin-a-fair-coin" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="exercise-1-is-this-coin-a-fair-coin"><span class="header-section-number">6.11</span> Exercise 1: Is this coin a fair coin?</h2>
 <p><span style="color: blue;">Suppose you tossed a fair coin 100 times and got 43 heads and 57 tails.</span></p>
 <p>Under a null hypothesis that the coin is fair, what would the expected numbers of heads and tails be?</p>
 <p><span style="color: blue;">Now, you use R to do a chi-square test of that null hypothesis. Here is the code to do that and the output it would give:</span></p>
@@ -384,8 +378,8 @@ X-squared = 1.96, df = 1, p-value = 0.1615</code></pre>
 <li><p>How would you report the result?</p></li>
 </ul>
 </section>
-<section id="solution-1" class="level2" data-number="7.12">
-<h2 data-number="7.12" class="anchored" data-anchor-id="solution-1"><span class="header-section-number">7.12</span> Solution 1</h2>
+<section id="solution-1" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="solution-1"><span class="header-section-number">6.12</span> Solution 1</h2>
 <ul>
 <li><p><span style="color: blue;">The expectation is that half the outcomes would be heads and half would be tails.</span></p></li>
 <li><p>The null hypothesis of this test is that heads and tails are equally likely, ie that the coin is fair.</p></li>
@@ -394,15 +388,15 @@ X-squared = 1.96, df = 1, p-value = 0.1615</code></pre>
 <li><p><span style="color: blue;">In particular, this p-value is greater than 0.05, so we cannot reject the null hypothesis that the coin is fair. That is, even with a fair coin it is not unlikely that you would get head/tail numbers as different or more different from 50/50 as 43/57 if you tossed the coin 100 times. That will happen about 1/6 of the time if you repeatedly do trials where you toss the coin 100 times.</span></p></li>
 </ul>
 </section>
-<section id="solution-1-continued" class="level2" data-number="7.13">
-<h2 data-number="7.13" class="anchored" data-anchor-id="solution-1-continued"><span class="header-section-number">7.13</span> Solution 1 (continued)</h2>
+<section id="solution-1-continued" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="solution-1-continued"><span class="header-section-number">6.13</span> Solution 1 (continued)</h2>
 <ul>
 <li>To report this result, you might say something like</li>
 </ul>
 <p><em>From 100 coin tosses we got 43 heads and 57 tails. These counts are consistent at the 5% significance level with the coin being fair (chi-squared test, X2 = 1.96, df = 1, p &gt; 0.05).</em></p>
 </section>
-<section id="exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign" class="level2" data-number="7.14">
-<h2 data-number="7.14" class="anchored" data-anchor-id="exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign"><span class="header-section-number">7.14</span> Exercise 2: Is a scientist’s competence associated with their astrological star sign?</h2>
+<section id="exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign" class="level2" data-number="6.14">
+<h2 data-number="6.14" class="anchored" data-anchor-id="exercise-2-is-a-scientists-competence-associated-with-their-astrological-star-sign"><span class="header-section-number">6.14</span> Exercise 2: Is a scientist’s competence associated with their astrological star sign?</h2>
 <p>Suppose someone told you that the competence of scientists was linked to their astrological zodiac sign. I won’t name all of these, but there are twelve of them: Pisces, Scorpio, Cancer etc.</p>
 <p><span style="color: blue;">To test this hypothesis, you spend a lot of time on Primo and identify 240 scientists, currently active, that have each published at least five papers in high impact journals in the last year. All of these people, you presume, are successful scientists. You write to each of them and ask them their date of birth.</span></p>
 <p>Amazingly(!) all of them respond. You then assign each of them to a zodiac sign according to their birth date and get the following counts for each sign:</p>
@@ -419,8 +413,8 @@ X-squared = 1.96, df = 1, p-value = 0.1615</code></pre>
 </div>
 </div>
 </section>
-<section id="exercise-2-continued" class="level2" data-number="7.15">
-<h2 data-number="7.15" class="anchored" data-anchor-id="exercise-2-continued"><span class="header-section-number">7.15</span> Exercise 2 (continued)</h2>
+<section id="exercise-2-continued" class="level2" data-number="6.15">
+<h2 data-number="6.15" class="anchored" data-anchor-id="exercise-2-continued"><span class="header-section-number">6.15</span> Exercise 2 (continued)</h2>
 <ul>
 <li><p><span style="color: blue;">What would be a suitable null hypothesis in this investigation?</span></p></li>
 <li><p>What proportion of the total count would we expect for each star sign if this null were true?</p></li>
@@ -430,8 +424,8 @@ X-squared = 1.96, df = 1, p-value = 0.1615</code></pre>
 <li><p>Report the result of the test in plain English.</p></li>
 </ul>
 </section>
-<section id="solution-2" class="level2" data-number="7.16">
-<h2 data-number="7.16" class="anchored" data-anchor-id="solution-2"><span class="header-section-number">7.16</span> Solution 2</h2>
+<section id="solution-2" class="level2" data-number="6.16">
+<h2 data-number="6.16" class="anchored" data-anchor-id="solution-2"><span class="header-section-number">6.16</span> Solution 2</h2>
 <ul>
 <li><p><span style="color: blue;">H0: There is no association between the astrological star sign of a researcher and their success in science (who knew?)</span></p></li>
 <li><p>One twelfth for each sign. ie a researcher is as likely to have one star sign as any other.</p></li>
@@ -449,8 +443,8 @@ X-squared = 2.3, df = 11, p-value = 0.9971</code></pre>
 </div>
 </div>
 </section>
-<section id="solution-2-continued" class="level2" data-number="7.17">
-<h2 data-number="7.17" class="anchored" data-anchor-id="solution-2-continued"><span class="header-section-number">7.17</span> Solution 2 (continued)</h2>
+<section id="solution-2-continued" class="level2" data-number="6.17">
+<h2 data-number="6.17" class="anchored" data-anchor-id="solution-2-continued"><span class="header-section-number">6.17</span> Solution 2 (continued)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(stars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -891,7 +885,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./ANOVA_two_way_with_model_simplification.html" class="pagination-link" aria-label="Two-way ANOVA with model simplification">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

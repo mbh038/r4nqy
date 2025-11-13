@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.1)  13 NOV 2025 06:38
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.1)  13 NOV 2025 07:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1391,96 +1391,86 @@ File: workflow_files/figure-pdf/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 
 [21]
 chapter 2.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <20.74> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 1056.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 1101.
 
 
 [22
 
 ]
+chapter 3.
+File: tests_for_difference_two_levels_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
+<tests_for_difference_two_levels_files/figure-latex/mermaid-figure-1.png>
 
-[23]
+Overfull \hbox (1310.86746pt too wide) in paragraph at lines 1069--1070
+[][] 
+ []
+
+
+
+[23
+
+]
+Overfull \vbox (1122.54472pt too high) has occurred while \output is active []
+
+
 
 [24]
 
 [25]
-File: t-test-2-sample_files/figure-pdf/histogram-1.pdf Graphic file (type pdf)
-<use t-test-2-sample_files/figure-pdf/histogram-1.pdf>
-File: t-test-2-sample_files/figure-pdf/box plot-1.pdf Graphic file (type pdf)
-<use t-test-2-sample_files/figure-pdf/box plot-1.pdf>
+chapter 4.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 1085.
 
 
-[26]
-File: t-test-2-sample_files/figure-pdf/bar chart-1.pdf Graphic file (type pdf)
-<use t-test-2-sample_files/figure-pdf/bar chart-1.pdf>
+[26
 
+]
 
 [27]
 
 [28]
-File: t-test-2-sample_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use t-test-2-sample_files/figure-pdf/unnamed-chunk-4-1.pdf>
-
 
 [29]
 
+LaTeX Warning: Reference `fig-histograms' on page 30 undefined on input line 1295.
+
+File: tests_for_difference_two_levels_files/figure-pdf/fig-histograms-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/fig-histograms-1.pdf>
+
+
 [30]
-File: t-test-2-sample_files/figure-pdf/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use t-test-2-sample_files/figure-pdf/unnamed-chunk-6-1.pdf>
+File: tests_for_difference_two_levels_files/figure-pdf/fig-boxplot-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/fig-boxplot-1.pdf>
+
+LaTeX Warning: Reference `fig-means-se' on page 31 undefined on input line 1352.
+
+File: tests_for_difference_two_levels_files/figure-pdf/fig-means-se-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/fig-means-se-1.pdf>
 
 
 [31]
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <12> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 1517.
-
 
 [32]
-Overfull \hbox (128.11484pt too wide) in paragraph at lines 1547--1547
-[]\TU/lmtt/m/n/10.95 alternative hypothesis: true difference in means between group East and group West is not equal to 0[] 
- []
-
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-5-1.pdf>
 
 
 [33]
-chapter 3.
 
-Overfull \hbox (107.21465pt too wide) detected at line 1615
-[] [] [] [] []
- []
+[34]
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-7-1.pdf>
 
-
-
-[34
-
-]
 
 [35]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1730--1730
-[]\TU/lmtt/m/n/10.95 $ id          <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1730--1730
-[]\TU/lmtt/m/n/10.95 $ scale       <chr> "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS"~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1730--1730
-[]\TU/lmtt/m/n/10.95 $ marine      <chr> "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "Yes",~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1730--1730
-[]\TU/lmtt/m/n/10.95 $ total_score <dbl> 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51, 54~[] 
- []
-
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <12> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 1579.
 
 
 [36]
-File: test_for_difference_non_parametric_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use test_for_difference_non_parametric_files/figure-pdf/unnamed-chunk-4-1.pdf>
+Overfull \hbox (110.86859pt too wide) in paragraph at lines 1610--1610
+[]\TU/lmtt/m/n/10.95 alternative hypothesis: true difference in means between group No and group Yes is not equal to 0[] 
+ []
+
 
 
 [37]
@@ -1488,41 +1478,138 @@ File: test_for_difference_non_parametric_files/figure-pdf/unnamed-chunk-4-1.pdf 
 [38]
 
 [39]
+chapter 5.
 
-[40]
-chapter 4.
+Overfull \hbox (107.21465pt too wide) detected at line 1801
+[] [] [] [] []
+ []
 
 
-[41
+
+[40
+
+]
+
+[41]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1917--1917
+[]\TU/lmtt/m/n/10.95 $ id          <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1917--1917
+[]\TU/lmtt/m/n/10.95 $ scale       <chr> "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS"~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1917--1917
+[]\TU/lmtt/m/n/10.95 $ marine      <chr> "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "Yes",~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1917--1917
+[]\TU/lmtt/m/n/10.95 $ total_score <dbl> 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51, 54~[] 
+ []
+
+
+
+[42]
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-12-1.pdf>
+
+
+[43]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1989--1989
+[]\TU/lmtt/m/n/10.95 $ id          <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1989--1989
+[]\TU/lmtt/m/n/10.95 $ scale       <chr> "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS"~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1989--1989
+[]\TU/lmtt/m/n/10.95 $ marine      <chr> "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "Yes",~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1989--1989
+[]\TU/lmtt/m/n/10.95 $ total_score <dbl> 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51, 54~[] 
+ []
+
+
+
+[44]
+
+[45]
+
+[46]
+chapter 6.
+
+
+[47
+
+]
+Underfull \hbox (badness 2486) in paragraph at lines 2189--2194
+\TU/lmr/m/n/10.95 production in a poplar coppice culture: I. Seasonal variation in leaf, wood and
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 2189--2194
+\TU/lmr/m/n/10.95 bark concentrations’, Environmental Pollution, 131(3), pp. 485–494. Available at:
+ []
+
+
+
+[48]
+
+[49]
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-18-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-18-1.pdf>
+
+
+[50]
+
+[51]
+
+[52]
+
+[53]
+
+[54]
+chapter 7.
+
+
+[55
 
 ]
 File: ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-1-1.pdf>
 
 
-[42]
+[56]
 File: ANOVA_how_it_works_files/figure-pdf/SST plot-1.pdf Graphic file (type pdf)
 <use ANOVA_how_it_works_files/figure-pdf/SST plot-1.pdf>
 
 
-[43]
+[57]
 
-[44]
+[58]
 
-[45]
+[59]
 File: ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-4-1.pdf>
 
 
-[46]
+[60]
 
-[47]
+[61]
 Runaway argument?
  df(\text {SST}) &= n-1\\ df(\text {SSE}) &= k-1\\ df(\text {SSF}) &=\ETC.
 ! Paragraph ended before \align* was complete.
 <to be read again> 
                    \par 
-l.2253 
+l.2819 
        
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -1530,11 +1617,11 @@ My plan is to forget the whole thing and hope for the best.
 
  
 Here is how much of TeX's memory you used:
- 35554 strings out of 475787
- 715835 string characters out of 5772282
+ 35592 strings out of 475787
+ 718165 string characters out of 5772282
  1393557 words of memory out of 5000000
- 57925 multiletter control sequences out of 15000+600000
+ 57958 multiletter control sequences out of 15000+600000
  565414 words of font info for 92 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 108i,8n,114p,10900b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on index.pdf (47 pages).
+ 108i,8n,114p,10900b,549s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on index.pdf (61 pages).
