@@ -1058,9 +1058,7 @@ levels}\label{tests-for-difference-one-factor-two-levels}
 In this document we consider tests for difference where there are two
 levels being compared.
 
-\bookmarksetup{startatroot}
-
-\chapter{Test finder flow chart}\label{test-finder-flow-chart}
+\section{Test finder flow chart}\label{test-finder-flow-chart}
 
 First, use this flowchart to see if a two-sample t-test or its
 non-parametric counterpart the Mann-Whitney-U test is appropriate for
@@ -1072,16 +1070,14 @@ If this chart suggests you need something other than the two sample
 t-test or Mann-Whitney test, you need to go to the descriptions of that
 test.
 
-\bookmarksetup{startatroot}
-
-\chapter{Two sample t-test: the parametric
+\section{Two sample t-test: the parametric
 case}\label{two-sample-t-test-the-parametric-case}
 
 In this exercise we find out how to run a two-sample \emph{t}-test, to
 determine whether there is evidence to reject the hypothesis that two
 samples are drawn from the same population.
 
-\section{\texorpdfstring{When to use the two-sample
+\subsection{\texorpdfstring{When to use the two-sample
 \emph{t}-test}{When to use the two-sample t-test}}\label{when-to-use-the-two-sample-t-test}
 
 \begin{itemize}
@@ -1149,7 +1145,7 @@ samples are drawn from the same population.
   differences between more than two groups.
 \end{itemize}
 
-\section{Motivation and example}\label{motivation-and-example}
+\subsection{Motivation and example}\label{motivation-and-example}
 
 In our example we will consider the impact of pesticide use on the
 masses of shells of garden snails (\emph{Cornu aspersum}), as measured
@@ -1176,7 +1172,7 @@ and a suitable \textbf{alternate, two-sided hypothesis} is:
 
 \emph{There is a difference between shell masses.}
 
-\section{The data}\label{the-data}
+\subsection{The data}\label{the-data}
 
 Suppose we had our data arranged in a spreadsheet in three columns, one
 giving the garden ID, G1 to G20, one telling us whether pesticides were
@@ -1447,7 +1443,7 @@ normal distribution?
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99827, p-value = 0.9041
+W = 0.99553, p-value = 0.1628
 \end{verbatim}
 
 \begin{Shaded}
@@ -1461,7 +1457,7 @@ W = 0.99827, p-value = 0.9041
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.95537, p-value = 3.706e-11
+W = 0.94303, p-value = 6.307e-13
 \end{verbatim}
 
 For the examples above, we see that Shapiro-Wilk test gave a high
@@ -1769,9 +1765,7 @@ Can you think of another example?
   quality thresholds as dictated by, say, the Water Framework Directive.
 \end{itemize}
 
-\bookmarksetup{startatroot}
-
-\chapter{The non-parametric case}\label{the-non-parametric-case}
+\section{The non-parametric case}\label{the-non-parametric-case}
 
 A common scenario is that we have two sets of measurements, and we want
 to see if there is evidence that they are drawn from different
@@ -1837,7 +1831,7 @@ scenario we have painted above, where we have two sets of data and we
 wish to know if these provide evidence that the populations from which
 the samples have been drawn are in fact different.
 
-\section{Example}\label{example}
+\subsection{Example}\label{example}
 
 This example uses actual data gathered by a student at Newquay
 University Centre.
@@ -1865,7 +1859,7 @@ of survey and stored in the file \texttt{wellness.csv} which you should
 find on the module Moodle site / Teams page. Please put this file in the
 \texttt{data} folder of your R project.
 
-\section{Script}\label{script}
+\subsection{Script}\label{script}
 
 Code chunks for a script to carry out the analysis of this data are
 provided below. To use them you should create a new Quarto document
@@ -1882,7 +1876,7 @@ by clicking the green arrow in the top-right corner of each chunk.
 Try also to `Render' the script by clicking on the Render button at the
 top of the script pane.
 
-\subsection{Load packages}\label{load-packages-1}
+\subsubsection{Load packages}\label{load-packages-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1891,7 +1885,7 @@ top of the script pane.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Load data}\label{load-data-1}
+\subsubsection{Load data}\label{load-data-1}
 
 Our data set is in a \texttt{.csv} file which we have placed in the data
 folder within our project folder.
@@ -1916,7 +1910,7 @@ $ marine      <chr> "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "Yes",~
 $ total_score <dbl> 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51, 54~
 \end{verbatim}
 
-\subsection{Summarise the data}\label{summarise-the-data-1}
+\subsubsection{Summarise the data}\label{summarise-the-data-1}
 
 We'll calculate the median score (50th percentile) and the 25th and 75th
 percentile scores. For ordinal data, these summary statistics are well
@@ -1941,7 +1935,7 @@ defined, whereas means and standard deviations are not.
 4 nep    Yes            50     48       53
 \end{verbatim}
 
-\subsection{Plot the data}\label{plot-the-data-1}
+\subsubsection{Plot the data}\label{plot-the-data-1}
 
 Box plots are particularly suitable for ordinal data since they show the
 25th and 75th percentiles of the data (the bottom and top of the box)
@@ -1965,7 +1959,7 @@ ordinal data.
 Looking at the plot, what do you think each scale suggests about whether
 proximity to the sea makes a difference to wellbeing?
 
-\subsection{Wilcoxon-Mann-Whitney U
+\subsubsection{Wilcoxon-Mann-Whitney U
 test}\label{wilcoxon-mann-whitney-u-test}
 
 First let's pull out the scores as measured by the WEMWBS scale and do a
@@ -2025,12 +2019,12 @@ exact value, but simply give an indication of how small it is:
 wellbeing score is 4.5 or about 10\% higher for people exposed to a
 marine environment (Mann-Whitney U, W = 9077.5, p \textless{} 0.001).}
 
-\section{Exercise}\label{exercise}
+\subsection{Exercise}\label{exercise}
 
 Adapt the code of the last chunk so that you can do the same test but
 for data as recorded by the nep scale
 
-\section{When should I use this Wilcoxon-Mann-Whitney U
+\subsection{When should I use this Wilcoxon-Mann-Whitney U
 test?}\label{when-should-i-use-this-wilcoxon-mann-whitney-u-test}
 
 The test we have used here is an example of a \emph{non-parametric}
@@ -2068,7 +2062,7 @@ still use a non-parametric test such as we have here. it might not be
 the most powerful test we can use (GLMs are typically way better if you
 can use them), but it will work.
 
-\section{Hang on!}\label{hang-on}
+\subsection{Hang on!}\label{hang-on}
 
 The eagle eyed among you may have spotted a massive flaw in the line of
 argument presented above. We said that ordinal data can't be added up,
@@ -2100,9 +2094,7 @@ For an enlightening discussion of this paper, see
 \href{https://statisticsbyjim.com/hypothesis-testing/analyze-likert-scale-data/}{this
 blog by Jim Frost}
 
-\bookmarksetup{startatroot}
-
-\chapter{Paired data}\label{paired-data}
+\section{Paired data}\label{paired-data}
 
 Often one has a sample of replicated data where each element has a
 counterpart in another matched sample - paired data. A common scenario
@@ -2118,7 +2110,7 @@ likely to be a greater degree of correlation between the responses of an
 individual before and after the event than there is between any randomly
 chosen pairs of individuals before and after the event.
 
-\section{Which test: paired t-test or Wilcoxon signed rank
+\subsection{Which test: paired t-test or Wilcoxon signed rank
 test?}\label{which-test-paired-t-test-or-wilcoxon-signed-rank-test}
 
 There is a choice between at least two tests: the parametric paired
@@ -2153,7 +2145,7 @@ So, you typically use this test when you would like to use the paired
 t-test, but you cannot because one or both of the data sets is way off
 being normally distributed or is ordinal.
 
-\subsection{Null Hypotheses}\label{null-hypotheses}
+\subsubsection{Null Hypotheses}\label{null-hypotheses}
 
 In both the t-test and the Wilcoxon signed rank tests, the null
 hypothesis is the usual `nothing going on', `there is no difference'
@@ -2164,7 +2156,7 @@ of observations is zero. This is different from the null hypothesis of
 the paired t--test, which is that the difference between the
 \emph{means} of pairs is zero.
 
-\subsection{Test output}\label{test-output}
+\subsubsection{Test output}\label{test-output}
 
 Both tests will give a p value. This is the probability that the mean
 (t-test) or median (Wilcoxon signed rank) paired differences between the
@@ -2174,7 +2166,7 @@ true. If the p value is less than some pre-decided `significance level',
 usually taken to be 0.05, then we reject the null hypothesis. If it is
 not, then we fail to reject the null hypothesis.
 
-\section{Example}\label{example-1}
+\subsection{Example}\label{example-1}
 
 We will use as an example a data set from Laureysens et al.~(2004) that
 has measurements of metal content in the wood of 13 poplar clones
@@ -2380,7 +2372,7 @@ focus on just two:
   August value is lower than the November value.
 \end{itemize}
 
-\section{The non-parametric alternative: The Wilcoxon signed rank
+\subsection{The non-parametric alternative: The Wilcoxon signed rank
 test}\label{the-non-parametric-alternative-the-wilcoxon-signed-rank-test}
 
 To be safe, because of that outlier, let us test for difference using
@@ -2405,7 +2397,7 @@ alternative hypothesis: true location shift is not equal to 0
 
 We see that the conclusion (in this case) is the same.
 
-\section{Relation to one-sample paired
+\subsection{Relation to one-sample paired
 test}\label{relation-to-one-sample-paired-test}
 
 The two-sample paired tests as we have done above are the same as doing
