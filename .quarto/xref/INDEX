@@ -22,5 +22,8 @@
   },
   "test_for_difference_non_parametric.qmd": {
     "test_for_difference_non_parametric.html": "0aeddcde"
+  },
+  "chi-square.qmd": {
+    "chi-square.html": "c712ae5c"
   }
 }
