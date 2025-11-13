@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Two-way ANOVA with model simplification – r4nqy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chi-square.html" rel="next">
+<link href="./ANOVA_one_way.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ANOVA_two_way_with_model_simplification.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">r4nqy</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./t-test-2-sample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Two-sample <em>t</em>-test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test_for_difference_non_parametric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tests for difference - non parametric</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#factorial-experiments-and-model-simplification" id="toc-factorial-experiments-and-model-simplification" class="nav-link active" data-scroll-target="#factorial-experiments-and-model-simplification"><span class="header-section-number">6.0.1</span> Factorial experiments and model simplification</a></li>
+  <li><a href="#files-needed" id="toc-files-needed" class="nav-link" data-scroll-target="#files-needed"><span class="header-section-number">6.0.2</span> Files needed</a></li>
+  <li><a href="#open-your-project" id="toc-open-your-project" class="nav-link" data-scroll-target="#open-your-project"><span class="header-section-number">6.0.3</span> Open your Project</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">6.0.4</span> Load packages</a></li>
+  <li><a href="#read-in-the-data" id="toc-read-in-the-data" class="nav-link" data-scroll-target="#read-in-the-data"><span class="header-section-number">6.0.5</span> Read in the data</a></li>
+  <li><a href="#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." id="toc-make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="nav-link" data-scroll-target="#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><span class="header-section-number">6.0.6</span> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+  <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link" data-scroll-target="#summarise-the-data"><span class="header-section-number">6.0.7</span> Summarise the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">6.0.8</span> Plot the data</a></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">6.0.9</span> ANOVA</a></li>
+  <li><a href="#model-simplification" id="toc-model-simplification" class="nav-link" data-scroll-target="#model-simplification"><span class="header-section-number">6.0.10</span> Model Simplification</a></li>
+  <li><a href="#check-the-validity-of-the-linear-model" id="toc-check-the-validity-of-the-linear-model" class="nav-link" data-scroll-target="#check-the-validity-of-the-linear-model"><span class="header-section-number">6.0.11</span> Check the validity of the linear model</a></li>
+  <li><a href="#reporting-the-results" id="toc-reporting-the-results" class="nav-link" data-scroll-target="#reporting-the-results"><span class="header-section-number">6.0.12</span> Reporting the results</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This exercise sheet is heavily indebted to Michael Crawley’s <em>Statistics: An introduction using R</em>, 2nd Ed, Wiley. Published in 2015 this emphasises statistics over R (in fact, much of the R he presents is written prior to the advent of the <code>tidyverse</code> dialect which we use here, and so may seem terse if that is what you are used to). It is very useful and is at a higher level than Beckerman, Childs and Petchey’s <em>Getting Started in R: An introduction for biologists</em>, 2nd Ed. OUP published in 2017. Their book also includes a simpler version of the example explored here.</p>
+<section id="factorial-experiments-and-model-simplification" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="factorial-experiments-and-model-simplification"><span class="header-section-number">6.0.1</span> Factorial experiments and model simplification</h3>
+<p>The best model is the one that adequately explains the data with fewest parameters. This means with the smallest possible number of degrees of freedom.</p>
+<p>If we have a very large number of parameters, a model can fit any data set but be of limited use in generalising beyond it (we will have overfitted the data). If we have too few we will not explain much of the variance of the data. A balance must be struck. Hence we want the <em>minimal</em> <em>adequate</em> model.</p>
+<p>As Einstein almost said, a model should be as simple as possible, but no simpler. (Not to be outdone, the British statistician George Box also had a pithy saying about models: “All models are wrong, but some are useful”.)</p>
+<p>A <strong>factorial</strong> experiment has two or more factors, each with two or more levels, plus replication for each combination of factor levels. This means that we can investigate whether statistical interactions occur in which the effect of one factor depends on the value of another factor.</p>
+<p>We take an example from a farm-trial of animal diets. There are two factors: <code>diet</code> and <code>supplement</code>. <code>diet</code> is a factor with three levels: <code>barley</code>, <code>oats</code> and <code>wheat</code>, where <code>barley</code> is the diet that has always been used and the other two are potential alternatives. The purpose of the trial is to see if their use makes a difference to growth outcomes. <code>supplement</code> is a factor with four levels: <code>control</code>, <code>agrimore</code>, <code>supergain</code> and <code>supersupp</code>, where <code>control</code> could mean the absence of any supplement or the supplement used up to now, whose effects we are hoping to improve upon through use of one of the others included in the trial. The response variable <code>gain</code> is weight gain after 6 weeks. There were 48 individual cows in total with 4 for each combination of <code>diet</code> and <code>supplement</code>. Having the same number of replicates for each combination of levels means that this is a <em>balanced</em> design.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figures/factorial_design.png" class="img-fluid figure-img" width="604"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="files-needed" class="level3" data-number="6.0.2">
+<h3 data-number="6.0.2" class="anchored" data-anchor-id="files-needed"><span class="header-section-number">6.0.2</span> Files needed</h3>
+<ul>
+<li><p>To be put in the Project/scripts folder:</p>
+<ul>
+<li><code>ANOVA_two_way_with_model_simplification.html</code> (this worksheet)</li>
+<li><code>ANOVA_two_way_template.Rmd</code> (the script where you fill in the code chunks)</li>
+</ul></li>
+<li><p>To be put in Project/data folder</p>
+<ul>
+<li><code>growth.csv</code></li>
+</ul></li>
+</ul>
+<p>In the following, we present the code you need to analyse this data together with explanatory text. Read the text closely so that you understand what each chunk of code is intended to do. In the accompanying template file, fill in the code as you go in the empty chunks, using this worksheet as a guide. As you complete each line of code, run it using Ctrl-Enter or Cmd-Enter on a Mac. Alternatively, wait until you have completed the code for a chunk then run the whole chunk in one go by pressing the little green arrow at the top right of the chunk. Whichever way you choose, you are encouraged to view the code presented here as <em>one</em> way to do the analysis. Feel free to hack away at it and change things, to try different approaches and see what happens. That way you will learn. You may also wish to add your own text between the chunks.</p>
+</section>
+<section id="open-your-project" class="level3" data-number="6.0.3">
+<h3 data-number="6.0.3" class="anchored" data-anchor-id="open-your-project"><span class="header-section-number">6.0.3</span> Open your Project</h3>
+<p>You should be working within a folder that you have designated as what RStudio calls a ‘Project’. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a <code>scripts</code> folder for scripts like the one you are working from, and a <code>data</code> folder for all the data files. You will also see, at the top level of the Project, the <code>.RProj</code> file. You can see all this in the Files pane, bottom-right.</p>
+</section>
+<section id="load-packages" class="level3" data-number="6.0.4">
+<h3 data-number="6.0.4" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">6.0.4</span> Load packages</h3>
+<p>I normally load all the packages in the chunk below into every script. The most important is the <code>tidyverse</code> package which is a goody bag containing several other packages. Loading this saves you from having to load each of those individually. The most often used among these is <code>readr</code> for reading and writing data from/to files, <code>dplyr</code> for data manipulation, and <code>ggplot2</code> for plotting. Others will be used from time to time, and we don’t really need to be aware of that when it happens or to worry about it, so long as <code>tidyverse</code> has been loaded.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for data manipulation and plotting, and much else besides</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co"># for finding our data easily</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># gives a nice theme for plots</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># for diagnostic plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="read-in-the-data" class="level3" data-number="6.0.5">
+<h3 data-number="6.0.5" class="anchored" data-anchor-id="read-in-the-data"><span class="header-section-number">6.0.5</span> Read in the data</h3>
+<p>The <code>growth.csv</code> data file needs to be in the <code>data</code> folder within the Project folder.</p>
+<p>In this chunk we read the <code>growth.csv</code> data into an R object to which we give the name <code>weights</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filepath <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"growth.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>weights <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filepath) <span class="co"># this function is from the readr package, part of tidyverse</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 48
+Columns: 3
+$ supplement &lt;chr&gt; "supergain", "supergain", "supergain", "supergain", "contro…
+$ diet       &lt;chr&gt; "wheat", "wheat", "wheat", "wheat", "wheat", "wheat", "whea…
+$ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22717,…</code></pre>
+</div>
+</div>
+<p>You see from the output of the <code>glimpse()</code> function that <code>weights</code> has three columns and 48 rows. Two columns are of data type <code>&lt;chr&gt;</code> which is R-speak for text, and the other is data type <code>&lt;dbl&gt;</code> which is R-speak for numerical data with a decimal point.</p>
+</section>
+<section id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="level3" data-number="6.0.6">
+<h3 data-number="6.0.6" class="anchored" data-anchor-id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><span class="header-section-number">6.0.6</span> Make R recognise the categorical variables as factors, and order the levels.</h3>
+<p>At the moment, the contents within the variables <code>supplement</code> and <code>diet</code> are not being recognised as levels of factors. R is just thinking of them as text (or <code>&lt;chr&gt;</code> in R-speak), as we can see from the output of the <code>glimpse()</code> function in the chunk above. Let us fix that, as it will be useful for them to be recognized for what they are so that we can order the levels in a way that makes sense for our context, our plots and our analysis.</p>
+<p>Sometimes levels of a factor have a natural order, such as <em>Low</em>, <em>Mid</em> and <em>High</em> as the levels of the factor <em>Tidal Zone</em> and sometimes they do not, for example <em>Apples</em>, <em>Oranges</em> and <em>Pears</em> as levels of the factor <em>Fruit</em>. Here, in the case of both our factors, we only wish to impose order among the levels in so far as we would like what we regard as the control or reference level to be first. By default, R puts the levels of a factor in alphabetical order. This is the order in which the boxes of a box plot would be displayed, reading left to right. In an ANOVA setting it means that differences of outcome (in this case, weight gain of the cows) are later calculated for each combination of levels with respect to the outcome for the combination of levels that are alphabetically first, in this case <code>barley</code> for <code>diet</code> and <code>agrimore</code> for <code>supplement</code>. In both the box-plot and the ANOVA output case this default ordering is not necessarily what we want. Normally, we want what we regard as the control levels to be the reference level and in this case that means <code>barley</code> for <code>diet</code> and <code>control</code> for <code>supplement</code>.</p>
+<p>To ensure that a variable is regarded as a factor, and then to get its levels in the order we would like, we use the <code>factor()</code> function.</p>
+<p>In the following chunk, <code>factor()</code> is used to designate both the <code>supplement</code> and <code>diet</code> columns of the data set as factors, and the level order of each is specified, with <code>control</code> coming first for <code>supplement</code> and <code>barley</code> coming first for <code>diet</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This line of code designates the supplement and diet columns of weights as factors, orders the levels of these factors as required and saves the result under the original name.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>weights <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supplement =</span> <span class="fu">factor</span>(supplement, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"control"</span>,<span class="st">"agrimore"</span>, <span class="st">"supergain"</span>, <span class="st">"supersupp"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diet =</span> <span class="fu">factor</span>(diet, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"barley"</span>, <span class="st">"oats"</span>, <span class="st">"wheat"</span>)))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check that this worked</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 48
+Columns: 3
+$ supplement &lt;fct&gt; supergain, supergain, supergain, supergain, control, contro…
+$ diet       &lt;fct&gt; wheat, wheat, wheat, wheat, wheat, wheat, wheat, wheat, whe…
+$ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22717,…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the level order of each factor - does the 'reference' level come first?</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(weights<span class="sc">$</span>supplement)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "control"   "agrimore"  "supergain" "supersupp"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(weights<span class="sc">$</span>diet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "barley" "oats"   "wheat" </code></pre>
+</div>
+</div>
+<p>Do you see how the variable types of the <code>supplement</code> and <code>diet</code> columns have been changed to <code>&lt;fct&gt;</code>? It worked!</p>
+<p>To get <code>control</code> to be the reference level of <code>supplement</code> we needed to force the issue in this way. If we hadn’t then <code>agrimore</code> would have been regarded as such, since it is alphabetically the first among the levels of <code>supplement</code>. We didn’t need to do this for <code>diet</code>, since the stipulated ordering of the levels is just the alphabetical order and so we would have had that by default anyway. Sometimes, though, it doesn’t hurt to throw in a little redundancy for the sake of clarity.</p>
+<p>So, now we have <code>control</code> as the reference level for <code>supplement</code> and <code>barley</code> as the reference level for <code>diet</code>. Now we can see more easily in our analysis what difference is made to weight gain when we change diet or supplement or both from a ‘business as usual’ combination of a <code>barley</code>diet and the <code>control</code> supplement.</p>
+</section>
+<section id="summarise-the-data" class="level3" data-number="6.0.7">
+<h3 data-number="6.0.7" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">6.0.7</span> Summarise the data</h3>
+<p>Our question is a difference question: is there evidence from the data that using this or that diet in combination with this or that supplement makes a difference to growth? For an answer to this we will end up doing a 2-way ANOVA including the possibility of an interaction, then, as we will see, a simpler ANOVA that ignores the possibility of the interaction. All well and good, but before we go to those lengths, we do something more basic: we calculate the mean and standard error of the mean for each of the twelve combinations of diet and supplement.</p>
+<p>There isn’t a function in base R with which we can calculate standard error of the mean directly, but we can do so knowing the standard deviation of the sample <span class="math inline">\(\text{SD}\)</span> (using <code>sd()</code>) and the sample size <span class="math inline">\(n\)</span> (using <code>n()</code>) using this formula:</p>
+<p><span class="math display">\[ \text{SE}=\frac{SD}{\sqrt{n}}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we use the group_by() and summarise() functions from dplyr (the package within tidyverse for data manipulation)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>growth_summary <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diet, supplement) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_gain =</span> <span class="fu">mean</span>(gain), <span class="at">se_gain =</span> <span class="fu">sd</span>(gain)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># if we type the name of an object, it gets printed out for us</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>growth_summary <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">diet</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">supplement</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mean_gain</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">se_gain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">barley</td>
+<td style="text-align: left;">control</td>
+<td style="text-align: right;">23.29665</td>
+<td style="text-align: right;">0.7032491</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">barley</td>
+<td style="text-align: left;">agrimore</td>
+<td style="text-align: right;">26.34848</td>
+<td style="text-align: right;">0.9187479</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">barley</td>
+<td style="text-align: left;">supergain</td>
+<td style="text-align: right;">22.46612</td>
+<td style="text-align: right;">0.7710644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">barley</td>
+<td style="text-align: left;">supersupp</td>
+<td style="text-align: right;">25.57530</td>
+<td style="text-align: right;">1.0599015</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oats</td>
+<td style="text-align: left;">control</td>
+<td style="text-align: right;">20.49366</td>
+<td style="text-align: right;">0.5056319</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">oats</td>
+<td style="text-align: left;">agrimore</td>
+<td style="text-align: right;">23.29838</td>
+<td style="text-align: right;">0.6131592</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oats</td>
+<td style="text-align: left;">supergain</td>
+<td style="text-align: right;">19.66300</td>
+<td style="text-align: right;">0.3489388</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">oats</td>
+<td style="text-align: left;">supersupp</td>
+<td style="text-align: right;">21.86023</td>
+<td style="text-align: right;">0.4132292</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wheat</td>
+<td style="text-align: left;">control</td>
+<td style="text-align: right;">17.40552</td>
+<td style="text-align: right;">0.4604420</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wheat</td>
+<td style="text-align: left;">agrimore</td>
+<td style="text-align: right;">19.63907</td>
+<td style="text-align: right;">0.7099260</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wheat</td>
+<td style="text-align: left;">supergain</td>
+<td style="text-align: right;">17.01243</td>
+<td style="text-align: right;">0.4852821</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wheat</td>
+<td style="text-align: left;">supersupp</td>
+<td style="text-align: right;">19.66834</td>
+<td style="text-align: right;">0.4746443</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Note the ordering of the diet and supplement levels in their respective columns: just what we have imposed!</p>
+</section>
+<section id="plot-the-data" class="level3" data-number="6.0.8">
+<h3 data-number="6.0.8" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">6.0.8</span> Plot the data</h3>
+<p>The next step, as so often before we launch into actual statistics, is to plot the data in a way that sheds light on the question we have. Here, we can use the use the means and standard errors of the mean that we have just calculated to produce a useful kind of line plot that in this context is often referred to as an interaction plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>growth_summary <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> supplement,<span class="at">y =</span> mean_gain, <span class="at">colour =</span> diet, <span class="at">group =</span> diet)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_gain <span class="sc">-</span> se_gain, <span class="at">ymax =</span> mean_gain <span class="sc">+</span> se_gain), <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Supplement"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Mean weight gain"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/interaction plot one-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by [Cummings et al][1]. (2007).</p>
+<p>This interaction plot is useful in that we see that both diet and supplement have an effect on growth and that the effect of one is altered little by the value of the other, the result of which is that the lines are more or less parallel. This suggests that we have <em>main effects</em> of both diet and supplement, but little or no <em>interaction</em> between them.</p>
+<section id="questions" class="level4" data-number="6.0.8.1">
+<h4 data-number="6.0.8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">6.0.8.1</span> Questions</h4>
+<p>What could the line plot look like if:</p>
+<ul>
+<li><p>There were no main effect of both diet and supplement, and no interaction</p></li>
+<li><p>There were a main effect of diet, no main effect of supplement and no interaction?</p></li>
+<li><p>There were no main effect of diet, a main effect of supplement and no interaction?</p></li>
+<li><p>There were main effects of both and an interaction between them?</p></li>
+</ul>
+<p>The plots tell you a great deal about what main effects and/or interactions there may be.</p>
+</section>
+</section>
+<section id="anova" class="level3" data-number="6.0.9">
+<h3 data-number="6.0.9" class="anchored" data-anchor-id="anova"><span class="header-section-number">6.0.9</span> ANOVA</h3>
+<p>Now for the actual statistical test. We will conduct a two-way ANOVA, which will look to see if there is evidence that either diet or supplement or both affect growth rate (the so-called main effects), and if the effect of one depends on the nature of the other (the so-called interaction).</p>
+<p>The null hypothesis is that neither has any main effect and that there is no interaction.</p>
+<p>Now we can use either of the functions <code>aov()</code> or <code>lm()</code> to carry out a factorial ANOVA (the choice affects only whether we get an ANOVA table or a list of parameter estimates as the default output from <code>summary()</code>.). Here, we will use <code>lm()</code>, partly because we would also use it for one-way ANOVAs and linear regression, and to do so here reminds of the common mathematical machinery that underlies all these methods.</p>
+<p>We estimate parameters for the main effects of each level of diet and each level of supplement, plus terms for the interaction between diet and supplement.</p>
+<p>The interaction degrees of freedom are the product of those for diet and supplement ie (3-1) x (4-1) = 6.</p>
+<p>The model is:</p>
+<p><code>gain ~ diet + supplement + diet:supplement</code></p>
+<p>which can be written more simply using the asterisk notation as:</p>
+<p><code>gain ~ diet * supplement</code></p>
+<section id="construct-the-model" class="level4" data-number="6.0.9.1">
+<h4 data-number="6.0.9.1" class="anchored" data-anchor-id="construct-the-model"><span class="header-section-number">6.0.9.1</span> Construct the model</h4>
+<p>First we construct the model using <code>lm()</code> and store the outputs of all the maths that `<code>lm()</code> does in an object called <code>model0</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">*</span> supplement, <span class="at">data =</span> weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="do-we-reject-the-null-hypothesis" class="level4" data-number="6.0.9.2">
+<h4 data-number="6.0.9.2" class="anchored" data-anchor-id="do-we-reject-the-null-hypothesis"><span class="header-section-number">6.0.9.2</span> Do we reject the null hypothesis?</h4>
+<p>To get an overall picture, we first use <code>anova()</code> to see if there is evidence to reject the null</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: gain
+                Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+diet             2 287.171 143.586 83.5201 2.999e-14 ***
+supplement       3  91.881  30.627 17.8150 2.952e-07 ***
+diet:supplement  6   3.406   0.568  0.3302    0.9166    
+Residuals       36  61.890   1.719                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>The ANOVA table shows that there a main effect of both <code>diet</code> and <code>supplement</code> (<em>p</em>&lt;0.001 in both cases), but that there is no hint of an interaction between <code>diet</code> and <code>supplement</code> (<em>p</em> = 0.917). Does that tally with what you see in the interaction plot? Clearly therefore, the effects of <code>diet</code> and <code>supplement</code> are merely additive (ie whichever level of one you have it does not affect the impact on growth of whichever level of the other you choose).</p>
+<p>The ANOVA table does not show us effect sizes or allow us to work out which if any of the levels of the two factors are significantly different. For this, <code>summary()</code> is more useful:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = gain ~ diet * supplement, data = weights)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.48756 -1.00368 -0.07452  1.03496  2.68069 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                   23.2966499  0.6555863  35.536  &lt; 2e-16 ***
+dietoats                      -2.8029851  0.9271390  -3.023  0.00459 ** 
+dietwheat                     -5.8911317  0.9271390  -6.354 2.34e-07 ***
+supplementagrimore             3.0518277  0.9271390   3.292  0.00224 ** 
+supplementsupergain           -0.8305263  0.9271390  -0.896  0.37631    
+supplementsupersupp            2.2786527  0.9271390   2.458  0.01893 *  
+dietoats:supplementagrimore   -0.2471088  1.3111726  -0.188  0.85157    
+dietwheat:supplementagrimore  -0.8182729  1.3111726  -0.624  0.53651    
+dietoats:supplementsupergain  -0.0001351  1.3111726   0.000  0.99992    
+dietwheat:supplementsupergain  0.4374395  1.3111726   0.334  0.74060    
+dietoats:supplementsupersupp  -0.9120830  1.3111726  -0.696  0.49113    
+dietwheat:supplementsupersupp -0.0158299  1.3111726  -0.012  0.99043    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.311 on 36 degrees of freedom
+Multiple R-squared:  0.8607,    Adjusted R-squared:  0.8182 
+F-statistic: 20.22 on 11 and 36 DF,  p-value: 3.295e-12</code></pre>
+</div>
+</div>
+<p>This is a complex model as there are 12 estimated parameters: 6 main effects and 6 interactions. Notice that although the ‘controls’ for diet and supplement (<code>barley</code> and <code>control</code>) do not appear to be in the table, they are there really, in the first row.</p>
+<p>The value 23.30 kg in the first row of the Estimate column on the left, labelled ‘Intercept()’ gives us the actual weight gain outcome for the combination of the two control levels, <code>barley</code> as diet and <code>control</code> as supplement. Check that this value tallies with what is shown in summary tables above, and in the interaction plot.</p>
+<p>The weight gain values for all the other combinations of the levels of each factor are given as differences from this reference level.</p>
+<p>So for example in row two, where diet is changed from barley to oats but supplement is still control, the value in the table is -2.8. This means that the weight gain when the diet is changed to oats but the supplement left as the control is 2.80 kg less than the reference value, and so must be 23.30-2.80 = 20.50 kg. This agrees with the value in the summary table of mean values that was calculated above, and tallies with the interaction plot.</p>
+<p>In row seven we see that the effect of the interaction between the diet <code>oats</code> and the supplement <code>agrimore</code> is - 0.247. This means that on going from the reference levels of barley and control, for which the gain is 23.30, the change in gain is not just the sum of the two main effects (-2.80 for switch of diet to oats and +3.05 for switch of supplement to agrimore, but is modified by their interaction, of size - 0.247. Hence the mean gain for a diet of oats <em>and</em> a supplement of agrimore is the intercept value plus the sum of the two main effects, plus the interaction term: 23.297 - 2.803 + 3.052 - 0.247 = 23.299)</p>
+<p>See if you can tally the other effect values in the summary table with the mean values given in table above and in the interaction plot for other combinations of diet and supplement.</p>
+<p>Here is a table to help you interpret the output of the <code>summary()</code> function.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">meaning</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">type_of_effect</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">absolute_value</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p_value</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">significance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: left;">barley + control</td>
+<td style="text-align: left;">Main effect</td>
+<td style="text-align: right;">23.30</td>
+<td style="text-align: right;">23.30</td>
+<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dietoats</td>
+<td style="text-align: left;">oats + control</td>
+<td style="text-align: left;">Main effect</td>
+<td style="text-align: right;">-2.80</td>
+<td style="text-align: right;">20.49</td>
+<td style="text-align: left;">0.005</td>
+<td style="text-align: left;">**</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dietwheat</td>
+<td style="text-align: left;">wheat + control</td>
+<td style="text-align: left;">Main effect</td>
+<td style="text-align: right;">-5.89</td>
+<td style="text-align: right;">17.41</td>
+<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">supplementagrimore</td>
+<td style="text-align: left;">barley + agrimore</td>
+<td style="text-align: left;">Main effect</td>
+<td style="text-align: right;">3.05</td>
+<td style="text-align: right;">26.35</td>
+<td style="text-align: left;">0.002</td>
+<td style="text-align: left;">**</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">supplementsupergain</td>
+<td style="text-align: left;">barley + supergain</td>
+<td style="text-align: left;">Main effect</td>
+<td style="text-align: right;">-0.83</td>
+<td style="text-align: right;">22.47</td>
+<td style="text-align: left;">0.376</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">supplementsupersupp</td>
+<td style="text-align: left;">barley + supersupp</td>
+<td style="text-align: left;">Main effect</td>
+<td style="text-align: right;">2.28</td>
+<td style="text-align: right;">25.58</td>
+<td style="text-align: left;">0.019</td>
+<td style="text-align: left;">*.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dietoats:supplementagrimore</td>
+<td style="text-align: left;">oats + agrimore</td>
+<td style="text-align: left;">Interaction</td>
+<td style="text-align: right;">-0.25</td>
+<td style="text-align: right;">23.05</td>
+<td style="text-align: left;">0.852</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dietwheat:supplementagrimore</td>
+<td style="text-align: left;">wheat + agrimore</td>
+<td style="text-align: left;">Interaction</td>
+<td style="text-align: right;">-0.82</td>
+<td style="text-align: right;">22.48</td>
+<td style="text-align: left;">0.537</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dietoats:supplementsupergain</td>
+<td style="text-align: left;">oats + supergain</td>
+<td style="text-align: left;">Interaction</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">23.30</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dietwheat:supplementsupergain</td>
+<td style="text-align: left;">wheat + supergain</td>
+<td style="text-align: left;">Interaction</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">23.73</td>
+<td style="text-align: left;">0.741</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dietoats:supplementsupersupp</td>
+<td style="text-align: left;">oats + supersupp</td>
+<td style="text-align: left;">Interaction</td>
+<td style="text-align: right;">-0.91</td>
+<td style="text-align: right;">22.38</td>
+<td style="text-align: left;">0.491</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dietwheat:supplementsupersupp</td>
+<td style="text-align: left;">wheat + supersupp</td>
+<td style="text-align: left;">Interaction</td>
+<td style="text-align: right;">-0.02</td>
+<td style="text-align: right;">23.28</td>
+<td style="text-align: left;">0.99</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>The output of the <code>summary()</code> function re-emphasises that none of the interaction terms are significant. It also suggests that a minimum adequate model will contain 5 parameters: an intercept, which just means that there is non-zero growth when the diet and supplement are the reference values, a difference from that growth due to changing the diet to <code>oats</code>, a difference due to changing it to<code>wheat</code>, a difference due to changing the supplement to <code>agrimore</code> while keeping barley as the diet, and a difference due to changing the supplement instead to <code>suppersupp</code>..</p>
+</section>
+</section>
+<section id="model-simplification" class="level3" data-number="6.0.10">
+<h3 data-number="6.0.10" class="anchored" data-anchor-id="model-simplification"><span class="header-section-number">6.0.10</span> Model Simplification</h3>
+<p>Given the results of the full interaction model, we begin model simplification by leaving out the interaction terms, to leave us with an additive model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">+</span> supplement, <span class="at">data =</span> weights)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = gain ~ diet + supplement, data = weights)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.30792 -0.85929 -0.07713  0.92052  2.90615 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          23.4263     0.4408  53.141  &lt; 2e-16 ***
+dietoats             -3.0928     0.4408  -7.016 1.38e-08 ***
+dietwheat            -5.9903     0.4408 -13.589  &lt; 2e-16 ***
+supplementagrimore    2.6967     0.5090   5.298 4.03e-06 ***
+supplementsupergain  -0.6848     0.5090  -1.345 0.185772    
+supplementsupersupp   1.9693     0.5090   3.869 0.000375 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.247 on 42 degrees of freedom
+Multiple R-squared:  0.8531,    Adjusted R-squared:  0.8356 
+F-statistic: 48.76 on 5 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="check-the-validity-of-the-linear-model" class="level3" data-number="6.0.11">
+<h3 data-number="6.0.11" class="anchored" data-anchor-id="check-the-validity-of-the-linear-model"><span class="header-section-number">6.0.11</span> Check the validity of the linear model</h3>
+<p>We ought to pause here for a moment and just check that we are OK to go ahead and analyse our data using a general linear model (of which ANOVA is an example, linear regression and t-tests being others). We will use <code>autoplot()</code> from the <code>ggfortify</code> package, which gives us the standard four diagnostic plots.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(model_1) <span class="sc">+</span> <span class="fu">theme_cowplot</span>() <span class="co"># autoplot() is from the ggfortify package.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/diagnostic plots-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Well, that all looks fine. In particular, from the top-left figure we see that the variance of the residuals is more or less constant and from the top-right figure, the quantile-quantile plot, we get a pretty good approximation of a straight line which tells us that the residuals are more or less normally distributed. These are two key assumptions that must be at least approximately satisfied by data if it is going to make any sense to use a linear model to analyse it. We won’t discuss here the other two diagnostic plots, but they look fine too. So we are good to go using ANOVA with this data.</p>
+<p>Back to interpreting the output of the ANOVA:</p>
+<p>It is clear that we need to retain all three levels of diet since the effect values of each differ from each other by an amount that is several times the standand errors, so that <em>t</em> &gt;&gt; 1. It is not clear that we need all the levels of supplement, however. <code>supersupp</code> is not obviously different from <code>agrimore</code> (difference = -0.727 with standard error = 0.509), yet both are clearly different from <code>control</code>. However <code>supergrain</code> is not obviously different from <code>control</code> (difference = -0.68, error = 0.509). Hence we are tempted to try a new model with just two levels of the factor supplement which we might sensibly call “best”, by which we mean <code>agrimore</code> or <code>supersupp</code>, and “worst” by which we mean <code>control</code> or <code>supergrain</code>. We’ll name this new factor <code>supp2</code>.</p>
+<p>This code chunk amends the <code>weights</code> data frame by adding a new column to it called <code>supp2</code> in which the values are either <code>best</code> if the supplement is agrimore or supersupp, or <code>worst</code> if the supplement is either of the other two</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>weights <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supp2 =</span> <span class="fu">ifelse</span>(supplement <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"agrimore"</span>, <span class="st">"supersupp"</span>), <span class="st">"best"</span>, <span class="st">"worst"</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 48
+Columns: 4
+$ supplement &lt;fct&gt; supergain, supergain, supergain, supergain, control, contro…
+$ diet       &lt;fct&gt; wheat, wheat, wheat, wheat, wheat, wheat, wheat, wheat, whe…
+$ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22717,…
+$ supp2      &lt;chr&gt; "worst", "worst", "worst", "worst", "worst", "worst", "wors…</code></pre>
+</div>
+</div>
+<p>If we calculate the means and standard errors for weight gain under each diet for each of the two new classifications of supplement, and then plot them, we get this new interaction plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>weights <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diet, supp2) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_gain =</span> <span class="fu">mean</span>(gain), <span class="at">se_gain =</span> <span class="fu">sd</span>(gain)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> supp2,<span class="at">y =</span> mean_gain,<span class="at">colour =</span> diet, <span class="at">group=</span>diet)) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_gain<span class="sc">-</span>se_gain, <span class="at">ymax =</span> mean_gain <span class="sc">+</span> se_gain), <span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Supplement"</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Mean weight gain"</span>) <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/simplified additive model plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From this we can see that diet clearly makes a difference to weight gain, since the three lines are separated by a distance much larger than the standard errors, and also that the best supplement clearly makes a difference since there is a consistent drop on going from ‘best’ to ‘worst’, again by an amount that is much larger than the error bars, and there is clearly no interaction between diet and supplement, since the lines are parallel within the wiggle-room allowed by the error bars, which means that the effect of diet does not depend on supplement, and the effect of supplement does not depend on diet.</p>
+<p>Now we will make the simpler model, calling it model_2 (for comparison with the first additive model, model_1)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># additive model whee the supplements have been condensed from four to two: best and worst</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">+</span> supp2, <span class="at">data =</span> weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and then compare the two additive models:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_1, model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: gain ~ diet + supplement
+Model 2: gain ~ diet + supp2
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1     42 65.296                           
+2     44 71.284 -2   -5.9876 1.9257 0.1584</code></pre>
+</div>
+</div>
+<p>When we use <code>anova()</code> in this way it is testing the explanatory power of the second model against that of the first ie how much of the variance in the data does each explain. Its null hypothesis is that both models explain just as much of the variance as the other.</p>
+<p>The simpler model has saved two degrees of freedom and is not significantly different in explanatory power than the more complex model (<em>p</em> = 0.158). Hence this is a better candidate as a minimal adequate model. All the parameters are significantly different from zero and from each other.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = gain ~ diet + supp2, data = weights)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.6716 -0.9432 -0.1918  0.9293  3.2698 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  25.7593     0.3674  70.106  &lt; 2e-16 ***
+dietoats     -3.0928     0.4500  -6.873 1.76e-08 ***
+dietwheat    -5.9903     0.4500 -13.311  &lt; 2e-16 ***
+supp2worst   -2.6754     0.3674  -7.281 4.43e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.273 on 44 degrees of freedom
+Multiple R-squared:  0.8396,    Adjusted R-squared:  0.8286 
+F-statistic: 76.76 on 3 and 44 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>In this table,</p>
+<ul>
+<li>line one <code>(Intercept)</code> tells us that the mean weight gain when on the barley diet and best supplement is 25.76 kg</li>
+<li>line two <code>dietoats</code> tells us that there is a significant drop in weight gain of 3.1 kg when diet is changed to oats.</li>
+<li>line three <code>dietwheat</code> tells us that there is a significant drop in weight gain of 5.99 kg when diet is changed to wheat.</li>
+<li>line four <code>supp2worst</code> tells us that there is a significant drop in wight gain of 2.68 kg when supplement is changed to worst.</li>
+</ul>
+<p>In all cases, p&lt; 0.001, as indicated not only by the number in the Pr(&gt;|t|) column, but also by the ‘***’ in the right-most column of the table.</p>
+</section>
+<section id="reporting-the-results" class="level3" data-number="6.0.12">
+<h3 data-number="6.0.12" class="anchored" data-anchor-id="reporting-the-results"><span class="header-section-number">6.0.12</span> Reporting the results</h3>
+<p>We have now reduced our initial 12 parameter model to a four parameter model that is much more tractable and easier to communicate. Our advice would be that for maximum weight gain a diet of <code>barley</code> with a supplement of <code>agrimore</code> or <code>supersupp</code> would be best.</p>
+<p>If we were reporting this as a statistical test, we might say something like: A diet of barley with a supplement of agrimore or supersupp was to offer significant improvements over alternatives. There was no evidence of any interaction between diet and supplement. (ANOVA 2-way, F<sub>3,44</sub> = 76.76, p &lt; 0.001)</p>
+<p>[1]: Cumming, G., Fidler, F., &amp; Vaux, D. L. (2007). Error bars in experimental biology. Journal of Cell Biology, 177(1), 7–11. <a href="https://doi.org/10.1083/jcb.200611141" class="uri">https://doi.org/10.1083/jcb.200611141</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ANOVA_one_way.html" class="pagination-link" aria-label="One-way ANOVA">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chi-square.html" class="pagination-link" aria-label="Chi-squared analysis of count data">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

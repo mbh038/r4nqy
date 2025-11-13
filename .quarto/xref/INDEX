@@ -25,5 +25,11 @@
   },
   "chi-square.qmd": {
     "chi-square.html": "c712ae5c"
+  },
+  "ANOVA_one_way.qmd": {
+    "ANOVA_one_way.html": "0cae35d7"
+  },
+  "ANOVA_two_way_with_model_simplification.qmd": {
+    "ANOVA_two_way_with_model_simplification.html": "4769f8d8"
   }
 }

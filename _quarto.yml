@@ -16,6 +16,7 @@ book:
     - test_for_difference_non_parametric.qmd
     - ANOVA_how_it_works.qmd
     - ANOVA_one_way.qmd
+    - ANOVA_two_way_with_model_simplification.qmd
     - chi-square.qmd
     - references.qmd
 

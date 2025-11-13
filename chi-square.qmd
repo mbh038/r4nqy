@@ -1,6 +1,5 @@
 # Chi-squared analysis of count data
 
-
 ```{r}
 #| include: false
 library(tidyverse)
@@ -39,7 +38,7 @@ What we do is compare the counts we got to some *expected* value according eithe
 ## Example: Mendelian inheritance
 
 ```{r,eval=TRUE, echo = FALSE}
-myimages<-here("scripts","mendelian_pea_plants.png")
+myimages<-here("figures","mendelian_pea_plants.png")
 knitr::include_graphics(myimages)
 ```
 
