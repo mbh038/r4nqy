@@ -1,18 +1,13 @@
 # A recommended analysis workflow
 
-```{r,include=FALSE}
-knitr::opts_chunk$set(message=FALSE,warning=FALSE)
-```
-
 This is intended as a rough outline of the sequence of steps one commonly goes through when working on scripts:
 
 -   Before you start on the script, ask yourself: am I working in a Project?. If not, fix this!
--   What is my question? AM I clear about what I want the script to do?
+-   What is my question? Am I clear about what I want the script to do?
 -   Load packages
 -   Load data
 -   Inspect data
--   Clean up or tidy or manipulate the data in some way - whatever it takes to get
-it in the form needed for the analysis steps
+-   Clean up or tidy or manipulate the data in some way - whatever it takes to get it in the form needed for the analysis steps
 -   Summarise the data
 -   Plot the data
 -   Do statistical analysis
@@ -38,7 +33,7 @@ Suppose we were trying to test the hypothesis that there is no difference betwee
 
 ## Open a notebook
 
-In RStudio, go to File/New File/ R Notebook. Delete everything below the yaml section at the top. This strangeley named section is the bit between the two lines with three dashes in. For the most part, we will not need to worry about this section. We just should not delete it entirely. What is useful to do is to amend the title to something sensible, and to add `author: "your name"` and `date: "the date in any old format"` lines, so that your yaml will look something like this:
+In RStudio, go to File/New File/ Quarto Document. Delete everything below the yaml section at the top. This strangely named section is the bit between the two lines with three dashes in. For the most part, we will not need to worry about this section. We just should not delete it entirely. What is useful to do is to amend the title to something sensible, and to add `author: "your name"` and `date: "the date in any old format"` lines. I also add a couple of final lines that suppress warnings and messages that might clutter up my printed output, so that your yaml will look something like this:
 
 ```         
 ---
@@ -48,12 +43,15 @@ date: "Today's date"
 output:
   html_document:
     df_print: paged
+execute:
+  message: false
+  warning: false
 ---
 ```
 
-Delete everything beneath this yaml section. The big empty space that then leaves you with is where you write your code. Remember that in notebooks, the code goes in 'chunks' that are started and finished with by lines with three backticks. Any other text goes between the chunks and you can format this text using the simple rule of Markdown, available in the RStudio Help menu. Thus your script will end up looking something like this:
+Delete everything beneath this yaml section. The big empty space that then leaves you with is where you write your code. Remember that in quarto documents, the code goes in 'chunks' that are started and finished with by lines with three backticks. Any other text goes between the chunks and you can format this text using the simple rule of Markdown, available in the RStudio Help menu at `Help/Markdown Quick Reference`. Thus your script will end up looking something like this:
 
-````         
+```         
 ---
 title: "A typical workflow"
 author: "Who wrote this?"
@@ -61,31 +59,27 @@ date: "Today's date"
 output:
   html_document:
     df_print: paged
+execute:
+  message: false
+  warning: false
 ---
-````
+```
 
-## First header 
-Any text we want to add. Note that a code chunk starts with ```{r} and ends with ```
+## First header
+
+Any text we want to add. Note that a code chunk starts with `{r} and ends with`
+
 ```{r}
 library(tidyverse) # some actual R code
 ```
 
-## Second header 
+## Second header
+
 Any text we want to add to explain what this next chunk does
-````
-```{r, include=FALSE}`r ''`
-library(tidyverse) # some actual R code
-```
-````
-
-## Set-up chunk
-
-Just put this chunk in at the top. Worry about it later. Or don't worry about it at all, if you prefer. It is there to suppress warnings and messages from appearing in the rendered version of your script.
 
 ````         
 ```{r, include=FALSE}`r ''`
-# makes the rendered version look prettier
-knitr::opts_chunk$set(message=FALSE,warning=FALSE)
+library(tidyverse) # some actual R code
 ```
 ````
 
@@ -107,7 +101,7 @@ library(vegan)
 
 There are several ways to do this, so details will differ depending on what file type your data is saved in and where it is stored.
 
-Here are two examples. In each case code here presumes that the data is stored in a subfolder called 'data' within the Project folder, and we use the function `here()` from the `here` package. In my experience this dramatically simplifies the business of finding your data, wherever your script is. It makes it easier for you to share your script with others and be confident that what worked for you will work for them. It *does* require that you are working within your project.
+Here are some examples. In each case code here presumes that the data is stored in a subfolder called 'data' within the Project folder, and we use the function `here()` from the `here` package. In my experience this dramatically simplifies the business of finding your data, wherever your script is. It makes it easier for you to share your script with others and be confident that what worked for you will work for them. It *does* require that you are working within your project.
 
 ### If from a csv file
 
@@ -157,7 +151,7 @@ setosa <- iris |>
 glimpse(setosa)
 ```
 
-or maybe we just want the column that contain numeric data and not the one containing the species identifiers, which is text:
+or maybe we just want the columns that contain numeric data and not the one containing the species identifiers, which is text:
 
 ```{r}
 iris_numeric <- iris |>
@@ -202,11 +196,11 @@ Note that we have given the bars a fill colour - we got this color from [this si
 
 A couple of points could be made about this type of plot:
 
-First, what about those error bars? Three types of error bar are in common usage and there are arguments in favour and against the use of each of them: 
+First, what about those error bars? Three types of error bar are in common usage and there are arguments in favour and against the use of each of them:
 
-* the *standard deviation* tells us about the spread of values in a sample, and is an estimate of the spread of values in a population;  
-* the *standard error of the mean*, as used here, is an estimate of the precision with which the sample means estimates the respective population means for each of the species. 
-* the *confidence interval*, typically a *95% confidence interval*, gives us the region within which we are (say) 95% confident that the true species mean petal width might plausibly lie. 
+-   the *standard deviation* tells us about the spread of values in a sample, and is an estimate of the spread of values in a population;\
+-   the *standard error of the mean*, as used here, is an estimate of the precision with which the sample means estimates the respective population means for each of the species.
+-   the *confidence interval*, typically a *95% confidence interval*, gives us the region within which we are (say) 95% confident that the true species mean petal width might plausibly lie.
 
 Which type of error bar is best to use depends on what story you want to tell. Here, because we are interested in whether there is evidence of a difference in the mean petal width of different species, we have gone for the standard eror of the mean.
 
