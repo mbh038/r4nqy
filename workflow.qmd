@@ -67,7 +67,7 @@ execute:
 
 ## First header
 
-Any text we want to add. Note that a code chunk starts with `{r} and ends with`
+Any text we want to add. Note that a code chunk starts with {r} and ends with `
 
 ```{r}
 library(tidyverse) # some actual R code

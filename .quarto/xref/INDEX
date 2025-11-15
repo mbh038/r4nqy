@@ -34,5 +34,8 @@
   },
   "tests_for_difference_two_levels.qmd": {
     "tests_for_difference_two_levels.html": "442f9219"
+  },
+  "ggplot_examples.qmd": {
+    "ggplot_examples.html": "40d08e21"
   }
 }
