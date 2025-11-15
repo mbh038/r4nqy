@@ -37,5 +37,8 @@
   },
   "ggplot_examples.qmd": {
     "ggplot_examples.html": "40d08e21"
+  },
+  "correlation.qmd": {
+    "correlation.html": "e1fabb87"
   }
 }

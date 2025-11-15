@@ -1,6 +1,5 @@
 # Correlation
 
-
 ```{r, include=FALSE}
 options(tinytex.verbose = TRUE)
 ```
@@ -89,7 +88,7 @@ theme_bare_axes <- function () {
 }
 ```
 
-#  {.tabset .tabset-fade .tabset-pills}
+
 
 ## Correlation
 
@@ -701,7 +700,7 @@ pressure_wind_speed |>
   labs(x = "Pressure (hPa)",
        y = "Wind speed (kph)") +
   geom_text(aes(label=ifelse(pressure<910,str_c(name,"\n", year),'')),hjust=0,vjust=1, colour = "blue", size = 3) +
-  annotate("text", x = 960, y = 220, label = bquote(italic(r)[sp]==-0.218~","~italic(p)==0.0289)) +
+  annotate("text", x = 960, y = 220, label = deparse(bquote(italic(r)[sp]==-0.218~","~italic(p)==0.0289)), parse = TRUE)+
   # annotate("text",label=paste0("mu+","sigma"),x=960,y = 220,size = 4, colour = "darkred",parse=TRUE)+
   theme_cowplot()
 ```
@@ -737,7 +736,7 @@ swh_vs_cyclone_size |>
        y = "Max. Significant wave height (m)") +
   scale_x_continuous(limits = c(40,260), breaks=seq(50,250,50)) +
   scale_y_continuous(limits = c(11,22), breaks=seq(12,22,2)) +
-  annotate("text", x = 220, y = 14, label = bquote(italic(r)[sp]==0.948~","~italic(p)<0.001)) +
+  annotate("text", x = 220, y = 14, label = deparse(bquote(italic(r)[sp]==0.948~","~italic(p)<0.001)), parse = TRUE) +
   theme_cowplot()
 ```
 
@@ -778,7 +777,7 @@ lichen |>
   scale_y_continuous(limits=c(0,105), breaks=seq(0,110,20)) +
   labs(x = "Air Quality Scores",
        y = "Proportion of nitrophyte abundance\n (percent)") +
-  annotate("text", x = 0.7, y = 90, label = bquote(italic(r)[sp]==-0.78~","~italic(p)<0.001)) +
+  annotate("text", x = 0.7, y = 90, label = deparse(bquote(italic(r)[sp]==-0.78~","~italic(p)<0.001)), parse = TRUE) +
   annotate("text", x = -1.5, y = 0, label = "High N/pH") +
   annotate("text", x = 1.5, y = 0, label = "Low N/pH") +
   theme_cowplot() +
@@ -863,7 +862,7 @@ hr_le  |>
   geom_text(aes(label=Species), vjust = -0.9) +
   labs(x = "Life expectancy (years)",
        y = bquote("log"[10]~"Heart rate (bpm)")) +
-    annotate("text", x = 60, y = 2.5, label = bquote(italic(r)==-0.858~","~italic(p)<0.001)) +
+    annotate("text", x = 60, y = 2.5, label = deparse(bquote(italic(r)==-0.858~","~italic(p)<0.001)), parse = TRUE) +
   theme_cowplot()
 ```
 Here we see a strong negative linear correlation between the life expectancy of different species and the log of the mean heart rate in beats per minute. On this plot, humans are almost an outlier. In this case, use of a Shapirro Wilk test showed that both life expectancy and log of the heart rate were found to be consistent with being drawn from normally distributed populations, so the Pearson method was used to calculate the correlation coefficient.
@@ -1009,5 +1008,3 @@ Now:
 -   Is the correlation positive or negative?\
 -   For which species is the correlation strongest?\
 -   Do the correlation coefficients make sense, given the plots?
-
-
