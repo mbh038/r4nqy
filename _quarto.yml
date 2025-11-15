@@ -18,6 +18,7 @@ book:
     - ANOVA_one_way.qmd
     - ANOVA_two_way_with_model_simplification.qmd
     - chi-square.qmd
+    - correlation.qmd
     - references.qmd
 
 bibliography: references.bib
