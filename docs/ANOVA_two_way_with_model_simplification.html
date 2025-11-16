@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Two-way ANOVA with model simplification – r4nqy</title>
+<title>7&nbsp; Two-way ANOVA with model simplification – r4nqy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ANOVA_two_way_with_model_simplification.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ANOVA_two_way_with_model_simplification.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -197,44 +197,50 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./titles_labels_and_annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./tests_for_difference_two_levels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple linear regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -253,18 +259,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#factorial-experiments-and-model-simplification" id="toc-factorial-experiments-and-model-simplification" class="nav-link active" data-scroll-target="#factorial-experiments-and-model-simplification"><span class="header-section-number">6.0.1</span> Factorial experiments and model simplification</a></li>
-  <li><a href="#files-needed" id="toc-files-needed" class="nav-link" data-scroll-target="#files-needed"><span class="header-section-number">6.0.2</span> Files needed</a></li>
-  <li><a href="#open-your-project" id="toc-open-your-project" class="nav-link" data-scroll-target="#open-your-project"><span class="header-section-number">6.0.3</span> Open your Project</a></li>
-  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">6.0.4</span> Load packages</a></li>
-  <li><a href="#read-in-the-data" id="toc-read-in-the-data" class="nav-link" data-scroll-target="#read-in-the-data"><span class="header-section-number">6.0.5</span> Read in the data</a></li>
-  <li><a href="#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." id="toc-make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="nav-link" data-scroll-target="#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><span class="header-section-number">6.0.6</span> Make R recognise the categorical variables as factors, and order the levels.</a></li>
-  <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link" data-scroll-target="#summarise-the-data"><span class="header-section-number">6.0.7</span> Summarise the data</a></li>
-  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">6.0.8</span> Plot the data</a></li>
-  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">6.0.9</span> ANOVA</a></li>
-  <li><a href="#model-simplification" id="toc-model-simplification" class="nav-link" data-scroll-target="#model-simplification"><span class="header-section-number">6.0.10</span> Model Simplification</a></li>
-  <li><a href="#check-the-validity-of-the-linear-model" id="toc-check-the-validity-of-the-linear-model" class="nav-link" data-scroll-target="#check-the-validity-of-the-linear-model"><span class="header-section-number">6.0.11</span> Check the validity of the linear model</a></li>
-  <li><a href="#reporting-the-results" id="toc-reporting-the-results" class="nav-link" data-scroll-target="#reporting-the-results"><span class="header-section-number">6.0.12</span> Reporting the results</a></li>
+  <li><a href="#factorial-experiments-and-model-simplification" id="toc-factorial-experiments-and-model-simplification" class="nav-link active" data-scroll-target="#factorial-experiments-and-model-simplification"><span class="header-section-number">7.0.1</span> Factorial experiments and model simplification</a></li>
+  <li><a href="#files-needed" id="toc-files-needed" class="nav-link" data-scroll-target="#files-needed"><span class="header-section-number">7.0.2</span> Files needed</a></li>
+  <li><a href="#open-your-project" id="toc-open-your-project" class="nav-link" data-scroll-target="#open-your-project"><span class="header-section-number">7.0.3</span> Open your Project</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">7.0.4</span> Load packages</a></li>
+  <li><a href="#read-in-the-data" id="toc-read-in-the-data" class="nav-link" data-scroll-target="#read-in-the-data"><span class="header-section-number">7.0.5</span> Read in the data</a></li>
+  <li><a href="#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." id="toc-make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="nav-link" data-scroll-target="#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><span class="header-section-number">7.0.6</span> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+  <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link" data-scroll-target="#summarise-the-data"><span class="header-section-number">7.0.7</span> Summarise the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">7.0.8</span> Plot the data</a></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">7.0.9</span> ANOVA</a></li>
+  <li><a href="#model-simplification" id="toc-model-simplification" class="nav-link" data-scroll-target="#model-simplification"><span class="header-section-number">7.0.10</span> Model Simplification</a></li>
+  <li><a href="#check-the-validity-of-the-linear-model" id="toc-check-the-validity-of-the-linear-model" class="nav-link" data-scroll-target="#check-the-validity-of-the-linear-model"><span class="header-section-number">7.0.11</span> Check the validity of the linear model</a></li>
+  <li><a href="#reporting-the-results" id="toc-reporting-the-results" class="nav-link" data-scroll-target="#reporting-the-results"><span class="header-section-number">7.0.12</span> Reporting the results</a></li>
   </ul>
 </nav>
     </div>
@@ -273,7 +279,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></h1>
 </div>
 
 
@@ -291,8 +297,8 @@ window.Quarto = {
 
 
 <p>This exercise sheet is heavily indebted to Michael Crawley’s <em>Statistics: An introduction using R</em>, 2nd Ed, Wiley. Published in 2015 this emphasises statistics over R (in fact, much of the R he presents is written prior to the advent of the <code>tidyverse</code> dialect which we use here, and so may seem terse if that is what you are used to). It is very useful and is at a higher level than Beckerman, Childs and Petchey’s <em>Getting Started in R: An introduction for biologists</em>, 2nd Ed. OUP published in 2017. Their book also includes a simpler version of the example explored here.</p>
-<section id="factorial-experiments-and-model-simplification" class="level3" data-number="6.0.1">
-<h3 data-number="6.0.1" class="anchored" data-anchor-id="factorial-experiments-and-model-simplification"><span class="header-section-number">6.0.1</span> Factorial experiments and model simplification</h3>
+<section id="factorial-experiments-and-model-simplification" class="level3" data-number="7.0.1">
+<h3 data-number="7.0.1" class="anchored" data-anchor-id="factorial-experiments-and-model-simplification"><span class="header-section-number">7.0.1</span> Factorial experiments and model simplification</h3>
 <p>The best model is the one that adequately explains the data with fewest parameters. This means with the smallest possible number of degrees of freedom.</p>
 <p>If we have a very large number of parameters, a model can fit any data set but be of limited use in generalising beyond it (we will have overfitted the data). If we have too few we will not explain much of the variance of the data. A balance must be struck. Hence we want the <em>minimal</em> <em>adequate</em> model.</p>
 <p>As Einstein almost said, a model should be as simple as possible, but no simpler. (Not to be outdone, the British statistician George Box also had a pithy saying about models: “All models are wrong, but some are useful”.)</p>
@@ -308,8 +314,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="files-needed" class="level3" data-number="6.0.2">
-<h3 data-number="6.0.2" class="anchored" data-anchor-id="files-needed"><span class="header-section-number">6.0.2</span> Files needed</h3>
+<section id="files-needed" class="level3" data-number="7.0.2">
+<h3 data-number="7.0.2" class="anchored" data-anchor-id="files-needed"><span class="header-section-number">7.0.2</span> Files needed</h3>
 <ul>
 <li><p>To be put in the Project/scripts folder:</p>
 <ul>
@@ -323,12 +329,12 @@ window.Quarto = {
 </ul>
 <p>In the following, we present the code you need to analyse this data together with explanatory text. Read the text closely so that you understand what each chunk of code is intended to do. In the accompanying template file, fill in the code as you go in the empty chunks, using this worksheet as a guide. As you complete each line of code, run it using Ctrl-Enter or Cmd-Enter on a Mac. Alternatively, wait until you have completed the code for a chunk then run the whole chunk in one go by pressing the little green arrow at the top right of the chunk. Whichever way you choose, you are encouraged to view the code presented here as <em>one</em> way to do the analysis. Feel free to hack away at it and change things, to try different approaches and see what happens. That way you will learn. You may also wish to add your own text between the chunks.</p>
 </section>
-<section id="open-your-project" class="level3" data-number="6.0.3">
-<h3 data-number="6.0.3" class="anchored" data-anchor-id="open-your-project"><span class="header-section-number">6.0.3</span> Open your Project</h3>
+<section id="open-your-project" class="level3" data-number="7.0.3">
+<h3 data-number="7.0.3" class="anchored" data-anchor-id="open-your-project"><span class="header-section-number">7.0.3</span> Open your Project</h3>
 <p>You should be working within a folder that you have designated as what RStudio calls a ‘Project’. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a <code>scripts</code> folder for scripts like the one you are working from, and a <code>data</code> folder for all the data files. You will also see, at the top level of the Project, the <code>.RProj</code> file. You can see all this in the Files pane, bottom-right.</p>
 </section>
-<section id="load-packages" class="level3" data-number="6.0.4">
-<h3 data-number="6.0.4" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">6.0.4</span> Load packages</h3>
+<section id="load-packages" class="level3" data-number="7.0.4">
+<h3 data-number="7.0.4" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">7.0.4</span> Load packages</h3>
 <p>I normally load all the packages in the chunk below into every script. The most important is the <code>tidyverse</code> package which is a goody bag containing several other packages. Loading this saves you from having to load each of those individually. The most often used among these is <code>readr</code> for reading and writing data from/to files, <code>dplyr</code> for data manipulation, and <code>ggplot2</code> for plotting. Others will be used from time to time, and we don’t really need to be aware of that when it happens or to worry about it, so long as <code>tidyverse</code> has been loaded.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for data manipulation and plotting, and much else besides</span></span>
@@ -337,8 +343,8 @@ window.Quarto = {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># for diagnostic plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="read-in-the-data" class="level3" data-number="6.0.5">
-<h3 data-number="6.0.5" class="anchored" data-anchor-id="read-in-the-data"><span class="header-section-number">6.0.5</span> Read in the data</h3>
+<section id="read-in-the-data" class="level3" data-number="7.0.5">
+<h3 data-number="7.0.5" class="anchored" data-anchor-id="read-in-the-data"><span class="header-section-number">7.0.5</span> Read in the data</h3>
 <p>The <code>growth.csv</code> data file needs to be in the <code>data</code> folder within the Project folder.</p>
 <p>In this chunk we read the <code>growth.csv</code> data into an R object to which we give the name <code>weights</code>.</p>
 <div class="cell">
@@ -355,8 +361,8 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 </div>
 <p>You see from the output of the <code>glimpse()</code> function that <code>weights</code> has three columns and 48 rows. Two columns are of data type <code>&lt;chr&gt;</code> which is R-speak for text, and the other is data type <code>&lt;dbl&gt;</code> which is R-speak for numerical data with a decimal point.</p>
 </section>
-<section id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="level3" data-number="6.0.6">
-<h3 data-number="6.0.6" class="anchored" data-anchor-id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><span class="header-section-number">6.0.6</span> Make R recognise the categorical variables as factors, and order the levels.</h3>
+<section id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="level3" data-number="7.0.6">
+<h3 data-number="7.0.6" class="anchored" data-anchor-id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><span class="header-section-number">7.0.6</span> Make R recognise the categorical variables as factors, and order the levels.</h3>
 <p>At the moment, the contents within the variables <code>supplement</code> and <code>diet</code> are not being recognised as levels of factors. R is just thinking of them as text (or <code>&lt;chr&gt;</code> in R-speak), as we can see from the output of the <code>glimpse()</code> function in the chunk above. Let us fix that, as it will be useful for them to be recognized for what they are so that we can order the levels in a way that makes sense for our context, our plots and our analysis.</p>
 <p>Sometimes levels of a factor have a natural order, such as <em>Low</em>, <em>Mid</em> and <em>High</em> as the levels of the factor <em>Tidal Zone</em> and sometimes they do not, for example <em>Apples</em>, <em>Oranges</em> and <em>Pears</em> as levels of the factor <em>Fruit</em>. Here, in the case of both our factors, we only wish to impose order among the levels in so far as we would like what we regard as the control or reference level to be first. By default, R puts the levels of a factor in alphabetical order. This is the order in which the boxes of a box plot would be displayed, reading left to right. In an ANOVA setting it means that differences of outcome (in this case, weight gain of the cows) are later calculated for each combination of levels with respect to the outcome for the combination of levels that are alphabetically first, in this case <code>barley</code> for <code>diet</code> and <code>agrimore</code> for <code>supplement</code>. In both the box-plot and the ANOVA output case this default ordering is not necessarily what we want. Normally, we want what we regard as the control levels to be the reference level and in this case that means <code>barley</code> for <code>diet</code> and <code>control</code> for <code>supplement</code>.</p>
 <p>To ensure that a variable is regarded as a factor, and then to get its levels in the order we would like, we use the <code>factor()</code> function.</p>
@@ -390,8 +396,8 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 <p>To get <code>control</code> to be the reference level of <code>supplement</code> we needed to force the issue in this way. If we hadn’t then <code>agrimore</code> would have been regarded as such, since it is alphabetically the first among the levels of <code>supplement</code>. We didn’t need to do this for <code>diet</code>, since the stipulated ordering of the levels is just the alphabetical order and so we would have had that by default anyway. Sometimes, though, it doesn’t hurt to throw in a little redundancy for the sake of clarity.</p>
 <p>So, now we have <code>control</code> as the reference level for <code>supplement</code> and <code>barley</code> as the reference level for <code>diet</code>. Now we can see more easily in our analysis what difference is made to weight gain when we change diet or supplement or both from a ‘business as usual’ combination of a <code>barley</code>diet and the <code>control</code> supplement.</p>
 </section>
-<section id="summarise-the-data" class="level3" data-number="6.0.7">
-<h3 data-number="6.0.7" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">6.0.7</span> Summarise the data</h3>
+<section id="summarise-the-data" class="level3" data-number="7.0.7">
+<h3 data-number="7.0.7" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">7.0.7</span> Summarise the data</h3>
 <p>Our question is a difference question: is there evidence from the data that using this or that diet in combination with this or that supplement makes a difference to growth? For an answer to this we will end up doing a 2-way ANOVA including the possibility of an interaction, then, as we will see, a simpler ANOVA that ignores the possibility of the interaction. All well and good, but before we go to those lengths, we do something more basic: we calculate the mean and standard error of the mean for each of the twelve combinations of diet and supplement.</p>
 <p>There isn’t a function in base R with which we can calculate standard error of the mean directly, but we can do so knowing the standard deviation of the sample <span class="math inline">\(\text{SD}\)</span> (using <code>sd()</code>) and the sample size <span class="math inline">\(n\)</span> (using <code>n()</code>) using this formula:</p>
 <p><span class="math display">\[ \text{SE}=\frac{SD}{\sqrt{n}}\]</span></p>
@@ -497,8 +503,8 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 </div>
 <p>Note the ordering of the diet and supplement levels in their respective columns: just what we have imposed!</p>
 </section>
-<section id="plot-the-data" class="level3" data-number="6.0.8">
-<h3 data-number="6.0.8" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">6.0.8</span> Plot the data</h3>
+<section id="plot-the-data" class="level3" data-number="7.0.8">
+<h3 data-number="7.0.8" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">7.0.8</span> Plot the data</h3>
 <p>The next step, as so often before we launch into actual statistics, is to plot the data in a way that sheds light on the question we have. Here, we can use the use the means and standard errors of the mean that we have just calculated to produce a useful kind of line plot that in this context is often referred to as an interaction plot:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>growth_summary <span class="sc">|&gt;</span></span>
@@ -520,8 +526,8 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 </div>
 <p>Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by [Cummings et al][1]. (2007).</p>
 <p>This interaction plot is useful in that we see that both diet and supplement have an effect on growth and that the effect of one is altered little by the value of the other, the result of which is that the lines are more or less parallel. This suggests that we have <em>main effects</em> of both diet and supplement, but little or no <em>interaction</em> between them.</p>
-<section id="questions" class="level4" data-number="6.0.8.1">
-<h4 data-number="6.0.8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">6.0.8.1</span> Questions</h4>
+<section id="questions" class="level4" data-number="7.0.8.1">
+<h4 data-number="7.0.8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">7.0.8.1</span> Questions</h4>
 <p>What could the line plot look like if:</p>
 <ul>
 <li><p>There were no main effect of both diet and supplement, and no interaction</p></li>
@@ -532,8 +538,8 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 <p>The plots tell you a great deal about what main effects and/or interactions there may be.</p>
 </section>
 </section>
-<section id="anova" class="level3" data-number="6.0.9">
-<h3 data-number="6.0.9" class="anchored" data-anchor-id="anova"><span class="header-section-number">6.0.9</span> ANOVA</h3>
+<section id="anova" class="level3" data-number="7.0.9">
+<h3 data-number="7.0.9" class="anchored" data-anchor-id="anova"><span class="header-section-number">7.0.9</span> ANOVA</h3>
 <p>Now for the actual statistical test. We will conduct a two-way ANOVA, which will look to see if there is evidence that either diet or supplement or both affect growth rate (the so-called main effects), and if the effect of one depends on the nature of the other (the so-called interaction).</p>
 <p>The null hypothesis is that neither has any main effect and that there is no interaction.</p>
 <p>Now we can use either of the functions <code>aov()</code> or <code>lm()</code> to carry out a factorial ANOVA (the choice affects only whether we get an ANOVA table or a list of parameter estimates as the default output from <code>summary()</code>.). Here, we will use <code>lm()</code>, partly because we would also use it for one-way ANOVAs and linear regression, and to do so here reminds of the common mathematical machinery that underlies all these methods.</p>
@@ -543,15 +549,15 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 <p><code>gain ~ diet + supplement + diet:supplement</code></p>
 <p>which can be written more simply using the asterisk notation as:</p>
 <p><code>gain ~ diet * supplement</code></p>
-<section id="construct-the-model" class="level4" data-number="6.0.9.1">
-<h4 data-number="6.0.9.1" class="anchored" data-anchor-id="construct-the-model"><span class="header-section-number">6.0.9.1</span> Construct the model</h4>
+<section id="construct-the-model" class="level4" data-number="7.0.9.1">
+<h4 data-number="7.0.9.1" class="anchored" data-anchor-id="construct-the-model"><span class="header-section-number">7.0.9.1</span> Construct the model</h4>
 <p>First we construct the model using <code>lm()</code> and store the outputs of all the maths that `<code>lm()</code> does in an object called <code>model0</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">*</span> supplement, <span class="at">data =</span> weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="do-we-reject-the-null-hypothesis" class="level4" data-number="6.0.9.2">
-<h4 data-number="6.0.9.2" class="anchored" data-anchor-id="do-we-reject-the-null-hypothesis"><span class="header-section-number">6.0.9.2</span> Do we reject the null hypothesis?</h4>
+<section id="do-we-reject-the-null-hypothesis" class="level4" data-number="7.0.9.2">
+<h4 data-number="7.0.9.2" class="anchored" data-anchor-id="do-we-reject-the-null-hypothesis"><span class="header-section-number">7.0.9.2</span> Do we reject the null hypothesis?</h4>
 <p>To get an overall picture, we first use <code>anova()</code> to see if there is evidence to reject the null</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -742,8 +748,8 @@ F-statistic: 20.22 on 11 and 36 DF,  p-value: 3.295e-12</code></pre>
 <p>The output of the <code>summary()</code> function re-emphasises that none of the interaction terms are significant. It also suggests that a minimum adequate model will contain 5 parameters: an intercept, which just means that there is non-zero growth when the diet and supplement are the reference values, a difference from that growth due to changing the diet to <code>oats</code>, a difference due to changing it to<code>wheat</code>, a difference due to changing the supplement to <code>agrimore</code> while keeping barley as the diet, and a difference due to changing the supplement instead to <code>suppersupp</code>..</p>
 </section>
 </section>
-<section id="model-simplification" class="level3" data-number="6.0.10">
-<h3 data-number="6.0.10" class="anchored" data-anchor-id="model-simplification"><span class="header-section-number">6.0.10</span> Model Simplification</h3>
+<section id="model-simplification" class="level3" data-number="7.0.10">
+<h3 data-number="7.0.10" class="anchored" data-anchor-id="model-simplification"><span class="header-section-number">7.0.10</span> Model Simplification</h3>
 <p>Given the results of the full interaction model, we begin model simplification by leaving out the interaction terms, to leave us with an additive model:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">+</span> supplement, <span class="at">data =</span> weights)</span>
@@ -774,8 +780,8 @@ F-statistic: 48.76 on 5 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="check-the-validity-of-the-linear-model" class="level3" data-number="6.0.11">
-<h3 data-number="6.0.11" class="anchored" data-anchor-id="check-the-validity-of-the-linear-model"><span class="header-section-number">6.0.11</span> Check the validity of the linear model</h3>
+<section id="check-the-validity-of-the-linear-model" class="level3" data-number="7.0.11">
+<h3 data-number="7.0.11" class="anchored" data-anchor-id="check-the-validity-of-the-linear-model"><span class="header-section-number">7.0.11</span> Check the validity of the linear model</h3>
 <p>We ought to pause here for a moment and just check that we are OK to go ahead and analyse our data using a general linear model (of which ANOVA is an example, linear regression and t-tests being others). We will use <code>autoplot()</code> from the <code>ggfortify</code> package, which gives us the standard four diagnostic plots.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(model_1) <span class="sc">+</span> <span class="fu">theme_cowplot</span>() <span class="co"># autoplot() is from the ggfortify package.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -882,8 +888,8 @@ F-statistic: 76.76 on 3 and 44 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul>
 <p>In all cases, p&lt; 0.001, as indicated not only by the number in the Pr(&gt;|t|) column, but also by the ‘***’ in the right-most column of the table.</p>
 </section>
-<section id="reporting-the-results" class="level3" data-number="6.0.12">
-<h3 data-number="6.0.12" class="anchored" data-anchor-id="reporting-the-results"><span class="header-section-number">6.0.12</span> Reporting the results</h3>
+<section id="reporting-the-results" class="level3" data-number="7.0.12">
+<h3 data-number="7.0.12" class="anchored" data-anchor-id="reporting-the-results"><span class="header-section-number">7.0.12</span> Reporting the results</h3>
 <p>We have now reduced our initial 12 parameter model to a four parameter model that is much more tractable and easier to communicate. Our advice would be that for maximum weight gain a diet of <code>barley</code> with a supplement of <code>agrimore</code> or <code>supersupp</code> would be best.</p>
 <p>If we were reporting this as a statistical test, we might say something like: A diet of barley with a supplement of agrimore or supersupp was to offer significant improvements over alternatives. There was no evidence of any interaction between diet and supplement. (ANOVA 2-way, F<sub>3,44</sub> = 76.76, p &lt; 0.001)</p>
 <p>[1]: Cumming, G., Fidler, F., &amp; Vaux, D. L. (2007). Error bars in experimental biology. Journal of Cell Biology, 177(1), 7–11. <a href="https://doi.org/10.1083/jcb.200611141" class="uri">https://doi.org/10.1083/jcb.200611141</a></p>
@@ -1312,12 +1318,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./ANOVA_one_way.html" class="pagination-link" aria-label="One-way ANOVA">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./chi-square.html" class="pagination-link" aria-label="Chi-squared analysis of count data">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
