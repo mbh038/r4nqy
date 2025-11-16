@@ -11,18 +11,27 @@ book:
   page-navigation: true
   chapters:
     - index.qmd
-    - intro.qmd
-    - workflow.qmd
-    - ggplot_examples.qmd
-    - titles_labels_and_annotations.qmd
-    - tests_for_difference_two_levels.qmd
-    - ANOVA_how_it_works.qmd
-    - ANOVA_one_way.qmd
-    - ANOVA_two_way_with_model_simplification.qmd
-    - chi-square.qmd
-    - correlation.qmd
-    - simple linear regression.qmd
-    - references.qmd
+    - part: "Working with R"
+      chapters:
+      - workflow.qmd
+      - ggplot_examples.qmd
+      - titles_labels_and_annotations.qmd
+    - part: "Tests for difference"
+      chapters:
+      - tests_for_difference_two_levels.qmd
+      - ANOVA_how_it_works.qmd
+      - ANOVA_one_way.qmd
+      - ANOVA_two_way_with_model_simplification.qmd
+    - part: "Count data"
+      chapters:
+      - chi-square.qmd
+    - part: "Trend data"
+      chapters:
+      - correlation.qmd
+      - simple linear regression.qmd
+    - part: "References"
+      chapters:
+      - references.qmd
 
 bibliography: references.bib
 
