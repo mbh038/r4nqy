@@ -277,6 +277,10 @@ This is mentioned is the output of the test. What does it mean? It adjusts for t
 
 ### R script
 
+
+
+[template](https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/chi-square-test-of-independence-template.qmd)
+
 #### Preliminaries
 
 -   Create an R notebook called `ladybirds` and save it in the scripts folder within your R project folder on your machine. You will find that it is saved as `ladybirds.Rmd`. Leave the `yaml` bit at the top, between the pairs of lines with three dashes (or maybe add your name and the date), then delete everything else.
