@@ -8,6 +8,7 @@ book:
   date: "7/23/2025"
   license: "CC BY-SA"
   page-footer: CC-BY-SA-4.0 (2025) Michael Hunt
+  page-navigation: true
   chapters:
     - index.qmd
     - intro.qmd
@@ -19,6 +20,7 @@ book:
     - ANOVA_two_way_with_model_simplification.qmd
     - chi-square.qmd
     - correlation.qmd
+    - simple linear regression.qmd
     - references.qmd
 
 bibliography: references.bib
