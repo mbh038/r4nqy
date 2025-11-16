@@ -14,6 +14,7 @@ book:
     - intro.qmd
     - workflow.qmd
     - ggplot_examples.qmd
+    - titles_labels_and_annotations.qmd
     - tests_for_difference_two_levels.qmd
     - ANOVA_how_it_works.qmd
     - ANOVA_one_way.qmd
