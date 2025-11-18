@@ -458,13 +458,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1638, df = 48, p-value = 4.077e-12
+t = 9.0866, df = 48, p-value = 5.291e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6675517 0.8805237
+ 0.6637987 0.8790005
 sample estimates:
       cor 
-0.7976811 </code></pre>
+0.7952167 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -630,7 +630,7 @@ sample estimates:
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.131, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.23, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level4" data-number="9.1.6.2">
 <h4 data-number="9.1.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.1.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h4>

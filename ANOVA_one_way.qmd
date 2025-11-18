@@ -18,6 +18,15 @@ A non-parametric alternative to a one-way ANOVAs is commonly used, especially fo
 
 In the following, we show how a one-way ANOVA might be carried out on a set of data on penguins, where we have a numerical output such as body mass, and categorical variables such as species (three levels: Adelie, Gentoo and Chinstrap) and sex (two levels: female and male). If we were interested in whether there was a difference in the output across the levels of species, then a one-way ANOVA might well be suitable.
 
+### Follow along yourself:
+
+To follow through this exercise yourself, you should have an RStudio project folder that contains:
+
+In the Project/scripts folder:
+
+ANOVA_one_way_template.Rmd (the script where you fill in the code chunks)
+
+
 ### Load packages
 
 ```{r}
