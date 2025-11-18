@@ -2,6 +2,11 @@ project:
   type: book
   output-dir: docs
 
+sidebar:
+  logo: "figures/NUC.png" 
+  pinned: true
+  align: center
+
 book:
   title: "r4nqy"
   author: "Michael Hunt"
