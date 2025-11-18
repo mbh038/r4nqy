@@ -30,12 +30,13 @@ knitr::include_graphics(myimages)
 
 ### Files needed
 
--   To be put in the Project/scripts folder:
+To follow through this exercise, you should have an RStudio project folder that contains:
 
-    -   `ANOVA_two_way_with_model_simplification.html` (this worksheet)
+-   In the Project/scripts folder:
+
     -   `ANOVA_two_way_template.Rmd` (the script where you fill in the code chunks)
 
--   To be put in Project/data folder
+-   In the Project/data folder
 
     -   `growth.csv`
 

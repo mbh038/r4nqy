@@ -11,6 +11,8 @@ execute:
 
 You can use this template to implement the analysis in the course text.
 
+[template](https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/chi-square-test-of-independence-template.qmd)
+
 We are going to analyse some data on counts of ladybirds found in an industrial and in a rural location. Some of the ladybirds are red and some are black. We would like to test for whether there is an association between the ladybird colour and its location. In particular: is some feature of the habitat associated with the frequencies of the different colourings, or is colouring independent of habitat. If so, then an individual ladybird is just as likely to be black or red regardless of which habitat it is in.
 
 We will use a Chi-Square contingency analysis to do this

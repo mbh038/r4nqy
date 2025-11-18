@@ -278,8 +278,10 @@ This is mentioned is the output of the test. What does it mean? It adjusts for t
 ### R script
 
 
-
-[template](https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/chi-square-test-of-independence-template.qmd)
+```{r}
+file_url <- "https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/chi-square-test-of-independence-template.qmd"
+download.file(file_url,"chisq_independence_template.qmd")
+```
 
 #### Preliminaries
 
