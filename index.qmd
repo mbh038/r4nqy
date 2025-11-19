@@ -1,5 +1,7 @@
 # Introduction {.unnumbered}
 
+![](figures/NUC.png)
+
 This is a compilation of the methods for data analysis that you are likely to find useful in completing your studies at Newquay University Centre. It is by no means exhaustive, but should address most of your needs, most of the time.
 
 
