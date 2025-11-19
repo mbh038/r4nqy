@@ -2,6 +2,13 @@ project:
   type: book
   output-dir: docs
 
+sidebar:
+  style: docked
+  background: light
+  logo: figures/NUC.png
+  # Add other sidebar options here
+
+
 book:
   title: "r4nqy"
   author: "Michael Hunt"
