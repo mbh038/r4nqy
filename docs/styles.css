@@ -1,0 +1,4 @@
+/* Make sidebar headings bold */
+.sidebar-item-text.sidebar-link {
+  font-weight: bold;
+}
