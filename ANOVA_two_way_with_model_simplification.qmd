@@ -1,6 +1,5 @@
 # Two-way ANOVA with model simplification
 
-
 ```{r load packages hidden, message=FALSE,warning=FALSE, include = FALSE}
 library(tidyverse)  # for data manipulation and plotting, and much else besides
 library(here) # for finding our data easily
@@ -39,7 +38,7 @@ To follow through this exercise, you should have an RStudio project folder that 
 -   In the Project/data folder
 
     -   `growth.csv`
-    
+
 You can download a complete project folder with these files in from [here](https://github.com/mbh038/ANOVA-two-way-with-model-simplification/archive/refs/heads/main.zip)
 
 In the following, we present the code you need to analyse this data together with explanatory text. Read the text closely so that you understand what each chunk of code is intended to do. In the accompanying template file, fill in the code as you go in the empty chunks, using this worksheet as a guide. As you complete each line of code, run it using Ctrl-Enter, or Cmd-Enter on a Mac. Alternatively, wait until you have completed the code for a chunk then run the whole chunk in one go by pressing the little green arrow at the top right of the chunk. Whichever way you choose, you are encouraged to view the code presented here as *one* way to do the analysis. Feel free to hack away at it and change things, to try different approaches and see what happens. That way you will learn. You may also wish to add your own text between the chunks.
@@ -75,7 +74,7 @@ You see from the output of the `glimpse()` function that `weights` has three col
 
 ## Clean the data
 
-Having read in the data some cleaning/wrangling/tidying or processing of the data is often required before we can go further with the analysis. 
+Having read in the data some cleaning/wrangling/tidying or processing of the data is often required before we can go further with the analysis.
 
 **Warning!** This step can be the most time-consuming of the whole analysis, particularly if you are using a large data set obtained from a third party.
 
@@ -159,7 +158,7 @@ growth_summary |>
   theme_cowplot()
 ```
 
-Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by \[Cummings et al\]\[1\]. (2007).
+Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by [@cumming2007]
 
 This interaction plot is useful in that we see that both diet and supplement have an effect on growth and that the effect of one is altered little by the value of the other, the result of which is that the lines are more or less parallel. This suggests that we have *main effects* of both diet and supplement, but little or no *interaction* between them.
 
@@ -355,5 +354,3 @@ In all cases, p\< 0.001, as indicated not only by the number in the Pr(\>\|t\|) 
 We have now reduced our initial 12 parameter model to a four parameter model that is much more tractable and easier to communicate. Our advice would be that for maximum weight gain a diet of `barley` with a supplement of `agrimore` or `supersupp` would be best.
 
 If we were reporting this as a statistical test, we might say something like: A diet of barley with a supplement of agrimore or supersupp was to offer significant improvements over alternatives. There was no evidence of any interaction between diet and supplement. (ANOVA 2-way, F~3,44~ = 76.76, p \< 0.001)
-
-\[1\]: Cumming, G., Fidler, F., & Vaux, D. L. (2007). Error bars in experimental biology. Journal of Cell Biology, 177(1), 7--11. <https://doi.org/10.1083/jcb.200611141>
