@@ -15,6 +15,9 @@ book:
   date: "7/23/2025"
   license: "CC BY-SA"
   page-footer: CC-BY-SA-4.0 (2025) Michael Hunt
+  repo-url: https://github.io/r4nqy
+  repo-actions: [edit]
+  downloads: [pdf]
   page-navigation: true
   chapters:
     - index.qmd
