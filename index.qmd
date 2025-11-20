@@ -3,7 +3,7 @@
 
 This is a compilation of the methods for data analysis that you are likely to find useful in completing your studies at Newquay University Centre. It is by no means exhaustive, but should address most of your needs, most of the time.
 
-Data analysis in the life sciences is only part of the wider process of forming and then answering as best we can well-formed questions about the way this or that aspect of the natural world works.
+Data analysis in the life sciences is only part of the wider process of forming and then answering as best we can well-formed questions about the way this or that aspect of the natural world works. If our question is good, and our design is good, then it is more likely than not that one of the standard analytical techniques described in this text will our needs. If not, then maybe none of them will suit and we will have to work harder to extract the answers we want from the data we have worked hard to gather.
 
 
 ## How to use this resource

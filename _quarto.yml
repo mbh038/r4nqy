@@ -12,13 +12,14 @@ sidebar:
 book:
   title: "r4nqy"
   author: "Michael Hunt"
-  date: "7/23/2025"
+  # date: "7/23/2025"
   license: "CC BY-SA"
   page-footer: CC-BY-SA-4.0 (2025) Michael Hunt
-  repo-url: https://github.io/r4nqy
+  repo-url: https://github.com/mbh038/r4nqy
   repo-actions: [edit]
-  downloads: [pdf]
+  #downloads: [pdf]
   page-navigation: true
+  #cover-image: figures/NQY.png/
   chapters:
     - index.qmd
     - part: "Working with R"
@@ -42,7 +43,7 @@ book:
     - part: "Additional help"
       chapters:
       - qq_plots.qmd
-    - part: "References"
+    - part: ""
       chapters:
       - references.qmd
 
