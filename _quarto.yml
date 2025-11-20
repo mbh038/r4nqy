@@ -37,6 +37,7 @@ book:
       - correlation.qmd
       - simple linear regression.qmd
     - part: "Additional help"
+      chapters:
       - qq_plots. qmd
     - part: "References"
       chapters:
