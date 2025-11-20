@@ -11,7 +11,7 @@ Often in plots one needs to use mathematical expressions, suffixes/superscripts,
 
 Here we show one way of doing this, using `bquote()`. Over the years I have found this to be the simplest way.
 
-### Use `bquote()`
+## Use `bquote()`
 
 The four rules
 
@@ -38,7 +38,7 @@ df |>
   theme_classic()
 ```
 
-### ?plotmath
+## ?plotmath
 
 `plotmath` expressions can be used for mathematical annotation in text within plots in R when writing titles, subtitles, axis labels, legends and annotations. It works in both base R graphics and ggplot2.
 
