@@ -164,6 +164,10 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">r4nqy</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.io/r4nqy" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
+    <a href="./r4nqy.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -367,7 +371,7 @@ window.Quarto = {
   <li><a href="#relation-to-one-sample-paired-test" id="toc-relation-to-one-sample-paired-test" class="nav-link" data-scroll-target="#relation-to-one-sample-paired-test"><span class="header-section-number">4.7.7</span> Relation to one-sample paired test</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.io/r4nqy/edit/main/tests_for_difference_two_levels.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -654,7 +658,7 @@ Figure&nbsp;4.3: The data points show mean values, the error bars show plus or m
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99814, p-value = 0.8705</code></pre>
+W = 0.99519, p-value = 0.1236</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -662,7 +666,7 @@ W = 0.99814, p-value = 0.8705</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.95546, p-value = 3.836e-11</code></pre>
+W = 0.95899, p-value = 1.407e-10</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a high <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, and a very low <em>p</em>-value for the data that we knew were not.</p>
@@ -1578,7 +1582,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.io/r4nqy/edit/main/tests_for_difference_two_levels.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

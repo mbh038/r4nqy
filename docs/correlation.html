@@ -163,6 +163,10 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">r4nqy</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.io/r4nqy" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
+    <a href="./r4nqy.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -349,7 +353,7 @@ window.Quarto = {
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2"><span class="header-section-number">9.4</span> Exercise 2</a></li>
   <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"><span class="header-section-number">9.5</span> Exercise 3</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.io/r4nqy/edit/main/correlation.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -476,13 +480,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.2486, df = 48, p-value = 3.065e-12
+t = 9.2011, df = 48, p-value = 3.596e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6716109 0.8821663
+ 0.6693452 0.8812501
 sample estimates:
       cor 
-0.8003417 </code></pre>
+0.7988572 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -648,7 +652,7 @@ sample estimates:
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.216, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.231, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level4" data-number="9.1.6.2">
 <h4 data-number="9.1.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.1.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h4>
@@ -1344,7 +1348,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.io/r4nqy/edit/main/correlation.qmd" class="toc-action"><i class="bi bi-git"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
