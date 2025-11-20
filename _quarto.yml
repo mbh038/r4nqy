@@ -38,7 +38,7 @@ book:
       - simple linear regression.qmd
     - part: "Additional help"
       chapters:
-      - qq_plots. qmd
+      - qq_plots.qmd
     - part: "References"
       chapters:
       - references.qmd
