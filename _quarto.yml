@@ -10,7 +10,8 @@ sidebar:
 
 
 book:
-  title: "r4nqy"
+  title: "From questions to data to answers using R"
+  subtitle: "A guide for students at Newquay University Centre"
   author: "Michael Hunt"
   # date: "7/23/2025"
   license: "CC BY-SA"
@@ -19,7 +20,7 @@ book:
   repo-actions: [edit]
   #downloads: [pdf]
   page-navigation: true
-  #cover-image: figures/NQY.png/
+  # cover-image: NUC.png
   chapters:
     - index.qmd
     - part: "Working with R"
@@ -43,7 +44,7 @@ book:
     - part: "Additional help"
       chapters:
       - qq_plots.qmd
-    - part: ""
+    - part: "References"
       chapters:
       - references.qmd
 
