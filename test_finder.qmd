@@ -1,4 +1,4 @@
- # Test finder {.unnumbered}
+# Test finder {.unnumbered}
  
 
 Use this flowchart to see which test is appropriate for your study design and your data:
@@ -42,5 +42,5 @@ flowchart TD
   
 ```
 
-If this chart suggests you need something other than the two sample t-test or Mann-Whitney test, you need to go to the descriptions of that test.
+Now go to whichever chapter of this book covers the test you need.
 
