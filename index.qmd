@@ -8,3 +8,5 @@ Data analysis in the life sciences is only part of the wider process of forming 
 
 ## How to use this resource
 
+You are not expected to read this text from beginning to end, although you can if you want to. Each section explains.....
+

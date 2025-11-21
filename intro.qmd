@@ -1,7 +1,0 @@
-# Introduction {.unnumbered}
-
-This is a compilation of the methods for data analysis that you are likely to find useful in completing your studies at Newquay University Centre. It is by no means exhaustive, but should address most of your needs, most of the time.
-
-
-
-Data analysis in the life sciences is only part of the wider process of forming and then answering as best we can well-formed questions about the way this or that aspect of the natural world works.

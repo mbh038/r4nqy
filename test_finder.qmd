@@ -1,0 +1,47 @@
+ # Test finder {.unnumbered}
+ 
+ ## Test finder flow chart
+
+First, use this flowchart to see if a two-sample t-test or its non-parametric counterpart the Mann-Whitney-U test is appropriate for your question, your study design and your data:
+
+```{mermaid, include = TRUE, echo = FALSE}
+flowchart TD
+  A{Difference or Trend \nQuestion?} --> B[Trend]
+  B --> B2{Are you testing for \ndegree of association\nor are you trying \nto make predictions?}
+  B2 --> B33[Association:\n\nTest for\n correlation coefficient\nPearson or \n Spearman's Rank]
+  B2 --> B44[Predictions:\n\nSimple linear regression]
+  A --> C[Difference]
+  C --> C22{Do you have replicates?}
+  C22 --> C22Y[Yes]
+  C22 --> C22N[No]
+  C22N --> C23{Do you have count data?}
+  C23 --> C23Y[Yes]
+  C23 --> C23N[N0]
+  C23Y --> C24(Chi square test:\nGoodness of fit\nor\nTest of independence)
+  C23N --> C25[These data cannot be analysed]
+  C22Y --> D{How many factors?}
+  D --> F[Two or more]
+  F --> F2{Independent\nsamples?}
+  F2 --> F2Y[Yes]
+  F2 --> F2N[No]
+  F2Y --> F22Y(n-way ANOVA)
+  F2N --> F22N(n-way\nrepeated measures\nANOVA)
+  D --> E[One]
+  E --> G{How many levels?}
+  G --> H[Two]
+  G --> I[More than two]
+  I --> J{Independent\n samples?}
+  J --> K[No]
+  J --> L[Yes]
+  K --> S(Repeated measures one-way ANOVA\nor\nFriedman Test)
+  L --> T(One way ANOVA\nor\nKruskal Wallis one-way test)
+  H --> M{Independent\n samples?}
+  M --> N[No]
+  M --> O[Yes]
+  N --> P(paired t-test\nor\nSigned rank test)
+  O --> Q(two sample t-test\nor\nMatt Whitney U test)
+  
+```
+
+If this chart suggests you need something other than the two sample t-test or Mann-Whitney test, you need to go to the descriptions of that test.
+
