@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Analysis of Variance aka ANOVA – From questions to data to answers using R</title>
+<title>6&nbsp; Analysis of Variance aka ANOVA – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tests_for_difference_two_levels.html">Tests for difference</a></li><li class="breadcrumb-item"><a href="./ANOVA_how_it_works.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tests_for_difference_two_levels.html">Tests for difference</a></li><li class="breadcrumb-item"><a href="./ANOVA_how_it_works.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -179,6 +179,12 @@ window.Quarto = {
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test_finder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">test_finder.html</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -191,19 +197,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot_examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./titles_labels_and_annotations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
   </div>
 </li>
       </ul>
@@ -220,25 +226,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tests_for_difference_two_levels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
   </div>
 </li>
       </ul>
@@ -255,7 +261,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
   </div>
 </li>
       </ul>
@@ -272,13 +278,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple linear regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -295,7 +301,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
       </ul>
@@ -312,7 +318,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -327,38 +333,38 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-anova" id="toc-what-is-anova" class="nav-link active" data-scroll-target="#what-is-anova"><span class="header-section-number">5.1</span> What is ANOVA?</a>
+  <li><a href="#what-is-anova" id="toc-what-is-anova" class="nav-link active" data-scroll-target="#what-is-anova"><span class="header-section-number">6.1</span> What is ANOVA?</a>
   <ul class="collapse">
-  <li><a href="#the-basic-principles-of-anova" id="toc-the-basic-principles-of-anova" class="nav-link" data-scroll-target="#the-basic-principles-of-anova"><span class="header-section-number">5.1.1</span> The basic principles of ANOVA</a></li>
-  <li><a href="#the-scenario" id="toc-the-scenario" class="nav-link" data-scroll-target="#the-scenario"><span class="header-section-number">5.1.2</span> The Scenario</a></li>
-  <li><a href="#what-does-an-anova-do" id="toc-what-does-an-anova-do" class="nav-link" data-scroll-target="#what-does-an-anova-do"><span class="header-section-number">5.1.3</span> What does an ANOVA do?</a></li>
-  <li><a href="#grand-mean" id="toc-grand-mean" class="nav-link" data-scroll-target="#grand-mean"><span class="header-section-number">5.1.4</span> Grand Mean</a></li>
-  <li><a href="#measures-of-variability" id="toc-measures-of-variability" class="nav-link" data-scroll-target="#measures-of-variability"><span class="header-section-number">5.1.5</span> Measures of variability</a></li>
-  <li><a href="#sst-ssf-sse" id="toc-sst-ssf-sse" class="nav-link" data-scroll-target="#sst-ssf-sse"><span class="header-section-number">5.1.6</span> SST = SSF + SSE</a></li>
-  <li><a href="#partitioning-the-degrees-of-freedom" id="toc-partitioning-the-degrees-of-freedom" class="nav-link" data-scroll-target="#partitioning-the-degrees-of-freedom"><span class="header-section-number">5.1.7</span> Partitioning the degrees of freedom</a></li>
-  <li><a href="#mean-squares" id="toc-mean-squares" class="nav-link" data-scroll-target="#mean-squares"><span class="header-section-number">5.1.8</span> Mean Squares</a></li>
-  <li><a href="#f-ratios" id="toc-f-ratios" class="nav-link" data-scroll-target="#f-ratios"><span class="header-section-number">5.1.9</span> <em>F</em>-ratios</a></li>
+  <li><a href="#the-basic-principles-of-anova" id="toc-the-basic-principles-of-anova" class="nav-link" data-scroll-target="#the-basic-principles-of-anova"><span class="header-section-number">6.1.1</span> The basic principles of ANOVA</a></li>
+  <li><a href="#the-scenario" id="toc-the-scenario" class="nav-link" data-scroll-target="#the-scenario"><span class="header-section-number">6.1.2</span> The Scenario</a></li>
+  <li><a href="#what-does-an-anova-do" id="toc-what-does-an-anova-do" class="nav-link" data-scroll-target="#what-does-an-anova-do"><span class="header-section-number">6.1.3</span> What does an ANOVA do?</a></li>
+  <li><a href="#grand-mean" id="toc-grand-mean" class="nav-link" data-scroll-target="#grand-mean"><span class="header-section-number">6.1.4</span> Grand Mean</a></li>
+  <li><a href="#measures-of-variability" id="toc-measures-of-variability" class="nav-link" data-scroll-target="#measures-of-variability"><span class="header-section-number">6.1.5</span> Measures of variability</a></li>
+  <li><a href="#sst-ssf-sse" id="toc-sst-ssf-sse" class="nav-link" data-scroll-target="#sst-ssf-sse"><span class="header-section-number">6.1.6</span> SST = SSF + SSE</a></li>
+  <li><a href="#partitioning-the-degrees-of-freedom" id="toc-partitioning-the-degrees-of-freedom" class="nav-link" data-scroll-target="#partitioning-the-degrees-of-freedom"><span class="header-section-number">6.1.7</span> Partitioning the degrees of freedom</a></li>
+  <li><a href="#mean-squares" id="toc-mean-squares" class="nav-link" data-scroll-target="#mean-squares"><span class="header-section-number">6.1.8</span> Mean Squares</a></li>
+  <li><a href="#f-ratios" id="toc-f-ratios" class="nav-link" data-scroll-target="#f-ratios"><span class="header-section-number">6.1.9</span> <em>F</em>-ratios</a></li>
   </ul></li>
-  <li><a href="#anova-example-1" id="toc-anova-example-1" class="nav-link" data-scroll-target="#anova-example-1"><span class="header-section-number">5.2</span> ANOVA example 1</a></li>
-  <li><a href="#anova-example-2" id="toc-anova-example-2" class="nav-link" data-scroll-target="#anova-example-2"><span class="header-section-number">5.3</span> ANOVA example 2</a>
+  <li><a href="#anova-example-1" id="toc-anova-example-1" class="nav-link" data-scroll-target="#anova-example-1"><span class="header-section-number">6.2</span> ANOVA example 1</a></li>
+  <li><a href="#anova-example-2" id="toc-anova-example-2" class="nav-link" data-scroll-target="#anova-example-2"><span class="header-section-number">6.3</span> ANOVA example 2</a>
   <ul class="collapse">
-  <li><a href="#null-hypothesis" id="toc-null-hypothesis" class="nav-link" data-scroll-target="#null-hypothesis"><span class="header-section-number">5.3.1</span> Null hypothesis</a></li>
-  <li><a href="#load-data-and-inspect-the-data" id="toc-load-data-and-inspect-the-data" class="nav-link" data-scroll-target="#load-data-and-inspect-the-data"><span class="header-section-number">5.3.2</span> Load data and inspect the data</a></li>
-  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data"><span class="header-section-number">5.3.3</span> Prepare the data</a></li>
-  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">5.3.4</span> Plot the data</a></li>
-  <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link" data-scroll-target="#summarise-the-data"><span class="header-section-number">5.3.5</span> Summarise the data</a></li>
-  <li><a href="#way-anova" id="toc-way-anova" class="nav-link" data-scroll-target="#way-anova"><span class="header-section-number">5.3.6</span> 1-way ANOVA</a></li>
-  <li><a href="#confidence-intervals-of-the-means" id="toc-confidence-intervals-of-the-means" class="nav-link" data-scroll-target="#confidence-intervals-of-the-means"><span class="header-section-number">5.3.7</span> Confidence intervals of the means</a></li>
+  <li><a href="#null-hypothesis" id="toc-null-hypothesis" class="nav-link" data-scroll-target="#null-hypothesis"><span class="header-section-number">6.3.1</span> Null hypothesis</a></li>
+  <li><a href="#load-data-and-inspect-the-data" id="toc-load-data-and-inspect-the-data" class="nav-link" data-scroll-target="#load-data-and-inspect-the-data"><span class="header-section-number">6.3.2</span> Load data and inspect the data</a></li>
+  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data"><span class="header-section-number">6.3.3</span> Prepare the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">6.3.4</span> Plot the data</a></li>
+  <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link" data-scroll-target="#summarise-the-data"><span class="header-section-number">6.3.5</span> Summarise the data</a></li>
+  <li><a href="#way-anova" id="toc-way-anova" class="nav-link" data-scroll-target="#way-anova"><span class="header-section-number">6.3.6</span> 1-way ANOVA</a></li>
+  <li><a href="#confidence-intervals-of-the-means" id="toc-confidence-intervals-of-the-means" class="nav-link" data-scroll-target="#confidence-intervals-of-the-means"><span class="header-section-number">6.3.7</span> Confidence intervals of the means</a></li>
   </ul></li>
-  <li><a href="#anova-example-2-solution" id="toc-anova-example-2-solution" class="nav-link" data-scroll-target="#anova-example-2-solution"><span class="header-section-number">5.4</span> ANOVA example 2 solution</a>
+  <li><a href="#anova-example-2-solution" id="toc-anova-example-2-solution" class="nav-link" data-scroll-target="#anova-example-2-solution"><span class="header-section-number">6.4</span> ANOVA example 2 solution</a>
   <ul class="collapse">
-  <li><a href="#null-hypothesis-1" id="toc-null-hypothesis-1" class="nav-link" data-scroll-target="#null-hypothesis-1"><span class="header-section-number">5.4.1</span> Null hypothesis</a></li>
-  <li><a href="#load-data-and-inspect-the-data-1" id="toc-load-data-and-inspect-the-data-1" class="nav-link" data-scroll-target="#load-data-and-inspect-the-data-1"><span class="header-section-number">5.4.2</span> Load data and inspect the data</a></li>
-  <li><a href="#prepare-the-data-1" id="toc-prepare-the-data-1" class="nav-link" data-scroll-target="#prepare-the-data-1"><span class="header-section-number">5.4.3</span> Prepare the data</a></li>
-  <li><a href="#plot-the-data-1" id="toc-plot-the-data-1" class="nav-link" data-scroll-target="#plot-the-data-1"><span class="header-section-number">5.4.4</span> Plot the data</a></li>
-  <li><a href="#summarise-the-data-1" id="toc-summarise-the-data-1" class="nav-link" data-scroll-target="#summarise-the-data-1"><span class="header-section-number">5.4.5</span> Summarise the data</a></li>
-  <li><a href="#way-anova-1" id="toc-way-anova-1" class="nav-link" data-scroll-target="#way-anova-1"><span class="header-section-number">5.4.6</span> 1-way ANOVA</a></li>
-  <li><a href="#confidence-intervals-of-the-means-1" id="toc-confidence-intervals-of-the-means-1" class="nav-link" data-scroll-target="#confidence-intervals-of-the-means-1"><span class="header-section-number">5.4.7</span> Confidence intervals of the means</a></li>
+  <li><a href="#null-hypothesis-1" id="toc-null-hypothesis-1" class="nav-link" data-scroll-target="#null-hypothesis-1"><span class="header-section-number">6.4.1</span> Null hypothesis</a></li>
+  <li><a href="#load-data-and-inspect-the-data-1" id="toc-load-data-and-inspect-the-data-1" class="nav-link" data-scroll-target="#load-data-and-inspect-the-data-1"><span class="header-section-number">6.4.2</span> Load data and inspect the data</a></li>
+  <li><a href="#prepare-the-data-1" id="toc-prepare-the-data-1" class="nav-link" data-scroll-target="#prepare-the-data-1"><span class="header-section-number">6.4.3</span> Prepare the data</a></li>
+  <li><a href="#plot-the-data-1" id="toc-plot-the-data-1" class="nav-link" data-scroll-target="#plot-the-data-1"><span class="header-section-number">6.4.4</span> Plot the data</a></li>
+  <li><a href="#summarise-the-data-1" id="toc-summarise-the-data-1" class="nav-link" data-scroll-target="#summarise-the-data-1"><span class="header-section-number">6.4.5</span> Summarise the data</a></li>
+  <li><a href="#way-anova-1" id="toc-way-anova-1" class="nav-link" data-scroll-target="#way-anova-1"><span class="header-section-number">6.4.6</span> 1-way ANOVA</a></li>
+  <li><a href="#confidence-intervals-of-the-means-1" id="toc-confidence-intervals-of-the-means-1" class="nav-link" data-scroll-target="#confidence-intervals-of-the-means-1"><span class="header-section-number">6.4.7</span> Confidence intervals of the means</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ANOVA_how_it_works.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -366,9 +372,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tests_for_difference_two_levels.html">Tests for difference</a></li><li class="breadcrumb-item"><a href="./ANOVA_how_it_works.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tests_for_difference_two_levels.html">Tests for difference</a></li><li class="breadcrumb-item"><a href="./ANOVA_how_it_works.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></h1>
 </div>
 
 
@@ -386,18 +392,18 @@ window.Quarto = {
 
 
 <p>Material used from Chapter One of Grafen and Hails: Modern Statistics for the Life Sciences</p>
-<section id="what-is-anova" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="what-is-anova"><span class="header-section-number">5.1</span> What is ANOVA?</h2>
+<section id="what-is-anova" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="what-is-anova"><span class="header-section-number">6.1</span> What is ANOVA?</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fertilizer <span class="ot">&lt;-</span> fertilizer <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">FERTIL=</span><span class="fu">as.factor</span>(FERTIL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="the-basic-principles-of-anova" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="the-basic-principles-of-anova"><span class="header-section-number">5.1.1</span> The basic principles of ANOVA</h3>
+<section id="the-basic-principles-of-anova" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="the-basic-principles-of-anova"><span class="header-section-number">6.1.1</span> The basic principles of ANOVA</h3>
 <p>In a simple case we consider the comparison of three means. This is done by the analysis of variance (ANOVA). In this case we will go through an example in detail and work out all the mechanics, but once we have done that and seen how the output is derived from the input we will not need to do it again. We will use R to do the heavy lifting. We will just need to know when it is appropriate to use ANOVA, how to get R to do it and how to interpret the output that R produces.</p>
 </section>
-<section id="the-scenario" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="the-scenario"><span class="header-section-number">5.1.2</span> The Scenario</h3>
+<section id="the-scenario" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="the-scenario"><span class="header-section-number">6.1.2</span> The Scenario</h3>
 <p>Suppose we have three fertilizers and wish to compare their efficacy. This has been done in a field experiment where each fertilizer is applied to 10 plots and the 30 plots are later harvested, with the crop yields being calculated. We end up with three groups of 10 figures and we wish to know if there are any differences between these groups.</p>
 <p>When we plot the data we see that the fertilizers do differ in the amount of yield produced but that there is also a lot of variation between the plots that were given the same fertilizer.</p>
 <div class="cell">
@@ -427,12 +433,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="what-does-an-anova-do" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="what-does-an-anova-do"><span class="header-section-number">5.1.3</span> What does an ANOVA do?</h3>
+<section id="what-does-an-anova-do" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="what-does-an-anova-do"><span class="header-section-number">6.1.3</span> What does an ANOVA do?</h3>
 <p>An ANOVA (ANalysis Of VAriance) analysis attempts to determine whether the differences between the effect of the fertilizers is significant by investigating the variability in the data. We investigate how the variability <em>between</em> groups compares to the variability <em>within</em> groups.</p>
 </section>
-<section id="grand-mean" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="grand-mean"><span class="header-section-number">5.1.4</span> Grand Mean</h3>
+<section id="grand-mean" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="grand-mean"><span class="header-section-number">6.1.4</span> Grand Mean</h3>
 <p>First we calculate the ‘grand mean’, the mean of the yields across all 30 plots:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grand_mean<span class="ot">=</span><span class="fu">mean</span>(fertilizer<span class="sc">$</span>YIELD)</span>
@@ -441,8 +447,8 @@ window.Quarto = {
 <pre><code>[1] 4.643667</code></pre>
 </div>
 </div>
-<section id="deviations-from-the-grand-mean" class="level4" data-number="5.1.4.1">
-<h4 data-number="5.1.4.1" class="anchored" data-anchor-id="deviations-from-the-grand-mean"><span class="header-section-number">5.1.4.1</span> Deviations from the grand mean</h4>
+<section id="deviations-from-the-grand-mean" class="level4" data-number="6.1.4.1">
+<h4 data-number="6.1.4.1" class="anchored" data-anchor-id="deviations-from-the-grand-mean"><span class="header-section-number">6.1.4.1</span> Deviations from the grand mean</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>SST.plot<span class="ot">&lt;-</span>g2<span class="sc">+</span><span class="fu">geom_hline</span>(<span class="at">yintercept=</span>grand_mean,<span class="at">linetype=</span><span class="st">'dashed'</span>)<span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> plot, <span class="at">y =</span> YIELD, <span class="at">xend =</span> plot, <span class="at">yend =</span> grand_mean),<span class="at">linetype=</span><span class="st">'dotted'</span>)</span>
@@ -456,8 +462,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="mean-value-of-yield-for-each-fertilizer" class="level4" data-number="5.1.4.2">
-<h4 data-number="5.1.4.2" class="anchored" data-anchor-id="mean-value-of-yield-for-each-fertilizer"><span class="header-section-number">5.1.4.2</span> Mean value of yield for each fertilizer</h4>
+<section id="mean-value-of-yield-for-each-fertilizer" class="level4" data-number="6.1.4.2">
+<h4 data-number="6.1.4.2" class="anchored" data-anchor-id="mean-value-of-yield-for-each-fertilizer"><span class="header-section-number">6.1.4.2</span> Mean value of yield for each fertilizer</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f_means<span class="ot">&lt;-</span>fertilizer <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(FERTIL) <span class="sc">|&gt;</span></span>
@@ -499,10 +505,10 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="measures-of-variability" class="level3" data-number="5.1.5">
-<h3 data-number="5.1.5" class="anchored" data-anchor-id="measures-of-variability"><span class="header-section-number">5.1.5</span> Measures of variability</h3>
-<section id="sst---total-sum-of-squares" class="level4" data-number="5.1.5.1">
-<h4 data-number="5.1.5.1" class="anchored" data-anchor-id="sst---total-sum-of-squares"><span class="header-section-number">5.1.5.1</span> SST - Total sum of squares</h4>
+<section id="measures-of-variability" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="measures-of-variability"><span class="header-section-number">6.1.5</span> Measures of variability</h3>
+<section id="sst---total-sum-of-squares" class="level4" data-number="6.1.5.1">
+<h4 data-number="6.1.5.1" class="anchored" data-anchor-id="sst---total-sum-of-squares"><span class="header-section-number">6.1.5.1</span> SST - Total sum of squares</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>SST<span class="ot">=</span><span class="fu">sum</span>((fertilizer<span class="sc">$</span>YIELD<span class="sc">-</span>grand_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>SST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -512,8 +518,8 @@ window.Quarto = {
 </div>
 <p>SST is the <strong>total sum of squares.</strong> It is the sum of squares of the deviations of the data around the grand mean. This is a measure of the total variability of the data set.</p>
 </section>
-<section id="sse---error-sum-of-squares" class="level4" data-number="5.1.5.2">
-<h4 data-number="5.1.5.2" class="anchored" data-anchor-id="sse---error-sum-of-squares"><span class="header-section-number">5.1.5.2</span> SSE - Error sum of squares</h4>
+<section id="sse---error-sum-of-squares" class="level4" data-number="6.1.5.2">
+<h4 data-number="6.1.5.2" class="anchored" data-anchor-id="sse---error-sum-of-squares"><span class="header-section-number">6.1.5.2</span> SSE - Error sum of squares</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>SSE<span class="ot">&lt;-</span>fertilizer <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(FERTIL) <span class="sc">|&gt;</span></span>
@@ -525,8 +531,8 @@ window.Quarto = {
 </div>
 <p>SSE is the <strong>error sum of squares</strong>. It is the sum of the squares of the deviations of the data around the three separate group means. This is a measure of the variation between plots that have been given the same fertilizer.</p>
 </section>
-<section id="ssf---fertilizer-sum-of-squares" class="level4" data-number="5.1.5.3">
-<h4 data-number="5.1.5.3" class="anchored" data-anchor-id="ssf---fertilizer-sum-of-squares"><span class="header-section-number">5.1.5.3</span> SSF - Fertilizer sum of squares</h4>
+<section id="ssf---fertilizer-sum-of-squares" class="level4" data-number="6.1.5.3">
+<h4 data-number="6.1.5.3" class="anchored" data-anchor-id="ssf---fertilizer-sum-of-squares"><span class="header-section-number">6.1.5.3</span> SSF - Fertilizer sum of squares</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SSF<span class="ot">&lt;-</span>fertilizer <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(FERTIL) <span class="sc">|&gt;</span></span>
@@ -570,8 +576,8 @@ window.Quarto = {
 <p>First, we note that SSF and SSE partition between them the total variability in the data:</p>
 </section>
 </section>
-<section id="sst-ssf-sse" class="level3" data-number="5.1.6">
-<h3 data-number="5.1.6" class="anchored" data-anchor-id="sst-ssf-sse"><span class="header-section-number">5.1.6</span> SST = SSF + SSE</h3>
+<section id="sst-ssf-sse" class="level3" data-number="6.1.6">
+<h3 data-number="6.1.6" class="anchored" data-anchor-id="sst-ssf-sse"><span class="header-section-number">6.1.6</span> SST = SSF + SSE</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>SST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -594,8 +600,8 @@ window.Quarto = {
 <p>A comparison of SSF and SSE is going to indicate whether fitting the three fertilizer means accounts for a significant amount of variability.</p>
 <p>However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance.</p>
 </section>
-<section id="partitioning-the-degrees-of-freedom" class="level3" data-number="5.1.7">
-<h3 data-number="5.1.7" class="anchored" data-anchor-id="partitioning-the-degrees-of-freedom"><span class="header-section-number">5.1.7</span> Partitioning the degrees of freedom</h3>
+<section id="partitioning-the-degrees-of-freedom" class="level3" data-number="6.1.7">
+<h3 data-number="6.1.7" class="anchored" data-anchor-id="partitioning-the-degrees-of-freedom"><span class="header-section-number">6.1.7</span> Partitioning the degrees of freedom</h3>
 <p>Every sum of squares (SS) has been calculated using a number of independent pieces of information. In each, case, we call this number the number of degrees of freedom for the SS.</p>
 <p>For SST this number is one less than the number of data points <em>n</em>. This is because when we calculate the deviations of each data point around a grand mean there are only <em>n-1</em> of them that are independent, since by definition the sum of these deviations is zero, and so when <em>n-1</em> of them have been calculated, the final one is pre-determined.</p>
 <p>Similarly, when we calculate SSF, which measures the deviation of the group means from the grand mean, we have <span class="math inline">\(k\)</span>-1 degrees of freedom, (where in the present example <span class="math inline">\(k\)</span>, the number of treatments, is equal to three) since the deviations must sum to zero, so when <span class="math inline">\(k\)</span>-1 of them have been calculated, the last one is pre-determined.</p>
@@ -613,8 +619,8 @@ df(\text{SSF}) &amp;= n-k\\
 
 \end{align*}\]</span>
 </section>
-<section id="mean-squares" class="level3" data-number="5.1.8">
-<h3 data-number="5.1.8" class="anchored" data-anchor-id="mean-squares"><span class="header-section-number">5.1.8</span> Mean Squares</h3>
+<section id="mean-squares" class="level3" data-number="6.1.8">
+<h3 data-number="6.1.8" class="anchored" data-anchor-id="mean-squares"><span class="header-section-number">6.1.8</span> Mean Squares</h3>
 <p>Now we can calculate the <em>variances</em> which are a measure of the amount of variability per degree of freedom.</p>
 <p>In this context, we call them <em>mean squares</em>. To find each one we divided each of the sums of squares (SS) by their corresponding degrees of freedom.</p>
 <p>Fertiliser Mean Square (FMS) = SSF / <em>k</em> - 1. This is the variation per <em>df</em> between plots given different fertilisers.</p>
@@ -622,8 +628,8 @@ df(\text{SSF}) &amp;= n-k\\
 <p>Total Mean Square (TMS) = SST / <em>n</em> - 1. This is the total variance per <em>df</em> of the dataset.</p>
 <p>Unlike the SS, the MS are not additive. That is, FMS + EMS <span class="math inline">\(\neq\)</span> TMS.</p>
 </section>
-<section id="f-ratios" class="level3" data-number="5.1.9">
-<h3 data-number="5.1.9" class="anchored" data-anchor-id="f-ratios"><span class="header-section-number">5.1.9</span> <em>F</em>-ratios</h3>
+<section id="f-ratios" class="level3" data-number="6.1.9">
+<h3 data-number="6.1.9" class="anchored" data-anchor-id="f-ratios"><span class="header-section-number">6.1.9</span> <em>F</em>-ratios</h3>
 <p>If none of the fertilizers influenced yield, we would expect as much variation between the plots treated with the same fertilizer as between the plots treated with different fertilizers.</p>
 <p>We can express this in terms of the mean squares: the mean square for fertilizer would be the same as the mean square for error:</p>
 <p><span class="math display">\[
@@ -671,8 +677,8 @@ df(\text{SSF}) &amp;= n-k\\
 </div>
 </section>
 </section>
-<section id="anova-example-1" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="anova-example-1"><span class="header-section-number">5.2</span> ANOVA example 1</h2>
+<section id="anova-example-1" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="anova-example-1"><span class="header-section-number">6.2</span> ANOVA example 1</h2>
 <p>We will carry out the ANOVA analysis of the fertilizer data discussed on the previous tab.</p>
 <p>Our question is whether yield depends on fertilizer.</p>
 <p>What is our null hypothesis?</p>
@@ -717,18 +723,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>So we find that we can reject the null hypothesis. There is thus evidence that fertilizer does affect yield (ANOVA, df = 2,27, F=5.7, p&lt; 0.01)</p>
 <p>What this test has not done so far is show us where the differences lie. An ANOVA is a holistic test that tells you whether or not there is evidence for a difference between at least one pair of groups being compared. To identify which gruopd, if any, are differeny, we need to do so-called post-hoc tests.</p>
 </section>
-<section id="anova-example-2" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="anova-example-2"><span class="header-section-number">5.3</span> ANOVA example 2</h2>
+<section id="anova-example-2" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="anova-example-2"><span class="header-section-number">6.3</span> ANOVA example 2</h2>
 <p>An experiment was performed to compare four melon varieties. It was designed so that each variety was grown in six plots, but two plots growing variety 3 were accidentally destroyed.</p>
 <p>We wish to find out if there is evidence for a difference in yield between the varieties.</p>
-<section id="null-hypothesis" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="null-hypothesis"><span class="header-section-number">5.3.1</span> Null hypothesis</h3>
+<section id="null-hypothesis" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="null-hypothesis"><span class="header-section-number">6.3.1</span> Null hypothesis</h3>
 <p>What is the null hypothesis of this study?</p>
 <p>The data are in the <code>melons.csv</code> dataset.</p>
 <p>Write code chunks to</p>
 </section>
-<section id="load-data-and-inspect-the-data" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="load-data-and-inspect-the-data"><span class="header-section-number">5.3.2</span> Load data and inspect the data</h3>
+<section id="load-data-and-inspect-the-data" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="load-data-and-inspect-the-data"><span class="header-section-number">6.3.2</span> Load data and inspect the data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"melons.csv"</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>melons<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
@@ -741,16 +747,16 @@ $ VARIETY &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
 </div>
 </div>
 </section>
-<section id="prepare-the-data" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="prepare-the-data"><span class="header-section-number">5.3.3</span> Prepare the data</h3>
+<section id="prepare-the-data" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="prepare-the-data"><span class="header-section-number">6.3.3</span> Prepare the data</h3>
 <p>Ensure that the VARIETY column is a factor</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>melons <span class="ot">&lt;-</span> melons <span class="sc">|&gt;</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">VARIETY=</span><span class="fu">as.factor</span>(VARIETY))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="plot-the-data" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">5.3.4</span> Plot the data</h3>
+<section id="plot-the-data" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">6.3.4</span> Plot the data</h3>
 <p>Create a scatter plot of the yield.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>melons <span class="sc">|&gt;</span></span>
@@ -768,8 +774,8 @@ $ VARIETY &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
 </div>
 </div>
 </section>
-<section id="summarise-the-data" class="level3" data-number="5.3.5">
-<h3 data-number="5.3.5" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">5.3.5</span> Summarise the data</h3>
+<section id="summarise-the-data" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">6.3.5</span> Summarise the data</h3>
 <p>Create a summary table that shows the mean yield for each variety.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>melons <span class="sc">|&gt;</span></span>
@@ -789,16 +795,16 @@ $ VARIETY &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
 </div>
 </div>
 </section>
-<section id="way-anova" class="level3" data-number="5.3.6">
-<h3 data-number="5.3.6" class="anchored" data-anchor-id="way-anova"><span class="header-section-number">5.3.6</span> 1-way ANOVA</h3>
-<section id="create-the-model" class="level4" data-number="5.3.6.1">
-<h4 data-number="5.3.6.1" class="anchored" data-anchor-id="create-the-model"><span class="header-section-number">5.3.6.1</span> Create the model</h4>
+<section id="way-anova" class="level3" data-number="6.3.6">
+<h3 data-number="6.3.6" class="anchored" data-anchor-id="way-anova"><span class="header-section-number">6.3.6</span> 1-way ANOVA</h3>
+<section id="create-the-model" class="level4" data-number="6.3.6.1">
+<h4 data-number="6.3.6.1" class="anchored" data-anchor-id="create-the-model"><span class="header-section-number">6.3.6.1</span> Create the model</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>melons.model<span class="ot">&lt;-</span><span class="fu">lm</span>(YIELDM<span class="sc">~</span>VARIETY,<span class="at">data=</span>melons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="check-the-validity-of-the-model" class="level4" data-number="5.3.6.2">
-<h4 data-number="5.3.6.2" class="anchored" data-anchor-id="check-the-validity-of-the-model"><span class="header-section-number">5.3.6.2</span> Check the validity of the model</h4>
+<section id="check-the-validity-of-the-model" class="level4" data-number="6.3.6.2">
+<h4 data-number="6.3.6.2" class="anchored" data-anchor-id="check-the-validity-of-the-model"><span class="header-section-number">6.3.6.2</span> Check the validity of the model</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(melons.model,<span class="at">smooth.colour=</span><span class="cn">NA</span>) <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -823,8 +829,8 @@ W = 0.94567, p-value = 0.2586</code></pre>
 </div>
 <p>What do we conclude from this test?</p>
 </section>
-<section id="inspect-the-model" class="level4" data-number="5.3.6.3">
-<h4 data-number="5.3.6.3" class="anchored" data-anchor-id="inspect-the-model"><span class="header-section-number">5.3.6.3</span> Inspect the model</h4>
+<section id="inspect-the-model" class="level4" data-number="6.3.6.3">
+<h4 data-number="6.3.6.3" class="anchored" data-anchor-id="inspect-the-model"><span class="header-section-number">6.3.6.3</span> Inspect the model</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(melons.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -841,8 +847,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>What conclusions would you draw from the output of this model and the table of mean yields for each variety?</p>
 </section>
 </section>
-<section id="confidence-intervals-of-the-means" class="level3" data-number="5.3.7">
-<h3 data-number="5.3.7" class="anchored" data-anchor-id="confidence-intervals-of-the-means"><span class="header-section-number">5.3.7</span> Confidence intervals of the means</h3>
+<section id="confidence-intervals-of-the-means" class="level3" data-number="6.3.7">
+<h3 data-number="6.3.7" class="anchored" data-anchor-id="confidence-intervals-of-the-means"><span class="header-section-number">6.3.7</span> Confidence intervals of the means</h3>
 <p>Let us find the 95% confidence intervals for each mean</p>
 <p>These we calculate as</p>
 <p><span class="math display">\[
@@ -869,18 +875,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </section>
 </section>
-<section id="anova-example-2-solution" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="anova-example-2-solution"><span class="header-section-number">5.4</span> ANOVA example 2 solution</h2>
+<section id="anova-example-2-solution" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="anova-example-2-solution"><span class="header-section-number">6.4</span> ANOVA example 2 solution</h2>
 <p>An experiment was performed to compare four melon varieties. It was designed so that each variety was grown in six plots, but two plots growing variety 3 were accidentally destroyed.</p>
 <p>We wish to find out if there is evidence for a difference in yield between the varieties.</p>
-<section id="null-hypothesis-1" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="null-hypothesis-1"><span class="header-section-number">5.4.1</span> Null hypothesis</h3>
+<section id="null-hypothesis-1" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="null-hypothesis-1"><span class="header-section-number">6.4.1</span> Null hypothesis</h3>
 <p>What is the null hypothesis of this study?</p>
 <p>The data are in the <code>melons.csv</code> dataset.</p>
 <p>Write code chunks to</p>
 </section>
-<section id="load-data-and-inspect-the-data-1" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="load-data-and-inspect-the-data-1"><span class="header-section-number">5.4.2</span> Load data and inspect the data</h3>
+<section id="load-data-and-inspect-the-data-1" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="load-data-and-inspect-the-data-1"><span class="header-section-number">6.4.2</span> Load data and inspect the data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"melons.csv"</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>melons<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
@@ -893,16 +899,16 @@ $ VARIETY &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
 </div>
 </div>
 </section>
-<section id="prepare-the-data-1" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="prepare-the-data-1"><span class="header-section-number">5.4.3</span> Prepare the data</h3>
+<section id="prepare-the-data-1" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="prepare-the-data-1"><span class="header-section-number">6.4.3</span> Prepare the data</h3>
 <p>Ensure that the VARIETY column is a factor</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>melons <span class="ot">&lt;-</span> melons <span class="sc">|&gt;</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">VARIETY=</span><span class="fu">as.factor</span>(VARIETY))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="plot-the-data-1" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="plot-the-data-1"><span class="header-section-number">5.4.4</span> Plot the data</h3>
+<section id="plot-the-data-1" class="level3" data-number="6.4.4">
+<h3 data-number="6.4.4" class="anchored" data-anchor-id="plot-the-data-1"><span class="header-section-number">6.4.4</span> Plot the data</h3>
 <p>Create a scatter plot of the yield.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>melons <span class="sc">|&gt;</span></span>
@@ -920,8 +926,8 @@ $ VARIETY &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
 </div>
 </div>
 </section>
-<section id="summarise-the-data-1" class="level3" data-number="5.4.5">
-<h3 data-number="5.4.5" class="anchored" data-anchor-id="summarise-the-data-1"><span class="header-section-number">5.4.5</span> Summarise the data</h3>
+<section id="summarise-the-data-1" class="level3" data-number="6.4.5">
+<h3 data-number="6.4.5" class="anchored" data-anchor-id="summarise-the-data-1"><span class="header-section-number">6.4.5</span> Summarise the data</h3>
 <p>Create a summary table that shows the mean yield for each variety.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>melons <span class="sc">|&gt;</span></span>
@@ -941,16 +947,16 @@ $ VARIETY &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4
 </div>
 </div>
 </section>
-<section id="way-anova-1" class="level3" data-number="5.4.6">
-<h3 data-number="5.4.6" class="anchored" data-anchor-id="way-anova-1"><span class="header-section-number">5.4.6</span> 1-way ANOVA</h3>
-<section id="create-the-model-1" class="level4" data-number="5.4.6.1">
-<h4 data-number="5.4.6.1" class="anchored" data-anchor-id="create-the-model-1"><span class="header-section-number">5.4.6.1</span> Create the model</h4>
+<section id="way-anova-1" class="level3" data-number="6.4.6">
+<h3 data-number="6.4.6" class="anchored" data-anchor-id="way-anova-1"><span class="header-section-number">6.4.6</span> 1-way ANOVA</h3>
+<section id="create-the-model-1" class="level4" data-number="6.4.6.1">
+<h4 data-number="6.4.6.1" class="anchored" data-anchor-id="create-the-model-1"><span class="header-section-number">6.4.6.1</span> Create the model</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>melons.model<span class="ot">&lt;-</span><span class="fu">lm</span>(YIELDM<span class="sc">~</span>VARIETY,<span class="at">data=</span>melons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="check-the-validity-of-the-model-1" class="level4" data-number="5.4.6.2">
-<h4 data-number="5.4.6.2" class="anchored" data-anchor-id="check-the-validity-of-the-model-1"><span class="header-section-number">5.4.6.2</span> Check the validity of the model</h4>
+<section id="check-the-validity-of-the-model-1" class="level4" data-number="6.4.6.2">
+<h4 data-number="6.4.6.2" class="anchored" data-anchor-id="check-the-validity-of-the-model-1"><span class="header-section-number">6.4.6.2</span> Check the validity of the model</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(melons.model,<span class="at">smooth.colour=</span><span class="cn">NA</span>) <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -975,8 +981,8 @@ W = 0.94567, p-value = 0.2586</code></pre>
 </div>
 <p>Since <em>p</em>&gt;0.05 we conclude that there is no reason to reject the null hypothesis that the residuals are normally disributed.</p>
 </section>
-<section id="inspect-the-model-1" class="level4" data-number="5.4.6.3">
-<h4 data-number="5.4.6.3" class="anchored" data-anchor-id="inspect-the-model-1"><span class="header-section-number">5.4.6.3</span> Inspect the model</h4>
+<section id="inspect-the-model-1" class="level4" data-number="6.4.6.3">
+<h4 data-number="6.4.6.3" class="anchored" data-anchor-id="inspect-the-model-1"><span class="header-section-number">6.4.6.3</span> Inspect the model</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(melons.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1020,8 +1026,8 @@ F-statistic:  23.8 on 3 and 18 DF,  p-value: 1.735e-06</code></pre>
 <p>The unexplained variance ie the error <em>s</em> for each group is 15.6 with 18 degrees of freedom. So the standard error for each group is <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span> where s=<span class="math inline">\(\sqrt{15.6}\)</span> = 3.95 divided by the number of elements in each group, giving us standard errors of 1.97 for variety 3, and 1.61 for the other varieties.</p>
 </section>
 </section>
-<section id="confidence-intervals-of-the-means-1" class="level3" data-number="5.4.7">
-<h3 data-number="5.4.7" class="anchored" data-anchor-id="confidence-intervals-of-the-means-1"><span class="header-section-number">5.4.7</span> Confidence intervals of the means</h3>
+<section id="confidence-intervals-of-the-means-1" class="level3" data-number="6.4.7">
+<h3 data-number="6.4.7" class="anchored" data-anchor-id="confidence-intervals-of-the-means-1"><span class="header-section-number">6.4.7</span> Confidence intervals of the means</h3>
 <p>Let us find the 95% confidence intervals for each mean</p>
 <p>These we calculate as</p>
 <p><span class="math display">\[
@@ -1472,12 +1478,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./tests_for_difference_two_levels.html" class="pagination-link" aria-label="Tests for difference: one factor, two levels">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./ANOVA_one_way.html" class="pagination-link" aria-label="One-way ANOVA">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
