@@ -1,8 +1,7 @@
  # Test finder {.unnumbered}
  
- ## Test finder flow chart
 
-First, use this flowchart to see if a two-sample t-test or its non-parametric counterpart the Mann-Whitney-U test is appropriate for your question, your study design and your data:
+Use this flowchart to see which test is appropriate for your study design and your data:
 
 ```{mermaid, include = TRUE, echo = FALSE}
 flowchart TD

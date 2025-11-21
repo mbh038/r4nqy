@@ -23,7 +23,9 @@ book:
   # cover-image: NUC.png
   chapters:
     - index.qmd
-    - test_finder.qmd
+    - part: "Preliminaries"
+      chapters: 
+      - test_finder.qmd
     - part: "Working with R"
       chapters:
       - workflow.qmd
