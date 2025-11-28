@@ -48,8 +48,7 @@ trial_data |>
   # geom_jitter(colour="gray50",width=0.2) +
   labs(x="Plant mass (g)",
        y="Frequency") +
-  theme_classic()
-  # theme(legend.position="none")
+  theme_bw()
 ```
 
 
@@ -142,7 +141,6 @@ power_vals |>
        y = "Power",
        colour ="Effect size") +
   theme_bw()
-  # theme(legend.position="none")
 ```
 
 In this plot we show how the power varies with sample size N, for different effect sizes (where 0.05, say, means a difference of 5% in populations means), with a population standard devation of 30 g on a control mean of 300g, and a significance level of 0.05.
