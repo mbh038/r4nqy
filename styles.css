@@ -2,3 +2,6 @@
 .sidebar-item-text.sidebar-link.text-start {
     font-weight: bold
 }
+
+// The right hand margin bar
+$grid-margin-width: 300px !default;
