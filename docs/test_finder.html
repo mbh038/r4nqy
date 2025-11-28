@@ -255,6 +255,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -310,11 +316,14 @@ ul.task-list li input[type="checkbox"] {
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart TD
-  A{Difference or Trend \nQuestion?} --&gt; B[Trend]
-  B --&gt; B2{Are you testing for \ndegree of association\nor are you trying \nto make predictions?}
-  B2 --&gt; B33[Association:\n\nTest for\n correlation coefficient\nPearson or \n Spearman's Rank]
-  B2 --&gt; B44[Predictions:\n\nSimple linear regression]
+<pre class="mermaid mermaid-js">%%| fig-width: 10
+%%| column: page-right
+
+flowchart TD
+  A{Difference or Trend Question?} --&gt; B[Trend]
+  B --&gt; B2{Are you testing for degree of associationor are you trying to make predictions?}
+  B2 --&gt; B33[Association:Test for correlation coefficient Pearson or  Spearman's Rank]
+  B2 --&gt; B44[Predictions: Simple linear regression]
   A --&gt; C[Difference]
   C --&gt; C22{Do you have replicates?}
   C22 --&gt; C22Y[Yes]
@@ -322,29 +331,29 @@ ul.task-list li input[type="checkbox"] {
   C22N --&gt; C23{Do you have count data?}
   C23 --&gt; C23Y[Yes]
   C23 --&gt; C23N[N0]
-  C23Y --&gt; C24(Chi square test:\nGoodness of fit\nor\nTest of independence)
+  C23Y --&gt; C24(Chi square test: Goodness of fit or Test of independence)
   C23N --&gt; C25[These data cannot be analysed]
   C22Y --&gt; D{How many factors?}
   D --&gt; F[Two or more]
-  F --&gt; F2{Independent\nsamples?}
+  F --&gt; F2{Independent samples?}
   F2 --&gt; F2Y[Yes]
   F2 --&gt; F2N[No]
   F2Y --&gt; F22Y(n-way ANOVA)
-  F2N --&gt; F22N(n-way\nrepeated measures\nANOVA)
+  F2N --&gt; F22N(n-way repeated measures ANOVA)
   D --&gt; E[One]
   E --&gt; G{How many levels?}
   G --&gt; H[Two]
   G --&gt; I[More than two]
-  I --&gt; J{Independent\n samples?}
+  I --&gt; J{Independent samples?}
   J --&gt; K[No]
   J --&gt; L[Yes]
-  K --&gt; S(Repeated measures one-way ANOVA\nor\nFriedman Test)
-  L --&gt; T(One way ANOVA\nor\nKruskal Wallis one-way test)
-  H --&gt; M{Independent\n samples?}
+  K --&gt; S(Repeated measures one-way ANOVA or Friedman Test)
+  L --&gt; T(One way ANOVA or Kruskal Wallis one-way test)
+  H --&gt; M{Independent samples?}
   M --&gt; N[No]
   M --&gt; O[Yes]
-  N --&gt; P(paired t-test\nor\nSigned rank test)
-  O --&gt; Q(two sample t-test\nor\nMatt Whitney U test)
+  N --&gt; P(paired t-test or Signed rank test)
+  O --&gt; Q(two sample t-test or Matt Whitney U test)
   
 </pre>
 </div>

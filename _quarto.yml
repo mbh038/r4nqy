@@ -47,6 +47,7 @@ book:
     - part: "Additional help"
       chapters:
       - qq_plots.qmd
+      - power-analysis.qmd
     - part: "References"
       chapters:
       - references.qmd

@@ -52,5 +52,8 @@
   },
   "test_finder.qmd": {
     "test_finder.html": "61a590cd"
+  },
+  "power-analysis.qmd": {
+    "power-analysis.html": "6692bc40"
   }
 }
