@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(colour="gray50",width=0.2) +</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Plant mass (g)"</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -392,7 +392,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theme(legend.position="none")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Suppose the supplement really did work like this, and really did improve growth rates by 10%. How many plants, ie what value of <em>N</em> would we need in each group in order to have an 80% chance of correctly spotting this difference? This probability of detection of an effect that is there is what we call the <strong>power</strong> of a study. If the effect is smaller than 10% (or whatever boost we deemed sufficient) and we do not detect it we do not mind, since that means that our supplement had not worked as we had hoped, but it would be a waste of our time and money if there really were a sizeable effect but we did not spot it because our sample size was too small. Equally, we do not want a sample size that is larger than is necessary to achieve sufficient power. Doing so would incur unnecessary time and money costs and possibly have ethical implications.</p>
 <p>In thinking about how we might analyse our data we formulate a null hypothesis:</p>
@@ -401,9 +400,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If in fact the supplement has an effect on growth, then the data should force us to reject this null hypothesis. In order that there be at least an 80% chance that it does this, there has to be an at least 80% chance that the mean value of our treated plants lies outside the rejection regime of the null hypothesis.</p>
 <p>With one pair of samples of plants, we might or might not detect the effect, depending on which individuals ended up being included in the samples that we drew from their respective populations, since this would determine whether the mean of the treated plants was or was not in the rejection regime of the null. Thus, if we ran a t-test on our two simulated samples, we might or might not get a p-value that is less than our chosen significance level,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.488163e-06</code></pre>
+<pre><code>[1] 8.815495e-06</code></pre>
 </div>
 </div>
 <p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>
@@ -418,56 +417,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If the <em>p</em>-value is less than our chosen significance level then we reject the null, if not, we do not.</p>
 <p>Rejecting the null in this case means we have a ‘True Positive’ and so we make our function return the logical value TRUE in that case. Failing to reject the null in this case is a mistake. We call this kind of mistake a ’False Negative” and when this happens me make out function return the logical value FALSE.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>effect_detected<span class="ot">&lt;-</span><span class="cf">function</span>(m1,sd1,delta,N,alpha){</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  pop1<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1,sd1)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  pop2<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>delta),sd1)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">t.test</span>(pop1,pop2)<span class="sc">$</span>p.value<span class="sc">&lt;</span>alpha) <span class="co">#return TRUE if p &lt;0.05, return FALSE if not.</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>effect_detected<span class="ot">&lt;-</span><span class="cf">function</span>(m1,sd1,delta,N,alpha){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  pop1<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1,sd1)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  pop2<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>delta),sd1)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">t.test</span>(pop1,pop2)<span class="sc">$</span>p.value<span class="sc">&lt;</span>alpha) <span class="co">#return TRUE if p &lt;0.05, return FALSE if not.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes"><span class="header-section-number">12.3</span> Calculate the power of the study for a range of sample and effect sizes</h2>
 <p>Now we run this trial as many times as we want. Let us run it 10,000 times, for a range of sample sizes and effect sizes. In any one trial we may or may not reject the null. We want to see, for a given set of conditons, in what fraction of trials, in the long run, we do reject the null. That will be an estimate of the power of our study: the likelihood that we will detect an effect if the effect really exists, as it does here.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>trials<span class="ot">&lt;-</span><span class="dv">10000</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m1<span class="ot">&lt;-</span><span class="dv">300</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sd1<span class="ot">&lt;-</span><span class="dv">30</span> <span class="co"># population standard deviation</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>deltas<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.02</span>,<span class="fl">0.03</span>,<span class="fl">0.04</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>) <span class="co"># effect size where, for example, 0.05 means that the effect is 5% the size of the control mean</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="dv">100</span> <span class="co"># sample size</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">&lt;-</span><span class="fl">0.05</span> <span class="co"># chosen significance level</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Ns<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">1</span>),<span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">10</span>),<span class="fu">seq</span>(<span class="dv">60</span>,<span class="dv">200</span>,<span class="dv">20</span>),<span class="fu">seq</span>(<span class="dv">240</span>,<span class="dv">480</span>,<span class="dv">40</span>))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>power_vals_raw<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(Ns)<span class="sc">*</span><span class="fu">length</span>(deltas)),<span class="at">ncol=</span><span class="fu">length</span>(deltas))</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Ns)){</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deltas)){</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    trial_results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(trials,<span class="fu">effect_detected</span>(m1,sd1,deltas[j],Ns[i],alpha))</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    power_vals_raw[i,j]<span class="ot">&lt;-</span><span class="fu">mean</span>(trial_results)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>power_vals <span class="ot">&lt;-</span> <span class="fu">as.tibble</span>(power_vals_raw)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(power_vals) <span class="ot">&lt;-</span> deltas</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>power_vals <span class="ot">&lt;-</span> power_vals <span class="sc">|&gt;</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">N=</span>Ns) <span class="sc">|&gt;</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>N,<span class="at">names_to =</span> <span class="st">"effect_size"</span>, <span class="at">values_to =</span> <span class="st">"power"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>trials<span class="ot">&lt;-</span><span class="dv">10000</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m1<span class="ot">&lt;-</span><span class="dv">300</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sd1<span class="ot">&lt;-</span><span class="dv">30</span> <span class="co"># population standard deviation</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>deltas<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.02</span>,<span class="fl">0.03</span>,<span class="fl">0.04</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>) <span class="co"># effect size where, for example, 0.05 means that the effect is 5% the size of the control mean</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="dv">100</span> <span class="co"># sample size</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">&lt;-</span><span class="fl">0.05</span> <span class="co"># chosen significance level</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Ns<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">1</span>),<span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">10</span>),<span class="fu">seq</span>(<span class="dv">60</span>,<span class="dv">200</span>,<span class="dv">20</span>),<span class="fu">seq</span>(<span class="dv">240</span>,<span class="dv">480</span>,<span class="dv">40</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>power_vals_raw<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(Ns)<span class="sc">*</span><span class="fu">length</span>(deltas)),<span class="at">ncol=</span><span class="fu">length</span>(deltas))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Ns)){</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deltas)){</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    trial_results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(trials,<span class="fu">effect_detected</span>(m1,sd1,deltas[j],Ns[i],alpha))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    power_vals_raw[i,j]<span class="ot">&lt;-</span><span class="fu">mean</span>(trial_results)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>power_vals <span class="ot">&lt;-</span> <span class="fu">as.tibble</span>(power_vals_raw)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(power_vals) <span class="ot">&lt;-</span> deltas</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>power_vals <span class="ot">&lt;-</span> power_vals <span class="sc">|&gt;</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">N=</span>Ns) <span class="sc">|&gt;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>N,<span class="at">names_to =</span> <span class="st">"effect_size"</span>, <span class="at">values_to =</span> <span class="st">"power"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plotted, this looks like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>power_vals <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ok=</span>power<span class="sc">&gt;</span><span class="fl">0.8</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>N,<span class="at">y=</span>power,<span class="at">colour=</span>effect_size)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() +</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">span=</span><span class="fl">0.25</span>, <span class="at">linewidth=</span><span class="fl">0.6</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line() +</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(Ns),<span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.2</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.8</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>,<span class="at">colour=</span><span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.9</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>,<span class="at">colour=</span><span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample size N"</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Power"</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span><span class="st">"Effect size"</span>) <span class="sc">+</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>power_vals <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ok=</span>power<span class="sc">&gt;</span><span class="fl">0.8</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>N,<span class="at">y=</span>power,<span class="at">colour=</span>effect_size)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() +</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">span=</span><span class="fl">0.25</span>, <span class="at">linewidth=</span><span class="fl">0.6</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line() +</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(Ns),<span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.2</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.8</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>,<span class="at">colour=</span><span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.9</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>,<span class="at">colour=</span><span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample size N"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Power"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span><span class="st">"Effect size"</span>) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -475,7 +474,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theme(legend.position="none")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this plot we show how the power varies with sample size N, for different effect sizes (where 0.05, say, means a difference of 5% in populations means), with a population standard devation of 30 g on a control mean of 300g, and a significance level of 0.05.</p>
 <p><strong>What is a suitable sample size for a power of 80%?</strong></p>

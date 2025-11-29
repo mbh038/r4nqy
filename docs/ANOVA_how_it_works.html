@@ -620,21 +620,22 @@ window.Quarto = {
 <section id="partitioning-the-degrees-of-freedom" class="level3" data-number="5.1.7">
 <h3 data-number="5.1.7" class="anchored" data-anchor-id="partitioning-the-degrees-of-freedom"><span class="header-section-number">5.1.7</span> Partitioning the degrees of freedom</h3>
 <p>Every sum of squares (SS) has been calculated using a number of independent pieces of information. In each, case, we call this number the number of degrees of freedom for the SS.</p>
-<p>For SST this number is one less than the number of data points <em>n</em>. This is because when we calculate the deviations of each data point around a grand mean there are only <em>n-1</em> of them that are independent, since by definition the sum of these deviations is zero, and so when <em>n-1</em> of them have been calculated, the final one is pre-determined.</p>
-<p>Similarly, when we calculate SSF, which measures the deviation of the group means from the grand mean, we have <span class="math inline">\(k\)</span>-1 degrees of freedom, (where in the present example <span class="math inline">\(k\)</span>, the number of treatments, is equal to three) since the deviations must sum to zero, so when <span class="math inline">\(k\)</span>-1 of them have been calculated, the last one is pre-determined.</p>
+<p>For SST this number is one less than the number of data points <em>n</em>. This is because when we calculate the deviations of each data point around a grand mean there are only <em>n</em>-1 of them that are independent, since by definition the sum of these deviations is zero, and so when <em>n</em>-1 of them have been calculated, the final one is pre-determined.</p>
+<p>Similarly, when we calculate SSF, which measures the deviation of the group means from the grand mean, we have <em>k</em>-1 degrees of freedom, (where in the present example <em>k</em>, the number of treatments, is equal to three) since the deviations must sum to zero, so when <em>k</em>-1 of them have been calculated, the last one is pre-determined.</p>
 <p>Finally, SSE, which measure deviation around the group means will have <em>n</em>-<em>k</em> degrees of freedom, since the sum of each of the deviations around one of the group means must sum to zero, and so when all but one of them have been calculated, the final one is pre-determined. There are <span class="math inline">\(k\)</span> group means, so the total degrees of freedom for SSE is <em>n</em>-<em>k</em>.</p>
 <p>The degrees of freedom are additive: <span class="math display">\[
 df(\text{SST}) = df(\text{SSE}) + df(\text{SSF})
 \]</span> Check:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[
+\begin{align*}
 df(\text{SST}) &amp;= n-1\\
 df(\text{SSE}) &amp;= k-1\\
 df(\text{SSF}) &amp;= n-k\\
 \therefore df(\text{SSE}) + df(\text{SSF}) &amp;= k-1 + n-k\\
 &amp;=n-1\\
 &amp;=df(\text{SST})
-
-\end{align*}\]</span>
+\end{align*}
+\]</span></p>
 </section>
 <section id="mean-squares" class="level3" data-number="5.1.8">
 <h3 data-number="5.1.8" class="anchored" data-anchor-id="mean-squares"><span class="header-section-number">5.1.8</span> Mean Squares</h3>

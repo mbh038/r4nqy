@@ -205,17 +205,19 @@ However, to make a proper comparison, we really need to compare the variability 
 
 Every sum of squares (SS) has been calculated using a number of independent pieces of information. In each, case, we call this number the number of degrees of freedom for the SS.
 
-For SST this number is one less than the number of data points *n*. This is because when we calculate the deviations of each data point around a grand mean there are only *n-1* of them that are independent, since by definition the sum of these deviations is zero, and so when *n-1* of them have been calculated, the final one is pre-determined.
+For SST this number is one less than the number of data points *n*. This is because when we calculate the deviations of each data point around a grand mean there are only *n*-1 of them that are independent, since by definition the sum of these deviations is zero, and so when *n*-1 of them have been calculated, the final one is pre-determined.
 
-Similarly, when we calculate SSF, which measures the deviation of the group means from the grand mean, we have $k$-1 degrees of freedom, (where in the present example $k$, the number of treatments, is equal to three) since the deviations must sum to zero, so when $k$-1 of them have been calculated, the last one is pre-determined.
+Similarly, when we calculate SSF, which measures the deviation of the group means from the grand mean, we have *k*-1 degrees of freedom, (where in the present example *k*, the number of treatments, is equal to three) since the deviations must sum to zero, so when *k*-1 of them have been calculated, the last one is pre-determined.
 
 Finally, SSE, which measure deviation around the group means will have *n*-*k* degrees of freedom, since the sum of each of the deviations around one of the group means must sum to zero, and so when all but one of them have been calculated, the final one is pre-determined. There are $k$ group means, so the total degrees of freedom for SSE is *n*-*k*.
 
-The degrees of freedom are additive: $$
+The degrees of freedom are additive: 
+$$
 df(\text{SST}) = df(\text{SSE}) + df(\text{SSF})
-$$ Check:
+$$ 
+Check:
 
-```{=latex}
+$$
 \begin{align*}
 df(\text{SST}) &= n-1\\
 df(\text{SSE}) &= k-1\\
@@ -223,9 +225,8 @@ df(\text{SSF}) &= n-k\\
 \therefore df(\text{SSE}) + df(\text{SSF}) &= k-1 + n-k\\
 &=n-1\\
 &=df(\text{SST}) 
-
 \end{align*}
-```
+$$
 
 ### Mean Squares
 
