@@ -680,7 +680,7 @@ Figure&nbsp;4.3: The data points show mean values, the error bars show plus or m
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99692, p-value = 0.4669</code></pre>
+W = 0.99665, p-value = 0.3881</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -688,7 +688,7 @@ W = 0.99692, p-value = 0.4669</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.94452, p-value = 9.963e-13</code></pre>
+W = 0.96001, p-value = 2.076e-10</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a high <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, and a very low <em>p</em>-value for the data that we knew were not.</p>
