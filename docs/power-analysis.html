@@ -213,8 +213,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
+  <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -355,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Suppose we have a magic soil supplement that we hope will enhance the growth rate of tomato plants, make us rich and pay for a comfortable retirement.</p>
 <p>Before riches, however, we have to be sure that it has the desired effect. For the supplement to be a money spinner let’s suppose that we need it to enhance the growth rate of plants by 10% and so we must do a study to see if this is in fact the case.</p>
 <p>In a properly randomised design, we take <em>N</em> plants and give them ‘normal’ plant food, and another <em>N</em> plants and give them the normal food plus our supplement. We keep all other conditions the same for the two groups of plants.</p>
-<p>After 30 days, The plants grown with the usual food grow with a mean mass of 300g and a standard deviation of 30g. The other plants will need to have a mean mass of 330g, and we will suppose that they too will have a standard deviation of 30g.</p>
+<p>After 30 days, the plants grown with the usual food grow with a mean mass of 300g and a standard deviation of 30g. The other plants will need to have a mean mass of at least 330g, and we will suppose that they too will have a standard deviation of 30g.</p>
 <section id="simulation-of-one-trial" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="simulation-of-one-trial"><span class="header-section-number">12.1</span> Simulation of one trial</h2>
 <p>Suppose we chose <em>N</em> = 100. Then we can simulate the masses of the individual plants in the two samples, supposing there were a 10% effect of supplement. We do this by using the <code>rnorm()</code> function to draw samples of 100 replicates each from a normally distributed population, in one case with a mean of 300g and in the other with a mean of 330g, both with standard deviations of 30g</p>
@@ -402,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.00181278</code></pre>
+<pre><code>[1] 0.05477691</code></pre>
 </div>
 </div>
 <p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>

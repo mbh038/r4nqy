@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ANOVA_how_it_works.html" rel="next">
+<link href="./ANOVA_how_it_works_penguins.html" rel="next">
 <link href="./titles_labels_and_annotations.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -245,8 +245,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ANOVA_how_it_works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span></a>
+  <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -680,7 +680,7 @@ Figure&nbsp;4.3: The data points show mean values, the error bars show plus or m
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99665, p-value = 0.3881</code></pre>
+W = 0.99789, p-value = 0.7959</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -688,7 +688,7 @@ W = 0.99665, p-value = 0.3881</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.96001, p-value = 2.076e-10</code></pre>
+W = 0.95643, p-value = 5.439e-11</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a high <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, and a very low <em>p</em>-value for the data that we knew were not.</p>
@@ -1591,8 +1591,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ANOVA_how_it_works.html" class="pagination-link" aria-label="Analysis of Variance aka ANOVA">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis of Variance aka ANOVA</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ANOVA_how_it_works_penguins.html" class="pagination-link" aria-label="ANOVA explained">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
