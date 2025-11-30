@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -403,26 +369,6 @@ $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, 
 $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins_raw <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"male"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_shape =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(species, bill_shape) <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># penguins |&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   ggplot(aes(x = species, y = bill_shape)) +</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_boxplot() +</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   labs(x = "Species",</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#        y = "Bill shape") +</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme_cowplot()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="the-basic-principles-of-anova" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="the-basic-principles-of-anova"><span class="header-section-number">5.1.1</span> The basic principles of ANOVA</h3>
 <p>In a simple case we consider the comparison of three means. This is done by the analysis of variance (ANOVA). In this case we will go through an example in detail and work out all the mechanics, but once we have done that and seen how the output is derived from the input we will not need to do it again. We will use R to do the heavy lifting. We will just need to know when it is appropriate to use ANOVA, how to get R to do it and how to interpret the output that R produces.</p>
@@ -432,26 +378,6 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <p>As our case stud we consider the three species of penguin, Adelie, Chinstrap and Gentoo for which data has been gathered and made available in the <code>palmerpenguins</code> R package. For dozens of indivduals of each species, records have been logged of the species, sex, year, bill length, bill depth, flipper length and body mass. Suppose we are interested in the shape of the bills and so create for each individual a new variable which is the ration of bill length to bill depth. We wish to know if there is evidence from the data of this bill shape differening between the species. In the manner of Darwin’s finches spread across the various Galapagos Islands, this might indicate a different food source for each species and more generally, indicate that each species occupied a different ecological niche from the others.</p>
 <p>When we plot the data we see that the species do differ in their bill shapes but that there is also a lot of variation between penguins of the same species.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>bill_shape))<span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)<span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_violin(alpha = 0.4)+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(aes(colour=species))+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.1</span>, <span class="at">alpha=</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_y_continuous(limits=c(0,10))+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'Species'</span>, <span class="at">y=</span><span class="st">'Bill shape'</span>)<span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()<span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="ot">-&gt;</span> g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>g2<span class="ot">&lt;-</span><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x=</span>ID,<span class="at">y=</span>bill_shape,<span class="at">colour=</span>species))<span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_y_continuous(limits=c(0,10))+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'Penguin ID'</span>,<span class="at">y=</span><span class="st">'Bill shape'</span>, <span class="at">colour =</span> <span class="st">""</span>)<span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.58</span>,<span class="fl">0.20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(g2,g1,<span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -469,18 +395,13 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <h3 data-number="5.1.4" class="anchored" data-anchor-id="grand-mean"><span class="header-section-number">5.1.4</span> Grand Mean</h3>
 <p>First we calculate the ‘grand mean’, the mean of the bill shapes across all penguins in the data set:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>grand_mean<span class="ot">=</span><span class="fu">mean</span>(penguins<span class="sc">$</span>bill_shape)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>grand_mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.654858</code></pre>
+<pre><code>[1] 2.655273</code></pre>
 </div>
 </div>
 <section id="deviations-from-the-grand-mean" class="level4" data-number="5.1.4.1">
 <h4 data-number="5.1.4.1" class="anchored" data-anchor-id="deviations-from-the-grand-mean"><span class="header-section-number">5.1.4.1</span> Deviations from the grand mean</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SST.plot<span class="ot">&lt;-</span>g2<span class="sc">+</span><span class="fu">geom_hline</span>(<span class="at">yintercept=</span>grand_mean,<span class="at">linetype=</span><span class="st">'dashed'</span>)<span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> ID, <span class="at">y =</span> bill_shape, <span class="at">xend =</span> ID, <span class="at">yend =</span> grand_mean),<span class="at">linetype=</span><span class="st">'dotted'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>SST.plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -492,38 +413,6 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </section>
 <section id="mean-value-of-bill-shape-for-each-species" class="level4" data-number="5.1.4.2">
 <h4 data-number="5.1.4.2" class="anchored" data-anchor-id="mean-value-of-bill-shape-for-each-species"><span class="header-section-number">5.1.4.2</span> Mean value of bill shape for each species</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p_means<span class="ot">&lt;-</span>penguins <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pmean=</span><span class="fu">mean</span>(bill_shape))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">mutate</span>(penguins,<span class="at">pmeans=</span><span class="fu">c</span>(<span class="fu">rep</span>(p_means<span class="sc">$</span>pmean[<span class="dv">1</span>],<span class="dv">20</span>),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">rep</span>(p_means<span class="sc">$</span>pmean[<span class="dv">2</span>],<span class="dv">20</span>),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">rep</span>(p_means<span class="sc">$</span>pmean[<span class="dv">3</span>],<span class="dv">20</span>)))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span><span class="fu">filter</span>(penguins, species<span class="sc">==</span><span class="st">"Adelie"</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">&lt;-</span><span class="fu">filter</span>(penguins, species<span class="sc">==</span><span class="st">"Chinstrap"</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>p3<span class="ot">&lt;-</span><span class="fu">filter</span>(penguins, species<span class="sc">==</span><span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>g3<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>p1,<span class="fu">aes</span>(<span class="at">x=</span>ID,<span class="at">y=</span>bill_shape))<span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">min</span>(p1<span class="sc">$</span>ID),<span class="at">y=</span>p1<span class="sc">$</span>pmeans[<span class="dv">1</span>],<span class="at">xend=</span><span class="fu">max</span>(p1<span class="sc">$</span>ID),<span class="at">yend=</span>p1<span class="sc">$</span>pmeans[<span class="dv">1</span>]))<span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> p1<span class="sc">$</span>ID, <span class="at">y =</span> p1<span class="sc">$</span>bill_shape, <span class="at">xend =</span> p1<span class="sc">$</span>ID, <span class="at">yend =</span> p1<span class="sc">$</span>pmeans[<span class="dv">1</span>]),<span class="at">linetype=</span><span class="st">'dotted'</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>p2,<span class="fu">aes</span>(<span class="at">x=</span>ID,<span class="at">y=</span>bill_shape))<span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">min</span>(p2<span class="sc">$</span>ID),<span class="at">y=</span>p2<span class="sc">$</span>pmeans[<span class="dv">1</span>],<span class="at">xend=</span><span class="fu">max</span>(p2<span class="sc">$</span>ID),<span class="at">yend=</span>p2<span class="sc">$</span>pmeans[<span class="dv">1</span>]))<span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> p2<span class="sc">$</span>ID, <span class="at">y =</span> p2<span class="sc">$</span>bill_shape, <span class="at">xend =</span> p2<span class="sc">$</span>ID, <span class="at">yend =</span> p2<span class="sc">$</span>pmeans[<span class="dv">1</span>]),<span class="at">linetype=</span><span class="st">'dotted'</span>) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>p3,<span class="fu">aes</span>(<span class="at">x=</span>ID,<span class="at">y=</span>bill_shape))<span class="sc">+</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">min</span>(p3<span class="sc">$</span>ID),<span class="at">y=</span>p3<span class="sc">$</span>pmeans[<span class="dv">1</span>],<span class="at">xend=</span><span class="fu">max</span>(p3<span class="sc">$</span>ID),<span class="at">yend=</span>p3<span class="sc">$</span>pmeans[<span class="dv">1</span>]))<span class="sc">+</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> p3<span class="sc">$</span>ID, <span class="at">y =</span> p3<span class="sc">$</span>bill_shape, <span class="at">xend =</span> p3<span class="sc">$</span>ID, <span class="at">yend =</span> p3<span class="sc">$</span>pmeans[<span class="dv">1</span>]),<span class="at">linetype=</span><span class="st">'dotted'</span>)<span class="sc">+</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>))<span class="sc">+</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'ID'</span>,<span class="at">y=</span><span class="st">'Bill shape'</span>,<span class="at">title=</span><span class="st">"SSE: Error sum of squares"</span>)<span class="sc">+</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="measures-of-variability" class="level3" data-number="5.1.5">
@@ -531,59 +420,20 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="sst---total-sum-of-squares" class="level4" data-number="5.1.5.1">
 <h4 data-number="5.1.5.1" class="anchored" data-anchor-id="sst---total-sum-of-squares"><span class="header-section-number">5.1.5.1</span> SST - Total sum of squares</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>SST<span class="ot">=</span><span class="fu">sum</span>((penguins<span class="sc">$</span>bill_shape<span class="sc">-</span>grand_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>SST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12.57027</code></pre>
+<pre><code>[1] 12.29885</code></pre>
 </div>
 </div>
 <p>SST is the <strong>total sum of squares.</strong> It is the sum of squares of the deviations of the data around the grand mean. This is a measure of the total variability of the data set.</p>
 </section>
 <section id="sse---error-sum-of-squares" class="level4" data-number="5.1.5.2">
 <h4 data-number="5.1.5.2" class="anchored" data-anchor-id="sse---error-sum-of-squares"><span class="header-section-number">5.1.5.2</span> SSE - Error sum of squares</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>SSE<span class="ot">&lt;-</span>penguins <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pmean=</span><span class="fu">mean</span>(bill_shape)) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">se=</span>(bill_shape<span class="sc">-</span>pmean)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sse=</span><span class="fu">sum</span>(se),<span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">SSE=</span><span class="fu">sum</span>(sse),<span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(SSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>SSE is the <strong>error sum of squares</strong>. It is the sum of the squares of the deviations of the data around the three separate species means. This is a measure of the variation between individuals of the same species.</p>
 </section>
 <section id="ssf---species-sum-of-squares" class="level4" data-number="5.1.5.3">
 <h4 data-number="5.1.5.3" class="anchored" data-anchor-id="ssf---species-sum-of-squares"><span class="header-section-number">5.1.5.3</span> SSF - species sum of squares</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SSF<span class="ot">&lt;-</span>penguins <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pmean=</span><span class="fu">mean</span>(bill_shape)) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">se=</span>(pmean<span class="sc">-</span>grand_mean)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sse=</span><span class="fu">sum</span>(se),<span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">SSF=</span><span class="fu">sum</span>(sse),<span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(SSF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>SSF is the <strong>species sum of squares</strong>. This is the sum of the squares of the deviations of the species means from the grand mean. This is a measure of the variation between individuals of different species.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>g4<span class="ot">&lt;-</span><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span>grand_mean,<span class="at">linetype=</span><span class="st">'dashed'</span>)<span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">min</span>(p1<span class="sc">$</span>ID),<span class="at">y=</span>p1<span class="sc">$</span>pmeans[<span class="dv">1</span>],<span class="at">xend=</span><span class="fu">max</span>(p1<span class="sc">$</span>ID),<span class="at">yend=</span>p1<span class="sc">$</span>pmeans[<span class="dv">1</span>]))<span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">mean</span>(p1<span class="sc">$</span>ID), <span class="at">y =</span> grand_mean, <span class="at">xend =</span> <span class="fu">mean</span>(p1<span class="sc">$</span>ID), <span class="at">yend =</span> p1<span class="sc">$</span>pmeans[<span class="dv">1</span>]),<span class="at">linetype=</span><span class="st">'dotted'</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">min</span>(p2<span class="sc">$</span>ID),<span class="at">y=</span>p2<span class="sc">$</span>pmeans[<span class="dv">1</span>],<span class="at">xend=</span><span class="fu">max</span>(p2<span class="sc">$</span>ID),<span class="at">yend=</span>p2<span class="sc">$</span>pmeans[<span class="dv">1</span>]))<span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">mean</span>(p2<span class="sc">$</span>ID), <span class="at">y =</span> grand_mean, <span class="at">xend =</span> <span class="fu">mean</span>(p2<span class="sc">$</span>ID), <span class="at">yend =</span> p2<span class="sc">$</span>pmeans[<span class="dv">1</span>]),<span class="at">linetype=</span><span class="st">'dotted'</span>)<span class="sc">+</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">min</span>(p3<span class="sc">$</span>ID),<span class="at">y=</span>p3<span class="sc">$</span>pmeans[<span class="dv">1</span>],<span class="at">xend=</span><span class="fu">max</span>(p3<span class="sc">$</span>ID),<span class="at">yend=</span>p3<span class="sc">$</span>pmeans[<span class="dv">1</span>]))<span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">mean</span>(p3<span class="sc">$</span>ID), <span class="at">y =</span> grand_mean, <span class="at">xend =</span> <span class="fu">mean</span>(p3<span class="sc">$</span>ID), <span class="at">yend =</span> p3<span class="sc">$</span>pmeans[<span class="dv">1</span>]),<span class="at">linetype=</span><span class="st">'dotted'</span>)<span class="sc">+</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>))<span class="sc">+</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'ID'</span>,<span class="at">y=</span><span class="st">'Bill shape '</span>,<span class="at">title=</span><span class="st">"SSF:.... sum of squares"</span>)<span class="sc">+</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(g3,g4,<span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -600,21 +450,17 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="sst-ssf-sse" class="level3" data-number="5.1.6">
 <h3 data-number="5.1.6" class="anchored" data-anchor-id="sst-ssf-sse"><span class="header-section-number">5.1.6</span> SST = SSF + SSE</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>SST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12.57027</code></pre>
+<pre><code>[1] 12.29885</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>SSF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11.13905</code></pre>
+<pre><code>[1] 10.76795</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>SSE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.431218</code></pre>
+<pre><code>[1] 1.530899</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>SSF<span class="sc">+</span>SSE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12.57027</code></pre>
+<pre><code>[1] 12.29885</code></pre>
 </div>
 </div>
 <p>So the total variability has been divided into two components. That due to differences between individuals of different species and that due to differences between individuals of the same species. Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.</p>
@@ -659,22 +505,6 @@ df(\text{SSF}) &amp;= n-k\\
 <p>Even if the species were identical, the <em>F</em>-ratio is unlikely to be exactly 1 - it could by chance take a whole range of values. The <strong>F-distribution</strong> represents the range and likelihood of all possible <em>F</em> ratios under the null hypothesis. ie when the species were identical.</p>
 <p>The shape of the F distribution depends on the degrees of freedom of FMS and EMS, and we normally specify it by giving the values of each. Below we show F distributions for 2 and 27 degrees of freedom (ie 3 plots, so <em>k</em> = 3, so the degrees of freedom of FMS = <em>k</em>-1 =2, and 10 plants per plot, so <em>n</em> = 3 x 10 =30, and hence the degrees of freedom of EMS = <em>n</em>-<em>k</em> = 30 - 3 = 27), and for 10 and 27 degrees of freedom.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dfs<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"df = 2, 27"</span>,<span class="dv">601</span>),<span class="fu">rep</span>(<span class="st">"df = 10, 27"</span>,<span class="dv">601</span>))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>xs<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">6</span>,<span class="fl">0.01</span>),<span class="dv">2</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>ys<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">df</span>(xs[<span class="dv">1</span><span class="sc">:</span><span class="dv">601</span>],<span class="dv">2</span>,<span class="dv">27</span>),<span class="fu">df</span>(xs[<span class="dv">602</span><span class="sc">:</span><span class="dv">1202</span>],<span class="dv">10</span>,<span class="dv">27</span>))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>fdata<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">x=</span>xs,<span class="at">y=</span>ys,<span class="at">dfs=</span>dfs)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>fdata <span class="sc">|&gt;</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dfs =</span> <span class="fu">fct_relevel</span>(dfs,<span class="st">"df = 2, 27"</span>,<span class="st">"df = 10, 27"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>xs,<span class="at">y=</span>ys)) <span class="sc">+</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"F-ratio"</span>,</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Probability density"</span>,</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">"The F-distributions for (left) 2 and 27 degrees of freedom and (right) 10 and 27 degrees of freedom"</span>) <span class="sc">+</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour=</span><span class="st">"darkblue"</span>) <span class="sc">+</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>dfs) <span class="sc">+</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -687,14 +517,6 @@ df(\text{SSF}) &amp;= n-k\\
 <p>Hence, the probability under the null hypothesis of getting an <em>F</em>-ratio as large or larger than the value we actually got is the area to the right of this <em>F</em>-ratio under the appropriate F distribution. We often call this probability the <em>p</em>-value. p for probability. p-values are the the probability of getting data as extreme (same <em>F</em>-ratio,) or more extreme (bigger <em>F</em>-ratio) as the data you got you got if the null hypothesis were true.</p>
 <p>If the species were very different, then the FMS would be much greater than the EMS and the <em>F</em>-ratio would be greater than one. However it can be quite large even when there are no differences between the levels (here, Adelie, Chinstrap and Gentoo) of a factor (here, species). So how do we decide when the size of the <em>F</em>-ratio is due to a real difference between the levels rather than to chance?</p>
 <p>Our <em>p</em>-value (the probability that the <em>F</em>-ratio would have been as large as it is or larger under the null hypothesis) represents the strength of evidence against the null hypothesis. The smaller it is, the stronger the evidence, and only when it is less than 0.05 do we regard the evidence as strong enough to reject the null. Note though that even if we had inside knowledge that the null hypothesis was in fact true, we would still get an <em>F</em>-ratio that large or larger and thus a p-value less than or equal to 0.05 5% of the time.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Fratio<span class="ot">&lt;-</span><span class="cf">function</span>(p,k,st_dev){</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  n<span class="ot">&lt;-</span>p<span class="sc">*</span>k <span class="co"># k plots, p replicates per plot</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  plots<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">plot=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"a"</span>,p),<span class="fu">rep</span>(<span class="st">"b"</span>,p),<span class="fu">rep</span>(<span class="st">"c"</span>,p)),<span class="at">response=</span><span class="fu">rnorm</span>(n,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span>st_dev))</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  lm.mod<span class="ot">&lt;-</span><span class="fu">lm</span>(response<span class="sc">~</span>plot,<span class="at">data=</span>plots)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(<span class="fu">anova</span>(lm.mod))<span class="sc">$</span>statistic[<span class="dv">1</span>]</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 
 </section>
