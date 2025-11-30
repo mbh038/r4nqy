@@ -1,4 +1,9 @@
-# ANOVA explained
+---
+title: "ANOVA explained"
+execute:
+  echo: false
+---
+
 
 ```{r load packages, message=FALSE,warning=FALSE,echo=FALSE}
 library(tidyverse)
