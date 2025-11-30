@@ -34,7 +34,7 @@ book:
     - part: "Tests for difference"
       chapters:
       - tests_for_difference_two_levels.qmd
-      - ANOVA_how_it_works.qmd
+      - ANOVA_how_it_works_penguins.qmd
       - ANOVA_one_way.qmd
       - ANOVA_two_way_with_model_simplification.qmd
     - part: "Count data"

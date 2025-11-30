@@ -16,7 +16,7 @@ Before riches, however, we have to be sure that it has the desired effect. For t
 
 In a properly randomised design, we take _N_ plants and give them 'normal' plant food, and another _N_ plants and give them the normal food plus our supplement. We keep all other conditions the same for the two groups of plants.
 
-After 30 days, The plants grown with the usual food grow with a mean mass of 300g and a standard deviation of 30g. The other plants will need to have a mean mass of 330g, and we will suppose that they too will have a standard deviation of 30g.
+After 30 days, the plants grown with the usual food grow with a mean mass of 300g and a standard deviation of 30g. The other plants will need to have a mean mass of at least 330g, and we will suppose that they too will have a standard deviation of 30g.
 
 ## Simulation of one trial
 
