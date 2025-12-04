@@ -95,7 +95,7 @@ grand_mean=mean(penguins$bill_shape)
 grand_mean
 ```
 
-### Deviations from the grand mean
+This now allows us to plot the deviaions of each individual from this grand mean
 
 ```{r SST plot}
 SST.plot<-g2+geom_hline(yintercept=grand_mean,linetype='dashed')+
@@ -103,17 +103,16 @@ SST.plot<-g2+geom_hline(yintercept=grand_mean,linetype='dashed')+
 SST.plot
 ```
 
-#### Mean value of bill shape for each species
+
 
 ```{r species means}
+# mean value of bill shape for each species
+
 p_means<-penguins |>
   group_by(species) |>
   summarise(n = n(), pmean = mean(bill_shape))
 p_means
-```
 
-
-```{r}
 penguins <- mutate(penguins,pmeans = c(rep(p_means$pmean[1],20),
                             rep(p_means$pmean[2],20),
                             rep(p_means$pmean[3],20)))
@@ -124,6 +123,7 @@ p3<-filter(penguins, species == "Gentoo")
 ```
 
 ```{r S}
+# plot deviations from each group (species) mean
 
 g3<-ggplot()+
   
