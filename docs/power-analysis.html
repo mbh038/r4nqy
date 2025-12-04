@@ -393,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Suppose the supplement really did work like this, and really did improve growth rates by 10%. How many plants, ie what value of <em>N</em> would we need in each group in order to have an 80% chance of correctly spotting this difference? This probability of detection of an effect that is there is what we call the <strong>power</strong> of a study. If the effect is smaller than 10% (or whatever boost we deemed sufficient) and we do not detect it we do not mind, since that means that our supplement had not worked as we had hoped, but it would be a waste of our time and money if there really were a sizeable effect but we did not spot it because our sample size was too small. Equally, we do not want a sample size that is larger than is necessary to achieve sufficient power. Doing so would incur unnecessary time and money costs and possibly have ethical implications.</p>
+<p>Suppose the supplement really did work like this, and really did improve growth rates by 10%. How many plants, ie what value of <em>N</em> would we need in each group in order to have an 80% chance of correctly spotting this difference? This probability of detection of an effect that is there is what we call the <strong>power</strong> of a study. If the effect is smaller than 10% (or whatever boost we deemed sufficient) and we do not detect it we do not mind, since that means that our supplement had not worked as we had hoped, but it would be a waste of our time and money if there really were a sizeable effect but we did not spot it because our sample size was too small. Equally, we do not want a sample size that is far larger than is necessary to achieve sufficient power. Doing so would incur unnecessary time and money costs and possibly have ethical implications.</p>
 <p>In thinking about how we might analyse our data we formulate a null hypothesis:</p>
 <p><em>The supplement has no effect.</em></p>
 <p>In that case we would expect the difference between the masses of the treated plants and untreated plants to be zero.</p>
@@ -402,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.001186889</code></pre>
+<pre><code>[1] 0.007336047</code></pre>
 </div>
 </div>
 <p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>

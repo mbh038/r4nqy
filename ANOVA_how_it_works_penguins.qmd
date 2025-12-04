@@ -46,7 +46,7 @@ penguins <- penguins_raw |>
 
 There are many varieties of ANOVA but we will start with the simplest.
 
-We would carry out a 'One-way' ANOVA (**AN**alysis **O**f **VA**riance) when we have independent replicates from three or more populations and we want to know if there is evidence for a difference between at least one pair of these in respect of the mean value of a numerical variable in which we ae interested. There almost certainnly *will* be a difference between the sample means but these samples are just that - *samples* - randomly (we hope) drawn from their respective populations. If we drew three samples from the *same* population they would also almost certainly differ in their means! The differences are due to the random variation within the populations and our random method of choosing samples from them.
+We would carry out a 'One-way' ANOVA (**AN**alysis **O**f **VA**riance) when we have independent replicates from three or more populations and we want to know if there is evidence for a difference between at least one pair of these in respect of the mean value of a numerical variable in which we ae interested. There almost certainly *will* be a difference between the sample means but these samples are just that - *samples* - randomly (we hope) drawn from their respective populations. If we drew three samples from the *same* population they would also almost certainly differ in their means! The differences are due to the random variation within the populations and our random method of choosing samples from them.
 
 What we want to know is whether the differences we see between our samples are big enough for us to reject the null hypothesis that there is no difference between the populations - that they are, in effect, the same population. 
 
@@ -108,15 +108,19 @@ SST.plot
 ```{r species means}
 p_means<-penguins |>
   group_by(species) |>
-  summarise(pmean=mean(bill_shape))
+  summarise(n = n(), pmean = mean(bill_shape))
+p_means
+```
 
-penguins <- mutate(penguins,pmeans=c(rep(p_means$pmean[1],20),
+
+```{r}
+penguins <- mutate(penguins,pmeans = c(rep(p_means$pmean[1],20),
                             rep(p_means$pmean[2],20),
                             rep(p_means$pmean[3],20)))
 
-p1<-filter(penguins, species=="Adelie")
-p2<-filter(penguins, species=="Chinstrap")
-p3<-filter(penguins, species=="Gentoo")
+p1<-filter(penguins, species == "Adelie")
+p2<-filter(penguins, species == "Chinstrap")
+p3<-filter(penguins, species == "Gentoo")
 ```
 
 ```{r S}
@@ -165,20 +169,20 @@ SSE<-penguins |>
 
 SSE is the **error sum of squares**. It is the sum of the squares of the deviations of the data around the three separate species means. This is a measure of the variation between individuals of the same species.
 
-#### SSS - species sum of squares
+#### SSG - species sum of squares
 
 ```{r SSF}
 
-SSS<-penguins |>
+SSG<-penguins |>
   group_by(species) |>
   mutate(pmean=mean(bill_shape)) |>
   mutate(se=(pmean-grand_mean)^2) |>
   summarise(sse=sum(se),.groups = 'drop') |>
-  summarise(SSS=sum(sse),.groups = 'drop') |>
-  pull(SSS)
+  summarise(SSG=sum(sse),.groups = 'drop') |>
+  pull(SSG)
 ```
 
-SSS is the **species sum of squares**. This is the sum of the squares of the deviations of the species means from the grand mean. This is a measure of the variation between individuals of different species.
+SSG is the **group sum of squares**. This is the sum of the squares of the deviations of the group (species, in this case) means from the grand mean. This is a measure of the variation between individuals of different species.
 
 ```{r}
 g4<-ggplot()+
@@ -195,7 +199,7 @@ g4<-ggplot()+
   geom_segment(aes(x = mean(p3$ID), y = grand_mean, xend = mean(p3$ID), yend = p3$pmeans[1]),linetype='dotted')+
   
   scale_y_continuous(limits=c(1,4))+
-  labs(x='ID',y='Bill shape ',title="SSF:.... sum of squares")+
+  labs(x='ID',y='Bill shape ',title="SSG: group sum of squares")+
   theme_cowplot()
 ```
 
@@ -207,20 +211,20 @@ When the three species means are fitted, there is an obvious reduction in variab
 
 At what point do we decide if the amount of variation explained by fitting the means is significant? By this, we mean, "When is the variability between the group means greater than we would expect by chance alone?
 
-First, we note that SSS and SSE partition between them the total variability in the data:
+First, we note that SSG and SSE partition between them the total variability in the data:
 
-### SST = SSS + SSE
+### SST = SSG + SSE
 
-```{r pythagoras}
-SST
-SSS
-SSE
-SSF+SSE
-```
+Sum of Squares| Value
+--------------|------
+SSG |`r SSG`
+SSE |`r SSE`
+SST | `r SST`
+SSG + SSE |`r SSG + SSE` = SST
 
 So the total variability has been divided into two components. That due to differences between individuals of different species and that due to differences between individuals of the same species. Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.
 
-A comparison of SSS and SSE is going to indicate whether fitting the three species means accounts for a significant amount of variability.
+A comparison of SSG and SSE is going to indicate whether fitting the three species means accounts for a significant amount of variability.
 
 However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance.
 
@@ -230,25 +234,27 @@ Every sum of squares (SS) has been calculated using a number of independent piec
 
 For SST this number is one less than the number of data points *n*. This is because when we calculate the deviations of each data point around a grand mean there are only *n-1* of them that are independent, since by definition the sum of these deviations is zero, and so when *n-1* of them have been calculated, the final one is pre-determined.
 
-Similarly, when we calculate SSS, which measures the deviation of the $k$ species means from the grand mean, we have $k$-1 degrees of freedom, (where in the present example $k$, the number of species, is equal to three) since the deviations must sum to zero, so when $k$-1 of them have been calculated, the last one is pre-determined.
+Similarly, when we calculate SSG, which measures the deviation of the $k$ species means from the grand mean, we have $k$-1 degrees of freedom, (where in the present example $k$, the number of species, is equal to three) since the deviations must sum to zero, so when $k$-1 of them have been calculated, the last one is pre-determined.
 
 Finally, SSE, which measure deviation around the group means will have *n*-*k* degrees of freedom, since the sum of each of the deviations around one of the group means must sum to zero, and so when all but one of them have been calculated, the final one is pre-determined. There are $k$ group means, so the total degrees of freedom for SSE is *n*-*k*.
 
-The degrees of freedom are additive: $$
-df(\text{SST}) = df(\text{SSE}) + df(\text{SSS})
-$$ Check:
+The degrees of freedom are additive: 
 
-```{=latex}
+$$
+df(\text{SST}) = df(\text{SSE}) + df(\text{SSG})
+$$ 
+
+Check:
+$$
 \begin{align*}
 df(\text{SST}) &= n-1\\
 df(\text{SSE}) &= k-1\\
-df(\text{SSS}) &= n-k\\
-\therefore df(\text{SSE}) + df(\text{SSS}) &= k-1 + n-k\\
+df(\text{SSG}) &= n-k\\
+\therefore df(\text{SSE}) + df(\text{SSG}) &= k-1 + n-k\\
 &=n-1\\
 &=df(\text{SST}) 
-
 \end{align*}
-```
+$$
 
 ### Mean Squares
 
@@ -256,7 +262,7 @@ Now we can calculate the *variances* which are a measure of the amount of variab
 
 In this context, we call them *mean squares*. To find each one we divided each of the sums of squares (SS) by their corresponding degrees of freedom.
 
-**Species Mean Square** (SMS) = SSS / *k* - 1. This is the variation per *df* between individuals of different species.
+**Species Mean Square** (SMS) = SSG / *k* - 1. This is the variation per *df* between individuals of different species.
 
 **Error Mean Square** (EMS) = SSE / *n* - *k*. This is the variation per *df* between individuals of the same species.
 
