@@ -324,7 +324,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#deviations-from-the-grand-mean" id="toc-deviations-from-the-grand-mean" class="nav-link" data-scroll-target="#deviations-from-the-grand-mean"><span class="header-section-number">5.2.1</span> Deviations from the grand mean</a></li>
   <li><a href="#measures-of-variability" id="toc-measures-of-variability" class="nav-link" data-scroll-target="#measures-of-variability"><span class="header-section-number">5.2.2</span> Measures of variability</a></li>
-  <li><a href="#sst-sss-sse" id="toc-sst-sss-sse" class="nav-link" data-scroll-target="#sst-sss-sse"><span class="header-section-number">5.2.3</span> SST = SSS + SSE</a></li>
+  <li><a href="#sst-ssg-sse" id="toc-sst-ssg-sse" class="nav-link" data-scroll-target="#sst-ssg-sse"><span class="header-section-number">5.2.3</span> SST = SSG + SSE</a></li>
   <li><a href="#partitioning-the-degrees-of-freedom" id="toc-partitioning-the-degrees-of-freedom" class="nav-link" data-scroll-target="#partitioning-the-degrees-of-freedom"><span class="header-section-number">5.2.4</span> Partitioning the degrees of freedom</a></li>
   <li><a href="#mean-squares" id="toc-mean-squares" class="nav-link" data-scroll-target="#mean-squares"><span class="header-section-number">5.2.5</span> Mean Squares</a></li>
   <li><a href="#f-ratios" id="toc-f-ratios" class="nav-link" data-scroll-target="#f-ratios"><span class="header-section-number">5.2.6</span> <em>F</em>-ratios</a></li>
@@ -381,7 +381,7 @@ window.Quarto = {
 <p>First we calculate the ‘grand mean’, the mean of the bill shapes across all penguins in the data set:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.652129</code></pre>
+<pre><code>[1] 2.650512</code></pre>
 </div>
 </div>
 <section id="deviations-from-the-grand-mean" class="level3" data-number="5.2.1">
@@ -397,6 +397,16 @@ window.Quarto = {
 </div>
 <section id="mean-value-of-bill-shape-for-each-species" class="level4" data-number="5.2.1.1">
 <h4 data-number="5.2.1.1" class="anchored" data-anchor-id="mean-value-of-bill-shape-for-each-species"><span class="header-section-number">5.2.1.1</span> Mean value of bill shape for each species</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species       n pmean
+  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;
+1 Adelie       20  2.09
+2 Chinstrap    20  2.66
+3 Gentoo       20  3.21</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="measures-of-variability" class="level3" data-number="5.2.2">
@@ -405,7 +415,7 @@ window.Quarto = {
 <h4 data-number="5.2.2.1" class="anchored" data-anchor-id="sst---total-sum-of-squares"><span class="header-section-number">5.2.2.1</span> SST - Total sum of squares</h4>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11.722</code></pre>
+<pre><code>[1] 14.13517</code></pre>
 </div>
 </div>
 <p>SST is the <strong>total sum of squares.</strong> It is the sum of squares of the deviations of the data around the grand mean. This is a measure of the total variability of the data set.</p>
@@ -414,25 +424,25 @@ window.Quarto = {
 <h4 data-number="5.2.2.2" class="anchored" data-anchor-id="sse---error-sum-of-squares"><span class="header-section-number">5.2.2.2</span> SSE - Error sum of squares</h4>
 <p>SSE is the <strong>error sum of squares</strong>. It is the sum of the squares of the deviations of the data around the three separate species means. This is a measure of the variation between individuals of the same species.</p>
 </section>
-<section id="sss---species-sum-of-squares" class="level4" data-number="5.2.2.3">
-<h4 data-number="5.2.2.3" class="anchored" data-anchor-id="sss---species-sum-of-squares"><span class="header-section-number">5.2.2.3</span> SSS - species sum of squares</h4>
-<p>SSS is the <strong>species sum of squares</strong>. This is the sum of the squares of the deviations of the species means from the grand mean. This is a measure of the variation between individuals of different species.</p>
+<section id="ssg---species-sum-of-squares" class="level4" data-number="5.2.2.3">
+<h4 data-number="5.2.2.3" class="anchored" data-anchor-id="ssg---species-sum-of-squares"><span class="header-section-number">5.2.2.3</span> SSG - species sum of squares</h4>
+<p>SSG is the <strong>group sum of squares</strong>. This is the sum of the squares of the deviations of the group (species, in this case) means from the grand mean. This is a measure of the variation between individuals of different species.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ANOVA_how_it_works_penguins_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ANOVA_how_it_works_penguins_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean, but it is not obvious if the species have had an effect on bill_shape.</p>
 <p>At what point do we decide if the amount of variation explained by fitting the means is significant? By this, we mean, “When is the variability between the group means greater than we would expect by chance alone?</p>
-<p>First, we note that SSS and SSE partition between them the total variability in the data:</p>
+<p>First, we note that SSG and SSE partition between them the total variability in the data:</p>
 </section>
 </section>
-<section id="sst-sss-sse" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="sst-sss-sse"><span class="header-section-number">5.2.3</span> SST = SSS + SSE</h3>
+<section id="sst-ssg-sse" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="sst-ssg-sse"><span class="header-section-number">5.2.3</span> SST = SSG + SSE</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -442,43 +452,43 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td>SSS</td>
-<td>10.5152942</td>
+<td>SSG</td>
+<td>12.5627159</td>
 </tr>
 <tr class="even">
 <td>SSE</td>
-<td>1.2067029</td>
+<td>1.572454</td>
 </tr>
 <tr class="odd">
 <td>SST</td>
-<td>11.7219971</td>
+<td>14.1351698</td>
 </tr>
 <tr class="even">
-<td>SSS+SSE</td>
-<td>11.7219971 <span class="math inline">\(=SST\)</span></td>
+<td>SSG + SSE</td>
+<td>14.1351698 = SST</td>
 </tr>
 </tbody>
 </table>
 <p>So the total variability has been divided into two components. That due to differences between individuals of different species and that due to differences between individuals of the same species. Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.</p>
-<p>A comparison of SSS and SSE is going to indicate whether fitting the three species means accounts for a significant amount of variability.</p>
+<p>A comparison of SSG and SSE is going to indicate whether fitting the three species means accounts for a significant amount of variability.</p>
 <p>However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance.</p>
 </section>
 <section id="partitioning-the-degrees-of-freedom" class="level3" data-number="5.2.4">
 <h3 data-number="5.2.4" class="anchored" data-anchor-id="partitioning-the-degrees-of-freedom"><span class="header-section-number">5.2.4</span> Partitioning the degrees of freedom</h3>
 <p>Every sum of squares (SS) has been calculated using a number of independent pieces of information. In each, case, we call this number the number of degrees of freedom for the SS.</p>
 <p>For SST this number is one less than the number of data points <em>n</em>. This is because when we calculate the deviations of each data point around a grand mean there are only <em>n-1</em> of them that are independent, since by definition the sum of these deviations is zero, and so when <em>n-1</em> of them have been calculated, the final one is pre-determined.</p>
-<p>Similarly, when we calculate SSS, which measures the deviation of the <span class="math inline">\(k\)</span> species means from the grand mean, we have <span class="math inline">\(k\)</span>-1 degrees of freedom, (where in the present example <span class="math inline">\(k\)</span>, the number of species, is equal to three) since the deviations must sum to zero, so when <span class="math inline">\(k\)</span>-1 of them have been calculated, the last one is pre-determined.</p>
+<p>Similarly, when we calculate SSG, which measures the deviation of the <span class="math inline">\(k\)</span> species means from the grand mean, we have <span class="math inline">\(k\)</span>-1 degrees of freedom, (where in the present example <span class="math inline">\(k\)</span>, the number of species, is equal to three) since the deviations must sum to zero, so when <span class="math inline">\(k\)</span>-1 of them have been calculated, the last one is pre-determined.</p>
 <p>Finally, SSE, which measure deviation around the group means will have <em>n</em>-<em>k</em> degrees of freedom, since the sum of each of the deviations around one of the group means must sum to zero, and so when all but one of them have been calculated, the final one is pre-determined. There are <span class="math inline">\(k\)</span> group means, so the total degrees of freedom for SSE is <em>n</em>-<em>k</em>.</p>
 <p>The degrees of freedom are additive:</p>
 <p><span class="math display">\[
-df(\text{SST}) = df(\text{SSE}) + df(\text{SSS})
+df(\text{SST}) = df(\text{SSE}) + df(\text{SSG})
 \]</span></p>
 <p>Check: <span class="math display">\[
 \begin{align*}
 df(\text{SST}) &amp;= n-1\\
 df(\text{SSE}) &amp;= k-1\\
-df(\text{SSS}) &amp;= n-k\\
-\therefore df(\text{SSE}) + df(\text{SSS}) &amp;= k-1 + n-k\\
+df(\text{SSG}) &amp;= n-k\\
+\therefore df(\text{SSE}) + df(\text{SSG}) &amp;= k-1 + n-k\\
 &amp;=n-1\\
 &amp;=df(\text{SST})
 \end{align*}
@@ -488,7 +498,7 @@ df(\text{SSS}) &amp;= n-k\\
 <h3 data-number="5.2.5" class="anchored" data-anchor-id="mean-squares"><span class="header-section-number">5.2.5</span> Mean Squares</h3>
 <p>Now we can calculate the <em>variances</em> which are a measure of the amount of variability per degree of freedom.</p>
 <p>In this context, we call them <em>mean squares</em>. To find each one we divided each of the sums of squares (SS) by their corresponding degrees of freedom.</p>
-<p><strong>Species Mean Square</strong> (SMS) = SSS / <em>k</em> - 1. This is the variation per <em>df</em> between individuals of different species.</p>
+<p><strong>Species Mean Square</strong> (SMS) = SSG / <em>k</em> - 1. This is the variation per <em>df</em> between individuals of different species.</p>
 <p><strong>Error Mean Square</strong> (EMS) = SSE / <em>n</em> - <em>k</em>. This is the variation per <em>df</em> between individuals of the same species.</p>
 <p><strong>Total Mean Square</strong> (TMS) = SST / <em>n</em> - 1. This is the total variance per <em>df</em> of the dataset.</p>
 <p>Unlike the SS, the MS are not additive. That is, FMS + EMS <span class="math inline">\(\neq\)</span> TMS.</p>
@@ -513,7 +523,7 @@ F = \frac{\text{SMS}}{\text{EMS}}\gg 1\quad{\text{Probable difference between gr
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ANOVA_how_it_works_penguins_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ANOVA_how_it_works_penguins_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
