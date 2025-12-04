@@ -384,7 +384,7 @@ window.Quarto = {
 <p>First we calculate the ‘grand mean’, the mean of the bill shapes across all penguins in the data set:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.653834</code></pre>
+<pre><code>[1] 2.661329</code></pre>
 </div>
 </div>
 <p><strong>Second step</strong>: calculate the group means</p>
@@ -394,9 +394,9 @@ window.Quarto = {
 <pre><code># A tibble: 3 × 5
   species       n pmean id_min id_max
   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;int&gt;  &lt;int&gt;
-1 Adelie       20  2.13      1     20
-2 Chinstrap    20  2.67     21     40
-3 Gentoo       20  3.16     41     60</code></pre>
+1 Adelie       20  2.17      1     20
+2 Chinstrap    20  2.65     21     40
+3 Gentoo       20  3.17     41     60</code></pre>
 </div>
 </div>
 </section>
@@ -409,7 +409,7 @@ window.Quarto = {
 <p>SST is a measure of the total variability of the data set.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11.84976</code></pre>
+<pre><code>[1] 11.53489</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -438,15 +438,15 @@ window.Quarto = {
 <img src="ANOVA_how_it_works_penguins_files/figure-html/fig-SSE-SSG-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SSE-SSG-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: a) Each species has a mean value for beak shape, shown by the three horizontal lines. Each individual penguin has a beak shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variance between penguins of the same species. b) For each species, the mean beak shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variance between penguins of different species.
+Figure&nbsp;5.1: a) Each species has a mean value for beak shape, shown by the three horizontal lines. Each individual penguin has a beak shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variability between penguins of the same species. b) For each species, the mean beak shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variability between penguins of different species.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean, but it is not obvious if the species have had an effect on bill_shape.</p>
+<p>When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean: SSE is less than SST, but it is not obvious if the species have had an effect on bill_shape.</p>
 <p>At what point do we decide if the amount of variation explained by fitting the means is significant? By this, we mean, “When is the variability between the group means greater than we would expect by chance alone?</p>
-<p>First, we note that SSE and SSG partition between them the total variability in the data:</p>
+<p>First, we note that SSE and SSG partition between them the total variability SST in the data:</p>
 </section>
 </section>
 <section id="partitioning-the-sums-of-squares-sst-sse-ssg" class="level2" data-number="5.4">
@@ -461,25 +461,25 @@ Figure&nbsp;5.1: a) Each species has a mean value for beak shape, shown by the t
 <tbody>
 <tr class="odd">
 <td>SSE</td>
-<td>1.364</td>
+<td>1.493</td>
 </tr>
 <tr class="even">
 <td>SSG</td>
-<td>10.485</td>
+<td>10.042</td>
 </tr>
 <tr class="odd">
 <td>SST</td>
-<td>11.85</td>
+<td>11.535</td>
 </tr>
 <tr class="even">
 <td>SSE + SSG</td>
-<td>11.849 = SST</td>
+<td>11.535 = SST</td>
 </tr>
 </tbody>
 </table>
-<p>So the total variability has been divided into two components. That due to differences between individuals of different species and that due to differences between individuals of the same species. Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.</p>
+<p>So the total variability has been divided into two components. That due to differences between individuals of different species (SSG) and that due to differences between individuals of the same species. (SSE). Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.</p>
 <p>A comparison of SSG and SSE is going to indicate whether fitting the three species means accounts for a significant amount of variability.</p>
-<p>However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance.</p>
+<p>However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance, so first we need to discuss what we mean by <code>degrees of freedom</code> for each of the sums of squares calculated so far, and how we calculate them.</p>
 </section>
 <section id="partitioning-the-degrees-of-freedom" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="partitioning-the-degrees-of-freedom"><span class="header-section-number">5.5</span> Partitioning the degrees of freedom</h2>
@@ -518,7 +518,7 @@ df(\text{SSG}) &amp;= n-k\\
 <p><span class="math display">\[
 F=\frac{\text{SMS}}{\text{EMS}}\approx1\quad{\text{No difference between groups}}
 \]</span></p>
-<p>We call this ratio the <strong>{<em>F</em>-ratio}</strong>. This is the so-calle ’test statistic that ANOVA calculates from your data. <em>F</em>-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be.</p>
+<p>We call this ratio the <strong><em>F</em>-ratio</strong>. This is the so-called ’test statistic that ANOVA calculates from your data. <em>F</em>-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be.</p>
 <p><span class="math display">\[
 F = \frac{\text{SMS}}{\text{EMS}}\gt 1\quad{\text{Possible difference between groups}}
 \]</span></p>
