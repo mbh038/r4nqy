@@ -85,8 +85,9 @@ g2<-ggplot(penguins,aes(x=ID,y=bill_shape,colour=species))+
 grid.arrange(g2,g1,nrow=1)
 ```
 
-## First step: calculate the grand mean
+## Summarise the data: calculate means
 
+**First step**: calculate the grand mean
 
 First we calculate the 'grand mean', the mean of the bill shapes across all penguins in the data set:
 
@@ -95,23 +96,15 @@ grand_mean=mean(penguins$bill_shape)
 grand_mean
 ```
 
-This now allows us to plot the deviaions of each individual from this grand mean
+**Second step**: calculate the group means
 
-```{r SST plot}
-SST.plot<-g2+geom_hline(yintercept=grand_mean,linetype='dashed')+
-  geom_segment(aes(x = ID, y = bill_shape, xend = ID, yend = grand_mean),linetype='dotted')
-SST.plot
-```
+Next, we calculate the mean beak shape for each species - these are what we will call the group means.
 
-
-
-```{r species means}
+```{r}
 # mean value of bill shape for each species
-
 p_means<-penguins |>
   group_by(species) |>
-  summarise(n = n(), pmean = mean(bill_shape))
-p_means
+  summarise(n = n(), pmean = mean(bill_shape), id_min=min(ID), id_max = max(ID))
 
 penguins <- mutate(penguins,pmeans = c(rep(p_means$pmean[1],20),
                             rep(p_means$pmean[2],20),
@@ -120,42 +113,34 @@ penguins <- mutate(penguins,pmeans = c(rep(p_means$pmean[1],20),
 p1<-filter(penguins, species == "Adelie")
 p2<-filter(penguins, species == "Chinstrap")
 p3<-filter(penguins, species == "Gentoo")
+
+p_means
 ```
 
-```{r S}
-# plot deviations from each group (species) mean
+## Calculate variabilities around the means: sums of squared differences
 
-g3<-ggplot()+
-  
-  geom_point(data=p1,aes(x=ID,y=bill_shape))+
-  geom_segment(aes(x=min(p1$ID),y=p1$pmeans[1],xend=max(p1$ID),yend=p1$pmeans[1]))+
-  geom_segment(aes(x = p1$ID, y = p1$bill_shape, xend = p1$ID, yend = p1$pmeans[1]),linetype='dotted') +
-  
-  geom_point(data=p2,aes(x=ID,y=bill_shape))+
-  geom_segment(aes(x=min(p2$ID),y=p2$pmeans[1],xend=max(p2$ID),yend=p2$pmeans[1]))+
-  geom_segment(aes(x = p2$ID, y = p2$bill_shape, xend = p2$ID, yend = p2$pmeans[1]),linetype='dotted') +
-  
-  geom_point(data=p3,aes(x=ID,y=bill_shape))+
-  geom_segment(aes(x=min(p3$ID),y=p3$pmeans[1],xend=max(p3$ID),yend=p3$pmeans[1]))+
-  geom_segment(aes(x = p3$ID, y = p3$bill_shape, xend = p3$ID, yend = p3$pmeans[1]),linetype='dotted')+
-  
-  scale_y_continuous(limits=c(1,4))+
-  labs(x='ID',y='Bill shape',title="SSE: Error sum of squares")+
-  theme_cowplot()
-```
+Now we can calculate and plot the deviations of the data around these means. That will allow us to visualise and calculate what turn out to be the key quatities in carrying out an ANOVA analysis: the sums of squared differences. There are three of these and we will turn to them now: 
 
-### Measures of variability
+### SST: the total sum of squares
 
-#### SST - Total sum of squares
+This now allows us to plot the deviations of each individual from this grand mean and to calculate what we will call **SST: the total sum of squares**. This is the sum of the squared differences between each individual penguin beak shape and the grand mean. In this and other measures of variability we square the differences so that we do not  distinguish between positive and negative deviations.
+
+SST is a measure of the total variability of the data set.
 
 ```{r SST total sum of squares 2}
 SST=sum((penguins$bill_shape-grand_mean)^2)
 SST
 ```
 
-SST is the **total sum of squares.** It is the sum of squares of the deviations of the data around the grand mean. This is a measure of the total variability of the data set.
+```{r SST plot}
+SST.plot<-g2+geom_hline(yintercept=grand_mean,linetype='dashed')+
+  geom_segment(aes(x = ID, y = bill_shape, xend = ID, yend = grand_mean),linetype='dotted')
+SST.plot
+```
 
-#### SSE - Error sum of squares
+Now we determine two more measures of variability: the deviations of individual penguins from their group means, and the the deviations of those group means from the grand mean. For each of these measures, we will square them so that we do not distinguish between positive and negative deviations, and then sum these squares to get a measure of the total variabilities.
+
+### SSE - Error sum of squares
 
 ```{r}
 SSE<-penguins |>
@@ -169,7 +154,7 @@ SSE<-penguins |>
 
 SSE is the **error sum of squares**. It is the sum of the squares of the deviations of the data around the three separate species means. This is a measure of the variation between individuals of the same species.
 
-#### SSG - species sum of squares
+### SSG - group (species) sum of squares
 
 ```{r SSF}
 
@@ -184,51 +169,64 @@ SSG<-penguins |>
 
 SSG is the **group sum of squares**. This is the sum of the squares of the deviations of the group (species, in this case) means from the grand mean. This is a measure of the variation between individuals of different species.
 
+```{r S}
+
+# plot deviations from each group (species) mean
+g3 <- penguins |>
+  ggplot(aes(x = ID, y = bill_shape, colour = species)) +
+  geom_point() +
+  geom_segment(data = p_means, aes(x=id_min, xend=id_max, y = pmean, yend = pmean, colour= species)) +
+  geom_segment(aes(x = ID, y = bill_shape, xend = ID, yend = pmeans, colour = species),linetype='dotted') +
+  scale_y_continuous(limits =c (1,4))+
+  labs(x='ID',y='Bill shape',title="SSE: Error sum of squares", colour = "")+
+  theme_cowplot() +
+  theme(legend.position= c(0.7, 0.15))
+```
+
+
 ```{r}
-g4<-ggplot()+
-  
+
+g4 <- penguins |>
+  ggplot(aes(x = ID, y = bill_shape, colour = species)) +
   geom_hline(yintercept=grand_mean,linetype='dashed')+
-  
-  geom_segment(aes(x=min(p1$ID),y=p1$pmeans[1],xend=max(p1$ID),yend=p1$pmeans[1]))+
-  geom_segment(aes(x = mean(p1$ID), y = grand_mean, xend = mean(p1$ID), yend = p1$pmeans[1]),linetype='dotted') +
-  
-  geom_segment(aes(x=min(p2$ID),y=p2$pmeans[1],xend=max(p2$ID),yend=p2$pmeans[1]))+
-  geom_segment(aes(x = mean(p2$ID), y = grand_mean, xend = mean(p2$ID), yend = p2$pmeans[1]),linetype='dotted')+
-  # 
-  geom_segment(aes(x=min(p3$ID),y=p3$pmeans[1],xend=max(p3$ID),yend=p3$pmeans[1]))+
-  geom_segment(aes(x = mean(p3$ID), y = grand_mean, xend = mean(p3$ID), yend = p3$pmeans[1]),linetype='dotted')+
-  
-  scale_y_continuous(limits=c(1,4))+
-  labs(x='ID',y='Bill shape ',title="SSG: group sum of squares")+
-  theme_cowplot()
+  geom_segment(data = p_means, aes(x=id_min, xend=id_max, y = pmean, yend = pmean, colour= species)) +
+  geom_segment(data = p_means, aes(x = (id_min + id_max)/2, y = grand_mean, xend = (id_min + id_max)/2, yend = pmean, colour = species),linetype='dotted')+
+  # geom_segment(aes(x = ID, y = bill_shape, xend = ID, yend = pmeans, colour = species),linetype='dotted') +
+  scale_y_continuous(limits =c (1,4))+
+  labs(x='ID',y='Bill shape', title="SSG: Group sum of squares", colour= "")+
+  theme_cowplot() +
+  theme(legend.position = "none")
 ```
 
 ```{r}
+#| label: fig-SSE-SSG-plot
+#| fig-cap: "a) Each species has a mean value for beak shape, shown by the three horizontal lines. Each individual penguin has a beak shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variability between penguins of the same species. b) For each species, the mean beak shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variability between penguins of different species."
+
 grid.arrange(g3,g4,nrow=1)
 ```
 
-When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean, but it is not obvious if the species have had an effect on bill_shape.
+When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean: SSE is less than SST, but it is not obvious if the species have had an effect on bill_shape.
 
 At what point do we decide if the amount of variation explained by fitting the means is significant? By this, we mean, "When is the variability between the group means greater than we would expect by chance alone?
 
-First, we note that SSG and SSE partition between them the total variability in the data:
+First, we note that SSE and SSG partition between them the total variability SST in the data:
 
-### SST = SSG + SSE
+## Partitioning the sums of squares: SST = SSE + SSG
 
 Sum of Squares| Value
 --------------|------
-SSG |`r SSG`
-SSE |`r SSE`
-SST | `r SST`
-SSG + SSE |`r SSG + SSE` = SST
+SSE |`r round(SSE,3)`
+SSG |`r round(SSG, 3)`
+SST | `r round(SST, 3)`
+SSE + SSG |`r round(SSE, 3) + round(SSG, 3)` = SST
 
-So the total variability has been divided into two components. That due to differences between individuals of different species and that due to differences between individuals of the same species. Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.
+So the total variability has been divided into two components. That due to differences between individuals of different species (SSG) and that due to differences between individuals of the same species. (SSE). Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.
 
 A comparison of SSG and SSE is going to indicate whether fitting the three species means accounts for a significant amount of variability.
 
-However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance.
+However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance, so first we need to discuss what we mean by `degrees of freedom` for each of the sums of squares calculated so far, and how we calculate them.
 
-### Partitioning the degrees of freedom
+## Partitioning the degrees of freedom
 
 Every sum of squares (SS) has been calculated using a number of independent pieces of information. In each, case, we call this number the number of degrees of freedom for the SS.
 
@@ -256,7 +254,7 @@ df(\text{SSG}) &= n-k\\
 \end{align*}
 $$
 
-### Mean Squares
+## Variances per degree of freedom:  Mean Squares
 
 Now we can calculate the *variances* which are a measure of the amount of variability per degree of freedom.
 
@@ -270,7 +268,7 @@ In this context, we call them *mean squares*. To find each one we divided each o
 
 Unlike the SS, the MS are not additive. That is, FMS + EMS $\neq$ TMS.
 
-### *F*-ratios
+## *F*-ratios
 
 If species did not influence bill shape, we would expect as much variation between the penguins of the same species as between penguins of different species.
 
@@ -280,7 +278,7 @@ $$
 F=\frac{\text{SMS}}{\text{EMS}}\approx1\quad{\text{No difference between groups}}
 $$ 
 
-We call this ratio the **{*F*-ratio}**. This is the so-calle 'test statistic that ANOVA calculates from your data.  *F*-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be.
+We call this ratio the __*F*-ratio__. This is the so-called 'test statistic that ANOVA calculates from your data.  *F*-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be.
 
 $$
 F = \frac{\text{SMS}}{\text{EMS}}\gt 1\quad{\text{Possible difference between groups}}
