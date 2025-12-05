@@ -62,7 +62,6 @@ ggplot(aes(x = species,y = bill_shape, colour = species))+
   labs(x='Species', y = 'Bill shape')+
   theme_cowplot()+
   theme(legend.position = "none")
-g2
 ```
 
 ## Summarise the data: calculate means
@@ -108,7 +107,7 @@ SST=sum((penguins$bill_shape-grand_mean)^2)
 SST
 ```
 
-```{r SST plot}
+```{r}
 #| label: fig-grand-mean
 #| fig-cap: "The overall variability of the data (SST) is measured as the sum of the squared differences between each individual value and the grand mean, which is the mean of the whole data set. The individual differences are shown in the figure as vertical dotted lines. If there are *n* data points, then SST will have *n*-1 degrees of freedom." 
 penguins |>
