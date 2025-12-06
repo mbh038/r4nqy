@@ -19,7 +19,15 @@ penguins_raw <- palmerpenguins::penguins
 # glimpse(penguins_raw)
 ```
 
+
 ```{r}
+# how man individuals from each species?
+n_replicates <- 10
+```
+
+
+```{r}
+set.seed(1962)
 penguins <- penguins_raw |>
   drop_na() |>
   filter(sex == "male") |>
@@ -27,9 +35,9 @@ penguins <- penguins_raw |>
   mutate(bill_shape = bill_length_mm / bill_depth_mm) |>
   dplyr::select(species, bill_shape) |>
   group_by(species) |>
-  slice_sample(n = 20) |>
+  slice_sample(n = n_replicates) |>
   ungroup() |>
-  mutate(ID=1:60)
+  mutate(ID=1:(3*n_replicates))
 
 ```
 
@@ -66,18 +74,18 @@ ggplot(aes(x = species,y = bill_shape, colour = species))+
 
 ## Summarise the data: calculate means
 
-**First step**: calculate the grand mean
+**First step**: calculate the **grand mean**
 
-First we calculate the '**grand mean**', the mean of the bill shapes across all penguins in the data set:
+First we calculate the 'grand mean', the mean of the bill shapes across all penguins in the data set:
 
 ```{r Grand mean}
 grand_mean=mean(penguins$bill_shape)
 grand_mean
 ```
 
-**Second step**: calculate the group means
+**Second step**: calculate the **group means**
 
-Next, we calculate the mean beak shape for each species - these are what we will call the **group means**.
+Next, we calculate the mean bill shape for each species - these are what we will call the group means.
 
 ```{r}
 # mean value of bill shape for each species
@@ -85,12 +93,13 @@ p_means<-penguins |>
   group_by(species) |>
   summarise(n = n(), pmean = mean(bill_shape), id_min=min(ID), id_max = max(ID))
 
-penguins <- mutate(penguins,pmeans = c(rep(p_means$pmean[1],20),
-                            rep(p_means$pmean[2],20),
-                            rep(p_means$pmean[3],20)))
+penguins <- mutate(penguins,pmeans = c(rep(p_means$pmean[1],n_replicates),
+                            rep(p_means$pmean[2],n_replicates),
+                            rep(p_means$pmean[3],n_replicates)))
 
 p_means
 ```
+
 
 ## Calculate variabilities around the means: sums of squared differences
 
@@ -100,12 +109,13 @@ Now we can calculate and plot the deviations of the data around these means. Tha
 
 FRom the deviations of each individual arounnd the grand mean we can calculate what we will call **SST: the total sum of squares**. This is the sum of the squared differences between each individual penguin bill shape and the grand mean. In this and other measures of variability we square the differences so that we do not distinguish between positive and negative deviations.
 
-SST is a measure of the total variability of the data set.
+
 
 ```{r SST total sum of squares 2}
 SST=sum((penguins$bill_shape-grand_mean)^2)
-SST
 ```
+
+SST is a measure of the total variability of the data set. For our penguins we find that SST = `r round(SST,3)`
 
 ```{r}
 #| label: fig-grand-mean
@@ -182,12 +192,12 @@ g4 <- penguins |>
 
 ```{r}
 #| label: fig-SSE-SSG-plot
-#| fig-cap: "a) Each species has a mean value for beak shape, shown by the three horizontal lines. Each individual penguin has a beak shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variability between penguins of the same species. b) For each species, the mean beak shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variability between penguins of different species."
+#| fig-cap: "a) Each species has a mean value for bill shape, shown by the three horizontal lines. Each individual penguin has a bill shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variability between penguins of the same species. b) For each species, the mean bill shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variability between penguins of different species."
 
 grid.arrange(g3,g4,nrow=1)
 ```
 
-When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean: SSE is less than SST, but it is not obvious if the species have had an effect on bill_shape.
+When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean: SSE is less than SST, but it is not obvious if bill shape differs between the species.
 
 At what point do we decide if the amount of variation explained by fitting the means is significant? By this, we mean, "When is the variability between the group means greater than we would expect by chance alone?
 
@@ -248,7 +258,31 @@ In this context, we call them *mean squares*. To find each one we divide each of
 
 **Total Mean Square** (TMS) = SST / *n* - 1. This is the total variance per *df* of the dataset.
 
-Unlike the SS, the MS are not additive. That is, GMS + EMS $\neq$ TMS.
+Unlike the SS, the MS are not additive. That is, GMS + EMS $\neq$ TMS as we see in the table below where we list these values for our penguins sample:
+
+```{r}
+# calculate quantities for degrees of freedom
+
+k <- 3 # number of species
+n <- k * n_replicates
+```
+
+
+
+```{r}
+# calculate mean squares
+
+GMS <- SSG / (k - 1) # group (species, in this case) mean squares
+EMS <- SSE / (n - k) # error mean squares
+TMS <- SST / (n - 1) # total mean squares
+```
+
+Mean Square | Value
+------------|-------
+GMS | 2.73
+EMS | 0.0154
+TMS | 0.171
+
 
 ## *F*-ratios
 
@@ -260,7 +294,7 @@ $$
 F=\frac{\text{GMS}}{\text{EMS}}\approx1\quad{\text{No difference between groups}}
 $$ 
 
-We call this ratio the __*F*-ratio__. This is the so-called 'test statistic that ANOVA calculates from your data.  *F*-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be. In fact, 
+We call this ratio the __*F*-ratio__. This is the so-called 'test statistic' that ANOVA calculates from your data.  *F*-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be. In fact, 
 
 $$
 F = \frac{\text{GMS}}{\text{EMS}}\gt 1\quad{\text{Possible difference between groups}}
@@ -270,11 +304,19 @@ $$
 F = \frac{\text{GMS}}{\text{EMS}}\gg 1\quad{\text{Probable difference between groups}}
 $$
 
-Even if the species were identical, the *F*-ratio is unlikely to be exactly 1 - it could by chance take a whole range of values. It runs out that *F*-ratios have a known distrivution, the **F-distribution**, which represents the range and likelihood of all possible *F* ratios under the null hypothesis. ie when the species were identical.
+```{r}
+# calculate F for penguins.
+F_penguins <- GMS/EMS
+```
 
-The shape of the F distribution depends on the degrees of freedom of GMS and EMS, and we normally specify it by giving the values of each. Below we show F distributions for 2 and 27 degrees of freedom (ie 3 species, so *k* = 3, so the degrees of freedom of GMS = *k*-1 =2, and individuals per species, so *n* = 3 x 10 = 30, and hence the degrees of freedom of EMS = *n*-*k* = 30 - 3 = 27), and for 10 and 27 degrees of freedom.
+
+Even if the species were identical, the *F*-ratio is unlikely to be exactly 1 - it could by chance take a whole range of values. It turns out that *F*-ratios have a known distribution, the **F-distribution**, which represents the range and likelihood of all possible *F* ratios under the null hypothesis. ie when the species were identical.
+
+The shape of the F distribution depends on the degrees of freedom of GMS and EMS, and we normally specify it by giving the values of each. In @fig-f-pdfs below we show F distributions for 2 and 27 degrees of freedom (ie 3 species, so *k* = 3, so the degrees of freedom of GMS = *k*-1 = 2, and 10 individuals per species, so *n*  = 3 x 10 = 30, and hence the degrees of freedom of EMS = *n*-*k* = 30 - 3 = 27), and for 10 and 27 degrees of freedom.
 
 ```{r}
+#| label: fig-f-pdfs
+#| fig-cap: "The F-distributions for (left) 2 and 27 degrees of freedom and (right) 10 and 27 degrees of freedom"
 dfs<-c(rep("df = 2, 27",601),rep("df = 10, 27",601))
 xs<-rep(seq(0,6,0.01),2)
 ys<-c(df(xs[1:601],2,27),df(xs[602:1202],10,27))
@@ -286,8 +328,7 @@ fdata |>
   xlim(0,6) +
   ylim(0,1) +
   labs(x="F-ratio",
-       y="Probability density",
-       caption="The F-distributions for (left) 2 and 27 degrees of freedom and (right) 10 and 27 degrees of freedom") +
+       y="Probability density") +
   geom_line(colour="darkblue") +
   facet_wrap(~dfs) +
   theme_cowplot()
@@ -300,6 +341,22 @@ Hence, the probability under the null hypothesis of getting an *F*-ratio as larg
 If the species were very different, then the GMS would be much greater than the EMS and the *F*-ratio would be greater than one. However it can be quite large even when there are no differences between the levels (here, Adelie, Chinstrap and Gentoo) of a factor (here, species). So how do we decide when the size of the *F*-ratio is due to a real difference between the levels rather than to chance?
 
 Our *p*-value (the probability that the *F*-ratio would have been as large as it is or larger under the null hypothesis) represents the strength of evidence against the null hypothesis. The smaller it is, the stronger the evidence, and, as a pragmatic choice, only when it is less than 0.05 do we regard the evidence as strong enough to reject the null. Note though that even if we had inside knowledge that the null hypothesis was in fact true, we would still get an *F*-ratio that large or larger and thus a p-value less than or equal to 0.05 5% of the time.
+
+```{r}
+F_penguins <- GMS/EMS
+```
+
+
+We find for our penguin data that the F ratio is `r round(F_penguins,1)`
+
+If we look at the *F* distribution in the left-hand figure in @fig-f-pdfs the one that corresponds to our case, with 2 and 27 degrees of freedom, we see that it has already fallen to near zero by the time *F* is equal to 5 or 6. There is essentially zero area beneath the curve to the right of the much larger F value we found for our data, *F* = `r round(F_penguins,1)`. That means there is essentially zero chance of getting an *F* value this big or bigger if the null hypothesis were true (ie the p-value is esentially zero), and so we can confidently reject the null hypothesis.
+
+## What does the ANOVA result tell us?
+
+The null hypothesis of the ANOVA is that all the samples are drawn from populationswit the same mean. If the F-value is so large that we reject this null hypothesis, then we infer that at least two of the population means differ. We not learn from the ANOVA where the difference or differences lie.
+
+To find that out we typically need to continue the analysis with multiple pair-wise comparisons between the samples, taking care to control for the study-wide error rate. 
+
 
 ```{r}
 
@@ -337,4 +394,13 @@ myfun<-function(x,replicates,k,N,binwidth){
 #        y=) +
 #   theme_cowplot()
 ```
+
+
+```{r}
+# ANOVA lest, using lm()
+
+penguin.model <- lm(bill_shape ~ species, data = penguins)
+anova(penguin.model)
+```
+
 

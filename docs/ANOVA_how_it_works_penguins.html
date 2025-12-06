@@ -331,6 +331,7 @@ window.Quarto = {
   <li><a href="#partitioning-the-degrees-of-freedom" id="toc-partitioning-the-degrees-of-freedom" class="nav-link" data-scroll-target="#partitioning-the-degrees-of-freedom"><span class="header-section-number">5.5</span> Partitioning the degrees of freedom</a></li>
   <li><a href="#variances-per-degree-of-freedom-mean-squares" id="toc-variances-per-degree-of-freedom-mean-squares" class="nav-link" data-scroll-target="#variances-per-degree-of-freedom-mean-squares"><span class="header-section-number">5.6</span> Variances per degree of freedom: Mean Squares</a></li>
   <li><a href="#f-ratios" id="toc-f-ratios" class="nav-link" data-scroll-target="#f-ratios"><span class="header-section-number">5.7</span> <em>F</em>-ratios</a></li>
+  <li><a href="#what-does-the-anova-result-tell-us" id="toc-what-does-the-anova-result-tell-us" class="nav-link" data-scroll-target="#what-does-the-anova-result-tell-us"><span class="header-section-number">5.8</span> What does the ANOVA result tell us?</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ANOVA_how_it_works_penguins.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -385,23 +386,23 @@ Figure&nbsp;5.1: The distribution of bill shape for each of the three penguin sp
 </section>
 <section id="summarise-the-data-calculate-means" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="summarise-the-data-calculate-means"><span class="header-section-number">5.2</span> Summarise the data: calculate means</h2>
-<p><strong>First step</strong>: calculate the grand mean</p>
-<p>First we calculate the ‘<strong>grand mean</strong>’, the mean of the bill shapes across all penguins in the data set:</p>
+<p><strong>First step</strong>: calculate the <strong>grand mean</strong></p>
+<p>First we calculate the ‘grand mean’, the mean of the bill shapes across all penguins in the data set:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.635666</code></pre>
+<pre><code>[1] 2.658853</code></pre>
 </div>
 </div>
-<p><strong>Second step</strong>: calculate the group means</p>
-<p>Next, we calculate the mean beak shape for each species - these are what we will call the <strong>group means</strong>.</p>
+<p><strong>Second step</strong>: calculate the <strong>group means</strong></p>
+<p>Next, we calculate the mean bill shape for each species - these are what we will call the group means.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   species       n pmean id_min id_max
   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;int&gt;  &lt;int&gt;
-1 Adelie       20  2.07      1     20
-2 Chinstrap    20  2.68     21     40
-3 Gentoo       20  3.16     41     60</code></pre>
+1 Adelie       10  2.06      1     10
+2 Chinstrap    10  2.66     11     20
+3 Gentoo       10  3.26     21     30</code></pre>
 </div>
 </div>
 </section>
@@ -411,12 +412,7 @@ Figure&nbsp;5.1: The distribution of bill shape for each of the three penguin sp
 <section id="sst-the-total-sum-of-squares" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="sst-the-total-sum-of-squares"><span class="header-section-number">5.3.1</span> SST: the total sum of squares</h3>
 <p>FRom the deviations of each individual arounnd the grand mean we can calculate what we will call <strong>SST: the total sum of squares</strong>. This is the sum of the squared differences between each individual penguin bill shape and the grand mean. In this and other measures of variability we square the differences so that we do not distinguish between positive and negative deviations.</p>
-<p>SST is a measure of the total variability of the data set.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 13.21999</code></pre>
-</div>
-</div>
+<p>SST is a measure of the total variability of the data set. For our penguins we find that SST = 8.147</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-grand-mean" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -448,13 +444,13 @@ Figure&nbsp;5.2: The overall variability of the data (SST) is measured as the su
 <img src="ANOVA_how_it_works_penguins_files/figure-html/fig-SSE-SSG-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SSE-SSG-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.3: a) Each species has a mean value for beak shape, shown by the three horizontal lines. Each individual penguin has a beak shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variability between penguins of the same species. b) For each species, the mean beak shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variability between penguins of different species.
+Figure&nbsp;5.3: a) Each species has a mean value for bill shape, shown by the three horizontal lines. Each individual penguin has a bill shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variability between penguins of the same species. b) For each species, the mean bill shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variability between penguins of different species.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean: SSE is less than SST, but it is not obvious if the species have had an effect on bill_shape.</p>
+<p>When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean: SSE is less than SST, but it is not obvious if bill shape differs between the species.</p>
 <p>At what point do we decide if the amount of variation explained by fitting the means is significant? By this, we mean, “When is the variability between the group means greater than we would expect by chance alone?</p>
 <p>First, we note that SSE and SSG partition between them the total variability SST in the data:</p>
 </section>
@@ -471,19 +467,19 @@ Figure&nbsp;5.3: a) Each species has a mean value for beak shape, shown by the t
 <tbody>
 <tr class="odd">
 <td>SSE</td>
-<td>1.343</td>
+<td>0.936</td>
 </tr>
 <tr class="even">
 <td>SSG</td>
-<td>11.877</td>
+<td>7.212</td>
 </tr>
 <tr class="odd">
 <td>SST</td>
-<td>13.22</td>
+<td>8.147</td>
 </tr>
 <tr class="even">
 <td>SSE + SSG</td>
-<td>13.22 = SST</td>
+<td>8.148 = SST</td>
 </tr>
 </tbody>
 </table>
@@ -519,7 +515,29 @@ df(\text{SSG}) &amp;= n-k\\
 <p><strong>Group Mean Square</strong> (GMS) = SSG / <em>k</em> - 1. This is the variation per <em>df</em> between individuals of different species.</p>
 <p><strong>Error Mean Square</strong> (EMS) = SSE / <em>n</em> - <em>k</em>. This is the variation per <em>df</em> between individuals of the same species.</p>
 <p><strong>Total Mean Square</strong> (TMS) = SST / <em>n</em> - 1. This is the total variance per <em>df</em> of the dataset.</p>
-<p>Unlike the SS, the MS are not additive. That is, GMS + EMS <span class="math inline">\(\neq\)</span> TMS.</p>
+<p>Unlike the SS, the MS are not additive. That is, GMS + EMS <span class="math inline">\(\neq\)</span> TMS as we see in the table below where we list these values for our penguins sample:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Mean Square</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GMS</td>
+<td>2.73</td>
+</tr>
+<tr class="even">
+<td>EMS</td>
+<td>0.0154</td>
+</tr>
+<tr class="odd">
+<td>TMS</td>
+<td>0.171</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="f-ratios" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="f-ratios"><span class="header-section-number">5.7</span> <em>F</em>-ratios</h2>
@@ -528,20 +546,25 @@ df(\text{SSG}) &amp;= n-k\\
 <p><span class="math display">\[
 F=\frac{\text{GMS}}{\text{EMS}}\approx1\quad{\text{No difference between groups}}
 \]</span></p>
-<p>We call this ratio the <strong><em>F</em>-ratio</strong>. This is the so-called ’test statistic that ANOVA calculates from your data. <em>F</em>-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be. In fact,</p>
+<p>We call this ratio the <strong><em>F</em>-ratio</strong>. This is the so-called ‘test statistic’ that ANOVA calculates from your data. <em>F</em>-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be. In fact,</p>
 <p><span class="math display">\[
 F = \frac{\text{GMS}}{\text{EMS}}\gt 1\quad{\text{Possible difference between groups}}
 \]</span></p>
 <p><span class="math display">\[
 F = \frac{\text{GMS}}{\text{EMS}}\gg 1\quad{\text{Probable difference between groups}}
 \]</span></p>
-<p>Even if the species were identical, the <em>F</em>-ratio is unlikely to be exactly 1 - it could by chance take a whole range of values. It runs out that <em>F</em>-ratios have a known distrivution, the <strong>F-distribution</strong>, which represents the range and likelihood of all possible <em>F</em> ratios under the null hypothesis. ie when the species were identical.</p>
-<p>The shape of the F distribution depends on the degrees of freedom of GMS and EMS, and we normally specify it by giving the values of each. Below we show F distributions for 2 and 27 degrees of freedom (ie 3 species, so <em>k</em> = 3, so the degrees of freedom of GMS = <em>k</em>-1 =2, and individuals per species, so <em>n</em> = 3 x 10 = 30, and hence the degrees of freedom of EMS = <em>n</em>-<em>k</em> = 30 - 3 = 27), and for 10 and 27 degrees of freedom.</p>
+<p>Even if the species were identical, the <em>F</em>-ratio is unlikely to be exactly 1 - it could by chance take a whole range of values. It turns out that <em>F</em>-ratios have a known distribution, the <strong>F-distribution</strong>, which represents the range and likelihood of all possible <em>F</em> ratios under the null hypothesis. ie when the species were identical.</p>
+<p>The shape of the F distribution depends on the degrees of freedom of GMS and EMS, and we normally specify it by giving the values of each. In <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> below we show F distributions for 2 and 27 degrees of freedom (ie 3 species, so <em>k</em> = 3, so the degrees of freedom of GMS = <em>k</em>-1 = 2, and 10 individuals per species, so <em>n</em> = 3 x 10 = 30, and hence the degrees of freedom of EMS = <em>n</em>-<em>k</em> = 30 - 3 = 27), and for 10 and 27 degrees of freedom.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ANOVA_how_it_works_penguins_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-f-pdfs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-pdfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ANOVA_how_it_works_penguins_files/figure-html/fig-f-pdfs-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-pdfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: The F-distributions for (left) 2 and 27 degrees of freedom and (right) 10 and 27 degrees of freedom
+</figcaption>
 </figure>
 </div>
 </div>
@@ -550,6 +573,25 @@ F = \frac{\text{GMS}}{\text{EMS}}\gg 1\quad{\text{Probable difference between gr
 <p>Hence, the probability under the null hypothesis of getting an <em>F</em>-ratio as large or larger than the value we actually got is the area to the right of this <em>F</em>-ratio under the appropriate F distribution. We often call this probability the <em>p</em>-value. p for probability. p-values are the the probability of getting data as extreme (same <em>F</em>-ratio,) or more extreme (bigger <em>F</em>-ratio) as the data you got you got if the null hypothesis were true.</p>
 <p>If the species were very different, then the GMS would be much greater than the EMS and the <em>F</em>-ratio would be greater than one. However it can be quite large even when there are no differences between the levels (here, Adelie, Chinstrap and Gentoo) of a factor (here, species). So how do we decide when the size of the <em>F</em>-ratio is due to a real difference between the levels rather than to chance?</p>
 <p>Our <em>p</em>-value (the probability that the <em>F</em>-ratio would have been as large as it is or larger under the null hypothesis) represents the strength of evidence against the null hypothesis. The smaller it is, the stronger the evidence, and, as a pragmatic choice, only when it is less than 0.05 do we regard the evidence as strong enough to reject the null. Note though that even if we had inside knowledge that the null hypothesis was in fact true, we would still get an <em>F</em>-ratio that large or larger and thus a p-value less than or equal to 0.05 5% of the time.</p>
+<p>We find for our penguin data that the F ratio is 104</p>
+<p>If we look at the <em>F</em> distribution in the left-hand figure in <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> the one that corresponds to our case, with 2 and 27 degrees of freedom, we see that it has already fallen to near zero by the time <em>F</em> is equal to 5 or 6. There is essentially zero area beneath the curve to the right of the much larger F value we found for our data, <em>F</em> = 104. That means there is essentially zero chance of getting an <em>F</em> value this big or bigger if the null hypothesis were true (ie the p-value is esentially zero), and so we can confidently reject the null hypothesis.</p>
+</section>
+<section id="what-does-the-anova-result-tell-us" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="what-does-the-anova-result-tell-us"><span class="header-section-number">5.8</span> What does the ANOVA result tell us?</h2>
+<p>The null hypothesis of the ANOVA is that all the samples are drawn from populationswit the same mean. If the F-value is so large that we reject this null hypothesis, then we infer that at least two of the population means differ. We not learn from the ANOVA where the difference or differences lie.</p>
+<p>To find that out we typically need to continue the analysis with multiple pair-wise comparisons between the samples, taking care to control for the study-wide error rate.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: bill_shape
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+species    2 7.2117  3.6058  104.05 2.05e-13 ***
+Residuals 27 0.9357  0.0347                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
 
 
 </section>
