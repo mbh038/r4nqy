@@ -353,7 +353,7 @@ If we look at the *F* distribution in the left-hand figure in @fig-f-pdfs the on
 
 ## What does the ANOVA result tell us?
 
-The null hypothesis of the ANOVA is that all the samples are drawn from populationswit the same mean. If the F-value is so large that we reject this null hypothesis, then we infer that at least two of the population means differ. We not learn from the ANOVA where the difference or differences lie.
+The null hypothesis of the ANOVA is that all the samples are drawn from populations with the same mean. If the F-value is so large that we reject this null hypothesis, then we infer that at least two of the population means differ. We not learn from the ANOVA where the difference or differences lie.
 
 To find that out we typically need to continue the analysis with multiple pair-wise comparisons between the samples, taking care to control for the study-wide error rate. 
 
