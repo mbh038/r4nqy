@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./simple linear regression.html" rel="next">
+<link href="./simple-linear-regression.html" rel="next">
 <link href="./chi-square.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -296,7 +296,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simple linear regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./simple-linear-regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
@@ -502,13 +502,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.2164, df = 48, p-value = 3.415e-12
+t = 9.2547, df = 48, p-value = 3.003e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6700793 0.8815471
+ 0.6719011 0.8822835
 sample estimates:
       cor 
-0.7993384 </code></pre>
+0.8005317 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -674,7 +674,7 @@ sample estimates:
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at -0.173, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.343, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level4" data-number="9.1.6.2">
 <h4 data-number="9.1.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.1.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h4>
@@ -1357,7 +1357,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./simple linear regression.html" class="pagination-link" aria-label="Simple linear regression">
+      <a href="./simple-linear-regression.html" class="pagination-link" aria-label="Simple linear regression">
         <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
