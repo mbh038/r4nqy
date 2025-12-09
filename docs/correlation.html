@@ -507,13 +507,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1371, df = 48, p-value = 4.461e-12
+t = 9.1558, df = 48, p-value = 4.189e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6662602 0.8800001
+ 0.6671635 0.8803664
 sample estimates:
       cor 
-0.7968336 </code></pre>
+0.7974264 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -695,7 +695,7 @@ sample estimates:
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.487, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.444, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -948,11 +948,14 @@ sample estimates:
 <ol start="9" type="1">
 <li>Plot the bill depth vs bill length using code similar to this:</li>
 </ol>
-<pre><code>::: {.cell layout-align="center"}
-::: {.cell-output-display}
-![](correlation_files/figure-html/unnamed-chunk-54-1.png){fig-align='center' width=864}
-:::
-:::</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="in">adelie_f |&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "Bill depth (mm)",</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Bill length (mm)") +</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_classic()</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="10" type="1">
 <li><p>Is it appropriate to use Pearson or Spearman’s rank measures of correlation with this data?</p></li>
 <li><p>Use the <code>shapiro.test()</code> function to determine if it is OK to use the Pearson measure of correlation.</p></li>
