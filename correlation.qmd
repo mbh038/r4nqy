@@ -1035,8 +1035,8 @@ filter(species == "Adelie")
 
 9. Plot the bill depth vs bill length using code similar to this:
 
-````
-```{r}
+
+```{{r}}
 adelie_f |>
   ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +
   geom_point() +
@@ -1044,7 +1044,7 @@ adelie_f |>
        y = "Bill length (mm)") +
   theme_classic()
 ```
-````
+
 
 10. Is it appropriate to use Pearson or Spearman's rank measures of correlation with this data?
 
