@@ -6,6 +6,9 @@ options(tinytex.verbose = TRUE)
 
 This guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.
 
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/correlation/archive/refs/heads/main.zip)
+
+
 ```{r global-options, include=FALSE,echo=FALSE}
 knitr::opts_chunk$set(fig.width=9,
                       fig.height=5,
@@ -519,7 +522,7 @@ To report the result of this test we would say something like:
 
 Note that when the *p*-value is much less than 0.05 as it is here we do not normally report its exact value, but simply write *p*\<0.01, or *p*\<0.001, and so on. The point is that these ways of reporting it tell the reader that *p* is *way* less than 0.05. This is all they need to know to see that we can confidently reject the null hypothesis.
 
-## Correlations for real data
+## Correlations for real data {#sec-iris-correlation}
 
 Let us look at the Iris data set that is built into R. It contains values for the Sepal Width, Sepal Length, Petal Width and Petal Length for samples of 50 plants from each of three species of Iris, *setosa*, *versicolor* and *virginica*. Here are the first few rows:
 
@@ -986,33 +989,66 @@ How would you report this result?
 
 ## Exercise 3
 
-Open a new R notebook
 
-In the usual way, include to start with code chunks to
+```{r, include = FALSE}
+library(janitor)
+# Load penguin and iris data
+penguins_filepath <- here("data", "penguins.csv")
+penguins <- read_csv(penguins_filepath)
+penguins <- penguins |> drop_na()
 
-
-1.  Load the packages needed `tidyverse` and  `here`.
-3.  Read the data set `iris.csv` (which should be in your data folder already) into an object called `iris`
-
-You can do this with this code chunk:
-
-````
-```{r}`r ''`     
-filepath<-here("data","iris.csv")
-iris<-read_csv(filepath)
+iris_filepath <- here("data", "iris.csv")
+iris <- read_csv(iris_filepath)
 glimpse(iris)
+iris <- iris |> clean_names()
 ```
-````
 
-4.  Create a faceted plot of sepal length against sepal width for each species.
+1. If you haven't done so already, click on [this link](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) to download the practice project for correlation. 
 
-5.  Calculate the Pearson correlation coefficient between sepal length and sepal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the *p*-value for each species in a table.
+[this link](https://github.com/mbh038/correlation/archive/refs/heads/main.zip)
 
-For (4) and (5) you can adapt code used on the main Correlation tab.
+2. Open this project in RStudio by navigating to the project then clicking on the `correlation.Rproj` file
 
-Now:
+3. Open the notebook `correlation.qmd` that you will find in the notebooks subfolder.
 
--   Does it appear that the sepal length and sepal width are correlated for each species?\
+4. Run the initial code chunks to load packages and the penguin and iris data
+
+5. Check that you have created data frames called `penguins` and `iris`
+
+6. Using the code in section @sec-iris-correlation as a guide, create a faceted plot of petal length against petal width for each species. 
+
+7.  Again using @sec-iris-correlation as a guide, now calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the *p*-value for each species in a table.
+
+
+-   Does it appear that the petal length and petal width are correlated for each species?\
 -   Is the correlation positive or negative?\
 -   For which species is the correlation strongest?\
 -   Do the correlation coefficients make sense, given the plots?
+
+8. Use the `filter()` function from the `dplyr` package in `tidyverse` to filter the penguin data dwon to Adelie females. Save the data in data frame called `adelie_f`. You can do this by including the following code chunk in your notebook:
+
+```{r}
+adelie_f <- penguins |>
+filter(sex == "female") |>
+filter(species == "Adelie")
+```
+
+9. Plot the bill depth vs bill length using code similar to this:
+
+```{r}
+adelie_f |>
+  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point() +
+  labs(x = "Bill depth (mm)",
+       y = "Bill length (mm)") +
+  theme_classic()
+```
+
+10. Is it appropriate to use Pearson or Spearman's rank measures of correlation with this data?
+
+11. Use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation.
+
+12. Use the `cor.test()` function to determine if the bill length and bill depth variabls are correlated. Use either Pearson or Spearman's rank, as appropriate.
+
+
+

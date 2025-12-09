@@ -355,7 +355,7 @@ window.Quarto = {
   <li><a href="#the-correlation-coefficient" id="toc-the-correlation-coefficient" class="nav-link active" data-scroll-target="#the-correlation-coefficient"><span class="header-section-number">9.1</span> The correlation coefficient</a></li>
   <li><a href="#different-values-of-r." id="toc-different-values-of-r." class="nav-link" data-scroll-target="#different-values-of-r."><span class="header-section-number">9.2</span> Different values of <em>r</em>.</a></li>
   <li><a href="#using-r-to-find-the-correlation-coefficient." id="toc-using-r-to-find-the-correlation-coefficient." class="nav-link" data-scroll-target="#using-r-to-find-the-correlation-coefficient."><span class="header-section-number">9.3</span> Using R to find the correlation coefficient.</a></li>
-  <li><a href="#correlations-for-real-data" id="toc-correlations-for-real-data" class="nav-link" data-scroll-target="#correlations-for-real-data"><span class="header-section-number">9.4</span> Correlations for real data</a>
+  <li><a href="#sec-iris-correlation" id="toc-sec-iris-correlation" class="nav-link" data-scroll-target="#sec-iris-correlation"><span class="header-section-number">9.4</span> Correlations for real data</a>
   <ul class="collapse">
   <li><a href="#what-we-can-tell-from-plotting-the-data" id="toc-what-we-can-tell-from-plotting-the-data" class="nav-link" data-scroll-target="#what-we-can-tell-from-plotting-the-data"><span class="header-section-number">9.4.1</span> What we can tell from plotting the data</a></li>
   <li><a href="#test-for-normality" id="toc-test-for-normality" class="nav-link" data-scroll-target="#test-for-normality"><span class="header-section-number">9.4.2</span> Test for normality</a></li>
@@ -506,13 +506,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1674, df = 48, p-value = 4.028e-12
+t = 9.1436, df = 48, p-value = 4.365e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6677264 0.8805945
+ 0.6665748 0.8801277
 sample estimates:
-      cor 
-0.7977957 </code></pre>
+    cor 
+0.79704 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -530,8 +530,8 @@ sample estimates:
 </blockquote>
 <p>Note that when the <em>p</em>-value is much less than 0.05 as it is here we do not normally report its exact value, but simply write <em>p</em>&lt;0.01, or <em>p</em>&lt;0.001, and so on. The point is that these ways of reporting it tell the reader that <em>p</em> is <em>way</em> less than 0.05. This is all they need to know to see that we can confidently reject the null hypothesis.</p>
 </section>
-<section id="correlations-for-real-data" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="correlations-for-real-data"><span class="header-section-number">9.4</span> Correlations for real data</h2>
+<section id="sec-iris-correlation" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-iris-correlation"><span class="header-section-number">9.4</span> Correlations for real data</h2>
 <p>Let us look at the Iris data set that is built into R. It contains values for the Sepal Width, Sepal Length, Petal Width and Petal Length for samples of 50 plants from each of three species of Iris, <em>setosa</em>, <em>versicolor</em> and <em>virginica</em>. Here are the first few rows:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
@@ -694,7 +694,7 @@ sample estimates:
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.247, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.267, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -920,26 +920,17 @@ sample estimates:
 </section>
 <section id="exercise-3" class="level2" data-number="9.12">
 <h2 data-number="9.12" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">9.12</span> Exercise 3</h2>
-<p>Open a new R notebook</p>
-<p>In the usual way, include to start with code chunks to</p>
 <ol type="1">
-<li>Load the packages needed <code>tidyverse</code> and <code>here</code>.</li>
-<li>Read the data set <code>iris.csv</code> (which should be in your data folder already) into an object called <code>iris</code></li>
+<li><p>If you haven’t done so already, click on this link to download the practice project for correlation.</p></li>
+<li><p>Open this project in RStudio by navigating to the project then clicking on the <code>correlation.Rproj</code> file</p></li>
+<li><p>Open the notebook <code>correlation.qmd</code> that you will find in the notebooks subfolder.</p></li>
+<li><p>Run the initial code chunks to load packages and the penguin and iris data</p></li>
+<li><p>Check that you have created data frames called <code>penguins</code> and <code>iris</code></p></li>
+<li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, create a faceted plot of petal length against petal width for each species.</p></li>
+<li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, now calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
 </ol>
-<p>You can do this with this code chunk:</p>
-<pre><code>```{r}     
-filepath&lt;-here("data","iris.csv")
-iris&lt;-read_csv(filepath)
-glimpse(iris)
-```</code></pre>
-<ol start="4" type="1">
-<li><p>Create a faceted plot of sepal length against sepal width for each species.</p></li>
-<li><p>Calculate the Pearson correlation coefficient between sepal length and sepal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
-</ol>
-<p>For (4) and (5) you can adapt code used on the main Correlation tab.</p>
-<p>Now:</p>
 <ul>
-<li>Does it appear that the sepal length and sepal width are correlated for each species?<br>
+<li>Does it appear that the petal length and petal width are correlated for each species?<br>
 </li>
 <li>Is the correlation positive or negative?<br>
 </li>
@@ -947,6 +938,12 @@ glimpse(iris)
 </li>
 <li>Do the correlation coefficients make sense, given the plots?</li>
 </ul>
+<ol start="8" type="1">
+<li>Use the <code>filter()</code> function from the <code>dplyr</code> package in <code>tidyverse</code> to filter the penguin data dwon to Adelie females. Save the data in data frame called <code>adelie_f</code>. You can do this by including the following code chunk in your notebook:</li>
+</ol>
+<pre><code>::: {.cell layout-align="center"}
+
+:::</code></pre>
 
 
 </section>
