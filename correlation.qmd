@@ -4,9 +4,9 @@
 options(tinytex.verbose = TRUE)
 ```
 
-This guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.
+Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.
 
-For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/correlation/archive/refs/heads/main.zip)
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 
 
 ```{r global-options, include=FALSE,echo=FALSE}
@@ -1003,17 +1003,15 @@ glimpse(iris)
 iris <- iris |> clean_names()
 ```
 
-1. If you haven't done so already, click on [this link](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) to download the practice project for correlation. 
+1. If you haven't done so already, click on [this link](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) to download the practice project for correlation. You may then need to unzip it.
 
-[this link](https://github.com/mbh038/correlation/archive/refs/heads/main.zip)
-
-2. Open this project in RStudio by navigating to the project then clicking on the `correlation.Rproj` file
+2. Open the project in RStudio using File/Open Project then navigating to the project and clicking on the `correlation.Rproj` file
 
 3. Open the notebook `correlation.qmd` that you will find in the notebooks subfolder.
 
 4. Run the initial code chunks to load packages and the penguin and iris data
 
-5. Check that you have created data frames called `penguins` and `iris`
+5. Check in the Environment pane that you have created data frames called `penguins` and `iris`
 
 6. Using the code in section @sec-iris-correlation as a guide, create a faceted plot of petal length against petal width for each species. 
 
@@ -1025,19 +1023,19 @@ iris <- iris |> clean_names()
 -   For which species is the correlation strongest?\
 -   Do the correlation coefficients make sense, given the plots?
 
-8. Use the `filter()` function from the `dplyr` package in `tidyverse` to filter the penguin data dwon to Adelie females. Save the data in data frame called `adelie_f`. You can do this by including the following code chunk in your notebook:
+8. Use the `filter()` function from the `dplyr` package in `tidyverse` to filter the penguin data down to Gentoo males. Save the data in data frame called `gentoo_m`. You can do this by including the following code chunk in your notebook:
 
-```{r}
-adelie_f <- penguins |>
-filter(sex == "female") |>
-filter(species == "Adelie")
+```{{r}}
+gentoo_m <- penguins |>
+filter(sex == "male") |>
+filter(species == "Gentoo")
 ```
 
 9. Plot the bill depth vs bill length using code similar to this:
 
 
 ```{{r}}
-adelie_f |>
+gentoo_m |>
   ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +
   geom_point() +
   labs(x = "Bill depth (mm)",
@@ -1050,7 +1048,7 @@ adelie_f |>
 
 11. Use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation.
 
-12. Use the `cor.test()` function to determine if the bill length and bill depth variabls are correlated. Use either Pearson or Spearman's rank, as appropriate.
+12. Use the `cor.test()` function with the appropriate method argument (`method = "pearson"` or `method = "spearman"`), as appropriate, to determine if the bill length and bill depth variables are correlated.
 
 
 
