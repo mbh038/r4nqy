@@ -405,8 +405,8 @@ window.Quarto = {
 </header>
 
 
-<p>This guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.</p>
-<p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this RStudio project folder</a></p>
+<p>Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.</p>
+<p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and try out the exercises at the end.</p>
 <p>The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -507,13 +507,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1558, df = 48, p-value = 4.189e-12
+t = 9.1571, df = 48, p-value = 4.17e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6671635 0.8803664
+ 0.6672286 0.8803928
 sample estimates:
       cor 
-0.7974264 </code></pre>
+0.7974691 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -695,7 +695,7 @@ sample estimates:
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.444, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.066, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -922,14 +922,11 @@ sample estimates:
 <section id="exercise-3" class="level2" data-number="9.12">
 <h2 data-number="9.12" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">9.12</span> Exercise 3</h2>
 <ol type="1">
-<li>If you haven’t done so already, click on <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this link</a> to download the practice project for correlation.</li>
-</ol>
-<p><a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this link</a></p>
-<ol start="2" type="1">
-<li><p>Open this project in RStudio by navigating to the project then clicking on the <code>correlation.Rproj</code> file</p></li>
+<li><p>If you haven’t done so already, click on <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this link</a> to download the practice project for correlation. You may then need to unzip it.</p></li>
+<li><p>Open the project in RStudio using File/Open Project then navigating to the project and clicking on the <code>correlation.Rproj</code> file</p></li>
 <li><p>Open the notebook <code>correlation.qmd</code> that you will find in the notebooks subfolder.</p></li>
 <li><p>Run the initial code chunks to load packages and the penguin and iris data</p></li>
-<li><p>Check that you have created data frames called <code>penguins</code> and <code>iris</code></p></li>
+<li><p>Check in the Environment pane that you have created data frames called <code>penguins</code> and <code>iris</code></p></li>
 <li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, create a faceted plot of petal length against petal width for each species.</p></li>
 <li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, now calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
 </ol>
@@ -943,23 +940,28 @@ sample estimates:
 <li>Do the correlation coefficients make sense, given the plots?</li>
 </ul>
 <ol start="8" type="1">
-<li>Use the <code>filter()</code> function from the <code>dplyr</code> package in <code>tidyverse</code> to filter the penguin data dwon to Adelie females. Save the data in data frame called <code>adelie_f</code>. You can do this by including the following code chunk in your notebook:</li>
+<li>Use the <code>filter()</code> function from the <code>dplyr</code> package in <code>tidyverse</code> to filter the penguin data down to Gentoo males. Save the data in data frame called <code>gentoo_m</code>. You can do this by including the following code chunk in your notebook:</li>
 </ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m &lt;- penguins |&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="in">filter(sex == "male") |&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="in">filter(species == "Gentoo")</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="9" type="1">
 <li>Plot the bill depth vs bill length using code similar to this:</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="in">adelie_f |&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "Bill depth (mm)",</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Bill length (mm)") +</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_classic()</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m |&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "Bill depth (mm)",</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Bill length (mm)") +</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_classic()</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="10" type="1">
 <li><p>Is it appropriate to use Pearson or Spearman’s rank measures of correlation with this data?</p></li>
 <li><p>Use the <code>shapiro.test()</code> function to determine if it is OK to use the Pearson measure of correlation.</p></li>
-<li><p>Use the <code>cor.test()</code> function to determine if the bill length and bill depth variabls are correlated. Use either Pearson or Spearman’s rank, as appropriate.</p></li>
+<li><p>Use the <code>cor.test()</code> function with the appropriate method argument (<code>method = "pearson"</code> or <code>method = "spearman"</code>), as appropriate, to determine if the bill length and bill depth variables are correlated.</p></li>
 </ol>
 
 
