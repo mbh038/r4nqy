@@ -102,8 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -362,7 +360,7 @@ window.Quarto = {
   <li><a href="#calculate-the-correlation-coefficients" id="toc-calculate-the-correlation-coefficients" class="nav-link" data-scroll-target="#calculate-the-correlation-coefficients"><span class="header-section-number">9.4.3</span> Calculate the correlation coefficients</a></li>
   </ul></li>
   <li><a href="#the-problem-of-missing-confounding-variables" id="toc-the-problem-of-missing-confounding-variables" class="nav-link" data-scroll-target="#the-problem-of-missing-confounding-variables"><span class="header-section-number">9.5</span> The problem of missing confounding variables</a></li>
-  <li><a href="#the-correlation-coefficient-measures-the-degree-of-linear-association." id="toc-the-correlation-coefficient-measures-the-degree-of-linear-association." class="nav-link" data-scroll-target="#the-correlation-coefficient-measures-the-degree-of-linear-association."><span class="header-section-number">9.6</span> The correlation coefficient measures the degree of <em>linear</em> association.</a>
+  <li><a href="#the-pearson-correlation-coefficient-measures-the-degree-of-linear-association." id="toc-the-pearson-correlation-coefficient-measures-the-degree-of-linear-association." class="nav-link" data-scroll-target="#the-pearson-correlation-coefficient-measures-the-degree-of-linear-association."><span class="header-section-number">9.6</span> The Pearson correlation coefficient measures the degree of <em>linear</em> association.</a>
   <ul class="collapse">
   <li><a href="#pearson-correlation-coefficient" id="toc-pearson-correlation-coefficient" class="nav-link" data-scroll-target="#pearson-correlation-coefficient"><span class="header-section-number">9.6.1</span> Pearson correlation coefficient</a></li>
   <li><a href="#spearmans-rank-correlation-coefficient-rsp" id="toc-spearmans-rank-correlation-coefficient-rsp" class="nav-link" data-scroll-target="#spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></a></li>
@@ -499,21 +497,21 @@ window.Quarto = {
 </section>
 <section id="using-r-to-find-the-correlation-coefficient." class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="using-r-to-find-the-correlation-coefficient."><span class="header-section-number">9.3</span> Using R to find the correlation coefficient.</h2>
-<p>First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. We will take the <em>x</em> and <em>y</em> data used above for which the correlation coefficient was fixed to be 0.8</p>
+<p>First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. Let us suppose that we have columns called <code>x</code> and <code>y</code> within a data frame called <code>df</code>, and that the correlation coefficient between these data is in fact 0.8.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x,y,<span class="at">method=</span><span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y, <span class="at">method =</span> <span class="st">"pearson"</span>, <span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1571, df = 48, p-value = 4.17e-12
+t = 9.3577, df = 48, p-value = 2.125e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6672286 0.8803928
+ 0.6767444 0.8842363
 sample estimates:
       cor 
-0.7974691 </code></pre>
+0.8036991 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -549,14 +547,14 @@ sample estimates:
 <p>First, let’s plot the data</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Sepal.Width,<span class="at">y=</span>Sepal.Length,<span class="at">colour=</span>Species)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">colour =</span> Species)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Sepal Width (mm)"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Sepal Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species,<span class="at">nrow=</span><span class="dv">1</span>,<span class="at">scales=</span><span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Width (mm)"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sepal Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background=</span><span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -573,6 +571,42 @@ sample estimates:
 <h3 data-number="9.4.2" class="anchored" data-anchor-id="test-for-normality"><span class="header-section-number">9.4.2</span> Test for normality</h3>
 <p>It does look as though there is a plausibly linear relationship between sepal width and length, so we might be able to use the Pearson method for calculating correlation coefficient. This is the ‘parametric’ method that is more powerful than the ‘non-parametric’ alternative, the Spearman’s rank method.</p>
 <p>In principle, however, this method requires that each group of the data be approximately normally distributed around its repective mean (that is what the word parametric is getting at), so we ought to test for this. We can do this either graphically or using a normality test such as the Shapiro wilk test. Let us do the latter here:</p>
+<p>First we do it for one species, for example the <code>setosa</code>. We can use the <code>filter</code> function from the <code>dplyr</code> packages within <code>tidyverse</code> to separate the data for this species from that for the others. We will save it as a new data frame called <code>setosa</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">"setosa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we use the <code>shapiro.test()</code> function to assess the normality of the <code>Sepal.Length</code> column data</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(setosa<span class="sc">$</span>Sepal.Length)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Note the use of the dollar notation to pick out a particular column of a data frame. Here we pick out the <code>Sepal.Length</code> column of the <code>setosa</code> data frame.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  setosa$Sepal.Length
+W = 0.9777, p-value = 0.4595</code></pre>
+</div>
+</div>
+<p>and then of the <code>Sepal.Width</code> column of data:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(setosa<span class="sc">$</span>Sepal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  setosa$Sepal.Width
+W = 0.97172, p-value = 0.2715</code></pre>
+</div>
+</div>
+<p>WHen we do it for all species, for both sepal width and sepal length, we find</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -590,51 +624,19 @@ sample estimates:
 <p>Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for <em>versicolar</em> and <em>virginica</em> than it is for <em>setosa</em>. Knowing the sepal width for that species gives you a much better idea of the sepal length, and vice-versa, than is true for the other two species.</p>
 <p>Let us find out:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>estimate,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lower.bound95=</span><span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">upper.bound95=</span><span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"p value"</span><span class="ot">=</span><span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>p.value) <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Species</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">r</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">lower.bound95</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">upper.bound95</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">p value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">setosa</td>
-<td style="text-align: right;">0.743</td>
-<td style="text-align: right;">0.585</td>
-<td style="text-align: right;">0.846</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">versicolor</td>
-<td style="text-align: right;">0.526</td>
-<td style="text-align: right;">0.290</td>
-<td style="text-align: right;">0.702</td>
-<td style="text-align: right;">0.000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">virginica</td>
-<td style="text-align: right;">0.457</td>
-<td style="text-align: right;">0.205</td>
-<td style="text-align: right;">0.653</td>
-<td style="text-align: right;">0.001</td>
-</tr>
-</tbody>
-</table>
-
-
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>estimate,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lower.bound95 =</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">upper.bound95 =</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"p value"</span> <span class="ot">=</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  Species        r lower.bound95 upper.bound95 `p value`
+  &lt;fct&gt;      &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;
+1 setosa     0.743         0.585         0.846  6.71e-10
+2 versicolor 0.526         0.290         0.702  8.77e- 5
+3 virginica  0.457         0.205         0.653  8.43e- 4</code></pre>
 </div>
 </div>
 <p>The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the 95% confidence interval for that coefficient and the <em>p</em>-value.</p>
@@ -645,43 +647,43 @@ sample estimates:
 <h2 data-number="9.5" class="anchored" data-anchor-id="the-problem-of-missing-confounding-variables"><span class="header-section-number">9.5</span> The problem of missing confounding variables</h2>
 <p>Suppose in the above analysis we had not distinguished between the three species. If we had plotted the speal length and width data we would have seen this:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Sepal Width (mm)"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Sepal Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Width (mm)"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sepal Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This looks like a weak <em>negative</em> correlation, as is confirmed by calculating the Spearman’s (in this case) rank correlation coefficient.</p>
-<p>If we had in fact accounted for species and plotted the data sepatately for each species, or together but distinguishing each species by colour we would have seen the falsity of that conclusion:</p>
+<p>If we had in fact accounted for species and plotted the data separately for each species, or together but distinguishing each species by colour we would have seen the falsity of that conclusion:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">colour =</span> Species)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Sepal Width (mm)"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Sepal Length (mm)"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">colour =</span> Species)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Width (mm)"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sepal Length (mm)"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The message here is that failure to spot importnat ‘missing’ variables, in the case species, can lead to grossly misleading ideas as to whether two variables are correlated, and if so, how.</p>
 </section>
-<section id="the-correlation-coefficient-measures-the-degree-of-linear-association." class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="the-correlation-coefficient-measures-the-degree-of-linear-association."><span class="header-section-number">9.6</span> The correlation coefficient measures the degree of <em>linear</em> association.</h2>
+<section id="the-pearson-correlation-coefficient-measures-the-degree-of-linear-association." class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="the-pearson-correlation-coefficient-measures-the-degree-of-linear-association."><span class="header-section-number">9.6</span> The Pearson correlation coefficient measures the degree of <em>linear</em> association.</h2>
 <section id="pearson-correlation-coefficient" class="level3" data-number="9.6.1">
 <h3 data-number="9.6.1" class="anchored" data-anchor-id="pearson-correlation-coefficient"><span class="header-section-number">9.6.1</span> Pearson correlation coefficient</h3>
 <p>Sometimes the Pearson correlation coefficient <em>r</em> is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.</p>
@@ -690,12 +692,12 @@ sample estimates:
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.066, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.101, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -706,7 +708,7 @@ sample estimates:
 </section>
 <section id="when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="when-is-it-appropriate-to-calculate-a-correlation-coefficient"><span class="header-section-number">9.7</span> When is it appropriate to calculate a correlation coefficient?</h2>
-<p>So, to sum up, we note that the Pearson correlation coefficient is a measure of <em>linear</em> association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman’s Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer <em>needs</em> to be a linear relationship between the two variables, but there must be a <em>monotonic</em> one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.</p>
+<p>So, to sum up, we note that the Pearson correlation coefficient is a measure of <em>linear</em> association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman’s Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer <em>needs</em> to be a linear relationship between the two variables, but there must at least be a <em>monotonic</em> one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant. There should be no peaks or troughs in the data.</p>
 </section>
 <section id="association-is-not-causation" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="association-is-not-causation"><span class="header-section-number">9.8</span> Association is not causation</h2>
@@ -725,7 +727,7 @@ sample estimates:
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -742,7 +744,7 @@ Oh, Y. et al.&nbsp;(2023) ‘Optimal tropical cyclone size parameter for determi
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -763,7 +765,7 @@ Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Clim
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -817,7 +819,7 @@ Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -831,7 +833,7 @@ Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -854,7 +856,7 @@ Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="correlation_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -870,7 +872,7 @@ Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition 
 <h4 data-number="9.11.0.1" class="anchored" data-anchor-id="tests-for-normality"><span class="header-section-number">9.11.0.1</span> Tests for normality</h4>
 <p>Shapiro-Wilk tests are carried out to check for normality of the two sets of data:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_depths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_depths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -880,7 +882,7 @@ W = 0.9831, p-value = 0.4364</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_lengths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_lengths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -895,8 +897,8 @@ W = 0.99117, p-value = 0.8952</code></pre>
 <h4 data-number="9.11.0.2" class="anchored" data-anchor-id="calculate-correlation-coefficient"><span class="header-section-number">9.11.0.2</span> Calculate correlation coefficient</h4>
 <p>For these data, we calculate the correlation coefficient using the Pearson method.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bill_depths,bill_lengths, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bill_depths,bill_lengths, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -926,9 +928,9 @@ sample estimates:
 <li><p>Open the project in RStudio using File/Open Project then navigating to the project and clicking on the <code>correlation.Rproj</code> file</p></li>
 <li><p>Open the notebook <code>correlation.qmd</code> that you will find in the notebooks subfolder.</p></li>
 <li><p>Run the initial code chunks to load packages and the penguin and iris data</p></li>
-<li><p>Check in the Environment pane that you have created data frames called <code>penguins</code> and <code>iris</code></p></li>
-<li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, create a faceted plot of petal length against petal width for each species.</p></li>
-<li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, now calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
+<li><p>Check in the Environment pane that you have created data frames called <code>penguins</code> and <code>iris</code>. Note the variable (column) names in each case.</p></li>
+<li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, create a faceted plot of petal length against petal width for each species. To do this you need to create a new code chunk, paste the code from <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> into it and then adapt it a necessary.</p></li>
+<li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
 </ol>
 <ul>
 <li>Does it appear that the petal length and petal width are correlated for each species?<br>
@@ -939,29 +941,30 @@ sample estimates:
 </li>
 <li>Do the correlation coefficients make sense, given the plots?</li>
 </ul>
+<p>Moving on to the penguin data….</p>
 <ol start="8" type="1">
-<li>Use the <code>filter()</code> function from the <code>dplyr</code> package in <code>tidyverse</code> to filter the penguin data down to Gentoo males. Save the data in data frame called <code>gentoo_m</code>. You can do this by including the following code chunk in your notebook:</li>
+<li>Use the <code>filter()</code> function from the <code>dplyr</code> package in <code>tidyverse</code> to filter the penguin data down to Gentoo males. Save the data in a data frame called <code>gentoo_m</code>. You can do this by including the following code chunk in your notebook:</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m &lt;- penguins |&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="in">filter(sex == "male") |&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="in">filter(species == "Gentoo")</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m &lt;- penguins |&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="in">filter(sex == "male") |&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="in">filter(species == "Gentoo")</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="9" type="1">
 <li>Plot the bill depth vs bill length using code similar to this:</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m |&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "Bill depth (mm)",</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Bill length (mm)") +</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_classic()</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m |&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "Bill depth (mm)",</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Bill length (mm)") +</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_classic()</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="10" type="1">
-<li><p>Is it appropriate to use Pearson or Spearman’s rank measures of correlation with this data?</p></li>
-<li><p>Use the <code>shapiro.test()</code> function to determine if it is OK to use the Pearson measure of correlation.</p></li>
-<li><p>Use the <code>cor.test()</code> function with the appropriate method argument (<code>method = "pearson"</code> or <code>method = "spearman"</code>), as appropriate, to determine if the bill length and bill depth variables are correlated.</p></li>
+<li><p>Look at the plot and decide if it is plausible that the association between bill depth and bill length is plausibly monotonic and if so, if it is plausibly linear. On this basis, before even considerinrg the issue of normality, decide if it is appropriate to use Pearson or Spearman’s rank measures of correlation with this data.</p></li>
+<li><p>If your answer to 10. was Yes, use the <code>shapiro.test()</code> function to determine if it is OK to use the Pearson measure of correlation. To do this you must separately test both the <code>bill_length_mm</code> and <code>bill_depth_mm</code> columns of the <code>gentoo_m</code> for normality. Remember that you can pick a prticular column of a data frame by using the dollar notation. For example, <code>df$X</code> would pick out the column <code>X</code> from the data frame <code>df</code>.</p></li>
+<li><p>Use the <code>cor.test()</code> function with the appropriate method argument (<code>method = "pearson"</code> or <code>method = "spearman"</code>), as appropriate, to determine if the bill length and bill depth variables are correlated. This means using an expression of the form <code>cor.test(X, Y, method = "pearson", data = df)</code> if you wanted to determine the Pearson correlation coefficient between the <code>X</code> and <code>Y</code> columns of the data frame <code>df</code>.</p></li>
 </ol>
 
 

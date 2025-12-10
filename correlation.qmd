@@ -8,7 +8,6 @@ Part of this guide to correlation draws heavily on the very helpful chapter in S
 
 For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 
-
 ```{r global-options, include=FALSE,echo=FALSE}
 knitr::opts_chunk$set(fig.width=9,
                       fig.height=5,
@@ -22,7 +21,6 @@ knitr::opts_chunk$set(fig.width=9,
 library(tidyverse)
 library(here)
 library(readxl)
-library(kableExtra)
 library(cowplot)
 library(gridExtra)
 
@@ -90,7 +88,6 @@ theme_bare_axes <- function () {
         )
 }
 ```
-
 
 The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
 
@@ -203,8 +200,6 @@ ellipse_plot<- big_faithful |>
 
 annotation_size<-3
 ```
-
-
 
 ```{r}
 p1<-ellipse_plot +
@@ -484,7 +479,7 @@ Correlations are always between -1 and 1, but can take any value in between. A p
 
 ## Using R to find the correlation coefficient.
 
-First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. We will take the *x* and *y* data used above for which the correlation coefficient was fixed to be 0.8
+First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. Let us suppose that we have columns called `x` and `y` within a data frame called `df`, and that the correlation coefficient between these data is in fact 0.8. 
 
 ```{r,echo=FALSE}
 df<-cor_data |>
@@ -494,11 +489,11 @@ x<-df$x
 y<-df$y
 ```
 
-```{r,echo=TRUE}
-cor.test(x,y,method="pearson")
+```{r, echo = TRUE}
+cor.test(x, y, method = "pearson", data = df)
 ```
 
-There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman's Rank method and write *method="spearman"* instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship. 
+There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman's Rank method and write *method="spearman"* instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.
 
 It is important to be able to interpret and report the output.
 
@@ -510,7 +505,7 @@ The *p*-value reported here is 4.3e-12. That is R's way of saying what in standa
 
 Further, it reports the actual correlation coefficient. Here it finds *r* = 0.797, which we happen to know to be correct because we created this data set ourselves, and a 95% confidence interval for the coefficient. The precise meaning of the confidence interval is subtle, but it is a kind of error bar for the correlation coefficient *r*. It means that if we drew sample after sample from the population and calculated the confidence interval for *r* for each sample, then 95% of the time that interval would capture the true value of *r*. Thus, you can reasonably think of the confidence interval as being the range of values within which the true population correlation coefficient plausibly lies, given the value that was found for the sample.
 
-If the *p*-value is small enough that we reject the null-hypothesis, then this confidence interval should not encompass zero. Why? Because any value inside the confidence interval is a plausible value for the population correlation coefficient andif we are going to reject the null hypothesis, then zero should *not* be a plausible value for the population correlation coefficient, given the data. 
+If the *p*-value is small enough that we reject the null-hypothesis, then this confidence interval should not encompass zero. Why? Because any value inside the confidence interval is a plausible value for the population correlation coefficient andif we are going to reject the null hypothesis, then zero should *not* be a plausible value for the population correlation coefficient, given the data.
 
 If the *p*-value is large enough that we do not reject the null hypothesis then this confidence interval *will* encompass zero. Why? Becuase if the confidence interval encompasses zero, then zero *is* a plausible value for the correlation coefficient and so we should not reject the null.
 
@@ -530,21 +525,20 @@ Let us look at the Iris data set that is built into R. It contains values for th
 head(iris)
 ```
 
-
 We will look to see if the data allow us to reject the idea that sepal width and sepal length are not correlated within the wider populations of each of these species:
 
 First, let's plot the data
 
 ```{r,echo=TRUE}
 iris |>
-  ggplot(aes(x=Sepal.Width,y=Sepal.Length,colour=Species)) +
+  ggplot(aes(x = Sepal.Width, y = Sepal.Length, colour = Species)) +
   geom_point() +
-  labs(x="Sepal Width (mm)",
-       y="Sepal Length (mm)") +
-  facet_wrap(~Species,nrow=1,scales="free") +
+  labs(x = "Sepal Width (mm)",
+       y = "Sepal Length (mm)") +
+  facet_wrap(~Species, nrow = 1, scales = "free") +
   theme_classic() +
-  theme(legend.position="none") +
-  theme(strip.background=element_blank())
+  theme(legend.position = "none") +
+  theme(strip.background = element_blank())
 ```
 
 ### What we can tell from plotting the data
@@ -553,16 +547,38 @@ Having seen the plots, do you think it plausible that there is a linear relation
 
 ### Test for normality
 
-It does look as though there is a plausibly linear relationship between sepal width and length, so we might be able to use the Pearson method for calculating correlation coefficient. This is the 'parametric' method that is more powerful than the 'non-parametric' alternative, the Spearman's rank method. 
+It does look as though there is a plausibly linear relationship between sepal width and length, so we might be able to use the Pearson method for calculating correlation coefficient. This is the 'parametric' method that is more powerful than the 'non-parametric' alternative, the Spearman's rank method.
 
 In principle, however, this method requires that each group of the data be approximately normally distributed around its repective mean (that is what the word parametric is getting at), so we ought to test for this. We can do this either graphically or using a normality test such as the Shapiro wilk test. Let us do the latter here:
+
+First we do it for one species, for example the `setosa`. We can use the `filter` function from the `dplyr` packages within `tidyverse` to separate the data for this species from that for the others. We will save it as a new data frame called `setosa`:
+
+```{r, echo = TRUE}
+setosa <- iris |>
+  filter(Species == "setosa")
+```
+
+Now we use the `shapiro.test()` function to assess the normality of the `Sepal.Length` column data
+
+```{r, echo = TRUE}
+shapiro.test(setosa$Sepal.Length)  # <1>
+```
+
+1. Note the use of the dollar notation to pick out a particular column of a data frame. Here we pick out the `Sepal.Length` column of the  `setosa` data frame.
+
+and then of the `Sepal.Width` column of data:
+
+```{r, echo = TRUE}
+shapiro.test(setosa$Sepal.Width)
+```
+
+WHen we do it for all species, for both sepal width and sepal length, we find
 
 ```{r}
 iris |>
   group_by(Species) |>
   summarise(Sepal.Length_p.val = shapiro.test(Sepal.Length)$p.value,Sepal.Width_p.val = shapiro.test(Sepal.Width)$p.value)
 ```
-
 
 All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear realtionships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!
 
@@ -576,12 +592,9 @@ Let us find out:
 iris |>
   group_by(Species) |>
   summarise(r=cor.test(Sepal.Width,Sepal.Length)$estimate,
-            lower.bound95=cor.test(Sepal.Width,Sepal.Length)$conf.int[1],
-            upper.bound95=cor.test(Sepal.Width,Sepal.Length)$conf.int[2],
-            "p value"=cor.test(Sepal.Width,Sepal.Length)$p.value) |>
-  kbl(digits=3) |>
-  kable_styling(full_width=0.7)
-  
+            lower.bound95 = cor.test(Sepal.Width,Sepal.Length)$conf.int[1],
+            upper.bound95 = cor.test(Sepal.Width,Sepal.Length)$conf.int[2],
+            "p value" = cor.test(Sepal.Width,Sepal.Length)$p.value)
 ```
 
 The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the 95% confidence interval for that coefficient and the *p*-value.
@@ -596,32 +609,29 @@ Suppose in the above analysis we had not distinguished between the three species
 iris |>
   ggplot(aes(x = Sepal.Width, y = Sepal.Length)) +
   geom_point() +
-  labs(x="Sepal Width (mm)",
-       y="Sepal Length (mm)") +
+  labs(x = "Sepal Width (mm)",
+       y = "Sepal Length (mm)") +
   theme_classic() +
   theme(legend.position = "none")
 ```
 
-This looks like a weak *negative* correlation, as is confirmed by calculating the Spearman's (in this case) rank correlation coefficient. 
+This looks like a weak *negative* correlation, as is confirmed by calculating the Spearman's (in this case) rank correlation coefficient.
 
-If we had in fact accounted for species and plotted the data sepatately for each species, or together but distinguishing each species by colour we would have seen the falsity of that conclusion:
+If we had in fact accounted for species and plotted the data separately for each species, or together but distinguishing each species by colour we would have seen the falsity of that conclusion:
 
 ```{r,echo=TRUE}
 iris |>
   ggplot(aes(x = Sepal.Width, y = Sepal.Length, colour = Species)) +
   geom_point() +
-  labs(x="Sepal Width (mm)",
-       y="Sepal Length (mm)",
+  labs(x = "Sepal Width (mm)",
+       y = "Sepal Length (mm)",
        colour = "Species") +
   theme_classic()
 ```
 
 The message here is that failure to spot importnat 'missing' variables, in the case species, can lead to grossly misleading ideas as to whether two variables are correlated, and if so, how.
 
-
-
-
-## The correlation coefficient measures the degree of *linear* association.
+## The Pearson correlation coefficient measures the degree of *linear* association.
 
 ### Pearson correlation coefficient
 
@@ -666,16 +676,15 @@ The outlier in the left-hand figure above brings the correlation coefficient dow
 
 The Spearman's rank correlation coefficient is a valid measure of the association between two variables providing their relationship is *monotonic* - that is, continuously rising or flat, or continuously falling or flat. Linear relationships are monotonic, so the Spearman's rank correlation coefficient is always a useful (if not necessarily the most powerful - Pearson would trump it if it could be used) measure of association for such cases, but it will still be valid when the relationship is monotonic but non-linear, whereas the Pearson correlation coefficient would *not* be.\
 
-Spearman's rank correlation coefficient *r*~Sp~ can also be be used for ordinal data, whereas Pearson's *r* coefficient cannot be. This makes it very useful in much of ecology, animal behaviour and environmental studies where ordinal scales are commonly used. 
+Spearman's rank correlation coefficient *r*~Sp~ can also be be used for ordinal data, whereas Pearson's *r* coefficient cannot be. This makes it very useful in much of ecology, animal behaviour and environmental studies where ordinal scales are commonly used.
 
 ## When is it appropriate to calculate a correlation coefficient?
-So, to sum up, we note that the Pearson correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.
 
-
+So, to sum up, we note that the Pearson correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must at least be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant. There should be no peaks or troughs in the data.
 
 ## Association is not causation
 
-A very important and often-repeated point to note is that correlation measures association. But association is not the same as causation. 
+A very important and often-repeated point to note is that correlation measures association. But association is not the same as causation.
 
 See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) for some amusing examples.
 
@@ -689,18 +698,13 @@ Cyclones are areas of low atmospheric pressure around which steep gradients in a
 cyclones_filepath <- here("data","cyclones.xlsx")
 ```
 
-
 ```{r, include = FALSE}
 pressure_wind_speed <- read_excel(cyclones_filepath,"pressure_wind_speed")
 ```
 
-
 #### South West Indian Ocean intense tropical cyclones 1973 - 2024
 
-Pressure gradients cause winds so it is reasoable to ask whether there a correlation between the peak wind speed and minimum pressure at the eye of cyclones. Here we look at data for for intense tropical cyclones in the south west Indian Ocean over the period 1973-2024. The data are taken (scraped using the R package `rvest`!) from:
-https://en.wikipedia.org/wiki/List_of_South-West_Indian_Ocean_intense_tropical_cyclones . The original data sources are available on that site.
-
-
+Pressure gradients cause winds so it is reasoable to ask whether there a correlation between the peak wind speed and minimum pressure at the eye of cyclones. Here we look at data for for intense tropical cyclones in the south west Indian Ocean over the period 1973-2024. The data are taken (scraped using the R package `rvest`!) from: https://en.wikipedia.org/wiki/List_of_South-West_Indian_Ocean_intense_tropical_cyclones . The original data sources are available on that site.
 
 ```{r, echo = FALSE}
 pressure_wind_speed |>
@@ -716,7 +720,6 @@ pressure_wind_speed |>
   theme_cowplot()
 ```
 
-
 In this figure we see that there is a weak but significant *negative* correlation between the peak recorded wind speed and the minimum recorded pressure at the centre of intense tropical cyclones that occurred in the south west Indian Ocean between 1973 and 2024. Neither wind speed nor pressure were normally distributed, so the Spearman's rank correlation coefficient *r*~Sp~ has been calculated, and not the Pearson *r* coefficient.
 
 #### Significant wave height vs size of cyclone
@@ -725,13 +728,12 @@ Here we look at results displayed in Figure 3f of\
 \
 Oh, Y. et al. (2023) ‘Optimal tropical cyclone size parameter for determining storm-induced maximum significant wave height’, Frontiers in Marine Science, 10, p. 1134579. Available at: https://doi.org/10.3389/fmars.2023.1134579.
 
-The authors seek to determine whether there is an association between the size of a cylone, measured by the 'R50' distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum 'significant wave height' of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3  of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.
+The authors seek to determine whether there is an association between the size of a cylone, measured by the 'R50' distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum 'significant wave height' of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.
 
 ```{r, include = FALSE}
 swh_vs_cyclone_size <- read_excel(cyclones_filepath,"cyclone_size_swh")
 glimpse(swh_vs_cyclone_size)
 ```
-
 
 ```{r, include = FALSE}
 shapiro.test(swh_vs_cyclone_size$R50)$p.value # <0.05
@@ -739,6 +741,7 @@ shapiro.test(swh_vs_cyclone_size$HS_max)$p.value # <0.05
 cor.test(swh_vs_cyclone_size$R50,swh_vs_cyclone_size$HS_max,method="pearson") # not valid, not linear anyway
 cor.test(swh_vs_cyclone_size$R50,swh_vs_cyclone_size$HS_max,method="spearman") # valid, monotonic
 ```
+
 ```{r}
 swh_vs_cyclone_size |>
   ggplot(aes(x = R50, y = HS_max)) +
@@ -761,7 +764,7 @@ Why do you think this relationship flattens off for larger storm sizes?\
 Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results From Monitoring in Washington, Oregon, and California</i>. <http://gis.nacse.org/lichenair/doc/Jovan2008.pdf>
 :::
 
-In this paper the authors investigate the utility of using lichen as bioindicators of air quality. is there an association between air quality and the abundance of this or that species of lichen? 
+In this paper the authors investigate the utility of using lichen as bioindicators of air quality. is there an association between air quality and the abundance of this or that species of lichen?
 
 ```{r}
 # myimages<-here("figures","lichen_abundance.png")
@@ -795,11 +798,11 @@ lichen |>
   theme(axis.minor.ticks.length = rel(0.5))
 ```
 
-  \
-We note that the relationship between air quality score and proportion of nitrophyte abundance is plausibly linear.  \
+\
+We note that the relationship between air quality score and proportion of nitrophyte abundance is plausibly linear.\
 \
 
-There is a strong negative correlation (*r*~Sp~=-0.78, *p*<0.001) between air quality score and proportion of nitrophyte lichen. This suggests that this proportion can be used as a bioindicator of air quality.  \
+There is a strong negative correlation (*r*~Sp~=-0.78, *p*\<0.001) between air quality score and proportion of nitrophyte lichen. This suggests that this proportion can be used as a bioindicator of air quality.\
 
 \
 A Spearman's rank correlation coefficient was calculated in this case rather than a Pearson correlation coefficient, despite the fact that both the *x* and *y* variables are plausibly drawn from normally distributed populations of values, according to a Shapiro-Wilk test. The problem is that both the air quality score and the proportion of nitrophyte abundance are ordinal variables - something we learn from reading the paper in which this figure appears. This means that analysis using parametric tests such as the Pearson method for determining linear correlation are not appropriate. A non-parametric method such as Spearman's rank method can be used instead.\
@@ -827,9 +830,11 @@ Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition 
 myimages<-here("figures","bird_shot_ingestion.png")
 knitr::include_graphics(myimages)
 ```
-This figure is from a study on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot. 
+
+This figure is from a study on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.
 
 There is a clear negative trend here that is plausibly linear, or at least monotonic. Shapiro-Wilk tests show that neither data set is plausibly drawn from a normally distributed population, so a Spearman's rank correlation coefficient is calculated. The result is $r_{\text{Sp}} = -0.697, p < 0.01$ so we can say that there is a evidence of a significant and strong negative correlation between lead shot ingestion of waterbird species and their population trends.
+
 ```{r, include = FALSE}
 
 birds_lead <- read_csv(here("data","birds_lead_shot.csv"),skip=5)
@@ -841,7 +846,9 @@ shapiro.test(birds_lead$pop_trend) # p = 0.030
 #Have to use Spearman's rank
 cor.test(birds_lead$pc_lead,birds_lead$pop_trend, method = "spearman")
 ```
+
 ### Heart rate vs life expectancy
+
 ```{r}
 # myimages<-here("figures","heart_rate_vs_age.png")
 # knitr::include_graphics(myimages)
@@ -851,19 +858,18 @@ cor.test(birds_lead$pc_lead,birds_lead$pop_trend, method = "spearman")
 hr_le  <- read_csv(here("data","heart_rate_vs_age.csv"))
 glimpse(hr_le)
 ```
+
 ```{r, include = FALSE}
 shapiro.test(hr_le$age)
 ```
+
 ```{r, include=FALSE}
 shapiro.test(hr_le$lg10_hr)
 ```
 
-
-
 ```{r, include = FALSE}
 cor.test(hr_le$age, hr_le$lg10_hr)
 ```
-
 
 ```{r, echo = FALSE}
 
@@ -876,6 +882,7 @@ hr_le  |>
     annotate("text", x = 60, y = 2.5, label = deparse(bquote(italic(r)==-0.858~","~italic(p)<0.001)), parse = TRUE) +
   theme_cowplot()
 ```
+
 Here we see a strong negative linear correlation between the life expectancy of different species and the log of the mean heart rate in beats per minute. On this plot, humans are almost an outlier. In this case, use of a Shapirro Wilk test showed that both life expectancy and log of the heart rate were found to be consistent with being drawn from normally distributed populations, so the Pearson method was used to calculate the correlation coefficient.
 
 ## Exercise 1
@@ -892,7 +899,6 @@ ggplot(aes(x=x,y=y)) +
   theme_bare_axes()
 }
 ```
-
 
 ```{r}
 x<-seq(0,10,0.1)
@@ -911,20 +917,20 @@ p6 <- cor_plot(d6)
 
 plot_grid(p1,p6,p4,p3,p2,p5,nrow=2,labels="AUTO",hjust=-4, label_colour= "darkred")
 ```
-Plots A to F above show scatter plots of different data sets _Y_ against _X_. 
 
-* Which of them show linear behaviour?
-* Which of them show monotonic behaviour?
-* For which of them might it be appropriate to calculate the following correlation coefficients between _X_ and _Y_?
-  * Pearson *r*
-  * Spearman rank *r*~sp~
-  
-  
+Plots A to F above show scatter plots of different data sets *Y* against *X*.
+
+-   Which of them show linear behaviour?
+-   Which of them show monotonic behaviour?
+-   For which of them might it be appropriate to calculate the following correlation coefficients between *X* and *Y*?
+    -   Pearson *r*
+    -   Spearman rank *r*~sp~
+
 ## Exercise 2
 
 Measurements were made on female Adelie penguins on a series of islands in the Antarctic. The bill lengths and depths of 73 individuals were recorded and are shown in the plot below.
 
-```{r,include = FALSE}    
+```{r,include = FALSE}
 filepath<-here("data","difference_data.xlsx")
 penguins<-read_excel(filepath,"penguins")
 # glimpse(penguins)
@@ -938,9 +944,6 @@ bill_lengths <- adelieF |> dplyr::select(bill_length_mm) |> pull()
 bill_depths <- adelieF |> dplyr::select(bill_depth_mm) |> pull()
 ```
 
-
-
-
 ```{r, echo=FALSE}
 adelieF |>
   ggplot(aes(x=bill_length_mm, y = bill_depth_mm)) +
@@ -949,12 +952,13 @@ adelieF |>
        y = "Bill depth (mm") +
   theme_cowplot()
 ```
-From this information and  plot, decide
 
-* Whether it is plausible that there is a linear relationship between the bill depths and lengths within the data set
-* Whether the correlation coefficient within the data set is likely to be positive or negative
-* Whether the correlation is 'strong' or 'weak' ie is the absolute value of the correlation coefficient likely to be close to 1 or close to zero
-* Whether there might be evidence from this data that there is any correlation between bill depth and bill length in the population from which this data set was drawn.
+From this information and plot, decide
+
+-   Whether it is plausible that there is a linear relationship between the bill depths and lengths within the data set
+-   Whether the correlation coefficient within the data set is likely to be positive or negative
+-   Whether the correlation is 'strong' or 'weak' ie is the absolute value of the correlation coefficient likely to be close to 1 or close to zero
+-   Whether there might be evidence from this data that there is any correlation between bill depth and bill length in the population from which this data set was drawn.
 
 #### Tests for normality
 
@@ -963,11 +967,12 @@ Shapiro-Wilk tests are carried out to check for normality of the two sets of dat
 ```{r, echo = TRUE}
 shapiro.test(bill_depths)
 ```
+
 ```{r, echo = TRUE}
 shapiro.test(bill_lengths)
 ```
 
-On this basis, we see that we can use the Pearson  method to calculate the correlation coefficient between bill depth and bill length. What is telling us this?
+On this basis, we see that we can use the Pearson method to calculate the correlation coefficient between bill depth and bill length. What is telling us this?
 
 #### Calculate correlation coefficient
 
@@ -980,15 +985,12 @@ cor.test(bill_depths,bill_lengths, method = "pearson")
 
 Which part(s) of this output tell us that:
 
-* There is a weak positive correlation between bill length and depth *within the sample*?
-* There is no evidence that this correlation exists in the wider population from which this data set was drawn? 
+-   There is a weak positive correlation between bill length and depth *within the sample*?
+-   There is no evidence that this correlation exists in the wider population from which this data set was drawn?
 
 How would you report this result?
 
-
-
 ## Exercise 3
-
 
 ```{r, include = FALSE}
 library(janitor)
@@ -1003,27 +1005,28 @@ glimpse(iris)
 iris <- iris |> clean_names()
 ```
 
-1. If you haven't done so already, click on [this link](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) to download the practice project for correlation. You may then need to unzip it.
+1.  If you haven't done so already, click on [this link](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) to download the practice project for correlation. You may then need to unzip it.
 
-2. Open the project in RStudio using File/Open Project then navigating to the project and clicking on the `correlation.Rproj` file
+2.  Open the project in RStudio using File/Open Project then navigating to the project and clicking on the `correlation.Rproj` file
 
-3. Open the notebook `correlation.qmd` that you will find in the notebooks subfolder.
+3.  Open the notebook `correlation.qmd` that you will find in the notebooks subfolder.
 
-4. Run the initial code chunks to load packages and the penguin and iris data
+4.  Run the initial code chunks to load packages and the penguin and iris data
 
-5. Check in the Environment pane that you have created data frames called `penguins` and `iris`
+5.  Check in the Environment pane that you have created data frames called `penguins` and `iris`. Note the variable (column) names in each case.
 
-6. Using the code in section @sec-iris-correlation as a guide, create a faceted plot of petal length against petal width for each species. 
+6.  Using the code in section @sec-iris-correlation as a guide, create a faceted plot of petal length against petal width for each species. To do this you need to create a new code chunk, paste the code from @sec-iris-correlation into it and then adapt it a necessary.
 
-7.  Again using @sec-iris-correlation as a guide, now calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the *p*-value for each species in a table.
-
+7.  Again using @sec-iris-correlation as a guide, calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the *p*-value for each species in a table.
 
 -   Does it appear that the petal length and petal width are correlated for each species?\
 -   Is the correlation positive or negative?\
 -   For which species is the correlation strongest?\
 -   Do the correlation coefficients make sense, given the plots?
 
-8. Use the `filter()` function from the `dplyr` package in `tidyverse` to filter the penguin data down to Gentoo males. Save the data in data frame called `gentoo_m`. You can do this by including the following code chunk in your notebook:
+Moving on to the penguin data....
+
+8.  Use the `filter()` function from the `dplyr` package in `tidyverse` to filter the penguin data down to Gentoo males. Save the data in a data frame called `gentoo_m`. You can do this by including the following code chunk in your notebook:
 
 ```{{r}}
 gentoo_m <- penguins |>
@@ -1031,8 +1034,7 @@ filter(sex == "male") |>
 filter(species == "Gentoo")
 ```
 
-9. Plot the bill depth vs bill length using code similar to this:
-
+9.  Plot the bill depth vs bill length using code similar to this:
 
 ```{{r}}
 gentoo_m |>
@@ -1043,12 +1045,8 @@ gentoo_m |>
   theme_classic()
 ```
 
+10. Look at the plot and decide if it is plausible that the association between bill depth and bill length is plausibly monotonic and if so, if it is plausibly linear. On this basis, before even considerinrg the issue of normality, decide if it is appropriate to use Pearson or Spearman's rank measures of correlation with this data.
 
-10. Is it appropriate to use Pearson or Spearman's rank measures of correlation with this data?
+11. If your answer to 10. was Yes, use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation. To do this  you must separately test both the `bill_length_mm` and `bill_depth_mm` columns of the `gentoo_m` for normality. Remember that you can pick a prticular column of a data frame by using the dollar notation. For example, `df$X` would pick out the column `X` from the data frame `df`.
 
-11. Use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation.
-
-12. Use the `cor.test()` function with the appropriate method argument (`method = "pearson"` or `method = "spearman"`), as appropriate, to determine if the bill length and bill depth variables are correlated.
-
-
-
+12. Use the `cor.test()` function with the appropriate method argument (`method = "pearson"` or `method = "spearman"`), as appropriate, to determine if the bill length and bill depth variables are correlated. This means using an expression of the form `cor.test(X, Y, method = "pearson", data = df)` if you wanted to determine the Pearson correlation coefficient between the `X` and `Y` columns of the data frame `df`.
