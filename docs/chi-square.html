@@ -395,7 +395,7 @@ window.Quarto = {
 <p>What we do is compare the counts we got to some <em>expected</em> value according either to chance or to some prior theory.</p>
 <p>For example:</p>
 <ul>
-<li><p>If we were tossing a fair coin 1000 times we would <em>expect</em> 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but probably not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?</p></li>
+<li><p>If we were tossing a fair coin 1000 times we would <em>expect</em> 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?</p></li>
 <li><p>If we threw a fair dice a large number of times we would <em>expect</em> each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score <em>roughly</em> 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?</p></li>
 <li><p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p></li>
 </ul>
@@ -466,8 +466,8 @@ X-squared = 1, df = 1, p-value = 0.3173</code></pre>
 <li><p>How would you report the result?</p></li>
 </ul>
 <p><strong>Exercise 2</strong></p>
-<p>Suppose someone told you that the competence of scientists was linked to their astrological zodiac sign. I won’t name all of these, but there are twelve of them: Pisces, Scorpio, Cancer etc. To test this hypothesis, you spend a lot of time on Primo and identify 240 scientists, currently active, that have each published at least five papers in high impact journals in the last year. All of these people, you presume, are successful scientists. You write to each of them and ask them their date of birth. Amazingly(!) all of them respond. You then assign each of them to a zodiac sign according to their birth date and get the following counts for each sign:</p>
-<p>In this code chunk we have typed out the counts and collected them as a vector, using the function <code>c()</code>, we have saved this under the name <code>stars</code>.</p>
+<p>Suppose someone told you that the competence of scientists was linked to their astrological zodiac sign. I won’t name all of these, but there are twelve of them: Pisces, Scorpio, Cancer etc. To test this hypothesis, you spend a lot of time on Primo and identify 240 scientists, currently active, that have each published at least five papers in high impact journals in the last year. All of these people, you presume, are successful scientists. You write to each of them and ask them their date of birth. Amazingly(!), all of them respond. You then assign each of them to a zodiac sign according to their birth date and get the following counts for each sign:</p>
+<p>In this code chunk we have typed out the counts and collected them as a vector, using the function `<code>c()`</code>. we have saved this under the name <code>stars</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stars<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -491,7 +491,7 @@ X-squared = 1, df = 1, p-value = 0.3173</code></pre>
 <ul>
 <li>H0: There is no association between the astrological star sign of a researcher and their success in science (who knew?)</li>
 <li>One twelfth for each sign ie a researcher is as likely to have one star sign as any other.</li>
-<li>The are count data, there are at least five counts for every sign and the counts are independent - any individual researcher only contributes to one of the twelve counts.</li>
+<li>These are count data, there are at least five counts for every sign and the counts are independent - any individual researcher only contributes to one of the twelve counts.</li>
 <li>Note that we do not need to include the second <code>p=...</code> argument in this case since the default presumption, that all proportions are equal, is true here.</li>
 </ul>
 <div class="cell">
@@ -717,8 +717,7 @@ library(cowplot)
 
 ```
 
-and so on...
-</code></pre>
+and so on...</code></pre>
 <p>On some Windows machines, a shortcut to getting the back ticks around each code chunk is to type <code>Ctrl-Alt-I</code>. Annoyingly, this does not seem to work on all Windows machines. If that is the case for you, you will have to type them in manually. On Macs, the shortcut is <code>option-Cmd-I</code>.</p>
 <p>Note that the code provided below is not the only way to do what we want here. You are encouraged to play with it. For example, if you want to see what a particular line does, you can ‘comment it out’ by putting a # at the begining of the line, then running that line again. What difference does it make?</p>
 </section>
