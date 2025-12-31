@@ -23,6 +23,7 @@ library(here)
 library(readxl)
 library(cowplot)
 library(gridExtra)
+library(janitor)
 
 
 library(UsingR) # for Pearson's father-son data
@@ -629,7 +630,7 @@ iris |>
   theme_classic()
 ```
 
-The message here is that failure to spot importnat 'missing' variables, in the case species, can lead to grossly misleading ideas as to whether two variables are correlated, and if so, how.
+The message here is that failure to spot important 'missing' variables, in the case species, can lead to grossly misleading ideas as to whether two variables are correlated, and if so, how.
 
 ## The Pearson correlation coefficient measures the degree of *linear* association.
 
@@ -637,7 +638,7 @@ The message here is that failure to spot importnat 'missing' variables, in the c
 
 Sometimes the Pearson correlation coefficient *r* is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.
 
-Consider first a data set where there is a very strong association between variables, but where the data sset contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by 'strong' that knowing the value of one variable gives you a very good idea of the value of the other.
+Consider first a data set where there is a very strong association between variables, but where the data set contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by 'strong' that knowing the value of one variable gives you a very good idea of the value of the other.
 
 ```{r}
 x1<-c(1,2,3,4,6)
@@ -682,13 +683,55 @@ Spearman's rank correlation coefficient *r*~Sp~ can also be be used for ordinal 
 
 So, to sum up, we note that the Pearson correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must at least be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant. There should be no peaks or troughs in the data.
 
-## Association is not causation
+## Association is not the smae as causation
 
-A very important and often-repeated point to note is that correlation measures association. But association is not the same as causation.
+A very important and often repeated point to note is that correlation measures the degree of linear (Pearson) or monotonic (Spearman) association. But association is not the same as causation. Two entities can have a strong degree of monotonic or linear association without there being any causal relation between the two. There could be a confounding variable that underlies the association. 
 
-See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) for some amusing examples.
+For example you would probaly find a strong positive correlation between the number of pubs in towns and the nubmer of churches. You would be mistaken, however, in thinking that this provides evidence that drink drives people to religion, or the reverse, since there is a very obvious confounding variable underlying this association, which is the population of the towns: the more people, the more pubs, the more churches, the more of pretty much anything.
+
+That said, if you spot a strong association beween two variables, it *may* be an indicator of a causal relationship, so it is at least worth pausing for thought to decide whether this is worthy of further investigation.
+
+Be careful though, as spurious correlations can easily arise. See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) for many amusing examples of these.
 
 ## Examples
+
+### Adult human heights
+
+Here we use data from [Our World in Data: Human Height](https://ourworldindata.org/human-height#all-charts_)
+
+The figure below shows the mean heights of adult men vs adult women in many different countries who were born in 1996. There is a strong positive and linear correlation between these heights (r~sp~ = 0.941, p < 0.001). The Spearman's rank correlation coefficient is calculated because the male mean heights are not normally distributed among themselves.
+
+```{r}
+adult_heights_filepath<-here("data",
+                     "mean-height-males-vs-females",
+                     "mean-height-males-vs-females.csv")
+adult_heights_1996 <- read_csv(adult_heights_filepath) |>
+  clean_names() |>
+  filter(year == 1996) |>
+  drop_na()
+```
+
+```{r}
+# shapiro.test(adult_heights_1996$mean_male_height_cm)
+# shapiro.test(adult_heights_1996$mean_female_height_cm)
+# cor.test(adult_heights_1996$mean_male_height_cm,adult_heights_1996$mean_female_height_cm, method="spearman")$p.value
+```
+
+```{r}
+adult_heights_1996 |>
+  ggplot(aes(x = mean_male_height_cm,
+             y = mean_female_height_cm, colour = world_region_according_to_owid)) +
+             geom_point() +
+             labs(x = "Mean female height (cm)",
+                  y = "Mean male height (cm)",
+                  colour = "Region") +
+  annotate("text", x = 179, y = 151, label = deparse(bquote(italic(r)[sp]==0.941~","~italic(p)<0.001)), parse = TRUE) +
+  scale_colour_brewer(palette = "Set2") +
+  theme_cowplot() +
+  theme(legend.position = c(0.05,0.75))
+
+```
+
 
 ### Cyclones
 
@@ -710,7 +753,7 @@ Pressure gradients cause winds so it is reasoable to ask whether there a correla
 pressure_wind_speed |>
   ggplot(aes(x = pressure, y = wind_speed)) +
   # geom_point(alpha=0.5) +
-  geom_jitter(width = 2, height = 2, alpha = 0.5) +
+  geom_jitter(width = 2, height = 2, alpha = 0.5, colour = "#386cb0") +
   scale_y_continuous(limits = c(150,230)) +
   labs(x = "Pressure (hPa)",
        y = "Wind speed (kph)") +
@@ -745,7 +788,7 @@ cor.test(swh_vs_cyclone_size$R50,swh_vs_cyclone_size$HS_max,method="spearman") #
 ```{r}
 swh_vs_cyclone_size |>
   ggplot(aes(x = R50, y = HS_max)) +
-  geom_point(size = 3, alpha = 0.5) +
+  geom_point(size = 3, alpha = 0.5, colour = "#386cb0") +
   labs(x = "Radius to 50 kph wind speed (km)",
        y = "Max. Significant wave height (m)") +
   scale_x_continuous(limits = c(40,260), breaks=seq(50,250,50)) +
@@ -782,7 +825,7 @@ cor.test(lichen$AQ,lichen$PNA,method="spearman")
 ```{r, echo = FALSE}
 lichen |>
   ggplot(aes(x = AQ, y = PNA)) +
-  geom_point(size = 3, alpha = 0.5) +
+  geom_point(size = 3, alpha = 0.5, colour = "#386cb0") +
   scale_x_continuous(limits=c(-1.6,1.6), breaks=seq(-1.5,1.5,0.5)) +
   guides(
     x = guide_axis(minor.ticks = TRUE),
@@ -833,7 +876,7 @@ knitr::include_graphics(myimages)
 
 This figure is from a study on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.
 
-There is a clear negative trend here that is plausibly linear, or at least monotonic. Shapiro-Wilk tests show that neither data set is plausibly drawn from a normally distributed population, so a Spearman's rank correlation coefficient is calculated. The result is $r_{\text{Sp}} = -0.697, p < 0.01$ so we can say that there is a evidence of a significant and strong negative correlation between lead shot ingestion of waterbird species and their population trends.
+There is a clear negative trend here that is plausibly linear, or at least monotonic. Shapiro-Wilk tests show that neither data set is plausibly drawn from a normally distributed population, so a Spearman's rank correlation coefficient is calculated. The result is $r_{\text{Sp}} = -0.697, p < 0.01$ so we can say that there is evidence of a significant and strong negative correlation between lead shot ingestion of waterbird species and their population trends.
 
 ```{r, include = FALSE}
 
@@ -875,7 +918,7 @@ cor.test(hr_le$age, hr_le$lg10_hr)
 
 hr_le  |>
   ggplot(aes(x = age, y=lg10_hr)) +
-  geom_point(size = 3, colour="gray60") +
+  geom_point(size = 3, colour="gray60", colour = "#386cb0") +
   geom_text(aes(label=Species), vjust = -0.9) +
   labs(x = "Life expectancy (years)",
        y = bquote("log"[10]~"Heart rate (bpm)")) +
@@ -883,7 +926,7 @@ hr_le  |>
   theme_cowplot()
 ```
 
-Here we see a strong negative linear correlation between the life expectancy of different species and the log of the mean heart rate in beats per minute. On this plot, humans are almost an outlier. In this case, use of a Shapirro Wilk test showed that both life expectancy and log of the heart rate were found to be consistent with being drawn from normally distributed populations, so the Pearson method was used to calculate the correlation coefficient.
+Here we see a strong negative linear correlation between the life expectancy of different species and the log of the mean heart rate in beats per minute. On this plot, humans are almost an outlier. In this case, use of a Shapiro-Wilk test showed that both life expectancy and log of the heart rate were found to be consistent with being drawn from normally distributed populations, so the Pearson method was used to calculate the correlation coefficient.
 
 ## Exercise 1
 
@@ -1047,6 +1090,6 @@ gentoo_m |>
 
 10. Look at the plot and decide if it is plausible that the association between bill depth and bill length is plausibly monotonic and if so, if it is plausibly linear. On this basis, before even considerinrg the issue of normality, decide if it is appropriate to use Pearson or Spearman's rank measures of correlation with this data.
 
-11. If your answer to 10. was Yes, use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation. To do this  you must separately test both the `bill_length_mm` and `bill_depth_mm` columns of the `gentoo_m` for normality. Remember that you can pick a prticular column of a data frame by using the dollar notation. For example, `df$X` would pick out the column `X` from the data frame `df`.
+11. If your answer to 10. was Yes, use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation. To do this  you must separately test both the `bill_length_mm` and `bill_depth_mm` columns of the `gentoo_m` for normality. Remember that you can pick a particular column of a data frame by using the dollar notation. For example, `df$X` would pick out the column `X` from the data frame `df`.
 
-12. Use the `cor.test()` function with the appropriate method argument (`method = "pearson"` or `method = "spearman"`), as appropriate, to determine if the bill length and bill depth variables are correlated. This means using an expression of the form `cor.test(X, Y, method = "pearson", data = df)` if you wanted to determine the Pearson correlation coefficient between the `X` and `Y` columns of the data frame `df`.
+12. Use the `cor.test()` function with the appropriate method argument (`method = "pearson"` or `method = "spearman"`), as appropriate, to determine if the bill length and bill depth variables are correlated. This means using an expression of the form `cor.test(df$X, df$Y, method = "pearson")` if you wanted to determine the Pearson correlation coefficient between the `X` and `Y` columns of the data frame `df`.

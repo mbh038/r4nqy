@@ -51,7 +51,7 @@ execute:
 
 Delete everything beneath this yaml section. The big empty space that then leaves you with is where you write your code. Remember that in quarto documents, the code goes in 'chunks' that are started and finished with by lines with three backticks. Any other text goes between the chunks and you can format this text using the simple rule of Markdown, available in the RStudio Help menu at `Help/Markdown Quick Reference`. Thus your script will end up looking something like this:
 
-```         
+````        
 ---
 title: "A typical workflow"
 author: "Who wrote this?"
@@ -63,13 +63,19 @@ execute:
   message: false
   warning: false
 ---
-```
 
 ## First header
 
-Any text we want to add. Note that a code chunk starts with {r} and ends with `
+Any text we want to add. Note that a code chunk starts with delimiters, like this:
 
-```{r}
+```{{r}}
+
+```
+
+
+Those are back-ticks, not apostrophes!
+
+```{{r}}
 library(tidyverse) # some actual R code
 ```
 
@@ -77,17 +83,19 @@ library(tidyverse) # some actual R code
 
 Any text we want to add to explain what this next chunk does
 
-````         
-```{r, include=FALSE}`r ''`
+```{{r}}
 library(tidyverse) # some actual R code
 ```
+
 ````
 
 ## Load Packages
 
-You will nearly always want the first five packages, and often you will appreciate the sixth, `janitor`. Others, such as `vegan` will be useful from time to time, depending on what you are doing. If any of these lines throw an error, it is most likely because you have not yet installed that package. Do so in the console pane (not in this script!) using the function `install.packages("name of package")`. Then run this whole chunk again.
+You will nearly always want the first five packages, and often you will appreciate the sixth, `janitor`. Others, such as `vegan` will be useful from time to time, depending on what you are doing. If any of these lines throw an error, it is most likely because of a typo or because you have not yet installed that package. Do so in the console pane (not in this script!) using the function `install.packages("name of package")`. Then run this whole chunk again.
 
 ```{r}
+#| echo: fenced
+
 library(tidyverse)
 library(here)
 library(ggfortify)
@@ -108,6 +116,8 @@ Here are some examples. In each case code here presumes that the data is stored 
 If you have your data in a `data` subfolder within your project, this chunk will work. Just substitute the name of your data file
 
 ```{r}
+#| echo: fenced
+
 filepath<-here("data","iris.csv")
 iris<-read_csv(filepath)
 glimpse(iris)
@@ -118,6 +128,8 @@ glimpse(iris)
 You will need to use `read_excel()` from the `readxl` package, and you have to specify the name of the worksheet that holds the data you want. You can, if you want, specify the exact range that is occupied by the data. However I suggest you avoid doing this unless it turns out that you need to do so. If your data is a nice, neat, rectangular block of rows and columns, you should find that you don't need to specify the range.
 
 ```{r}
+#| echo: fenced
+
 filepath<-here("data","difference_data.xlsx")
 iris<-read_excel(path = filepath,
                  sheet = "iris", # delete the comma if you choose not to specify the range in the line below
@@ -129,11 +141,13 @@ glimpse(iris)
 
 ### If from a URL
 
-You can load data into R directly from a URL if you are given one, and that is in fact how you will mainly access data to be used in this statistics text.
+You can load data into R directly from a URL if you are given one.
 
 here, we load data from a file stored in a ''repo' on my github account:
 
 ```{r}
+#| echo: fenced
+
 iris<-read_csv("https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/data/iris.csv") |>
   clean_names()
 glimpse(iris)
@@ -143,9 +157,11 @@ glimpse(iris)
 
 Often we need to do some sort of data 'wrangling' to get the data into the form we want. For example we may wish to tidy it (this has a particular meaning when applied to data sets), to remove rows with missing values, to filter out rows from sites or time periods that we don't want to include in our analysis, to create new columns and so on.
 
-For example, lets create a new data frame for just the *setosa* species of iris:
+For example, let's create a new data frame for just the *setosa* species of iris:
 
 ```{r}
+#| echo: fenced
+
 setosa <- iris |>
   filter(species == "setosa") # filter picks out rows according to criteria being satisfied in some column
 glimpse(setosa)
@@ -154,6 +170,8 @@ glimpse(setosa)
 or maybe we just want the columns that contain numeric data and not the one containing the species identifiers, which is text:
 
 ```{r}
+#| echo: fenced
+
 iris_numeric <- iris |>
   select(-species) # select() retains or leaves out particular columns. Here, we leave out the species column.
 glimpse(iris_numeric)
@@ -164,6 +182,8 @@ glimpse(iris_numeric)
 How big is the difference between the mean of this group over here and that group over there, and how big is that difference compared to the precision with which we know those means? We nearly always want to do this as a first way to get insight into whether we will or will not reject our hypothesis. For example, let's find the mean petal widths of the three species, the standard errors of those means and save the results to a data frame called `petal_summary`
 
 ```{r}
+#| echo: fenced
+
 petal_summary<-iris |>
   group_by(species) |>
   summarise(mean.Pwidth = mean(petal_width),
@@ -182,6 +202,8 @@ The next step is usually to plot the data in some way. We would typically use th
 We could plot a bar plot with error bars, working from the summary data frame that we created:
 
 ```{r}
+#| echo: fenced
+
 petal_summary |>
   ggplot(aes(x = species, y = mean.Pwidth)) +
   geom_col(fill="#a6bddb") + # this is the geom that gives us a bar plot when we have already done the calculations
@@ -213,6 +235,8 @@ Here are three other plot types that do show the distribution of petal widths fo
 ### Box plot
 
 ```{r}
+#| echo: fenced
+
 iris |>
   ggplot(aes(x=species, y=petal_width)) + # what we want to plot
   geom_boxplot(fill="#a6bddb",notch=FALSE) + # what kind of plot we want
@@ -229,6 +253,8 @@ Here, we have added the points themselves on top of the box plot. When there are
 A useful alternative to the box plot, especially when the data set is large, is the violin plot:
 
 ```{r}
+#| echo: fenced
+
 iris |>
   ggplot(aes(x = species, y = petal_width)) + # what we want to plot
   geom_violin(fill="#a6bddb",notch=TRUE) + # what kind of plot we want
@@ -246,6 +272,8 @@ A bit like a violin plot. This needs the package `ggridges` to be installed.
 
 ```{r}
 library(ggridges)
+#| echo: fenced
+
 iris |>
   ggplot(aes(x = petal_width,y = species)) + # what we want to plot
   geom_density_ridges(fill="#a6bddb") + # what kind of plot we want
@@ -266,6 +294,8 @@ The exact form of the analysis could take many forms. In a typical ecology proje
 ### Create the model object
 
 ```{r}
+#| echo: fenced
+
 pw.model <-lm (petal_width ~ species, data = iris)
 ```
 
@@ -274,6 +304,8 @@ pw.model <-lm (petal_width ~ species, data = iris)
 We won't go into this here, but an important step is to check that the data satisfy the often finicky requirements of whatever statistical test we have decided to use. The `autoplot()` function form the `ggfortify` package is great for doing this graphically.
 
 ```{r}
+#| echo: fenced
+
 autoplot( pw.model) + theme_cowplot()
 ```
 
@@ -304,6 +336,8 @@ Is there evidence for a difference between at least two of the mean values?
 To see if there is evidence for this, an ANOVA test calculate the ratio between the dfference *betweeN* the groups compared to the differences *within* the groups. it calls this ratio $F$. The bigger $F$ is, the more likely we are to reject the null hypothesis that there is no difference between he groups.
 
 ```{r}
+#| echo: fenced
+
 anova(pw.model)
 ```
 
@@ -316,6 +350,8 @@ The degrees of freedom `Df` tells us the number of independent pieces of informa
 Now that we have established that at least two species of iris have differing petal widths, we go onto investigate where the differences lie, and how big they are. This is important: effect sizes matter. It is one thing to establish that a difference is statistically significant (and typically even the tiniest difference can show up as significant in a study if the sample size is big enough), it is quite another to establish whether the difference is big enough to be scientifically interesting.
 
 ```{r}
+#| echo: fenced
+
 summary(pw.model)
 ```
 

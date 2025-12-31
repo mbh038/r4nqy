@@ -1,0 +1,55 @@
+{
+  "chart": {
+    "title": "Mean adult height by year of birth, males vs. females",
+    "subtitle": "Mean height for adult men versus adult women by year of birth i.e. data for 1996 is for men and women who were 18 years old in 2014.",
+    "xAxisLabel": "Mean female height",
+    "yAxisLabel": "Mean male height",
+    "citation": "NCD RisC, Human Height (2017)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/mean-height-males-vs-females?endpointsOnly=1&time=1996&overlay=download-data&v=1&csvType=filtered&useColumnShortNames=false",
+    "selection": []
+  },
+  "columns": {
+    "Mean male height (cm)": {
+      "titleShort": "Mean male height (cm)",
+      "titleLong": "Mean male height (cm)",
+      "unit": "",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 104381,
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “Mean male height (cm)” [dataset]. NCD RisC, Human Height (2017) [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/104381.metadata.json"
+    },
+    "Mean female height (cm)": {
+      "titleShort": "Mean female height (cm)",
+      "titleLong": "Mean female height (cm)",
+      "unit": "",
+      "timespan": "",
+      "type": "Numeric",
+      "owidVariableId": 104382,
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “Mean female height (cm)” [dataset]. NCD RisC, Human Height (2017) [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/104382.metadata.json"
+    },
+    "World region according to OWID": {
+      "titleShort": "World region according to OWID",
+      "titleLong": "World region according to OWID",
+      "descriptionShort": "Regions defined by Our World in Data, which are used in OWID charts and maps.",
+      "unit": "",
+      "timespan": "2023-2023",
+      "type": "Continent",
+      "owidVariableId": 900801,
+      "shortName": "owid_region",
+      "lastUpdated": "2023-01-01",
+      "citationShort": "Our World in Data – processed by Our World in Data",
+      "citationLong": "Our World in Data – processed by Our World in Data. “World region according to OWID” [dataset]. Our World in Data, “Regions” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/900801.metadata.json"
+    }
+  },
+  "dateDownloaded": "2025-12-31",
+  "activeFilters": {
+    "overlay": "download-data",
+    "time": "1996",
+    "endpointsOnly": "1"
+  }
+}
