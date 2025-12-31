@@ -22,7 +22,7 @@ What we do is compare the counts we got to some *expected* value according eithe
 
 For example:
 
--   If we were tossing a fair coin 1000 times we would *expect* 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but probably not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?
+-   If we were tossing a fair coin 1000 times we would *expect* 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?
 
 -   If we threw a fair dice a large number of times we would *expect* each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score *roughly* 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?
 
