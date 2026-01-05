@@ -10,3 +10,7 @@ Data analysis in the life sciences is only part of the wider process of forming 
 
 You are not expected to read this text from beginning to end, although you can if you want to. Each section explains.....
 
+## How to make a abook like this.
+
+Follow the [very useful guide](https://bartlettje.github.io/dissemination_quarto/) given by James Bartlett of Glasgow University.
+
