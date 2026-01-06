@@ -1,10 +1,17 @@
 # Test finder {.unnumbered}
 
-Use this flowchart to see which test is appropriate for your study design and your data:
+```{r, include = FALSE}
+library(here)
+```
+
+You can either use this [text version of a test finder](figures/test_finder_and_help.pdf), taken from [@gilbert2017]
+
+or use this flowchart to see which test is appropriate for your study design and your data:
 
 ```{mermaid, include = TRUE, echo = FALSE}
 
 %%| fig-width: 10
+%%| fig-align: "centre"
 %%| column: page-right
 
 flowchart TD
@@ -46,5 +53,3 @@ flowchart TD
 ```
 
 Now go to whichever chapter of this book covers the test you need.
-
-
