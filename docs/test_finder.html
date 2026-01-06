@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -310,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>You can either use this <a href="figures/test_finder_and_help.pdf">text version of a test finder</a>,</p>
+<p>You can either use this <a href="figures/test_finder_and_help.pdf">text version of a test finder</a>, taken from <span class="citation" data-cites="gilbert2017">(<a href="references.html#ref-gilbert2017" role="doc-biblioref">Gilbert, McGregor, and Barnard 2017</a>)</span></p>
 <p>or use this flowchart to see which test is appropriate for your study design and your data:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -366,6 +386,11 @@ flowchart TD
 <p>Now go to whichever chapter of this book covers the test you need.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-gilbert2017" class="csl-entry" role="listitem">
+Gilbert, Francis, Peter McGregor, and Chris Barnard. 2017. <em>Asking Questions in Biology; a Guide to Hypothesis Testing, Experimental Design and Presentation in Practical Work and Research Projects</em>. 5th ed. Benjamin Cummings.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
