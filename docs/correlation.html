@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -404,7 +424,7 @@ window.Quarto = {
 </header>
 
 
-<p>Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.</p>
+<p>Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman <em>et al.</em> <span class="citation" data-cites="freedman1991">(<a href="references.html#ref-freedman1991" role="doc-biblioref">Freedman et al. 1991</a>)</span>.</p>
 <p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and try out the exercises at the end.</p>
 <p>The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
 <div class="cell" data-layout-align="center">
@@ -506,13 +526,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.3396, df = 48, p-value = 2.258e-12
+t = 9.1194, df = 48, p-value = 4.736e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6758989 0.8838959
+ 0.6653996 0.8796508
 sample estimates:
       cor 
-0.8031467 </code></pre>
+0.7962685 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -698,7 +718,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.305, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.091, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -985,6 +1005,11 @@ sample estimates:
 </ol>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-freedman1991" class="csl-entry" role="listitem">
+Freedman, David, Robert Pisani, Roger Purves, and Ani Adhikari. 1991. <em>Statistics</em>. 2nd ed. W. W. Norton &amp; Company.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
