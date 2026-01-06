@@ -4,7 +4,7 @@
 options(tinytex.verbose = TRUE)
 ```
 
-Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.
+Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman *et al.* [@freedman1991].
 
 For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 
@@ -480,7 +480,7 @@ Correlations are always between -1 and 1, but can take any value in between. A p
 
 ## Using R to find the correlation coefficient.
 
-First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. Let us suppose that we have columns called `x` and `y` within a data frame called `df`, and that the correlation coefficient between these data is in fact 0.8. 
+First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. Let us suppose that we have columns called `x` and `y` within a data frame called `df`, and that the correlation coefficient between these data is in fact 0.8.
 
 ```{r,echo=FALSE}
 df<-cor_data |>
@@ -565,7 +565,7 @@ Now we use the `shapiro.test()` function to assess the normality of the `Sepal.L
 shapiro.test(setosa$Sepal.Length)  # <1>
 ```
 
-1. Note the use of the dollar notation to pick out a particular column of a data frame. Here we pick out the `Sepal.Length` column of the  `setosa` data frame.
+1.  Note the use of the dollar notation to pick out a particular column of a data frame. Here we pick out the `Sepal.Length` column of the `setosa` data frame.
 
 and then of the `Sepal.Width` column of data:
 
@@ -685,7 +685,7 @@ So, to sum up, we note that the Pearson correlation coefficient is a measure of 
 
 ## Association is not the smae as causation
 
-A very important and often repeated point to note is that correlation measures the degree of linear (Pearson) or monotonic (Spearman) association. But association is not the same as causation. Two entities can have a strong degree of monotonic or linear association without there being any causal relation between the two. There could be a confounding variable that underlies the association. 
+A very important and often repeated point to note is that correlation measures the degree of linear (Pearson) or monotonic (Spearman) association. But association is not the same as causation. Two entities can have a strong degree of monotonic or linear association without there being any causal relation between the two. There could be a confounding variable that underlies the association.
 
 For example you would probaly find a strong positive correlation between the number of pubs in towns and the nubmer of churches. You would be mistaken, however, in thinking that this provides evidence that drink drives people to religion, or the reverse, since there is a very obvious confounding variable underlying this association, which is the population of the towns: the more people, the more pubs, the more churches, the more of pretty much anything.
 
@@ -699,7 +699,7 @@ Be careful though, as spurious correlations can easily arise. See [Spurious Corr
 
 Here we use data from [Our World in Data: Human Height](https://ourworldindata.org/human-height#all-charts_)
 
-The figure below shows the mean heights of adult men vs adult women in many different countries who were born in 1996. There is a strong positive and linear correlation between these heights (r~sp~ = 0.941, p < 0.001). The Spearman's rank correlation coefficient is calculated because the male mean heights are not normally distributed among themselves.
+The figure below shows the mean heights of adult men vs adult women in many different countries who were born in 1996. There is a strong positive and linear correlation between these heights (r~sp~ = 0.941, p \< 0.001). The Spearman's rank correlation coefficient is calculated because the male mean heights are not normally distributed among themselves.
 
 ```{r}
 adult_heights_filepath<-here("data",
@@ -731,7 +731,6 @@ adult_heights_1996 |>
   theme(legend.position = c(0.05,0.75))
 
 ```
-
 
 ### Cyclones
 
@@ -1090,6 +1089,6 @@ gentoo_m |>
 
 10. Look at the plot and decide if it is plausible that the association between bill depth and bill length is plausibly monotonic and if so, if it is plausibly linear. On this basis, before even considerinrg the issue of normality, decide if it is appropriate to use Pearson or Spearman's rank measures of correlation with this data.
 
-11. If your answer to 10. was Yes, use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation. To do this  you must separately test both the `bill_length_mm` and `bill_depth_mm` columns of the `gentoo_m` for normality. Remember that you can pick a particular column of a data frame by using the dollar notation. For example, `df$X` would pick out the column `X` from the data frame `df`.
+11. If your answer to 10. was Yes, use the `shapiro.test()` function to determine if it is OK to use the Pearson measure of correlation. To do this you must separately test both the `bill_length_mm` and `bill_depth_mm` columns of the `gentoo_m` for normality. Remember that you can pick a particular column of a data frame by using the dollar notation. For example, `df$X` would pick out the column `X` from the data frame `df`.
 
 12. Use the `cor.test()` function with the appropriate method argument (`method = "pearson"` or `method = "spearman"`), as appropriate, to determine if the bill length and bill depth variables are correlated. This means using an expression of the form `cor.test(df$X, df$Y, method = "pearson")` if you wanted to determine the Pearson correlation coefficient between the `X` and `Y` columns of the data frame `df`.
