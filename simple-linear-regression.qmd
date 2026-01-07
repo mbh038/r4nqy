@@ -1,5 +1,7 @@
 # Simple linear regression
 
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/linear-regression/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
+
 ## Introduction
 
 A class of analytical models that you will use often go under the name **General Linear Models**. They include linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests.
@@ -23,17 +25,15 @@ library(tidyverse)
 library(here)
 library(ggfortify)
 library(cowplot)
-# un-comment and run the next line if you have not yet installed mbhR.
-# remotes::install_github("mbh038/mbhR")
-library(mbhR)
 ```
 
 ### Get the data
 
-We have a data set to explore our question: The `plants` data set is available through the `mbhR` package which you have already installed and loaded
+We have a data set to explore our question: The `plant.growth.rate.csv` data set is available as a csv file in the data subfolder of the skeleton project folder you have hopefullly downloaded to go along with this session.
 
 ```{r}
-data(plants)
+filepath <- here("data","plant.growth.rate.csv")
+plants <- read_csv(fliepath)
 glimpse(plants)
 ```
 
@@ -244,11 +244,13 @@ How would you report this result?
 
 ## Simple linear regression: Body mass vs metabolic rate
 
+This still needs to be filled in....
+
 Here we use data from
 
 ## Sample script
 
-A notebook to do linear regression might look like the following, here written as a .Rmd notebook. For this to work you will need to work within a project, with the data in a sub-folder of that called "data". Here, the data is taken to be a .csv file called `mydata.csv`, with two columns of data, one called `x_values` and the other called `y_values`. You need to change these to suit your own data.
+A notebook to do linear regression might look like the following, here written as a .qmd Quarto notebook. For this to work you will need to work within a project, with the data in a sub-folder of that called "data". Here, the data is taken to be a .csv file called `mydata.csv`, with two columns of data, one called `x_values` and the other called `y_values`. You need to change these to suit your own data.
 
 To use this, open a new notebook of your own (`File/New File/R Notebook`), delete everything, paste in all the code below, then adapt the code as needed. Remember to save the notebook in your project scripts folder!
 

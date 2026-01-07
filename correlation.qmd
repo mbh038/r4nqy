@@ -4,7 +4,7 @@
 options(tinytex.verbose = TRUE)
 ```
 
-Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by David Freedman *et al.* [@freedman1991].
+Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by Freedman, Pisani and Purves [-@freedman1991].
 
 For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 
