@@ -153,15 +153,11 @@ We have carried out a simple linear regression on continuous data. This is an ex
 
 ## Simple linear regression - ocean pH
 
-In this second example we provide. the script but leave you to interpret the outcome of each step. You can use the first example to help you do this.
+In this second example we provide the script but leave you to interpret the outcome of each step. Use the code snippets below to help you complete the notebook `ocean-pH.qmd` that is provided for you in the notebooks subfolder of the project lined to this chapter (if you haven't aleady, you can download this using the link at the hed of this  chapter.) If you do this then your notebook should follow exactly the same steps as for the plant growth example, but using different names.
 
 Here we use data from Figure 5.20 of AR6, WG1 from the IPCC. It shows ocean pH measurements from a location (137$^{\circ}$E, 5$^{\circ}$N) in the western Pacific between 1980 and 2020.
 
 Your task is to assess whether there is a significant linear trend in pH with time and if so to determiine the change in pH per year or per decade during the forty year period from 1980 to 2020.
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
-```
 
 ### Load packages
 
@@ -176,7 +172,7 @@ library(cowplot)
 
 ```{r}
 pH_filepath <- here("data","ipcc_AR6_WGI_Figure_5_20-pH.csv")
-pH<-read_csv(pH_filepath,skip=6) # we have to skip the first 6 lines becuase of meta-data - check it out!
+pH<-read_csv(pH_filepath,skip=6) # we have to skip the first 6 lines because of meta-data included in the file - check it out!
 glimpse(pH)
 ```
 
@@ -188,7 +184,7 @@ pH |>
   geom_point() +
   labs(x = "Year",
        y = "Ocean pH") +
-  scale_y_continuous(limits=c(8.0,8.12), breaks=seq(8.0,8.2,0.02)) +
+  scale_y_continuous(limits=c(8.0,8.12), breaks=seq(8.0,8.2,0.02)) + #> 1
   theme_cowplot()
 ```
 
@@ -252,7 +248,7 @@ Here we use data from
 
 A notebook to do linear regression might look like the following, here written as a .qmd Quarto notebook. For this to work you will need to work within a project, with the data in a sub-folder of that called "data". Here, the data is taken to be a .csv file called `mydata.csv`, with two columns of data, one called `x_values` and the other called `y_values`. You need to change these to suit your own data.
 
-To use this, open a new notebook of your own (`File/New File/R Notebook`), delete everything, paste in all the code below, then adapt the code as needed. Remember to save the notebook in your project scripts folder!
+To use this, open a new notebook of your own (`File/New File/Quarto Document`), delete everything below the yaml section, paste in all the code below, then adapt the code as needed. Remember to save the notebook in your project notebooks folder!
 
 ````         
 ---
@@ -261,9 +257,12 @@ author: "your name"
 date: "the date"
 output: html_notebook
 ---
+````
 
 ### load packages
-```{r}`r ''`
+```{{r}}
+#| label: load packages
+
 library(tidyverse)
 library(here)
 library(ggfortify)
@@ -271,14 +270,18 @@ library(cowplot)
 ```
 
 ### load data
-```{r load_data}`r ''`
+```{{r}}
+#| label: load data
+
 filepath <- here("data", "mydata.csv")
 mydata <- read_csv(filepath)
 glimpse(mydata)
 ```
 
 ### plot the data
-```{r}`r ''`
+```{{r}}
+#| label: plot data
+
 mydata |>
   ggplot(aes(x=x_values, y=y_values)) +
   geom_point() +
@@ -288,26 +291,31 @@ mydata |>
 ```
 
 ### fit the model
-```{r}`r ''`
+```{{r}}
+#| label: fit the linear model
 mydata.model <- lm (y_values ~ x_values, data = mydata)
 ```
 
 ### diagnostics
-```{r}`r ''`
+```{{r}}
+#| label: diagnostics
 autoplot(mydata.model)
 ```
 
 ### investigate the model
-```{r}`r ''`
+```{{r}}
+#| label: anova
 anova(mydata.model)
 ```
 
-```{r}`r ''`
+```{{r}}
+#| label: summary
 summary(mydata.model)
 ```
 
 ### replot the data, now with the model included
-```{r}`r ''`
+```{{r}}
+#| label: replot
 mydata |>
   ggplot(aes(x=x_values, y=y_values)) +
   geom_point() +
@@ -316,4 +324,4 @@ mydata |>
        y = "Y variable") +
   theme_cowplot()
 ```
-````
+

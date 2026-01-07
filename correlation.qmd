@@ -683,7 +683,7 @@ Spearman's rank correlation coefficient *r*~Sp~ can also be be used for ordinal 
 
 So, to sum up, we note that the Pearson correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must at least be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant. There should be no peaks or troughs in the data.
 
-## Association is not the smae as causation
+## Association is not the same thing as causation
 
 A very important and often repeated point to note is that correlation measures the degree of linear (Pearson) or monotonic (Spearman) association. But association is not the same as causation. Two entities can have a strong degree of monotonic or linear association without there being any causal relation between the two. There could be a confounding variable that underlies the association.
 
@@ -851,9 +851,7 @@ A Spearman's rank correlation coefficient was calculated in this case rather tha
 
 ### Soil bacteria
 
-::: csl-entry
-Lauber, C. L., Hamady, M., Knight, R., & Fierer, N. (2009). Pyrosequencing-based assessment of soil pH as a predictor of soil bacterial community structure at the continental scale. <i>Applied and Environmental Microbiology</i>, <i>75</i>(15), 5111--5120. <https://doi.org/10.1128/AEM.00335-09>
-:::
+Here we look at figures published in a paper by Lauber and co-workers [-@lauber2009] in which they investigate the evidence for an association between soil pH and the abundance of various species of bacteria.
 
 ```{r}
 myimages<-here("figures","soil_bacteria.png")
