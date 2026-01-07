@@ -1,6 +1,6 @@
 # Simple linear regression
 
-For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/linear-regression/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/Linear-regression/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 
 ## Introduction
 

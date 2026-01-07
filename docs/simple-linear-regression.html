@@ -375,16 +375,7 @@ window.Quarto = {
   <li><a href="#replot-the-data-model-included" id="toc-replot-the-data-model-included" class="nav-link" data-scroll-target="#replot-the-data-model-included"><span class="header-section-number">10.3.8</span> Replot the data, model included</a></li>
   </ul></li>
   <li><a href="#simple-linear-regression-body-mass-vs-metabolic-rate" id="toc-simple-linear-regression-body-mass-vs-metabolic-rate" class="nav-link" data-scroll-target="#simple-linear-regression-body-mass-vs-metabolic-rate"><span class="header-section-number">10.4</span> Simple linear regression: Body mass vs metabolic rate</a></li>
-  <li><a href="#sample-script" id="toc-sample-script" class="nav-link" data-scroll-target="#sample-script"><span class="header-section-number">10.5</span> Sample script</a>
-  <ul class="collapse">
-  <li><a href="#load-packages-2" id="toc-load-packages-2" class="nav-link" data-scroll-target="#load-packages-2"><span class="header-section-number">10.5.1</span> load packages</a></li>
-  <li><a href="#load-data-1" id="toc-load-data-1" class="nav-link" data-scroll-target="#load-data-1"><span class="header-section-number">10.5.2</span> load data</a></li>
-  <li><a href="#plot-the-data-1" id="toc-plot-the-data-1" class="nav-link" data-scroll-target="#plot-the-data-1"><span class="header-section-number">10.5.3</span> plot the data</a></li>
-  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model"><span class="header-section-number">10.5.4</span> fit the model</a></li>
-  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics"><span class="header-section-number">10.5.5</span> diagnostics</a></li>
-  <li><a href="#investigate-the-model" id="toc-investigate-the-model" class="nav-link" data-scroll-target="#investigate-the-model"><span class="header-section-number">10.5.6</span> investigate the model</a></li>
-  <li><a href="#replot-the-data-now-with-the-model-included" id="toc-replot-the-data-now-with-the-model-included" class="nav-link" data-scroll-target="#replot-the-data-now-with-the-model-included"><span class="header-section-number">10.5.7</span> replot the data, now with the model included</a></li>
-  </ul></li>
+  <li><a href="#sample-script" id="toc-sample-script" class="nav-link" data-scroll-target="#sample-script"><span class="header-section-number">10.5</span> Sample script</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/simple-linear-regression.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -734,16 +725,16 @@ F-statistic: 199.9 on 1 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="sample-script" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="sample-script"><span class="header-section-number">10.5</span> Sample script</h2>
-<p>A notebook to do linear regression might look like the following, here written as a .qmd Quarto notebook. For this to work you will need to work within a project, with the data in a sub-folder of that called “data”. Here, the data is taken to be a .csv file called <code>mydata.csv</code>, with two columns of data, one called <code>x_values</code> and the other called <code>y_values</code>. You need to change these to suit your own data.</p>
+<p>A notebook to do linear regression might look like the following, here written as a .qmd Quarto notebook. For this to work you will need to work within a project, with the data in a sub-folder of that, called “data”. Here, the data is taken to be a .csv file called <code>mydata.csv</code>, with two columns of data, one called <code>x_values</code> and the other called <code>y_values</code>. You need to change these to suit your own data.</p>
 <p>To use this, open a new notebook of your own (<code>File/New File/Quarto Document</code>), delete everything below the yaml section, paste in all the code below, then adapt the code as needed. Remember to save the notebook in your project notebooks folder!</p>
+<p>Alternatively, and more simple perhaps, use the project foler you downloaded at the beginning of this chapter. That contains a working notebook - the one on plant growth, that uses the plant growth csv file in the data subfoled. You could use this for your purposes - all you need to do is to put <em>your</em> data as a csv file into the data subolder, and then change file, data frame and column names in the notebook as appropriate.</p>
 <pre><code>---
 title: "Sensible title"
 author: "your name"
 date: "the date"
 output: html_notebook
 ---</code></pre>
-<section id="load-packages-2" class="level3" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="load-packages-2"><span class="header-section-number">10.5.1</span> load packages</h3>
+<p><strong>load packages</strong></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: load packages</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -752,9 +743,7 @@ output: html_notebook
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggfortify)</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(cowplot)</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="load-data-1" class="level3" data-number="10.5.2">
-<h3 data-number="10.5.2" class="anchored" data-anchor-id="load-data-1"><span class="header-section-number">10.5.2</span> load data</h3>
+<p><strong>load data</strong></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: load data</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -762,9 +751,7 @@ output: html_notebook
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="in">mydata &lt;- read_csv(filepath)</span></span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(mydata)</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="plot-the-data-1" class="level3" data-number="10.5.3">
-<h3 data-number="10.5.3" class="anchored" data-anchor-id="plot-the-data-1"><span class="header-section-number">10.5.3</span> plot the data</h3>
+<p><strong>plot the data</strong></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: plot data</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -775,23 +762,17 @@ output: html_notebook
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Y variable") +</span></span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot()</span></span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fit-the-model" class="level3" data-number="10.5.4">
-<h3 data-number="10.5.4" class="anchored" data-anchor-id="fit-the-model"><span class="header-section-number">10.5.4</span> fit the model</h3>
+<p><strong>fit the model</strong></p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fit the linear model</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="in">mydata.model &lt;- lm (y_values ~ x_values, data = mydata)</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="diagnostics" class="level3" data-number="10.5.5">
-<h3 data-number="10.5.5" class="anchored" data-anchor-id="diagnostics"><span class="header-section-number">10.5.5</span> diagnostics</h3>
+<p><strong>diagnostics</strong></p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: diagnostics</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="in">autoplot(mydata.model)</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="investigate-the-model" class="level3" data-number="10.5.6">
-<h3 data-number="10.5.6" class="anchored" data-anchor-id="investigate-the-model"><span class="header-section-number">10.5.6</span> investigate the model</h3>
+<p><strong>investigate the model</strong></p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: anova</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="in">anova(mydata.model)</span></span>
@@ -800,9 +781,7 @@ output: html_notebook
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: summary</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mydata.model)</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="replot-the-data-now-with-the-model-included" class="level3" data-number="10.5.7">
-<h3 data-number="10.5.7" class="anchored" data-anchor-id="replot-the-data-now-with-the-model-included"><span class="header-section-number">10.5.7</span> replot the data, now with the model included</h3>
+<p><strong>replot the data, now with the model included</strong></p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: replot</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="in">mydata |&gt;</span></span>
@@ -813,9 +792,9 @@ output: html_notebook
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Y variable") +</span></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot()</span></span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Report the conclusions in plain English</strong></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
