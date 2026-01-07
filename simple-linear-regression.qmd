@@ -33,7 +33,7 @@ We have a data set to explore our question: The `plant.growth.rate.csv` data set
 
 ```{r}
 filepath <- here("data","plant.growth.rate.csv")
-plants <- read_csv(fliepath)
+plants <- read_csv(filepath)
 glimpse(plants)
 ```
 

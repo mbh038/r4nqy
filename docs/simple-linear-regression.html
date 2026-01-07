@@ -419,18 +419,16 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># un-comment and run the next line if you have not yet installed mbhR.</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_github("mbh038/mbhR")</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mbhR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="get-the-data" class="level3" data-number="10.2.2">
 <h3 data-number="10.2.2" class="anchored" data-anchor-id="get-the-data"><span class="header-section-number">10.2.2</span> Get the data</h3>
-<p>We have a data set to explore our question: The <code>plants</code> data set is available through the <code>mbhR</code> package which you have already installed and loaded</p>
+<p>We have a data set to explore our question: The <code>plant.growth.rate.csv</code> data set is available as a csv file in the data subfolder of the skeleton project folder you have hopefullly downloaded to go along with this session.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(plants)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(plants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filepath <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"plant.growth.rate.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filepath)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(plants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 50
 Columns: 2
@@ -722,11 +720,12 @@ F-statistic: 199.9 on 1 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="simple-linear-regression-body-mass-vs-metabolic-rate" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="simple-linear-regression-body-mass-vs-metabolic-rate"><span class="header-section-number">10.4</span> Simple linear regression: Body mass vs metabolic rate</h2>
+<p>This still needs to be filled in….</p>
 <p>Here we use data from</p>
 </section>
 <section id="sample-script" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="sample-script"><span class="header-section-number">10.5</span> Sample script</h2>
-<p>A notebook to do linear regression might look like the following, here written as a .Rmd notebook. For this to work you will need to work within a project, with the data in a sub-folder of that called “data”. Here, the data is taken to be a .csv file called <code>mydata.csv</code>, with two columns of data, one called <code>x_values</code> and the other called <code>y_values</code>. You need to change these to suit your own data.</p>
+<p>A notebook to do linear regression might look like the following, here written as a .qmd Quarto notebook. For this to work you will need to work within a project, with the data in a sub-folder of that called “data”. Here, the data is taken to be a .csv file called <code>mydata.csv</code>, with two columns of data, one called <code>x_values</code> and the other called <code>y_values</code>. You need to change these to suit your own data.</p>
 <p>To use this, open a new notebook of your own (<code>File/New File/R Notebook</code>), delete everything, paste in all the code below, then adapt the code as needed. Remember to save the notebook in your project scripts folder!</p>
 <pre><code>---
 title: "Sensible title"
