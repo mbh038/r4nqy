@@ -526,13 +526,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.3212, df = 48, p-value = 2.402e-12
+t = 9.1381, df = 48, p-value = 4.446e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6750399 0.8835499
+ 0.6663100 0.8800203
 sample estimates:
       cor 
-0.8025852 </code></pre>
+0.7968662 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -718,7 +718,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.522, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at -0.187, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -773,10 +773,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </section>
 <section id="significant-wave-height-vs-size-of-cyclone" class="level4" data-number="9.9.2.2">
 <h4 data-number="9.9.2.2" class="anchored" data-anchor-id="significant-wave-height-vs-size-of-cyclone"><span class="header-section-number">9.9.2.2</span> Significant wave height vs size of cyclone</h4>
-<p>Here we look at results displayed in Figure 3f of<br>
-<br>
-Oh, Y. et al.&nbsp;(2023) ‘Optimal tropical cyclone size parameter for determining storm-induced maximum significant wave height’, Frontiers in Marine Science, 10, p.&nbsp;1134579. Available at: https://doi.org/10.3389/fmars.2023.1134579.</p>
-<p>The authors seek to determine whether there is an association between the size of a cylone, measured by the ‘R50’ distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum ‘significant wave height’ of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.</p>
+<p>Here we look at results displayed in Figure 3f of a paper by Oh et al <span class="citation" data-cites="oh2023">(<a href="references.html#ref-oh2023" role="doc-biblioref">2023</a>)</span>. In this paper the authors seek to determine whether there is an association between the size of a cyclone, measured by the ‘R50’ distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum ‘significant wave height’ of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -794,10 +791,7 @@ Oh, Y. et al.&nbsp;(2023) ‘Optimal tropical cyclone size parameter for determi
 </section>
 <section id="lichen-abundance" class="level3" data-number="9.9.3">
 <h3 data-number="9.9.3" class="anchored" data-anchor-id="lichen-abundance"><span class="header-section-number">9.9.3</span> Lichen abundance</h3>
-<div class="csl-entry" role="listitem">
-Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results From Monitoring in Washington, Oregon, and California</i>. <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf" class="uri">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>
-</div>
-<p>In this paper the authors investigate the utility of using lichen as bioindicators of air quality. is there an association between air quality and the abundance of this or that species of lichen?</p>
+<p>In a <span class="citation" data-cites="jovan2008">(<a href="references.html#ref-jovan2008" role="doc-biblioref">2008</a>)</span> paper, Jovan <em>et al</em>. investigated the utility of using lichen as bioindicators of air quality. Is there, they asked, an association between air quality and the abundance of this or that species of lichen?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -833,9 +827,6 @@ A Spearman’s rank correlation coefficient was calculated in this case rather t
 </section>
 <section id="birds" class="level3" data-number="9.9.5">
 <h3 data-number="9.9.5" class="anchored" data-anchor-id="birds"><span class="header-section-number">9.9.5</span> Birds</h3>
-<div class="csl-entry" role="listitem">
-Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition on birds and other wildlife: A review and update’, <i>Ambio</i>, <i>48</i>(9), pp.&nbsp;935–953. <a href="https://doi.org/10.1007/s13280-019-01159-0" class="uri">https://doi.org/10.1007/s13280-019-01159-0</a>
-</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -845,7 +836,7 @@ Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition 
 </div>
 </div>
 </div>
-<p>This figure is from a study on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.</p>
+<p>This figure is from a study by Pain et al <span class="citation" data-cites="pain2019">(<a href="references.html#ref-pain2019" role="doc-biblioref">2019</a>)</span> on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.</p>
 <p>There is a clear negative trend here that is plausibly linear, or at least monotonic. Shapiro-Wilk tests show that neither data set is plausibly drawn from a normally distributed population, so a Spearman’s rank correlation coefficient is calculated. The result is <span class="math inline">\(r_{\text{Sp}} = -0.697, p &lt; 0.01\)</span> so we can say that there is evidence of a significant and strong negative correlation between lead shot ingestion of waterbird species and their population trends.</p>
 </section>
 <section id="heart-rate-vs-life-expectancy" class="level3" data-number="9.9.6">
@@ -1007,8 +998,17 @@ sample estimates:
 <div id="ref-freedman1991" class="csl-entry" role="listitem">
 Freedman, David, Robert Pisani, Roger Purves, and Ani Adhikari. 1991. <em>Statistics</em>. 2nd ed. W. W. Norton &amp; Company.
 </div>
+<div id="ref-jovan2008" class="csl-entry" role="listitem">
+Jovan, Sarah. 2008. <span>“Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results from Monitoring in Washington, Oregon, and California.”</span> <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>.
+</div>
 <div id="ref-lauber2009" class="csl-entry" role="listitem">
 Lauber, Christian L., Micah Hamady, Rob Knight, and Noah Fierer. 2009. <span>“Pyrosequencing-Based Assessment of Soil pH as a Predictor of Soil Bacterial Community Structure at the Continental Scale.”</span> <em>Applied and Environmental Microbiology</em> 75 (15): 5111–20. <a href="https://doi.org/10.1128/aem.00335-09">https://doi.org/10.1128/aem.00335-09</a>.
+</div>
+<div id="ref-oh2023" class="csl-entry" role="listitem">
+Oh, Youjung, Sang Myeong Oh, Pil-Hun Chang, and Il-Ju Moon. 2023. <span>“Optimal Tropical Cyclone Size Parameter for Determining Storm-Induced Maximum Significant Wave Height.”</span> <em>Frontiers in Marine Science</em> 10 (February). <a href="https://doi.org/10.3389/fmars.2023.1134579">https://doi.org/10.3389/fmars.2023.1134579</a>.
+</div>
+<div id="ref-pain2019" class="csl-entry" role="listitem">
+Pain, Deborah J., Rafael Mateo, and Rhys E. Green. 2019. <span>“Effects of Lead from Ammunition on Birds and Other Wildlife: A Review and Update.”</span> <em>Ambio</em> 48 (9): 935–53. <a href="https://doi.org/10.1007/s13280-019-01159-0">https://doi.org/10.1007/s13280-019-01159-0</a>.
 </div>
 </div>
 </section>

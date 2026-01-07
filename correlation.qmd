@@ -766,11 +766,7 @@ In this figure we see that there is a weak but significant *negative* correlatio
 
 #### Significant wave height vs size of cyclone
 
-Here we look at results displayed in Figure 3f of\
-\
-Oh, Y. et al. (2023) ‘Optimal tropical cyclone size parameter for determining storm-induced maximum significant wave height’, Frontiers in Marine Science, 10, p. 1134579. Available at: https://doi.org/10.3389/fmars.2023.1134579.
-
-The authors seek to determine whether there is an association between the size of a cylone, measured by the 'R50' distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum 'significant wave height' of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.
+Here we look at results displayed in Figure 3f of a paper by Oh et al [-@oh2023]. In this paper the authors seek to determine whether there is an association between the size of a cyclone, measured by the 'R50' distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum 'significant wave height' of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.
 
 ```{r, include = FALSE}
 swh_vs_cyclone_size <- read_excel(cyclones_filepath,"cyclone_size_swh")
@@ -802,11 +798,7 @@ Why do you think this relationship flattens off for larger storm sizes?\
 
 ### Lichen abundance
 
-::: csl-entry
-Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results From Monitoring in Washington, Oregon, and California</i>. <http://gis.nacse.org/lichenair/doc/Jovan2008.pdf>
-:::
-
-In this paper the authors investigate the utility of using lichen as bioindicators of air quality. is there an association between air quality and the abundance of this or that species of lichen?
+In a [-@jovan2008] paper, Jovan *et al*. investigated the utility of using lichen as bioindicators of air quality. Is there, they asked, an association between air quality and the abundance of this or that species of lichen?
 
 ```{r}
 # myimages<-here("figures","lichen_abundance.png")
@@ -862,16 +854,12 @@ In the Figure above, note that the Pearson *r*-values for **C** and **E** are cl
 
 ### Birds
 
-::: csl-entry
-Pain, D.J., Mateo, R. and Green, R.E. (2019) ‘Effects of lead from ammunition on birds and other wildlife: A review and update’, <i>Ambio</i>, <i>48</i>(9), pp. 935–953. <https://doi.org/10.1007/s13280-019-01159-0>
-:::
-
 ```{r}
 myimages<-here("figures","bird_shot_ingestion.png")
 knitr::include_graphics(myimages)
 ```
 
-This figure is from a study on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.
+This figure is from a study by Pain et al [-@pain2019] on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.
 
 There is a clear negative trend here that is plausibly linear, or at least monotonic. Shapiro-Wilk tests show that neither data set is plausibly drawn from a normally distributed population, so a Spearman's rank correlation coefficient is calculated. The result is $r_{\text{Sp}} = -0.697, p < 0.01$ so we can say that there is evidence of a significant and strong negative correlation between lead shot ingestion of waterbird species and their population trends.
 
