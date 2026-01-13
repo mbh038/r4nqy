@@ -243,7 +243,10 @@ How would you report this result?
 
 We now consider the common case where an outcome might arise as the combined result of more than one explanatory variable.
 
-Suppose we wanted to know the potential timber yield from a stand of trees. The direct but destructive way to find ot would be to chop down every tree and weigh it, but a more useful route would be if we could estimate it from variables that we could easily measure, for example the girth of the trunk as measured by its diameter at breast height, and its height, which an easily be found using a protractor, a tape measure and simple trigonometry.
+Suppose we wanted to know the potential timber yield from a tree. The direct but destructive way to find ot would be to chop it down and weigh it, but a more useful and non-destructive route would be if we could estimate it from variables that we could easily measure that would be reasonable predictors of timber yield, for example the girth of the trunk as measured by its diameter at breast height, and its height, which can easily be found using a protractor, a tape measure and simple trigonometry.
+
+
+
 
 ```{r}
   here("data", "tree-volume.csv") |>
