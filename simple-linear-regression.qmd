@@ -8,7 +8,7 @@ A class of analytical models that you will use often go under the name **General
 
 Despite appearances, these models are all fundamentally linear models. They share a common framework for estimation (least squares) and a common set of criteria that the data must satisfy before they can be used. These criteria centre around the idea of normally distributed residuals. An important stage of any analysis that uses linear models is that these assumptions are checked, as part of the *Plot* -\> *Model* -\> *Check Assumptions* -\> *Interpret* -\> *Plot again* workflow.
 
-Here, we will go through an example of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a continuous explanatory variable. As we go we show code snippets from an R script that does this job, and, at the bottom, an example complete script that you could adapt to your own needs.
+Here, we will go through an example of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a single continuous explanatory variable. As we go we show code snippets from a Quarto notebook that does this job, and, at the bottom, an example complete notebook that you could adapt to your own needs.
 
 ## Simple Linear Regression - plant growth
 
@@ -16,7 +16,7 @@ As a first example, we ask the question: does plant growth rate depend on soil m
 
 We predict that more moisture will probably allow higher growth rates. We note that this means there will be a clear relationship between the variables, one that should be apparent if we plot the response (dependent) variable - plant growth rate - against the explanatory (independent) variable - soil moisture content. We note that both the explanatory variable and the dependent variables are *continuous* - they do not have categories.
 
-What we want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable. In practice, this means drawing a 'best fit' straight line through the data and determining the intercept and gradient of this line.
+What we might want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable, using a linear model. Just as ofen, we simply want to determine the sensitivity of the dependent variable to changes in the independent variable. In practice, this means drawing a 'best fit' straight line through the data and determining the intercept and gradient of this line. It is the gradient that tells us the sensitivity of the dependent variable to chnges in the independent variable, and that is what we most often look out for in the analysis.
 
 ### Load packages
 
@@ -88,7 +88,7 @@ The `theme_cowplot()` part is not necessary, but it gives the plots a nice look,
 
 These plots are all based around the \`residuals', which is the vertical distance between observed values and fitted values ie between each point and the best fit line through the points - the line which the linear model is finding for us, by telling us its intercept and gradient.
 
-Note that in simple linear regression, the best fit line is the one that minimises that sum of the squared residuals.
+In simple linear regression, the best fit line is the one that minimises that sum of the squared residuals.
 
 So what do these plots mean?
 
@@ -206,7 +206,7 @@ Is it reasonable to apply a linear model to these data? Remember that each of th
 
 ### Inspect model
 
-#### ANOVA
+**ANOVA**
 
 ```{r}
 anova(pH_model)
@@ -214,7 +214,7 @@ anova(pH_model)
 
 Are we OK to reject the null hypothesis that pH does not change over this time period?
 
-### Summary
+**Summary**
 
 ```{r}
 summary(pH_model)
@@ -238,11 +238,52 @@ pH |>
 
 How would you report this result?
 
-## Simple linear regression: Body mass vs metabolic rate
 
-This still needs to be filled in....
+## Multivariate data
 
-Here we use data from
+We now consider the common case where an outcome might arise as the combined result of more than one explanatory variable.
+
+Suppose we wanted to know the potential timber yield from a stand of trees. The direct but destructive way to find ot would be to chop down every tree and weigh it, but a more useful route would be if we could estimate it from variables that we could easily measure, for example the girth of the trunk as measured by its diameter at breast height, and its height, which an easily be found using a protractor, a tape measure and simple trigonometry.
+
+```{r}
+  here("data", "tree-volume.csv") |>
+  read_csv() |>
+  # filter(diameter < 1.6) |>
+  glimpse() -> 
+  trees
+```
+
+```{r}
+data(trees)
+trees |>
+  ggplot(aes(x = Height, y = Volume)) +
+  geom_point() +
+  theme_cowplot()
+```
+
+```{r}
+GGally::ggpairs(trees)
+```
+
+
+```{r}
+vol_dh <- lm(volume ~ diameter * height, data = trees)
+```
+
+```{r}
+autoplot(vol_dh) + theme_cowplot()
+```
+
+```{r}
+anova(vol_dh)
+```
+
+```{r}
+summary(vol_dh)
+```
+
+
+
 
 ## Sample script
 
