@@ -45,6 +45,7 @@ book:
       - correlation.qmd
       - simple-linear-regression.qmd
     - part: "Ordination"
+      chapters:
       - ordination.qmd
     - part: "Additional help"
       chapters:
