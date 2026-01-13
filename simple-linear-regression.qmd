@@ -270,19 +270,19 @@ GGally::ggpairs(trees)
 
 
 ```{r}
-vol_dh <- lm(volume ~ diameter * height, data = trees)
+# vol_dh <- lm(volume ~ diameter * height, data = trees)
 ```
 
 ```{r}
-autoplot(vol_dh) + theme_cowplot()
+# autoplot(vol_dh) + theme_cowplot()
 ```
 
 ```{r}
-anova(vol_dh)
+# anova(vol_dh)
 ```
 
 ```{r}
-summary(vol_dh)
+# summary(vol_dh)
 ```
 
 

@@ -269,7 +269,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Additional help</span></a>
+ <span class="menu-text">Ordination</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -277,14 +277,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  <a href="./ordination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,12 +286,35 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Additional help</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">References</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -367,7 +384,7 @@ window.Quarto = {
 <section id="the-scenario" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="the-scenario"><span class="header-section-number">5.1.1</span> The Scenario</h3>
 <p>As our case study we consider the three species of penguin, Adelie, Chinstrap and Gentoo for which data has been gathered and made available in the <code>palmerpenguins</code> R package. For dozens of individuals of each species, records have been logged of the species, sex, year, bill length, bill depth, flipper length and body mass. Suppose we are interested in the shape of the bills and so create for each individual a new variable which is the ratio of bill length to bill depth. We wish to know if there is evidence from the data for whether this bill shape differs between the species. In the manner of the bills of the various species of finch spread across the islands of the Galapagos archipeligo, this might indicate a different food source for each species and more generally, indicate that each species occupies a different ecological niche from the others.</p>
-<p>When we plot the data as in <a href="#fig-species-boxplot" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> we see that the species do differ in their bill shapes but that there is also a lot of variation between penguins of the same species.</p>
+<p>When we plot the data as in <a href="#fig-species-boxplot" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-species-boxplot</span></a> we see that the species do differ in their bill shapes but that there is also a lot of variation between penguins of the same species.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-species-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -554,7 +571,7 @@ F = \frac{\text{GMS}}{\text{EMS}}\gt 1\quad{\text{Possible difference between gr
 F = \frac{\text{GMS}}{\text{EMS}}\gg 1\quad{\text{Probable difference between groups}}
 \]</span></p>
 <p>Even if the species were identical, the <em>F</em>-ratio is unlikely to be exactly 1 - it could by chance take a whole range of values. It turns out that <em>F</em>-ratios have a known distribution, the <strong>F-distribution</strong>, which represents the range and likelihood of all possible <em>F</em> ratios under the null hypothesis. ie when the species were identical.</p>
-<p>The shape of the F distribution depends on the degrees of freedom of GMS and EMS, and we normally specify it by giving the values of each. In <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> below we show F distributions for 2 and 27 degrees of freedom (ie 3 species, so <em>k</em> = 3, so the degrees of freedom of GMS = <em>k</em>-1 = 2, and 10 individuals per species, so <em>n</em> = 3 x 10 = 30, and hence the degrees of freedom of EMS = <em>n</em>-<em>k</em> = 30 - 3 = 27), and for 10 and 27 degrees of freedom.</p>
+<p>The shape of the F distribution depends on the degrees of freedom of GMS and EMS, and we normally specify it by giving the values of each. In <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-f-pdfs</span></a> below we show F distributions for 2 and 27 degrees of freedom (ie 3 species, so <em>k</em> = 3, so the degrees of freedom of GMS = <em>k</em>-1 = 2, and 10 individuals per species, so <em>n</em> = 3 x 10 = 30, and hence the degrees of freedom of EMS = <em>n</em>-<em>k</em> = 30 - 3 = 27), and for 10 and 27 degrees of freedom.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-f-pdfs" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -574,7 +591,7 @@ Figure&nbsp;5.4: The F-distributions for (left) 2 and 27 degrees of freedom and 
 <p>If the species were very different, then the GMS would be much greater than the EMS and the <em>F</em>-ratio would be greater than one. However it can be quite large even when there are no differences between the levels (here, Adelie, Chinstrap and Gentoo) of a factor (here, species). So how do we decide when the size of the <em>F</em>-ratio is due to a real difference between the levels rather than to chance?</p>
 <p>Our <em>p</em>-value (the probability that the <em>F</em>-ratio would have been as large as it is or larger under the null hypothesis) represents the strength of evidence against the null hypothesis. The smaller it is, the stronger the evidence, and, as a pragmatic choice, only when it is less than 0.05 do we regard the evidence as strong enough to reject the null. Note though that even if we had inside knowledge that the null hypothesis was in fact true, we would still get an <em>F</em>-ratio that large or larger and thus a p-value less than or equal to 0.05 5% of the time.</p>
 <p>We find for our penguin data that the F ratio is 104</p>
-<p>If we look at the <em>F</em> distribution in the left-hand figure in <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> the one that corresponds to our case, with 2 and 27 degrees of freedom, we see that it has already fallen to near zero by the time <em>F</em> is equal to 5 or 6. There is essentially zero area beneath the curve to the right of the much larger F value we found for our data, <em>F</em> = 104. That means there is essentially zero chance of getting an <em>F</em> value this big or bigger if the null hypothesis were true (ie the p-value is esentially zero), and so we can confidently reject the null hypothesis.</p>
+<p>If we look at the <em>F</em> distribution in the left-hand figure in <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-f-pdfs</span></a> the one that corresponds to our case, with 2 and 27 degrees of freedom, we see that it has already fallen to near zero by the time <em>F</em> is equal to 5 or 6. There is essentially zero area beneath the curve to the right of the much larger F value we found for our data, <em>F</em> = 104. That means there is essentially zero chance of getting an <em>F</em> value this big or bigger if the null hypothesis were true (ie the p-value is esentially zero), and so we can confidently reject the null hypothesis.</p>
 </section>
 <section id="what-does-the-anova-result-tell-us" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="what-does-the-anova-result-tell-us"><span class="header-section-number">5.8</span> What does the ANOVA result tell us?</h2>
