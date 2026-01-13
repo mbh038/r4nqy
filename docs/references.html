@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Test finder – From questions to data to answers using R</title>
+<title>References – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -50,8 +49,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workflow.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./power-analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -88,9 +86,6 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -105,7 +100,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./test_finder.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="./test_finder.html">Test finder</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,7 +145,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./test_finder.html" class="sidebar-item-text sidebar-link active">
+  <a href="./test_finder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Test finder</span></a>
   </div>
 </li>
@@ -311,7 +306,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -328,9 +323,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./test_finder.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="./test_finder.html">Test finder</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Test finder</h1>
+<h1 class="title">References</h1>
 </div>
 
 
@@ -347,67 +342,47 @@ div.csl-indent {
 </header>
 
 
-<p>You can either use this <a href="figures/test_finder_and_help.pdf">text version of a test finder</a>, taken from <span class="citation" data-cites="gilbert2017">(<a href="references.html#ref-gilbert2017" role="doc-biblioref">Gilbert, McGregor, and Barnard 2017</a>)</span></p>
-<p>or use this flowchart to see which test is appropriate for your study design and your data:</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">%%| fig-width: 10
-%%| fig-align: "centre"
-%%| column: page-right
-
-flowchart TD
-  A{Difference or Trend Question?} --&gt; B[Trend]
-  B --&gt; B2{Are you testing for degree of associationor are you trying to make predictions?}
-  B2 --&gt; B33[Association:Test for correlation coefficient Pearson or  Spearman's Rank]
-  B2 --&gt; B44[Predictions: Simple linear regression]
-  A --&gt; C[Difference]
-  C --&gt; C22{Do you have replicates?}
-  C22 --&gt; C22Y[Yes]
-  C22 --&gt; C22N[No]
-  C22N --&gt; C23{Do you have count data?}
-  C23 --&gt; C23Y[Yes]
-  C23 --&gt; C23N[N0]
-  C23Y --&gt; C24(Chi square test: Goodness of fit or Test of independence)
-  C23N --&gt; C25[These data cannot be analysed]
-  C22Y --&gt; D{How many factors?}
-  D --&gt; F[Two or more]
-  F --&gt; F2{Independent samples?}
-  F2 --&gt; F2Y[Yes]
-  F2 --&gt; F2N[No]
-  F2Y --&gt; F22Y(n-way ANOVA)
-  F2N --&gt; F22N(n-way repeated measures ANOVA)
-  D --&gt; E[One]
-  E --&gt; G{How many levels?}
-  G --&gt; H[Two]
-  G --&gt; I[More than two]
-  I --&gt; J{Independent samples?}
-  J --&gt; K[No]
-  J --&gt; L[Yes]
-  K --&gt; S(Repeated measures one-way ANOVA or Friedman Test)
-  L --&gt; T(One way ANOVA or Kruskal Wallis one-way test)
-  H --&gt; M{Independent samples?}
-  M --&gt; N[No]
-  M --&gt; O[Yes]
-  N --&gt; P(paired t-test or Signed rank test)
-  O --&gt; Q(two sample t-test or Matt Whitney U test)
-  
-</pre>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cumming2007" class="csl-entry" role="listitem">
+Cumming, Geoff, Fiona Fidler, and David L. Vaux. 2007. <span>“Error Bars
+in Experimental Biology.”</span> <em>Journal of Cell Biology</em> 177
+(1): 7–11. <a href="https://doi.org/10.1083/jcb.200611141">https://doi.org/10.1083/jcb.200611141</a>.
 </div>
-<p></p></figure><p></p>
+<div id="ref-freedman1991" class="csl-entry" role="listitem">
+Freedman, David, Robert Pisani, Roger Purves, and Ani Adhikari. 1991.
+<em>Statistics</em>. 2nd ed. W. W. Norton &amp; Company.
 </div>
-</div>
-</div>
-<p>Now go to whichever chapter of this book covers the test you need.</p>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-gilbert2017" class="csl-entry" role="listitem">
-Gilbert, Francis, Peter McGregor, and Chris Barnard. 2017. <em>Asking Questions in Biology; a Guide to Hypothesis Testing, Experimental Design and Presentation in Practical Work and Research Projects</em>. 5th ed. Benjamin Cummings.
+Gilbert, Francis, Peter McGregor, and Chris Barnard. 2017. <em>Asking
+Questions in Biology; a Guide to Hypothesis Testing, Experimental Design
+and Presentation in Practical Work and Research Projects</em>. 5th ed.
+Benjamin Cummings.
+</div>
+<div id="ref-jovan2008" class="csl-entry" role="listitem">
+Jovan, Sarah. 2008. <span>“Lichen Bioindication of Biodiversity, Air
+Quality, and Climate: Baseline Results from Monitoring in Washington,
+Oregon, and California.”</span> <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>.
+</div>
+<div id="ref-lauber2009" class="csl-entry" role="listitem">
+Lauber, Christian L., Micah Hamady, Rob Knight, and Noah Fierer. 2009.
+<span>“Pyrosequencing-Based Assessment of Soil pH as a Predictor of Soil
+Bacterial Community Structure at the Continental Scale.”</span>
+<em>Applied and Environmental Microbiology</em> 75 (15): 5111–20. <a href="https://doi.org/10.1128/aem.00335-09">https://doi.org/10.1128/aem.00335-09</a>.
+</div>
+<div id="ref-oh2023" class="csl-entry" role="listitem">
+Oh, Youjung, Sang Myeong Oh, Pil-Hun Chang, and Il-Ju Moon. 2023.
+<span>“Optimal Tropical Cyclone Size Parameter for Determining
+Storm-Induced Maximum Significant Wave Height.”</span> <em>Frontiers in
+Marine Science</em> 10 (February). <a href="https://doi.org/10.3389/fmars.2023.1134579">https://doi.org/10.3389/fmars.2023.1134579</a>.
+</div>
+<div id="ref-pain2019" class="csl-entry" role="listitem">
+Pain, Deborah J., Rafael Mateo, and Rhys E. Green. 2019. <span>“Effects
+of Lead from Ammunition on Birds and Other Wildlife: A Review and
+Update.”</span> <em>Ambio</em> 48 (9): 935–53. <a href="https://doi.org/10.1007/s13280-019-01159-0">https://doi.org/10.1007/s13280-019-01159-0</a>.
 </div>
 </div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -829,14 +804,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      <a href="./power-analysis.html" class="pagination-link" aria-label="Power Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Power Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow.html" class="pagination-link" aria-label="A recommended analysis workflow">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -847,7 +819,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/test_finder.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
