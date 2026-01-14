@@ -35,7 +35,8 @@ This data set has geochemical analyses of 200 limestone samples, including the m
 This data set is available from Steven Holland's website, and our filepath to it is just the url of the file:
 
 ```{r}
-filepath<-"http://strata.uga.edu/8370/data/NashvilleCarbonates.csv"
+# filepath<-"http://strata.uga.edu/8370/data/NashvilleCarbonates.csv"
+filepath <- here("data","purdin_pca.csv")
 purdin<-read_csv(filepath, show_col_types = FALSE)
 glimpse(purdin)
 #view(purdin)
@@ -45,7 +46,7 @@ As we are most interested in how the geo-chemical composition varies, we will pu
 
 ```{r}
 geochem <- purdin |>
-  select(d13C:Si) # means select all columns from d1C to Si, inclusive.
+  dplyr::select(d13C:Si) # means select all columns from d1C to Si, inclusive.
 glimpse(geochem)
 ```
 
