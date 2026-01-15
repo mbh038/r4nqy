@@ -70,5 +70,8 @@
   },
   "glm_poisson_with_count_data.qmd": {
     "glm_poisson_with_count_data.html": "943cef28"
+  },
+  "glm_with_count_data_ancova.qmd": {
+    "glm_with_count_data_ancova.html": "75ed75d2"
   }
 }

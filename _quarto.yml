@@ -48,6 +48,7 @@ book:
       chapters: 
         - GLM.qmd
         - glm_poisson_with_count_data.qmd
+        - glm_with_count_data_ancova.qmd
     - part: "Ordination"
       chapters:
       - ordination.qmd
