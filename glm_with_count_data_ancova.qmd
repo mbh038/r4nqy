@@ -1,6 +1,4 @@
-
 # GLM with count data
-
 
 ## Why is simple linear regression often inappropriate for count data?
 
@@ -13,13 +11,9 @@ Simple linear regression assumes constant variance and normal distrivution of th
 
 All the issues can be handled if instead we use a generalised linear models (GLM)
 
-This example is taken from Crawley (2015) *Statistics: An Introduction using R*, 2nd ed. Wiley, p247
+This example is taken from Crawley [-@crawley2014], p247.
 
 Suppose we are investigating the effect on species richness in some plots that have different total biomass and one of three different levels of soil acidity: low, medium and high pH. Richness values have been counted on each of 90 plots, 30 with each level of soil pH.
-
-```{r}
-knitr::opts_chunk$set(warning=FALSE,message=FALSE)
-```
 
 ```{r}
 # these are the packages we will need for this script
@@ -57,6 +51,8 @@ species |>
   theme_cowplot()
 ```
 
+## Analysis using linear model: ANCOVA
+
 How did we get these straight lines? We can find the intercept and gradients for these lines by using a linear model, in the form of an ANCOVA (ANalysis of COVAriance), which is just like a two-way ANOVA except that one of the explanatory variables is continuous.
 
 First we try an interactive model, remembering that `Biomass*pH` is shorthand for `Biomass + pH + Biomass:pH`, where the `Biomass` and `pH` terms are the main effects of each variable, and `Biomass:pH` is the interaction between them.
@@ -91,7 +87,7 @@ That there is a problem here with the linear model becomes clear if we extropola
 
 So we refit using a GLM and Poisson errors instead of a linear model.
 
-### Fit using GLM
+## Fit using GLM
 
 ```{r}
 model_glm_poisson_interaction <- glm(Species ~ Biomass*pH, family = "poisson", data = species)
