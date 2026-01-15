@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Power Analysis – From questions to data to answers using R</title>
+<title>13&nbsp; GLM with count data – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -64,8 +84,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./qq_plots.html" rel="prev">
+<link href="./ordination.html" rel="next">
+<link href="./glm_poisson_with_count_data.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./power-analysis.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./glm_with_count_data_ancova.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM with count data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -294,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glm_with_count_data_ancova.html" class="sidebar-item-text sidebar-link">
+  <a href="./glm_with_count_data_ancova.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
   </div>
 </li>
@@ -334,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link active">
+  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
@@ -367,19 +387,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#simulation-of-one-trial" id="toc-simulation-of-one-trial" class="nav-link active" data-scroll-target="#simulation-of-one-trial"><span class="header-section-number">16.1</span> Simulation of one trial</a></li>
-  <li><a href="#simulation-of-many-trials" id="toc-simulation-of-many-trials" class="nav-link" data-scroll-target="#simulation-of-many-trials"><span class="header-section-number">16.2</span> Simulation of many trials</a></li>
-  <li><a href="#calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" id="toc-calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" class="nav-link" data-scroll-target="#calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes"><span class="header-section-number">16.3</span> Calculate the power of the study for a range of sample and effect sizes</a></li>
-  <li><a href="#factors-that-affect-the-power-of-a-study" id="toc-factors-that-affect-the-power-of-a-study" class="nav-link" data-scroll-target="#factors-that-affect-the-power-of-a-study"><span class="header-section-number">16.4</span> Factors that affect the power of a study</a></li>
+  <li><a href="#why-is-simple-linear-regression-often-inappropriate-for-count-data" id="toc-why-is-simple-linear-regression-often-inappropriate-for-count-data" class="nav-link active" data-scroll-target="#why-is-simple-linear-regression-often-inappropriate-for-count-data"><span class="header-section-number">13.1</span> Why is simple linear regression often inappropriate for count data?</a></li>
+  <li><a href="#analysis-using-linear-model-ancova" id="toc-analysis-using-linear-model-ancova" class="nav-link" data-scroll-target="#analysis-using-linear-model-ancova"><span class="header-section-number">13.2</span> Analysis using linear model: ANCOVA</a></li>
+  <li><a href="#fit-using-glm" id="toc-fit-using-glm" class="nav-link" data-scroll-target="#fit-using-glm"><span class="header-section-number">13.3</span> Fit using GLM</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/power-analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/glm_with_count_data_ancova.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./power-analysis.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./glm_with_count_data_ancova.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM with count data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Power Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM with count data</span></h1>
 </div>
 
 
@@ -396,160 +415,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This topic is all about how to design our studies such that they are likely to detect an effect, whether that is a correlation or a difference, if there really is one there to be detected. If there were, and we didn’t that would be a shame (and a waste of time and money and possibly an ethical hoohah).</p>
-<p>In what follows we focus on a simple study that seeks to detect a difference between two populations, but the ideas generalise to other designs.</p>
-<p>Suppose we have a magic soil supplement that we hope will enhance the growth rate of tomato plants, make us rich and pay for a comfortable retirement.</p>
-<p>Before riches, however, we have to be sure that it has the desired effect. For the supplement to be a money spinner let’s suppose that we need it to enhance the growth rate of plants by 10% and so we must do a study to see if this is in fact the case.</p>
-<p>In a properly randomised design, we take <em>N</em> plants and give them ‘normal’ plant food, and another <em>N</em> plants and give them the normal food plus our supplement. We keep all other conditions the same for the two groups of plants.</p>
-<p>After 30 days, the plants grown with the usual food grow with a mean mass of 300g and a standard deviation of 30g. The other plants will need to have a mean mass of at least 330g, and we will suppose that they too will have a standard deviation of 30g.</p>
-<section id="simulation-of-one-trial" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="simulation-of-one-trial"><span class="header-section-number">16.1</span> Simulation of one trial</h2>
-<p>Suppose we chose <em>N</em> = 100. Then we can simulate the masses of the individual plants in the two samples, supposing there were a 10% effect of supplement. We do this by using the <code>rnorm()</code> function to draw samples of 100 replicates each from a normally distributed population, in one case with a mean of 300g and in the other with a mean of 330g, both with standard deviations of 30g</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="dv">100</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>delta<span class="ot">&lt;-</span><span class="fl">0.05</span> <span class="co"># ie 10% ie the mean of the treatment population is 10% greater than that of the control population</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the sample parameters: means and standard deviations</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>m1<span class="ot">&lt;-</span><span class="dv">300</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sd1<span class="ot">&lt;-</span><span class="dv">30</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>m2<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">+</span>delta)<span class="sc">*</span>m1</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sd2<span class="ot">&lt;-</span>sd1</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>untreated<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1,sd1) <span class="co"># the control sample</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>treated<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m2,sd2) <span class="co"># the treated sample</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># put these samples  in a tidy tibble</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>trial_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">treatment =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"untreated"</span>, N), <span class="fu">rep</span>(<span class="st">"treated"</span>, N)),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">mass =</span> <span class="fu">c</span>(untreated, treated))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot these simulated data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>trial_data <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>mass,<span class="at">colour =</span> treatment, <span class="at">fill=</span>treatment)) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">bins=</span><span class="dv">20</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(colour="gray50",width=0.2) +</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Plant mass (g)"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="power-analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Suppose the supplement really did work like this, and really did improve growth rates by 10%. How many plants, ie what value of <em>N</em> would we need in each group in order to have an 80% chance of correctly spotting this difference? This probability of detection of an effect that is there is what we call the <strong>power</strong> of a study. If the effect is smaller than 10% (or whatever boost we deemed sufficient) and we do not detect it we do not mind, since that means that our supplement had not worked as we had hoped, but it would be a waste of our time and money if there really were a sizeable effect but we did not spot it because our sample size was too small. Equally, we do not want a sample size that is far larger than is necessary to achieve sufficient power. Doing so would incur unnecessary time and money costs and possibly have ethical implications.</p>
-<p>In thinking about how we might analyse our data we formulate a null hypothesis:</p>
-<p><em>The supplement has no effect.</em></p>
-<p>In that case we would expect the difference between the masses of the treated plants and untreated plants to be zero.</p>
-<p>If in fact the supplement has an effect on growth, then the data should force us to reject this null hypothesis. In order that there be at least an 80% chance that it does this, there has to be an at least 80% chance that the mean value of our treated plants lies outside the rejection regime of the null hypothesis.</p>
-<p>With one pair of samples of plants, we might or might not detect the effect, depending on which individuals ended up being included in the samples that we drew from their respective populations, since this would determine whether the mean of the treated plants was or was not in the rejection regime of the null. Thus, if we ran a t-test on our two simulated samples, we might or might not get a p-value that is less than our chosen significance level,</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0003281457</code></pre>
-</div>
-</div>
-<p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>
-</section>
-<section id="simulation-of-many-trials" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="simulation-of-many-trials"><span class="header-section-number">16.2</span> Simulation of many trials</h2>
-<p>A way to find out is to carry out this simulation many times and see in what fraction of our trials we see a significant effect (that is, p &lt; 0.05), supposing that the supplement really does work. That will give us an idea of the power of our study.</p>
-<p>That is what we will now do:</p>
-<p>We write a function that will return TRUE or FALSE depending on the <em>p</em>-value of a trial in which we specifiy the mean value of the control group, the standard deviation of the control group (assumed to be the same in the treatment group), the size of the effect <code>delta</code>, where if delta is 0.1, say, then we mean that the effect size is a 10% increase in growth mass, <em>N</em> is the sample size for each group and <em>alpha</em> is the significance level that we choose (most likely, but not necessarily 0.05).</p>
-<p>In the function we carry out a <em>t</em>-test for each pair of samples to determine whether we can reject the null hypothesis that the treated plants are drawn from a population with the same mass as the untreated plants.</p>
-<p>We know that the null hypothesis is false because we have drawn our samples from populations that <em>do</em> differ in their mean values. We want to see if our test correctly rejects the null so that we detect the effect, which here is the mass difference between the means of the two groups of plants.</p>
-<p>If the <em>p</em>-value is less than our chosen significance level then we reject the null, if not, we do not.</p>
-<p>Rejecting the null in this case means we have a ‘True Positive’ and so we make our function return the logical value TRUE in that case. Failing to reject the null in this case is a mistake. We call this kind of mistake a ’False Negative” and when this happens me make out function return the logical value FALSE.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>effect_detected<span class="ot">&lt;-</span><span class="cf">function</span>(m1,sd1,delta,N,alpha){</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  pop1<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1,sd1)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  pop2<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>delta),sd1)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">t.test</span>(pop1,pop2)<span class="sc">$</span>p.value<span class="sc">&lt;</span>alpha) <span class="co">#return TRUE if p &lt;0.05, return FALSE if not.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes"><span class="header-section-number">16.3</span> Calculate the power of the study for a range of sample and effect sizes</h2>
-<p>Now we run this trial as many times as we want. Let us run it 10,000 times, for a range of sample sizes and effect sizes. In any one trial we may or may not reject the null. We want to see, for a given set of conditons, in what fraction of trials, in the long run, we do reject the null. That will be an estimate of the power of our study: the likelihood that we will detect an effect if the effect really exists, as it does here.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>trials<span class="ot">&lt;-</span><span class="dv">10000</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m1<span class="ot">&lt;-</span><span class="dv">300</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sd1<span class="ot">&lt;-</span><span class="dv">30</span> <span class="co"># population standard deviation</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>deltas<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.02</span>,<span class="fl">0.03</span>,<span class="fl">0.04</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>) <span class="co"># effect size where, for example, 0.05 means that the effect is 5% the size of the control mean</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="dv">100</span> <span class="co"># sample size</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">&lt;-</span><span class="fl">0.05</span> <span class="co"># chosen significance level</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Ns<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">1</span>),<span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">10</span>),<span class="fu">seq</span>(<span class="dv">60</span>,<span class="dv">200</span>,<span class="dv">20</span>),<span class="fu">seq</span>(<span class="dv">240</span>,<span class="dv">480</span>,<span class="dv">40</span>))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>power_vals_raw<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(Ns)<span class="sc">*</span><span class="fu">length</span>(deltas)),<span class="at">ncol=</span><span class="fu">length</span>(deltas))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Ns)){</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deltas)){</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    trial_results <span class="ot">&lt;-</span> <span class="fu">replicate</span>(trials,<span class="fu">effect_detected</span>(m1,sd1,deltas[j],Ns[i],alpha))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    power_vals_raw[i,j]<span class="ot">&lt;-</span><span class="fu">mean</span>(trial_results)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>power_vals <span class="ot">&lt;-</span> <span class="fu">as.tibble</span>(power_vals_raw)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(power_vals) <span class="ot">&lt;-</span> deltas</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>power_vals <span class="ot">&lt;-</span> power_vals <span class="sc">|&gt;</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">N=</span>Ns) <span class="sc">|&gt;</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>N,<span class="at">names_to =</span> <span class="st">"effect_size"</span>, <span class="at">values_to =</span> <span class="st">"power"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Plotted, this looks like:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>power_vals <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ok=</span>power<span class="sc">&gt;</span><span class="fl">0.8</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>N,<span class="at">y=</span>power,<span class="at">colour=</span>effect_size)) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point() +</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">span=</span><span class="fl">0.25</span>, <span class="at">linewidth=</span><span class="fl">0.6</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line() +</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(Ns),<span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.2</span>), <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.8</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>,<span class="at">colour=</span><span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.9</span>,<span class="at">linetype=</span><span class="st">"dashed"</span>,<span class="at">colour=</span><span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample size N"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Power"</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span><span class="st">"Effect size"</span>) <span class="sc">+</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="power-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In this plot we show how the power varies with sample size N, for different effect sizes (where 0.05, say, means a difference of 5% in populations means), with a population standard devation of 30 g on a control mean of 300g, and a significance level of 0.05.</p>
-<p><strong>What is a suitable sample size for a power of 80%?</strong></p>
-<p>We see that we need a sample size of about 65 to get a power of 80%.</p>
-<p><strong>What sample size would be needed for a power of 90%, or 99%?</strong></p>
-<p>We need sample sizes of 85 for a power of 90% and of 150 for a power of 99%. There are progressively diminshing returns once you try to make the power much greater than 80% or 90% or so. The sample sizes needed become very large.</p>
-<p>Now try varying the effect size, the population variation and the chosen significance level and see how they affect the power.</p>
-<p>We should find that, all else being equal:</p>
+<section id="why-is-simple-linear-regression-often-inappropriate-for-count-data" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="why-is-simple-linear-regression-often-inappropriate-for-count-data"><span class="header-section-number">13.1</span> Why is simple linear regression often inappropriate for count data?</h2>
+<p>Simple linear regression assumes constant variance and normal distrivution of the errors (residuals)</p>
 <ul>
-<li>If the effect size is reduced, the power decreases. It is harder to tell apart two populations that do not differ by much.</li>
-<li>If the population variation goes down the power increases. It is easier to tell apart two populations if there is little variation within each population.</li>
-<li>If the signicance level is reduced, say to 0.01 from 0.05, the power will go down. We are reducing the type 1 error rate, but at the same increasing the type 2 error rate. It is les likely, even if there is an effect, that we will detect it.</li>
+<li>the linear model might lead to the prediction of negative counts</li>
+<li>the variance of the response variable is likely to increase with the mean</li>
+<li>the errors will not be normally distributed</li>
+<li>zeros are difficult to handle in transformations</li>
 </ul>
+<p>All the issues can be handled if instead we use a generalised linear models (GLM)</p>
+<p>This example is taken from Crawley <span class="citation" data-cites="crawley2014">(<a href="references.html#ref-crawley2014" role="doc-biblioref">2014</a>)</span>, p247.</p>
+<p>Suppose we are investigating the effect on species richness in some plots that have different total biomass and one of three different levels of soil acidity: low, medium and high pH. Richness values have been counted on each of 90 plots, 30 with each level of soil pH.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># these are the packages we will need for this script</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"species.csv"</span>) <span class="sc">|&gt;</span> <span class="co"># species.csv needs to be in the data folder within your project folder.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 90
+Columns: 3
+$ pH      &lt;chr&gt; "high", "high", "high", "high", "high", "high", "high", "high"…
+$ Biomass &lt;dbl&gt; 0.46929722, 1.73087043, 2.08977848, 3.92578714, 4.36679265, 5.…
+$ Species &lt;dbl&gt; 30, 39, 44, 35, 25, 29, 23, 18, 19, 12, 39, 35, 30, 30, 33, 20…</code></pre>
+</div>
+</div>
+<p>We have one response variable <code>Species</code> which is a count, and two predictors: <code>Biomass</code> which is a continuous numerical variable and <code>pH</code> which has been recorded as an ordinal variable with three levels (low, mid, high).</p>
+<p>First, a bit of housekeeping. We ensure that the levels of pH are logged in R’s brain in the ordering that makes sense, that is, “low”, then “medium” then “high”, and not as R would unless we did something about it, which is to do so alphabetically” “high” then “low” then “medium”.</p>
+<p>This minor but important task often comes up when dealing with a categorical variable that has several levels, so this small chunk of code is worth remembering:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> species <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pH =</span> <span class="fu">fct_relevel</span>(pH, <span class="st">"low"</span>, <span class="st">"mid"</span>, <span class="st">"high"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we’ll plot the data as species richness vs biomass, with a best-fit straight line for each class of pH.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Biomass, <span class="at">y =</span> Species, <span class="at">colour =</span> pH)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">colour =</span> pH),<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="glm_with_count_data_ancova_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="factors-that-affect-the-power-of-a-study" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="factors-that-affect-the-power-of-a-study"><span class="header-section-number">16.4</span> Factors that affect the power of a study</h2>
-<p><strong>What factors about a study force you to have larger sample sizes for a given power? </strong></p>
-<p>If the effect size is small, the population variation is large or the significance level required is small.</p>
-<p><strong>How would you know what the variation of your population is? How could you reduce this?</strong>.</p>
-<p>You might look at the literature. Very likely, someone has done a study similar to yours. What variation did they see? Alternatively, you could do a pilot study and with relatively little effort get an idea yourself of the variation within your population of interest of the attrivute you want to measure.</p>
-<p><strong>What downside might there be to reducing the population variation, supposing you could do it, in order to increase power?</strong>.</p>
-<p>You can sometimes reduce the variation within the population that you are studying by restricting variation in causal factors that do not interest you for that particular study, but which might also be contributing to variation in the outcome variable that does interest you. So while your study might focus on the impact of soil treatments on growth rates of seedlings, for example, it may be that soil moisture also affects growth rate. Hence if you ensure that all seedlings are grown under the same moisture conditions, you will remove any variation in growth rates due to that, and hence reduce the total varation. This will increase the power of your study - where by that we mwan the likelihood that you will detect any difference that your soil supplement made to growth rate.</p>
-<p>The downside to this approach is that you will restrict the applicability of your study. In the example above, having applied the supplement and observed some difference or not compared to a control sample, you could only make inferences to populations of seedlings that were grown under precisely the soil moisture conditions you chose for your study. You could no longer make statements about the supplement preferences of seedlings grown under any old soil moisture conditions.</p>
-<p>An alternative approach, which preserves both power and range of applicability is to change the design of the study. In this case, instead of making it a one-factor study in which growth rate is measured against supplement presence or absence, we could also measure the soil moisture and include this in the analysis. If we had measured discrete levels of soil moisture, we would now have a 2-way ANOVA, and if we had measured it as a continuous variable we would have an ANCOVA.</p>
-<p><strong>How would you know what the effect size was, and could you increase it?</strong></p>
-<p>The same applies here as for the variation. You could look at the literature. Someone else has very likely done a similar study. What effect size did they observe? Or, you could do a quick and dirty pilot study. Unlike the population variation thing, however, it is easier to detect an effect if the effect size is bigger. Is there anything you can do to increase it? In an observational study in the wild, perhaps not but in a manipulative study perhaps you can. In our example we might use large doses of supplement rather than small ones, hoping to see a larger effect as a result.</p>
-<p><strong>What assumptions have gone into this power calculation?</strong></p>
-<p>We assumed here that our samples were drawn from normally distributed populations with equal variances. In our simulations we knew that was the case because me made it so by design, but we could have given them any distribution or variance we wanted. Simulations are a very powerful tool.</p>
+<section id="analysis-using-linear-model-ancova" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="analysis-using-linear-model-ancova"><span class="header-section-number">13.2</span> Analysis using linear model: ANCOVA</h2>
+<p>How did we get these straight lines? We can find the intercept and gradients for these lines by using a linear model, in the form of an ANCOVA (ANalysis of COVAriance), which is just like a two-way ANOVA except that one of the explanatory variables is continuous.</p>
+<p>First we try an interactive model, remembering that <code>Biomass*pH</code> is shorthand for <code>Biomass + pH + Biomass:pH</code>, where the <code>Biomass</code> and <code>pH</code> terms are the main effects of each variable, and <code>Biomass:pH</code> is the interaction between them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_interaction <span class="ot">&lt;-</span> <span class="fu">lm</span>(Species <span class="sc">~</span> Biomass <span class="sc">*</span> pH, <span class="at">data =</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this model, a non-zero main effect of biomass means that the lines have non-zero gradient - the species richness depends on biomass, irrespective of pH class. A non-zero main-effect of pH means that the lines for each pH class are separate from each other - pH makes a difference to species richness, for all values of biomass. A non-zero interaction between biomass and pH class means that the gradients of the lines are different - the degree to which the species richness varies with one factor depends on the value of the other factor.</p>
+<p>To see if any of these terms are significant, we use the <code>anova()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_interaction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: Species
+           Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
+Biomass     1  838.5  838.51  57.5126 4.105e-11 ***
+pH          2 6268.9 3134.43 214.9878 &lt; 2.2e-16 ***
+Biomass:pH  2    6.3    3.13   0.2147    0.8073    
+Residuals  84 1224.7   14.58                       
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>This tells us that there is no evidence for an interaction between biomass and pH class, but that there is a main effect of biomass and of pH. Species richness does vary with biomass, and for any given value of biomass the richness will differ depending on the pH class.</p>
+<p>How big are these effects?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_interaction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Species ~ Biomass * pH, data = species)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-9.290 -2.554 -0.124  2.208 15.677 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    17.84740    1.22510  14.568  &lt; 2e-16 ***
+Biomass        -2.82778    0.45357  -6.235 1.74e-08 ***
+pHmid          11.18359    1.76813   6.325 1.17e-08 ***
+pHhigh         22.75667    1.83564  12.397  &lt; 2e-16 ***
+Biomass:pHmid   0.26268    0.54557   0.481    0.631    
+Biomass:pHhigh  0.02733    0.51248   0.053    0.958    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.818 on 84 degrees of freedom
+Multiple R-squared:  0.8531,    Adjusted R-squared:  0.8444 
+F-statistic: 97.58 on 5 and 84 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>According to this model there is evidence that species richness declines with increasing biomass and is substantially greater at higher pH values, but there is no evidence that pH affects the relationship between species richness and biomass.</p>
+<p>Make sure you can see how the intercepts and gradients of the three lines in the plot above can be got from the model summary.</p>
+<p>But, is it really true? Do we believe what it is telling us, that pH has no effect on the relationship between species and biomass?</p>
+<p>That there is a problem here with the linear model becomes clear if we extropolate its predictions (ie the lines in the plot) to higher values of biomass. For each pH class it predicts negative species counts above some value of biomass, for example above about 6 at low pH. But this is nonsense: counts are strictly bounded below by zero and any sensible model should take account of this.</p>
+<p>So we refit using a GLM and Poisson errors instead of a linear model.</p>
+</section>
+<section id="fit-using-glm" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="fit-using-glm"><span class="header-section-number">13.3</span> Fit using GLM</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model_glm_poisson_interaction <span class="ot">&lt;-</span> <span class="fu">glm</span>(Species <span class="sc">~</span> Biomass<span class="sc">*</span>pH, <span class="at">family =</span> <span class="st">"poisson"</span>, <span class="at">data =</span> species)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_glm_poisson_interaction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = Species ~ Biomass * pH, family = "poisson", data = species)
+
+Coefficients:
+               Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)     2.95255    0.08240  35.833  &lt; 2e-16 ***
+Biomass        -0.26216    0.03803  -6.893 5.47e-12 ***
+pHmid           0.48411    0.10723   4.515 6.34e-06 ***
+pHhigh          0.81557    0.10284   7.931 2.18e-15 ***
+Biomass:pHmid   0.12314    0.04270   2.884 0.003927 ** 
+Biomass:pHhigh  0.15503    0.04003   3.873 0.000108 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 452.346  on 89  degrees of freedom
+Residual deviance:  83.201  on 84  degrees of freedom
+AIC: 514.39
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<p>The residual deviance is not greater than the number of degrees of freedom so we do not need to correct for overdispersion. Do we need to retain the interaction term? Let us test this by fitting an additive model without it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model_glm_poisson_NO_interaction <span class="ot">&lt;-</span> <span class="fu">glm</span>(Species <span class="sc">~</span> Biomass <span class="sc">+</span> pH, <span class="at">data =</span> species)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_glm_poisson_interaction, model_glm_poisson_NO_interaction, <span class="at">test =</span> <span class="st">"Chi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Deviance Table
+
+Model 1: Species ~ Biomass * pH
+Model 2: Species ~ Biomass + pH
+  Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+1        84       83.2                          
+2        86     1230.9 -2  -1147.7 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>So we <em>do</em> need to retain the interaction. There is a highly significant difference between the slopes at different levels of pH. So Model 1 is the minimally adequate model.</p>
+<p>Now we plot fitted curves through the data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Biomass, <span class="at">y =</span> Species, <span class="at">colour =</span> pH)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"poisson"</span>)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="glm_with_count_data_ancova_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-crawley2014" class="csl-entry" role="listitem">
+Crawley, Michael J. 2014. <em>Statistics: An Introduction Using r</em>. 2nd ed. Wiley Blackwell.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -972,13 +1021,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./qq_plots.html" class="pagination-link" aria-label="Quantile-quantile plots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span>
+      <a href="./glm_poisson_with_count_data.html" class="pagination-link" aria-label="GLM poisson with count data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ordination.html" class="pagination-link" aria-label="Ordination">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Ordination</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -990,7 +1039,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/power-analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/glm_with_count_data_ancova.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

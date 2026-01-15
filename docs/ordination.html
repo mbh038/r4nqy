@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; Ordination – From questions to data to answers using R</title>
+<title>14&nbsp; Ordination – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./qq_plots.html" rel="next">
-<link href="./glm_poisson_with_count_data.html" rel="prev">
+<link href="./glm_with_count_data_ancova.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -292,6 +292,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glm_with_count_data_ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -306,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordination.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
       </ul>
@@ -323,13 +329,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -361,14 +367,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#principal-components-analysis" id="toc-principal-components-analysis" class="nav-link active" data-scroll-target="#principal-components-analysis"><span class="header-section-number">13.1</span> Principal Components Analysis</a>
+  <li><a href="#principal-components-analysis" id="toc-principal-components-analysis" class="nav-link active" data-scroll-target="#principal-components-analysis"><span class="header-section-number">14.1</span> Principal Components Analysis</a>
   <ul class="collapse">
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">13.1.1</span> Motivation</a></li>
-  <li><a href="#what-does-pca-do" id="toc-what-does-pca-do" class="nav-link" data-scroll-target="#what-does-pca-do"><span class="header-section-number">13.1.2</span> What does PCA do?</a></li>
-  <li><a href="#scree-plot" id="toc-scree-plot" class="nav-link" data-scroll-target="#scree-plot"><span class="header-section-number">13.1.3</span> Scree Plot</a></li>
-  <li><a href="#loadings" id="toc-loadings" class="nav-link" data-scroll-target="#loadings"><span class="header-section-number">13.1.4</span> Loadings</a></li>
-  <li><a href="#biplot" id="toc-biplot" class="nav-link" data-scroll-target="#biplot"><span class="header-section-number">13.1.5</span> Biplot</a></li>
-  <li><a href="#what-to-report" id="toc-what-to-report" class="nav-link" data-scroll-target="#what-to-report"><span class="header-section-number">13.1.6</span> What to Report</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation"><span class="header-section-number">14.1.1</span> Motivation</a></li>
+  <li><a href="#what-does-pca-do" id="toc-what-does-pca-do" class="nav-link" data-scroll-target="#what-does-pca-do"><span class="header-section-number">14.1.2</span> What does PCA do?</a></li>
+  <li><a href="#scree-plot" id="toc-scree-plot" class="nav-link" data-scroll-target="#scree-plot"><span class="header-section-number">14.1.3</span> Scree Plot</a></li>
+  <li><a href="#loadings" id="toc-loadings" class="nav-link" data-scroll-target="#loadings"><span class="header-section-number">14.1.4</span> Loadings</a></li>
+  <li><a href="#biplot" id="toc-biplot" class="nav-link" data-scroll-target="#biplot"><span class="header-section-number">14.1.5</span> Biplot</a></li>
+  <li><a href="#what-to-report" id="toc-what-to-report" class="nav-link" data-scroll-target="#what-to-report"><span class="header-section-number">14.1.6</span> What to Report</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ordination.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -376,9 +382,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ordination</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Ordination</span></h1>
 </div>
 
 
@@ -395,10 +401,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="principal-components-analysis" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="principal-components-analysis"><span class="header-section-number">13.1</span> Principal Components Analysis</h2>
-<section id="motivation" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">13.1.1</span> Motivation</h3>
+<section id="principal-components-analysis" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="principal-components-analysis"><span class="header-section-number">14.1</span> Principal Components Analysis</h2>
+<section id="motivation" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">14.1.1</span> Motivation</h3>
 <p>In an ecological study, and in other fields too we might often gather taxon data from a variety of sites, or</p>
 <p>For this exercise we rely heavily on</p>
 <p>Holland, S. M. (2019). <em>Principal Components Analysis (PCA)</em>. http://strata.uga.edu/8370/handouts/pcaTutorial.pdf</p>
@@ -513,12 +519,12 @@ $ Value    &lt;dbl&gt; 1.95, -4.66, 1.49, 297.16, 1.52, 2.22, 0.34, 8.61, 1.82, 
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> pca<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="what-does-pca-do" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="what-does-pca-do"><span class="header-section-number">13.1.2</span> What does PCA do?</h3>
+<section id="what-does-pca-do" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="what-does-pca-do"><span class="header-section-number">14.1.2</span> What does PCA do?</h3>
 <p>First think of each of the samples in this study as being characterised by eight different variables, the concentrations of the the eight elements and isotope ratios that were measured in each of them. We can think of each of these variables as representing an axis in 8 dimensional space (don’t think too long over this or your head might pop!). If we could draw this space (we can’t!) then each sample would be at a point specified by its values of these eight variables, just as a point on a 2 dimensional graph might be specified by its coordinates, say (3,2), meaning the point where the variable x had the value 3 and the variable y had the value 2. The whole data set would be a cloud of points in this space.</p>
 </section>
-<section id="scree-plot" class="level3" data-number="13.1.3">
-<h3 data-number="13.1.3" class="anchored" data-anchor-id="scree-plot"><span class="header-section-number">13.1.3</span> Scree Plot</h3>
+<section id="scree-plot" class="level3" data-number="14.1.3">
+<h3 data-number="14.1.3" class="anchored" data-anchor-id="scree-plot"><span class="header-section-number">14.1.3</span> Scree Plot</h3>
 <p>A scree plot help us see how the variance in the data is distributed among the principal components. We see that each successive PC explains less variance than the one before. We can use this plot to help us decide how many PCs we need to retain. The horizontal line in the plot shows the total variance divided by the number of PCs. Hence we could decide to retain only those PCs that explain more variance than this, since only they explain more than one variable’s worth of data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Basic scree plot</span></span>
@@ -556,8 +562,8 @@ $ Value    &lt;dbl&gt; 1.95, -4.66, 1.49, 297.16, 1.52, 2.22, 0.34, 8.61, 1.82, 
 </div>
 <p>In this data set we see that there is a big drop off in variance explained on going from the second to the third PC but that the third nevertheless just about accounts for more than one variables worth of variance and so may be worth retaining. Even if we do, we will still have reduced the dimensionality of our data from eight to three.</p>
 </section>
-<section id="loadings" class="level3" data-number="13.1.4">
-<h3 data-number="13.1.4" class="anchored" data-anchor-id="loadings"><span class="header-section-number">13.1.4</span> Loadings</h3>
+<section id="loadings" class="level3" data-number="14.1.4">
+<h3 data-number="14.1.4" class="anchored" data-anchor-id="loadings"><span class="header-section-number">14.1.4</span> Loadings</h3>
 <p>Let’s look at the loadings of the first three PCs.</p>
 <p>From this we can see which variables have high loadings, positive or negative, on each principal component, and so contribute most to it. This helps us work out what each principal component represents. A positive loading means that the variable correlate positively with the principal component, whereas a negative loading means that it correlates negatively.</p>
 <div class="cell">
@@ -576,8 +582,8 @@ Si   -0.55 -0.04 -0.06</code></pre>
 </div>
 <p>Here we see that Al, Fe and Si all have strong negative loading on axis 1, meaning that high values of PC1 correspond to low values of the variables. On axis 2 we see that d180 has a strong positive loading while Mn has a strong negative loading. Thus, large values of PC2 correspond to large values of d180 and to low values of Mn.</p>
 </section>
-<section id="biplot" class="level3" data-number="13.1.5">
-<h3 data-number="13.1.5" class="anchored" data-anchor-id="biplot"><span class="header-section-number">13.1.5</span> Biplot</h3>
+<section id="biplot" class="level3" data-number="14.1.5">
+<h3 data-number="14.1.5" class="anchored" data-anchor-id="biplot"><span class="header-section-number">14.1.5</span> Biplot</h3>
 <p>Scores and loadings are often shown together on what is known as a biplot. The <code>autoplot()</code> function from the package <code>ggfortify</code> provides a good way to do this, offering you lots of control over the details.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>coord.system <span class="ot">&lt;-</span> <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.3</span>,<span class="fl">0.3</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.3</span>,<span class="fl">0.3</span>))</span>
@@ -617,8 +623,8 @@ Si   -0.55 -0.04 -0.06</code></pre>
 </div>
 </div>
 </section>
-<section id="what-to-report" class="level3" data-number="13.1.6">
-<h3 data-number="13.1.6" class="anchored" data-anchor-id="what-to-report"><span class="header-section-number">13.1.6</span> What to Report</h3>
+<section id="what-to-report" class="level3" data-number="14.1.6">
+<h3 data-number="14.1.6" class="anchored" data-anchor-id="what-to-report"><span class="header-section-number">14.1.6</span> What to Report</h3>
 <p>When reporting a principal components analysis, always include at least these items:</p>
 <ul>
 <li><p>A description of any data culling or data transformations that were used prior to ordination. State these in the order that they were performed.</p></li>
@@ -1052,13 +1058,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./glm_poisson_with_count_data.html" class="pagination-link" aria-label="GLM poisson with count data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span>
+      <a href="./glm_with_count_data_ancova.html" class="pagination-link" aria-label="GLM with count data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM with count data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./qq_plots.html" class="pagination-link" aria-label="Quantile-quantile plots">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
