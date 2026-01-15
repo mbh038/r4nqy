@@ -87,13 +87,13 @@ plot_grid(p1,p2,p3,p4,nrow=2)
 
 This is a type of proportion data where the data are continuous but bounded, ranging from 0% to 100%, with values outside that range being impossible and meaningless. You might encounter this when doing flora and fauna surveys with quadrats, and are recording a species for which individual counts are not possible, for example barnacles or many macroalgae on a rocky shore, or grasses in a meadow. Its variance will vary in a similar way to proportion data derived from count data: tendding towards zero for either 0% or 100% cover, and maximal when the cover is around 50%. In this case, a common approach is to arcsine transform the data, and then analyse it using linear models, but consider usin the GLM approaches discussed below.
 
-### What to do when the linear model is not applicable?
+## What to do when the linear model is not applicable?
 
 A common approach to try to solve at least part of the problem is to 'transform' the response data such that its distribution more resembles that of a 'normal' distribution. This usually means operating on it with functions such as square root or log that have the effect of pulling in the long tails of highly skewed distributions. This approach has its limitations. For one thing, it is the erros (ie the difference between the actual and the predicted values) that should be normally distributed, not the the data themselves.
 
 A more powerful and versatile approach is to use generalized linear models, commonly referred to as GLMs.
 
-### Introduction to Genralized Linear Models (GLMs)
+## Introduction to Genralized Linear Models (GLMs)
 
 A generalized linear model has three important properties:
 
@@ -103,7 +103,7 @@ A generalized linear model has three important properties:
 
 While none of these concepts is likely to be familiar, the ideas behind each of them are straightforward and it is worth getting to know what each one involves.
 
-### The Error Structure
+## The Error Structure
 
 In the linear model, which underpins such analyses as the various forms of t-test, ANOVA, linear regression or pearson correlation, the errors are assumed to be normally distributed. By 'error' we means the difference between the mean of a population, or the difference between an observed or a fitted value, as in regression.
 
@@ -137,7 +137,7 @@ if the response is binary and has binomial errors.
 
 The response variable `z` can be continuous, leading to a regression analysis, or categorical, leading to an ANOVA-like procedure called analysis of deviance.
 
-### The linear predictor
+## The linear predictor
 
 In a GLM, each observed value *y* is related to a predicted value, which is obtained by transformation of the value emerging from the *linear predictor* $\eta$. This linear predictor is a linear sum of the effects of one or more explanatory variables $x_j$. It is what you would see if you asked in R for `summary.lm`.
 
@@ -145,7 +145,7 @@ $$
 \eta_i = \sum_{j=1}^px_{ib}\beta_j
 $$ The $x$s are the values of the *p* different explanatory variables and the $\beta$s are the (usually) unknown poarameters to be estimated from the data. The right-hand side of this equation is called the *linear structure*. Thre are as many terms in this as there are parameters to be estimated, that is *p*.
 
-### Fitted values
+## Fitted values
 
 ### Deviance: a general measure of variability
 
@@ -172,7 +172,7 @@ df |>
   kable_styling(latex_options = "hold_position")
 ```
 
-### The link function
+## The link function
 
 The predicted value of *y* is related to the linear predictor value $\eta$ via the link function *g*:
 
@@ -182,9 +182,9 @@ $$ What we mean by this is that the value of $\eta$ is obtained by transforming 
 
 In the case of the *identity link*, the linear predictor *is* the predicted value of *y*. Hence, in simple linear regression, we are in effect using a special case of the GLM, one where the link function is the *identity* ie do nothing.
 
-### Canonical link functions
+## Canonical link functions
 
-The most commonly used link functions are shown below. A key requirement of any link function is o ensure that fitted values stay within reasonable bounds. Thus if the response is a count, the fitted values should all be zero or positive, and if a proportion, should be between zero and one, and so on.
+The most commonly used link functions are shown below. A key requirement of any link function is to ensure that fitted values stay within reasonable bounds. Thus if the response is a count, the fitted values should all be zero or positive, and if a proportion, should be between zero and one, and so on.
 
 Thus for count data, the log function is an appropriate link function, since the fitted values are then antilogs of the linear predictor, and so are guaranteed to be greater than or equal to zero. For proportion data, the logit function is appropriate since the fitted value is then the antilog of the log odds $\log(\frac{p}{q})$, ie $\frac{p}{q}$, which is a proportion, guaranteed to be between zero and one since $p\leq q$ and both $p$ and $q$ are non-negative.
 

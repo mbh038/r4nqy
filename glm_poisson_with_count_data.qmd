@@ -103,9 +103,9 @@ However, one out four is not good enough, as Meatloaf didn't quite say. The line
 
 The linear model is based on the errors of the data being normally distributed, but this is very often not the case for count data, for at least these obvious reasons:
 
-* The normal; distribution concerns continuous variables that may be fractional, whereas count data are discrete 0, 1, 2... Ewes cannot give birth to 2.5 offspring.
-* The normal distribution allows negative values, whereas count data cannot be negative. They can be zero, but not negative. You can't find -2 limpets in a quadrat, witness -3 instances of a behaviour or give birth to -1 offspring!
-* The normal distribution is symmetrical whereas count data very often are not symmetrically distributed, in part because negative values are not possible but occasional very large values are.
+-   The normal; distribution concerns continuous variables that may be fractional, whereas count data are discrete 0, 1, 2... Ewes cannot give birth to 2.5 offspring.
+-   The normal distribution allows negative values, whereas count data cannot be negative. They can be zero, but not negative. You can't find -2 limpets in a quadrat, witness -3 instances of a behaviour or give birth to -1 offspring!
+-   The normal distribution is symmetrical whereas count data very often are not symmetrically distributed, in part because negative values are not possible but occasional very large values are.
 
 Hence, the normal distribution is just not a very good model for many kinds of count data. The Poisson distribution, on the other hand *is* a good starting point for the analysis of *certain* kinds of count data. We mean by that the kind where, while we may know how often something did happen, we do not know how often it *did not* happen, and where occasional large count values are possible ie there is no upper bound to possible count values. This might include, say, counting meiofauna on a microscope slide, offspring (!), goals per game in football, decays per given time interval in a radioactive sample, mutations per unit length in a strand of DNA, and many, many more.
 
@@ -122,10 +122,10 @@ $$
 
 We won't here go into the details of the Poisson distribution, but will limit ourselves to presenting three examples of it, for mean count values of 2, 4 and 6. The *x* axes show the range of possible counts, and the *y* axis shows the probability of each value.
 
-These examples illustrate why the Poisson distribution is a good choice for use with unbounded (That is, no upper bound. There is a bound of zero at the lower end)  count data since it overcomes all the issues discussed above: 
+These examples illustrate why the Poisson distribution is a good choice for use with unbounded (That is, no upper bound. There is a bound of zero at the lower end) count data since it overcomes all the issues discussed above:
 
-* only discrete values 0, 1, 2,... are possible. These are bounded at zero. High count values are possible but are increasingly unlikely.
-* the variance of the the distribution increases as the mean value increases - in fact, the variance and the mean are equal. We see this as a fattening of the distribution as the mean count value increases.
+-   only discrete values 0, 1, 2,... are possible. These are bounded at zero. High count values are possible but are increasingly unlikely.
+-   the variance of the the distribution increases as the mean value increases - in fact, the variance and the mean are equal. We see this as a fattening of the distribution as the mean count value increases.
 
 ```{r, echo = FALSE}
 N <- 10000
@@ -175,7 +175,6 @@ count_data |>
 
 
 ```
-
 :::
 
 ```{r right analysis with GLM}
@@ -194,7 +193,8 @@ To do this we use the same `anova()` and `summary()` functions that we are used 
 anova(soay.glm) # sequential sums of squares table
 ```
 
-In GLMs 
+In GLMs
+
 ```{r}
 summary(soay.glm) # coefficients table
 ```
