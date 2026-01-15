@@ -7,7 +7,8 @@ execute:
   warning: false
 ---
 
-
+This chapter draws on Michael Crawley’s Statistics: An introduction using R, 2nd Ed, Wiley. 
+---
 
 ```{r}
 library(tidyverse)
