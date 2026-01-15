@@ -44,6 +44,10 @@ book:
       chapters:
       - correlation.qmd
       - simple-linear-regression.qmd
+    - part: "Generalised Linear Models (GLM)"
+      chapters: 
+        - GLM.qmd
+        - glm_poisson_with_count_data.qmd
     - part: "Ordination"
       chapters:
       - ordination.qmd
