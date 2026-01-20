@@ -1,24 +1,25 @@
+---
+bibliography: references.bib
+---
+
 # Ordination
+
+In many studies in ecology, genetics and other fields data is gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.
+
+Ordination is the general term for a clutch of techniques that try to find order in this chaos. A main task is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, but can now be displayed on a two-dimesional plot and made sense of.
 
 ## Principal Components Analysis
 
-
 ### Motivation
 
-In an ecological study, and in other fields too we might often gather taxon data from a variety of sites, or 
+In an ecological study, and in other fields too we might often gather taxon data from a variety of sites, or
 
-For this exercise we rely heavily on
+For this exercise we rely heavily on Holland [-@holland2019]
 
-Holland, S. M. (2019). *Principal Components Analysis (PCA)*. http://strata.uga.edu/8370/handouts/pcaTutorial.pdf
-
-
-See also
-
-Shlens, J. (2014). *A Tutorial on Principal Component Analysis*. https://doi.org/10.1.1.115.3503
-
-
+For a more mathematical treatment, which gets to the core of what PCA is doing, see also Shlens [-@shlens2014]
 
 Before we do anything else, let's load the packages we are going to use, just like we always do:
+
 ```{r}
 library(tidyverse)
 library(here)
@@ -81,7 +82,7 @@ Other restrictions on the data apply to the use of PCA just as in linear model a
 Now we create a PCA model from the transformed data. We scale the data so that all variables are given equal weight. If we did not do this, then the variables for which values are very large (Ca, in this case) would dominate the analysis.
 
 ```{r}
-pca <- prcomp(geochem, scale.=TRUE)
+pca <- prcomp(geochem_trans, scale.=TRUE)
 ```
 
 From this, we get these outputs:
@@ -112,7 +113,6 @@ scores <- pca$x
 
 First think of each of the samples in this study as being characterised by eight different variables, the concentrations of the the eight elements and isotope ratios that were measured in each of them. We can think of each of these variables as representing an axis in 8 dimensional space (don't think too long over this or your head might pop!). If we could draw this space (we can't!) then each sample would be at a point specified by its values of these eight variables, just as a point on a 2 dimensional graph might be specified by its coordinates, say (3,2), meaning the point where the variable x had the value 3 and the variable y had the value 2. The whole data set would be a cloud of points in this space.
 
-
 ### Scree Plot
 
 A scree plot help us see how the variance in the data is distributed among the principal components. We see that each successive PC explains less variance than the one before. We can use this plot to help us decide how many PCs we need to retain. The horizontal line in the plot shows the total variance divided by the number of PCs. Hence we could decide to retain only those PCs that explain more variance than this, since only they explain more than one variable's worth of data.
@@ -128,7 +128,6 @@ scree |>
        y = "% variance explained") +
   theme_cowplot()
 ```
-
 
 ```{r}
 scree
@@ -195,5 +194,3 @@ When reporting a principal components analysis, always include at least these it
 -   A table of loadings of all variables for each of the principal components that was studied. The table should highlight (e.g., with boldface) those loadings that are considered the most important for each principal component.
 
 -   One or more plots of sample scores that emphasizes the interpretation of the principal components, such as color-coding samples by an external variable. It is often useful to show the vectors corresponding to the loadings on these plots
-
-

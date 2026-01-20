@@ -5,6 +5,7 @@ editor: visual
 execute: 
   message: false
   warning: false
+  echo: false
 ---
 
 This chapter draws on Michael Crawley’s Statistics: An introduction using R, 2nd Ed, Wiley. 
@@ -28,9 +29,11 @@ For many common analyses of those variables, such as t-test, regression, ANOVA, 
 -   independent errors
 -   additive effects
 
-If one or more of these assumptions is wrong, the analyses become unreliable in that the claims that they make will be based on assumptions that are false.
+If one or more of these assumptions is wrong, the analyses become unreliable in that the claims that they make will be based on assumptions that are false. 
 
-Consider the variance of some commonly encountered types of data:
+In ecology and many other fields,  this is very commonly the case.
+
+Consider for example the variance of some commonly encountered types of data:
 
 **Count data**
 
@@ -44,7 +47,7 @@ We said that this increase in variance with mean count value is found for count 
 
 **Proportion data**
 
-Sometimes, however, as well as knowing how often something did happen, we also know how often it did not happen. We canexpress each count as a *poportion* of the total. We could characterise the first counts as 'successes' and the second as 'failures', although this can sometimes be somewhat macabre in a medical context. Both counts are important to a full analysis of the data.
+Sometimes, however, as well as knowing how often something did happen, we also know how often it did not happen. We can express each count as a *poportion* of the total. We could characterise the first counts as 'successes' and the second as 'failures', although this can sometimes be somewhat macabre in a medical context. Both counts are important to a full analysis of the data.
 
 Examples are:
 
@@ -57,6 +60,7 @@ Examples are:
 | pollinated           | not pollinated               |
 | adult                | juvenile                     |
 | exhibits behaviour A | does not exhibit behaviour A |
+| heterozygous         | homozygous                   |
 
 As another example you might be studying the behaviour of civets in a zoo in time blocks of 20 minutes. For every minute within each block you record whether the civets appeared agitated. At the end of each block you will know the proportion *p* of one minute slots within which they were agitated and the proportion *1-p* when they were not.
 
@@ -89,7 +93,7 @@ This is a type of proportion data where the data are continuous but bounded, ran
 
 ## What to do when the linear model is not applicable?
 
-A common approach to try to solve at least part of the problem is to 'transform' the response data such that its distribution more resembles that of a 'normal' distribution. This usually means operating on it with functions such as square root or log that have the effect of pulling in the long tails of highly skewed distributions. This approach has its limitations. For one thing, it is the erros (ie the difference between the actual and the predicted values) that should be normally distributed, not the the data themselves.
+A common approach to try to solve at least part of the problem is to 'transform' the response data such that its distribution more resembles that of a 'normal' distribution. This usually means operating on it with functions such as square root or log that have the effect of pulling in the long tails of highly skewed distributions. This approach has its limitations. For one thing, it is the errors (ie the difference between the actual and the predicted values) that should be normally distributed, not the the data themselves.
 
 A more powerful and versatile approach is to use generalized linear models, commonly referred to as GLMs.
 
@@ -105,7 +109,7 @@ While none of these concepts is likely to be familiar, the ideas behind each of 
 
 ## The Error Structure
 
-In the linear model, which underpins such analyses as the various forms of t-test, ANOVA, linear regression or pearson correlation, the errors are assumed to be normally distributed. By 'error' we means the difference between the mean of a population, or the difference between an observed or a fitted value, as in regression.
+In the linear model, which underpins such analyses as the various forms of t-test, ANOVA, linear regression or pearson correlation, the errors are assumed to be normally distributed. By 'error' we means the difference between the observed value and the mean of a population, or the difference between an observed or a fitted value, as in regression.
 
 Often, this is not the case, certainly in ecology and in many studies within the life sciences. It is common to have data for which the errors do *not* have a normal distribution.
 
