@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -401,15 +421,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>In many studies in ecology, genetics and other fields data is gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.</p>
+<p>Ordination is the general term for a clutch of techniques that try to find order in this chaos. A main task is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, but can now be displayed on a two-dimesional plot and made sense of.</p>
 <section id="principal-components-analysis" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="principal-components-analysis"><span class="header-section-number">14.1</span> Principal Components Analysis</h2>
 <section id="motivation" class="level3" data-number="14.1.1">
 <h3 data-number="14.1.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">14.1.1</span> Motivation</h3>
 <p>In an ecological study, and in other fields too we might often gather taxon data from a variety of sites, or</p>
-<p>For this exercise we rely heavily on</p>
-<p>Holland, S. M. (2019). <em>Principal Components Analysis (PCA)</em>. http://strata.uga.edu/8370/handouts/pcaTutorial.pdf</p>
-<p>See also</p>
-<p>Shlens, J. (2014). <em>A Tutorial on Principal Component Analysis</em>. https://doi.org/10.1.1.115.3503</p>
+<p>For this exercise we rely heavily on Holland <span class="citation" data-cites="holland2019">(<a href="references.html#ref-holland2019" role="doc-biblioref">2019</a>)</span></p>
+<p>For a more mathematical treatment, which gets to the core of what PCA is doing, see also Shlens <span class="citation" data-cites="shlens2014">(<a href="references.html#ref-shlens2014" role="doc-biblioref">2014</a>)</span></p>
 <p>Before we do anything else, let’s load the packages we are going to use, just like we always do:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -495,7 +515,7 @@ $ Value    &lt;dbl&gt; 1.95, -4.66, 1.49, 297.16, 1.52, 2.22, 0.34, 8.61, 1.82, 
 <p>Other restrictions on the data apply to the use of PCA just as in linear model analyses. In particular, outliers should be removed since they will have a disproportionate influence on the outcome.</p>
 <p>Now we create a PCA model from the transformed data. We scale the data so that all variables are given equal weight. If we did not do this, then the variables for which values are very large (Ca, in this case) would dominate the analysis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(geochem, <span class="at">scale.=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(geochem_trans, <span class="at">scale.=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>From this, we get these outputs:</p>
 <div class="cell">
@@ -548,16 +568,16 @@ $ Value    &lt;dbl&gt; 1.95, -4.66, 1.49, 297.16, 1.52, 2.22, 0.34, 8.61, 1.82, 
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 3
-     PC    vpc   cpc
-  &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1     1 33.3    33.3
-2     2 25.9    59.2
-3     3 13.4    72.6
-4     4 11.4    83.9
-5     5  7.32   91.3
-6     6  4.74   96.0
-7     7  3.35   99.4
-8     8  0.645 100  </code></pre>
+     PC   vpc   cpc
+  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1 33.0   33.0
+2     2 25.8   58.8
+3     3 13.2   72.0
+4     4 11.4   83.4
+5     5  7.62  91.0
+6     6  4.72  95.7
+7     7  3.27  99.0
+8     8  1.01 100  </code></pre>
 </div>
 </div>
 <p>In this data set we see that there is a big drop off in variance explained on going from the second to the third PC but that the third nevertheless just about accounts for more than one variables worth of variance and so may be worth retaining. Even if we do, we will still have reduced the dimensionality of our data from eight to three.</p>
@@ -570,14 +590,14 @@ $ Value    &lt;dbl&gt; 1.95, -4.66, 1.49, 297.16, 1.52, 2.22, 0.34, 8.61, 1.82, 
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(loadings, <span class="dv">2</span>)[ , <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># this means give me all the row,and columns 1 to 3, rounded to 2 decimal places.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       PC1   PC2   PC3
-d13C -0.12 -0.21  0.70
-d18O -0.01  0.62  0.04
-Al   -0.54  0.21  0.10
-Ca    0.34  0.05  0.35
-Fe   -0.43 -0.31 -0.31
-Mg   -0.27  0.49  0.33
-Mn   -0.14 -0.43  0.42
-Si   -0.55 -0.04 -0.06</code></pre>
+d13C -0.11 -0.23  0.69
+d18O -0.05  0.62  0.05
+Al   -0.56  0.18  0.07
+Ca    0.33  0.08  0.37
+Fe   -0.42 -0.33 -0.31
+Mg   -0.28  0.47  0.34
+Mn   -0.11 -0.44  0.42
+Si   -0.55 -0.04 -0.01</code></pre>
 </div>
 </div>
 <p>Here we see that Al, Fe and Si all have strong negative loading on axis 1, meaning that high values of PC1 correspond to low values of the variables. On axis 2 we see that d180 has a strong positive loading while Mn has a strong negative loading. Thus, large values of PC2 correspond to large values of d180 and to low values of Mn.</p>
@@ -635,6 +655,14 @@ Si   -0.55 -0.04 -0.06</code></pre>
 </ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-holland2019" class="csl-entry" role="listitem">
+Holland, Steven M. 2019. <span>“Principal Components Analysis (PCA).”</span> <a href="http://strata.uga.edu/8370/handouts/pcaTutorial.pdf">http://strata.uga.edu/8370/handouts/pcaTutorial.pdf</a>.
+</div>
+<div id="ref-shlens2014" class="csl-entry" role="listitem">
+Shlens, Jonathon. 2014. <span>“A Tutorial on Principal Component Analysis.”</span> <a href="https://doi.org/10.48550/arXiv.1404.1100">https://doi.org/10.48550/arXiv.1404.1100</a>.
+</div>
+</div>
 </section>
 </section>
 
