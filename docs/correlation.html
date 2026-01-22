@@ -364,6 +364,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PCA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -378,13 +384,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -470,7 +476,7 @@ window.Quarto = {
 </header>
 
 
-<p>Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by Freedman, Pisani and Purves <span class="citation" data-cites="freedman1991">(<a href="references.html#ref-freedman1991" role="doc-biblioref">1991</a>)</span>.</p>
+<p>Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by Freedman, Pisani and Purves <span class="citation" data-cites="freedman1991">(<a href="#ref-freedman1991" role="doc-biblioref">1991</a>)</span>.</p>
 <p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and try out the exercises at the end.</p>
 <p>The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
 <div class="cell" data-layout-align="center">
@@ -572,13 +578,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1493, df = 48, p-value = 4.281e-12
+t = 9.3806, df = 48, p-value = 1.968e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6668518 0.8802400
+ 0.6778085 0.8846643
 sample estimates:
       cor 
-0.7972218 </code></pre>
+0.8043941 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -764,7 +770,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.256, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.245, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="9.6.2">
 <h3 data-number="9.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">9.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -819,7 +825,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </section>
 <section id="significant-wave-height-vs-size-of-cyclone" class="level4" data-number="9.9.2.2">
 <h4 data-number="9.9.2.2" class="anchored" data-anchor-id="significant-wave-height-vs-size-of-cyclone"><span class="header-section-number">9.9.2.2</span> Significant wave height vs size of cyclone</h4>
-<p>Here we look at results displayed in Figure 3f of a paper by Oh et al <span class="citation" data-cites="oh2023">(<a href="references.html#ref-oh2023" role="doc-biblioref">2023</a>)</span>. In this paper the authors seek to determine whether there is an association between the size of a cyclone, measured by the ‘R50’ distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum ‘significant wave height’ of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.</p>
+<p>Here we look at results displayed in Figure 3f of a paper by Oh et al <span class="citation" data-cites="oh2023">(<a href="#ref-oh2023" role="doc-biblioref">2023</a>)</span>. In this paper the authors seek to determine whether there is an association between the size of a cyclone, measured by the ‘R50’ distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum ‘significant wave height’ of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -837,7 +843,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </section>
 <section id="lichen-abundance" class="level3" data-number="9.9.3">
 <h3 data-number="9.9.3" class="anchored" data-anchor-id="lichen-abundance"><span class="header-section-number">9.9.3</span> Lichen abundance</h3>
-<p>In a <span class="citation" data-cites="jovan2008">(<a href="references.html#ref-jovan2008" role="doc-biblioref">2008</a>)</span> paper, Jovan <em>et al</em>. investigated the utility of using lichen as bioindicators of air quality. Is there, they asked, an association between air quality and the abundance of this or that species of lichen?</p>
+<p>In a <span class="citation" data-cites="jovan2008">(<a href="#ref-jovan2008" role="doc-biblioref">2008</a>)</span> paper, Jovan <em>et al</em>. investigated the utility of using lichen as bioindicators of air quality. Is there, they asked, an association between air quality and the abundance of this or that species of lichen?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -859,7 +865,7 @@ A Spearman’s rank correlation coefficient was calculated in this case rather t
 </section>
 <section id="soil-bacteria" class="level3" data-number="9.9.4">
 <h3 data-number="9.9.4" class="anchored" data-anchor-id="soil-bacteria"><span class="header-section-number">9.9.4</span> Soil bacteria</h3>
-<p>Here we look at figures published in a paper by Lauber and co-workers <span class="citation" data-cites="lauber2009">(<a href="references.html#ref-lauber2009" role="doc-biblioref">2009</a>)</span> in which they investigate the evidence for an association between soil pH and the abundance of various species of bacteria.</p>
+<p>Here we look at figures published in a paper by Lauber and co-workers <span class="citation" data-cites="lauber2009">(<a href="#ref-lauber2009" role="doc-biblioref">2009</a>)</span> in which they investigate the evidence for an association between soil pH and the abundance of various species of bacteria.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -882,7 +888,7 @@ A Spearman’s rank correlation coefficient was calculated in this case rather t
 </div>
 </div>
 </div>
-<p>This figure is from a study by Pain et al <span class="citation" data-cites="pain2019">(<a href="references.html#ref-pain2019" role="doc-biblioref">2019</a>)</span> on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.</p>
+<p>This figure is from a study by Pain et al <span class="citation" data-cites="pain2019">(<a href="#ref-pain2019" role="doc-biblioref">2019</a>)</span> on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.</p>
 <p>There is a clear negative trend here that is plausibly linear, or at least monotonic. Shapiro-Wilk tests show that neither data set is plausibly drawn from a normally distributed population, so a Spearman’s rank correlation coefficient is calculated. The result is <span class="math inline">\(r_{\text{Sp}} = -0.697, p &lt; 0.01\)</span> so we can say that there is evidence of a significant and strong negative correlation between lead shot ingestion of waterbird species and their population trends.</p>
 </section>
 <section id="heart-rate-vs-life-expectancy" class="level3" data-number="9.9.6">
@@ -1001,8 +1007,8 @@ sample estimates:
 <li><p>Open the notebook <code>correlation.qmd</code> that you will find in the notebooks subfolder.</p></li>
 <li><p>Run the initial code chunks to load packages and the penguin and iris data</p></li>
 <li><p>Check in the Environment pane that you have created data frames called <code>penguins</code> and <code>iris</code>. Note the variable (column) names in each case.</p></li>
-<li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, create a faceted plot of petal length against petal width for each species. To do this you need to create a new code chunk, paste the code from <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> into it and then adapt it a necessary.</p></li>
-<li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 9.4</span></a> as a guide, calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
+<li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iris-correlation</span></a> as a guide, create a faceted plot of petal length against petal width for each species. To do this you need to create a new code chunk, paste the code from <a href="#sec-iris-correlation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iris-correlation</span></a> into it and then adapt it a necessary.</p></li>
+<li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iris-correlation</span></a> as a guide, calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
 </ol>
 <ul>
 <li>Does it appear that the petal length and petal width are correlated for each species?<br>
@@ -1040,7 +1046,7 @@ sample estimates:
 </ol>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-freedman1991" class="csl-entry" role="listitem">
 Freedman, David, Robert Pisani, Roger Purves, and Ani Adhikari. 1991. <em>Statistics</em>. 2nd ed. W. W. Norton &amp; Company.
 </div>

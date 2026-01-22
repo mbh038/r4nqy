@@ -14,7 +14,7 @@ Before we do anything else, let's load the packages we are going to use, just li
 library(tidyverse)
 library(palmerpenguins)
 library(here)
-library(gfortify)
+library(ggfortify)
 library(GGally)
 library(cowplot)
 theme_set(theme_minimal())
