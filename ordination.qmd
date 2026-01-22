@@ -1,7 +1,3 @@
----
-bibliography: references.bib
----
-
 # Ordination
 
 ## Introduction
