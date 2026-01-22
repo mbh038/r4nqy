@@ -52,6 +52,7 @@ book:
     - part: "Ordination"
       chapters:
       - ordination.qmd
+      - PCA.qmd
     - part: "Additional help"
       chapters:
       - qq_plots.qmd
