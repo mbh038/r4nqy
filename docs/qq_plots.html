@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Test finder – From questions to data to answers using R</title>
+<title>16&nbsp; Quantile-quantile plots – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workflow.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./power-analysis.html" rel="next">
+<link href="./PCA.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -88,9 +68,6 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -105,7 +82,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./test_finder.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="./test_finder.html">Test finder</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./qq_plots.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,7 +127,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./test_finder.html" class="sidebar-item-text sidebar-link active">
+  <a href="./test_finder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Test finder</span></a>
   </div>
 </li>
@@ -323,7 +300,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
+  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
@@ -357,15 +334,29 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">16.0.1</span> Introduction</a></li>
+  <li><a href="#what-is-a-q-q-plot" id="toc-what-is-a-q-q-plot" class="nav-link" data-scroll-target="#what-is-a-q-q-plot"><span class="header-section-number">16.1</span> What is a Q-Q plot?</a></li>
+  <li><a href="#normally-distributed-data." id="toc-normally-distributed-data." class="nav-link" data-scroll-target="#normally-distributed-data."><span class="header-section-number">16.2</span> Normally distributed data.</a></li>
+  <li><a href="#right-skewed-data." id="toc-right-skewed-data." class="nav-link" data-scroll-target="#right-skewed-data."><span class="header-section-number">16.3</span> Right-skewed data.</a></li>
+  <li><a href="#left-skewed-data." id="toc-left-skewed-data." class="nav-link" data-scroll-target="#left-skewed-data."><span class="header-section-number">16.4</span> Left-skewed data.</a></li>
+  <li><a href="#under-dispersed-data" id="toc-under-dispersed-data" class="nav-link" data-scroll-target="#under-dispersed-data"><span class="header-section-number">16.5</span> Under-dispersed data</a></li>
+  <li><a href="#over-dispersed-data" id="toc-over-dispersed-data" class="nav-link" data-scroll-target="#over-dispersed-data"><span class="header-section-number">16.6</span> Over-dispersed data</a></li>
+  <li><a href="#caution" id="toc-caution" class="nav-link" data-scroll-target="#caution"><span class="header-section-number">16.7</span> Caution</a></li>
+  <li><a href="#who-cares-about-normality-anyway-the-central-limit-theorem." id="toc-who-cares-about-normality-anyway-the-central-limit-theorem." class="nav-link" data-scroll-target="#who-cares-about-normality-anyway-the-central-limit-theorem."><span class="header-section-number">16.8</span> Who cares about normality anyway? The central limit theorem.</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/qq_plots.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./test_finder.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="./test_finder.html">Test finder</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./qq_plots.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Test finder</h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></h1>
 </div>
 
 
@@ -382,67 +373,119 @@ div.csl-indent {
 </header>
 
 
-<p>You can either use this <a href="figures/test_finder_and_help.pdf">text version of a test finder</a>, taken from <span class="citation" data-cites="gilbert2017">(<a href="references.html#ref-gilbert2017" role="doc-biblioref">Gilbert, McGregor, and Barnard 2017</a>)</span></p>
-<p>or use this flowchart to see which test is appropriate for your study design and your data:</p>
-<div class="cell" data-layout-align="default">
+<p>Adapted from an exercise by Jon Yearsley (School of Biology and Environmental Science, UCD)</p>
+<section id="introduction" class="level3" data-number="16.0.1">
+<h3 data-number="16.0.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">16.0.1</span> Introduction</h3>
+<p>Q-Q plots can play a useful role when trying to decide whether a dataset is normally distributed, and if it is not, then how it differs from normality.</p>
+<p>We will investigate the types of quantile-quantile plots you get from different types of distributions.</p>
+<p>We will look at data distributed according to</p>
+<ul>
+<li>A normal distribution<br>
+</li>
+<li>A right-skewed distribution<br>
+</li>
+<li>A left-skewed distribution</li>
+<li>An under-dispersed distribution</li>
+<li>An over-dispersed distribution</li>
+</ul>
+</section>
+<section id="what-is-a-q-q-plot" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="what-is-a-q-q-plot"><span class="header-section-number">16.1</span> What is a Q-Q plot?</h2>
+<p>Quantiles partition a dataset into equal subsets. For example, if we wished to partition a standard normal (mean = 0, standard deviation = 1) population into 4 equal subsets, the 3 quantiles (ie the three values of x) that would do this are -0.675, 0 and 0.675. In this way, 25% of the population would have a value greater than 0.675, 25% between 0 and 0.675, 25% between -0.675 and 0 and the final 25% would have a value less than -0.675. When we draw the distribution, the areas under the curve between neighbouring quantiles will be equal:</p>
+<div class="cell">
 <div class="cell-output-display">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">%%| fig-width: 10
-%%| fig-align: "centre"
-%%| column: page-right
+<figure class="figure">
+<p><img src="qq_plots_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="normally-distributed-data." class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="normally-distributed-data."><span class="header-section-number">16.2</span> Normally distributed data.</h2>
+<p>Below we show an example of 150 observations that are drawn from a normal distribution. The normal distribution is symmetric, so has no skew. Its mean is equal to its median.</p>
+<p>On a Q-Q plot data that are approximtely normally distributed data lie roughly on a straight line, perhaps looking a bit ragged at each end. The box plot is symmetric with few or no outliers.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="qq_plots_files/figure-html/normal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="right-skewed-data." class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="right-skewed-data."><span class="header-section-number">16.3</span> Right-skewed data.</h2>
+<p>Right skewed distributions are non-symmetric and have a long tail heading towards extreme values on the right-hand side of the distribution. The mean is more positive than the median.</p>
+<p>In the example we show an exponential distribution.</p>
+<p>In the Q-Q plot, such distributions give a distinctive convex curvature. The box-plot may show outliers out towards large values.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="qq_plots_files/figure-html/right-skew-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="left-skewed-data." class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="left-skewed-data."><span class="header-section-number">16.4</span> Left-skewed data.</h2>
+<p>Left skewed distributions are non-symmetric and have a long tail heading towards extreme values on the left-hand side of the distribution. The mean is more negative than the median. The box plot may show outliers down towards small values.</p>
+<p>In the example we show a negative exponential distribution.</p>
+<p>In the Q-Q plot, such distributions give a distinctive concave curvature.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="qq_plots_files/figure-html/left-skew-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="under-dispersed-data" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="under-dispersed-data"><span class="header-section-number">16.5</span> Under-dispersed data</h2>
+<p>Under-dispersed data are data whose distribution is more concentrated around a central value than is the case for normally distributed data. There are fewer outliers and the tails of the distribution are lighter. As an example here we show 150 points drawn from a uniform distribution.</p>
+<p>Note the distinctive curvature of the Q-Q plot. The ‘box’ of the boxplot is bigger than for a normal distribution, since the interquartile range covers a larger range of values.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="qq_plots_files/figure-html/under dispersed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="over-dispersed-data" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="over-dispersed-data"><span class="header-section-number">16.6</span> Over-dispersed data</h2>
+<p>Over-dispersed data are data whose distribution is more widely spread around a central value than is the case for normally distributed data. There are more outliers and the tails of the distribution are fatter. As an example here we show 150 points drawn from a laplace distribution.</p>
+<p>Note the distinctive curvature of the Q-Q plot - like the previous one but curving the other way. The ‘box’ of the boxplot is smaller than for a normal distribution, since the interquartile range covers a smaller range of values.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="qq_plots_files/figure-html/over-dispersed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="caution" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="caution"><span class="header-section-number">16.7</span> Caution</h2>
+<p>With <em>small</em> data sets, the scatter in the data can make it difficult to tell from the histogram (especially) or even the Q-Q plot whether the dataset is plausibly drawn from a normally distributed population. In that case you might choose to combine use of the plots with a normality test, such as Kolmogorov-Smirnov or Shapiro-Wilk. The null hypothesis of these is that the data ARE drawn from normally distributed populations, so the smaller the p-value when they are applied to a dataset, the less likely it is that this is true.</p>
+<p>With <em>large</em> data sets,the Kolmogorov-Smirnov and Shapiro-Wilk tests become very sensitive to even small deviations from normality and might give a p-value that would lead you to suppose that a dataset was not drawn from a normally distributed population. Since no data set is ever truly normal, even when we consider the whole population, all we really need to know is whether the data are close enough to normal that the various tests (eg <em>t</em>-test, ANOVA, correlation, least square regression) that require it are going to work well enough. For these large data sets, histograms and Q-Q plots can be very useful indicators of approximate normality.</p>
+</section>
+<section id="who-cares-about-normality-anyway-the-central-limit-theorem." class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="who-cares-about-normality-anyway-the-central-limit-theorem."><span class="header-section-number">16.8</span> Who cares about normality anyway? The central limit theorem.</h2>
+<p>Lastly, for large enough data sets, we don’t actually need the data to be normally distributed for the tests that require normality to work! This is because what they require is not that the dataset itself be normal, but that the distribution of the means of many such data sets, the so-called sampling distribution, be normal. A very important mathematical result known as the <strong>Central Limit Theorem</strong> guarantees that this will be the case <em>whatever</em> the distribution of each of the data sets, as long as these datasets are large enough!</p>
+<p>How large is large enough? There’s the rub! A common rule of thumb is that if the dataset has size <em>N</em>&gt;30 or so, then it is safe to use tests that require normality. Indeed, one does find that sampling distributions for data drawn from uniform or mildly skewed distributions such as the exponential distribution are roughly normal when <em>N</em> exceeds 30 or so, but for more skewed datasets, a larger dataset can be needed - it depends on how far from normality the distribution is. The further from normal it is the larger the dataset needs to be before the Central Limit Theorem applies to a good approximation. For a highly skewed dataset, for example one distributed according to something like a log-normal distribution, it can require <em>N</em>&gt;200 or so, or even more before it is OK to use <em>t</em>-tests and the like.</p>
 
-flowchart TD
-  A{Difference or Trend Question?} --&gt; B[Trend]
-  B --&gt; B2{Are you testing for degree of associationor are you trying to make predictions?}
-  B2 --&gt; B33[Association:Test for correlation coefficient Pearson or  Spearman's Rank]
-  B2 --&gt; B44[Predictions: Simple linear regression]
-  A --&gt; C[Difference]
-  C --&gt; C22{Do you have replicates?}
-  C22 --&gt; C22Y[Yes]
-  C22 --&gt; C22N[No]
-  C22N --&gt; C23{Do you have count data?}
-  C23 --&gt; C23Y[Yes]
-  C23 --&gt; C23N[N0]
-  C23Y --&gt; C24(Chi square test: Goodness of fit or Test of independence)
-  C23N --&gt; C25[These data cannot be analysed]
-  C22Y --&gt; D{How many factors?}
-  D --&gt; F[Two or more]
-  F --&gt; F2{Independent samples?}
-  F2 --&gt; F2Y[Yes]
-  F2 --&gt; F2N[No]
-  F2Y --&gt; F22Y(n-way ANOVA)
-  F2N --&gt; F22N(n-way repeated measures ANOVA)
-  D --&gt; E[One]
-  E --&gt; G{How many levels?}
-  G --&gt; H[Two]
-  G --&gt; I[More than two]
-  I --&gt; J{Independent samples?}
-  J --&gt; K[No]
-  J --&gt; L[Yes]
-  K --&gt; S(Repeated measures one-way ANOVA or Friedman Test)
-  L --&gt; T(One way ANOVA or Kruskal Wallis one-way test)
-  H --&gt; M{Independent samples?}
-  M --&gt; N[No]
-  M --&gt; O[Yes]
-  N --&gt; P(paired t-test or Signed rank test)
-  O --&gt; Q(two sample t-test or Matt Whitney U test)
-  
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Now go to whichever chapter of this book covers the test you need.</p>
 
-
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-gilbert2017" class="csl-entry" role="listitem">
-Gilbert, Francis, Peter McGregor, and Chris Barnard. 2017. <em>Asking Questions in Biology; a Guide to Hypothesis Testing, Experimental Design and Presentation in Practical Work and Research Projects</em>. 5th ed. Benjamin Cummings.
-</div>
-</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -864,13 +907,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      <a href="./PCA.html" class="pagination-link" aria-label="Principal Components Analysis (PCA)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow.html" class="pagination-link" aria-label="A recommended analysis workflow">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./power-analysis.html" class="pagination-link" aria-label="Power Analysis">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Power Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -882,7 +925,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/test_finder.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/qq_plots.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
