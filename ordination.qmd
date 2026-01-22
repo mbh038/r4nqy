@@ -4,13 +4,15 @@ bibliography: references.bib
 
 # Ordination
 
+## Introduction
+
 In many studies in ecology, genetics and other fields data is gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.
 
-Ordination is the general term for a clutch of techniques that try to find order in this chaos. A main task is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, but can now be displayed on a two-dimesional plot and made sense of.
+Ordination is the general term for a clutch of techniques that try to find order in this chaos. A main task is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, but can now be displayed on a two-dimensional plot and made sense of.
 
 ## Principal Components Analysis
 
-### Motivation
+### Example One: Geological samples
 
 In an ecological study, and in other fields too we might often gather taxon data from a variety of sites, or
 
@@ -194,3 +196,120 @@ When reporting a principal components analysis, always include at least these it
 -   A table of loadings of all variables for each of the principal components that was studied. The table should highlight (e.g., with boldface) those loadings that are considered the most important for each principal component.
 
 -   One or more plots of sample scores that emphasizes the interpretation of the principal components, such as color-coding samples by an external variable. It is often useful to show the vectors corresponding to the loadings on these plots
+
+### Example Two: Palmer Penguins
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(GGally)
+library(cowplot)
+theme_set(theme_minimal())
+```
+
+```{r}
+data(penguins)
+penguins <- penguins |> drop_na()
+glimpse(penguins)
+```
+
+```{r}
+penguins |>
+  dplyr::select(species, body_mass_g, ends_with("_mm")) |>
+  GGally::ggpairs(aes(color = species),
+          columns = c("flipper_length_mm", "body_mass_g", 
+                      "bill_length_mm", "bill_depth_mm")) +
+  scale_colour_manual(values = c("darkorange","purple","cyan4")) +
+  scale_fill_manual(values = c("darkorange","purple","cyan4"))
+```
+
+```{r}
+penguins_num <- penguins |>
+  dplyr::select(bill_length_mm:body_mass_g)
+```
+
+```{r}
+penguins_num |>
+  pivot_longer(everything(), names_to = "variable", values_to = "values") |>
+  summarise(n = n())
+```
+```{r}
+penguins_pca <- prcomp(penguins_num, scale.=TRUE)
+```
+
+```{r}
+
+# The variance vector shows how much of the variance in the data is explained by each PC. A variance is the square of a standard deviation.
+variance <- (penguins_pca$sdev)^2
+
+# We divide each element of the vector by the total variance to find the proportion of variance explained by each PC
+vpc <-variance/sum(variance) * 100
+
+# Here we find the cumulative proportin explained by the first n PCs. 
+cpc <- cumsum(vpc)
+
+# gather these vectors together in a data frame called scree.
+scree<-tibble(PC = seq(1:length(penguins_pca$sdev)), vpc = vpc, cpc = cpc)
+
+# loadings show how much each variables contributes to each PC
+loadings <- penguins_pca$rotation
+rownames(loadings) <- colnames(penguins_num)
+
+# These show the values each data point has for each of the principal components
+scores <- penguins_pca$x
+```
+
+```{r}
+### Basic scree plot
+scree |>
+  ggplot(aes(x = PC,y = vpc)) +
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = mean(scree$vpc), linetype = "dashed", colour = "red") +
+  labs(x = "Principal component",
+       y = "% variance explained") +
+  theme_cowplot()
+```
+
+
+```{r}
+scree
+```
+
+```{r}
+round(loadings, 2)# this means give me all the row,and columns 1 to 3, rounded to 2 decimal places.
+```
+
+```{r}
+coord.system <- coord_fixed(ratio = 1, xlim = c(-0.2,0.2), ylim = c(-0.2,0.2))
+autoplot(penguins_pca, data = penguins_num,
+         alpha = 0.5,
+         loadings = TRUE,
+         loadings.label = TRUE,
+         ) + 
+  coord.system
+```
+```{r}
+coord.system <- coord_fixed(ratio=1, xlim = c(-0.2,0.2),ylim = c(-0.2,0.2))
+autoplot(penguins_pca, data = penguins,
+         x = 1, y = 2,
+         colour='species',
+         alpha = 0.5,
+         loadings = TRUE, 
+         loadings.colour = 'blue',
+         loadings.label = TRUE, 
+         loadings.label.size = 3) +
+  coord.system
+```
+
+```{r}
+coord.system <- coord_fixed(ratio=1, xlim = c(-0.2,0.2),ylim = c(-0.2,0.2))
+autoplot(penguins_pca, data = penguins,colour='species',
+         x = 2, y = 3,
+         alpha = 0.5,
+         loadings = TRUE,
+         loadings.colour = 'blue',
+         loadings.label = TRUE,
+         loadings.label.size = 3) +
+  coord.system
+```
