@@ -2,7 +2,10 @@
 
 ## Introduction
 
-In many studies in ecology, genetics and other fields data is gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.
+In ecology, genetics and other fields data is often gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.
 
-Ordination is the general term for a clutch of techniques that try to find order in this chaos. A main task is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, but can now be displayed on a two-dimensional plot and made sense of.
+Ordination is the general term for several techniques that try to find order in this chaos. A main task they tackle is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, yet can be depicted in a two-dimensional plot and made sense of.
+
+## References
+Shlens [-@shlens2014] is a mathematical but clear treatment, which gets to the core of what PCA is doing.
 

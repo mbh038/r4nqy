@@ -2,11 +2,7 @@
 
 ## Example One: Geological samples
 
-In an ecological study, and in other fields too we might often gather taxon data from a variety of sites, or
-
-For this exercise we rely heavily on Holland [-@holland2019]
-
-For a more mathematical treatment, which gets to the core of what PCA is doing, see also Shlens [-@shlens2014]
+This exercise is adapeted slightly from that of Holland [-@holland2019]
 
 Before we do anything else, let's load the packages we are going to use, just like we always do:
 
@@ -22,14 +18,12 @@ theme_set(theme_minimal())
 
 This data set has geochemical analyses of 200 limestone samples, including the major elements Al, Ca, Fe, K, Mg, Mn, and Si, stable isotope ratios of carbon and oxygen (d13C and d18O). It also records the stratigraphic position of the samples (ie, the depth beneath the surface).
 
-This data set is available from Steven Holland's website, and our filepath to it is just the url of the file:
+This data set is in the file `purdin_pca.csv`:
 
 ```{r}
-# filepath<-"http://strata.uga.edu/8370/data/NashvilleCarbonates.csv"
 filepath <- here::here("data","purdin_pca.csv")
 purdin<-read_csv(filepath, show_col_types = FALSE)
 glimpse(purdin)
-#view(purdin)
 ```
 
 As we are most interested in how the geo-chemical composition varies, we will pull those variables (columns 2--10) off into a separate data frame called `geochem` for our analysis
@@ -56,8 +50,8 @@ Now we have tidied the data, we can easily look at it for each level:
 geochem_tidy |>
   ggplot(aes(x=Value)) +
   geom_histogram() +
-  facet_wrap(~Variable,scales="free") +
-  theme_cowplot()
+  facet_wrap(~Variable,scales="free")
+  # theme_cowplot()
 ```
 
 Note the very different scales for each of these variables, in both the x and y directions.
