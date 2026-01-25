@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Correlation – From questions to data to answers using R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./simple-linear-regression.html" rel="next">
+<link href="./fishers-exact-test.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation.html">Trend data</a></li><li class="breadcrumb-item"><a href="./correlation.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">From questions to data to answers using R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/mbh038/r4nqy" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test_finder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Test finder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Working with R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot_examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./titles_labels_and_annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tests for difference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tests_for_difference_two_levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Count data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fishers-exact-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Trend data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models (GLM)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glm_poisson_with_count_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glm_with_count_data_ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Ordination</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PCA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Additional help</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">References</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-correlation-coefficient" id="toc-the-correlation-coefficient" class="nav-link active" data-scroll-target="#the-correlation-coefficient"><span class="header-section-number">11.1</span> The correlation coefficient</a></li>
+  <li><a href="#different-values-of-r." id="toc-different-values-of-r." class="nav-link" data-scroll-target="#different-values-of-r."><span class="header-section-number">11.2</span> Different values of <em>r</em>.</a></li>
+  <li><a href="#using-r-to-find-the-correlation-coefficient." id="toc-using-r-to-find-the-correlation-coefficient." class="nav-link" data-scroll-target="#using-r-to-find-the-correlation-coefficient."><span class="header-section-number">11.3</span> Using R to find the correlation coefficient.</a></li>
+  <li><a href="#sec-iris-correlation" id="toc-sec-iris-correlation" class="nav-link" data-scroll-target="#sec-iris-correlation"><span class="header-section-number">11.4</span> Correlations for real data</a>
+  <ul class="collapse">
+  <li><a href="#what-we-can-tell-from-plotting-the-data" id="toc-what-we-can-tell-from-plotting-the-data" class="nav-link" data-scroll-target="#what-we-can-tell-from-plotting-the-data"><span class="header-section-number">11.4.1</span> What we can tell from plotting the data</a></li>
+  <li><a href="#test-for-normality" id="toc-test-for-normality" class="nav-link" data-scroll-target="#test-for-normality"><span class="header-section-number">11.4.2</span> Test for normality</a></li>
+  <li><a href="#calculate-the-correlation-coefficients" id="toc-calculate-the-correlation-coefficients" class="nav-link" data-scroll-target="#calculate-the-correlation-coefficients"><span class="header-section-number">11.4.3</span> Calculate the correlation coefficients</a></li>
+  </ul></li>
+  <li><a href="#the-problem-of-missing-confounding-variables" id="toc-the-problem-of-missing-confounding-variables" class="nav-link" data-scroll-target="#the-problem-of-missing-confounding-variables"><span class="header-section-number">11.5</span> The problem of missing confounding variables</a></li>
+  <li><a href="#the-pearson-correlation-coefficient-measures-the-degree-of-linear-association." id="toc-the-pearson-correlation-coefficient-measures-the-degree-of-linear-association." class="nav-link" data-scroll-target="#the-pearson-correlation-coefficient-measures-the-degree-of-linear-association."><span class="header-section-number">11.6</span> The Pearson correlation coefficient measures the degree of <em>linear</em> association.</a>
+  <ul class="collapse">
+  <li><a href="#pearson-correlation-coefficient" id="toc-pearson-correlation-coefficient" class="nav-link" data-scroll-target="#pearson-correlation-coefficient"><span class="header-section-number">11.6.1</span> Pearson correlation coefficient</a></li>
+  <li><a href="#spearmans-rank-correlation-coefficient-rsp" id="toc-spearmans-rank-correlation-coefficient-rsp" class="nav-link" data-scroll-target="#spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">11.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></a></li>
+  </ul></li>
+  <li><a href="#when-is-it-appropriate-to-calculate-a-correlation-coefficient" id="toc-when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="nav-link" data-scroll-target="#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><span class="header-section-number">11.7</span> When is it appropriate to calculate a correlation coefficient?</a></li>
+  <li><a href="#association-is-not-the-same-thing-as-causation" id="toc-association-is-not-the-same-thing-as-causation" class="nav-link" data-scroll-target="#association-is-not-the-same-thing-as-causation"><span class="header-section-number">11.8</span> Association is not the same thing as causation</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">11.9</span> Examples</a>
+  <ul class="collapse">
+  <li><a href="#adult-human-heights" id="toc-adult-human-heights" class="nav-link" data-scroll-target="#adult-human-heights"><span class="header-section-number">11.9.1</span> Adult human heights</a></li>
+  <li><a href="#cyclones" id="toc-cyclones" class="nav-link" data-scroll-target="#cyclones"><span class="header-section-number">11.9.2</span> Cyclones</a></li>
+  <li><a href="#lichen-abundance" id="toc-lichen-abundance" class="nav-link" data-scroll-target="#lichen-abundance"><span class="header-section-number">11.9.3</span> Lichen abundance</a></li>
+  <li><a href="#soil-bacteria" id="toc-soil-bacteria" class="nav-link" data-scroll-target="#soil-bacteria"><span class="header-section-number">11.9.4</span> Soil bacteria</a></li>
+  <li><a href="#birds" id="toc-birds" class="nav-link" data-scroll-target="#birds"><span class="header-section-number">11.9.5</span> Birds</a></li>
+  <li><a href="#heart-rate-vs-life-expectancy" id="toc-heart-rate-vs-life-expectancy" class="nav-link" data-scroll-target="#heart-rate-vs-life-expectancy"><span class="header-section-number">11.9.6</span> Heart rate vs life expectancy</a></li>
+  </ul></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1"><span class="header-section-number">11.10</span> Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2"><span class="header-section-number">11.11</span> Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"><span class="header-section-number">11.12</span> Exercise 3</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/correlation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./correlation.html">Trend data</a></li><li class="breadcrumb-item"><a href="./correlation.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by Freedman, Pisani and Purves <span class="citation" data-cites="freedman1991">(<a href="#ref-freedman1991" role="doc-biblioref">1991</a>)</span>.</p>
+<p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and try out the exercises at the end.</p>
+<p>The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The taller a father, the taller his sons tend to be. It is the same with mothers and daughters.</p>
+<p>There is a positive association between a father’s height and the height of his sons.</p>
+<p>But there is a lot variation - the association is weak.</p>
+<p>If you know the height of a father, how much does that tell you about the height of his sons?</p>
+<p>Consider fathers who are about about 67 inches tall, and look at the wide variation in the heights of their sons - - all the points between the two vertical dotted lines. The same is true for the daughters of mother who are about 63 inches tall.</p>
+<p>If there is a strong association between two variables, then knowing one helps a lot in predicting the other. But when there is a weak association, information about one variable does not help much in guessing the other. When there is no association, it does not help at all.</p>
+<section id="the-correlation-coefficient" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-correlation-coefficient"><span class="header-section-number">11.1</span> The correlation coefficient</h2>
+<p>Suppose we are looking at the relationship between two variables and have already plotted the scatter plot. The graph looks like a cloud of points.</p>
+<p>How can we summarise it numerically?</p>
+<p>The first thing we can do is to mark a point that shows the average of the <em>x</em>-values and the average of the <em>y</em>-values. This is the <em>point of averages</em>. It marks the centre of the cloud.</p>
+<p>The next step is to measure the width of the cloud from side to side, in both the <em>x</em> and the <em>y</em> directions. This can be done using the standard deviations (SD) of the <em>x</em> and <em>y</em> values. Remember that if both <em>x</em> and <em>y</em> are normally distributed, then 95% of the data will lie within about 2 (1.96 if we want to be pernickety) standard deviations of the mean, in each direction.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So far, our summary statistics are:</p>
+<ul>
+<li>mean of the <em>x</em> values, SD of the <em>x</em> values.</li>
+<li>mean of the <em>y</em> values, SD of the <em>y</em> values.</li>
+</ul>
+<p>These statistics tell us where the centre of the cloud is and how far spread out it is both vertically and horizontally, but they do not tell the whole story.</p>
+<p>Consider the following two sets of data plotted below. Both have the same centre and the same spread.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However the points in the first cloud are tightly clustered around a line - there is a strong linear association between the two variables. In the second cloud, the clustering is much looser. The strength of the association is different in the two diagrams. To measure the association, one more summary statistic is needed - the <em>correlation coefficient</em>.</p>
+<p>This coefficient is usually abbreviated as <em>r</em>, for no good reason.</p>
+<hr>
+<p>The correlation coefficient is a measure of linear association or clustering around a line. The relationship between two variables can be summarized by:</p>
+<ul>
+<li>the average of the <em>x</em>-values, the SD of the <em>x</em>-values.</li>
+<li>the average of the <em>y</em>-values, the SD of the <em>y</em>-values.</li>
+<li>the correlation coefficient <em>r</em></li>
+</ul>
+<hr>
+</section>
+<section id="different-values-of-r." class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="different-values-of-r."><span class="header-section-number">11.2</span> Different values of <em>r</em>.</h2>
+<p>Let us see how this looks graphically. In the Figure below we show six scatter plots for hypothetical data. In all six pictures the average is 3 and the standard deviation is 1 for both <em>x</em> and <em>y</em>. The correlation coefficient is printed in each case.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The one top left shows a correlation of 0 and the cloud is completely formless. As <em>x</em> increases, <em>y</em> shows no tendency to increase or decrease. It just straggles around.</p>
+<p>The next diagram has <em>r</em> = 0.4 and a linear pattern is just starting to emerge. The next has <em>r</em> = 0.6 with a stronger linear pattern, and so on. The closer <em>r</em> is to 1 the stronger is the linear association and the more tightly clustered are the points around a line.</p>
+<p>A correlation of 1, which does not appear in the Figure is often referred to as a <em>perfect correlation</em>. It means that all the points lie exactly on a line so there is a perfect linear correlation between the two variables. Correlation coefficients are always between -1 and 1.</p>
+<p>The correlation between the heights of identical twins is around 0.95. A scatter diagram for the heights of twins would thus look like the bottom right diagram in the Figure. We see that even with a coefficient this big there is a still a fair degree of scatter. The heights of identical twins are far from being equal all the time.</p>
+<p>Real data in the life sciences never shows perfect correlation and rarely does it even show strong correlation. It is more common for it to look like Pearson’s father-son data, with weak associations and <em>r</em> values in the range 0.3 to 0.7. This is even more true for data from the social sciences which concern human behaviour.</p>
+<p>We can also have negative associations between variables. For example women with more education tend to have fewer children. Animals with higher body weight tend to have lower metabolic rates. As one variable increases, the other decreases. When there is negative association, the correlation coefficient has a negative sign.</p>
+<p>Below we show six examples of negative correlation. As in the previous figure, all the data sets have a mean of 3 and a standard deviation of 1.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>Correlations are always between -1 and 1, but can take any value in between. A positive correlation means that the cloud slopes up: as one variable increases, so does the other. A negative correlation means that the cloud slopes down. As one variable increases, the other decreases.</p>
+<hr>
+</section>
+<section id="using-r-to-find-the-correlation-coefficient." class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="using-r-to-find-the-correlation-coefficient."><span class="header-section-number">11.3</span> Using R to find the correlation coefficient.</h2>
+<p>First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. Let us suppose that we have columns called <code>x</code> and <code>y</code> within a data frame called <code>df</code>, and that the correlation coefficient between these data is in fact 0.8.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y, <span class="at">method =</span> <span class="st">"pearson"</span>, <span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  x and y
+t = 9.3976, df = 48, p-value = 1.86e-12
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6785912 0.8849789
+sample estimates:
+     cor 
+0.804905 </code></pre>
+</div>
+</div>
+<p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
+<p>It is important to be able to interpret and report the output.</p>
+<p>First, understand that R is carrying out a test, the null hypothesis of which is that there is no correlation between the values of <em>x</em> and the values of <em>y</em> among the populations from which the <em>x</em> and <em>y</em> data were drawn, so that the correlation coefficient between <em>x</em> and <em>y</em> within those populations is zero. It then reports a <em>p</em>-value: how likely it is that you would have got the data you got for this sample of data if that null hypothesis were true. As with most tests, to do this it uses the data to calculate a so-called <em>test-statistic</em>. How it does this need not concern us here. The details will differ from test to test, and the name given will differ. Here it is called <em>t</em>. It also reports the number of independent pieces of information used to calculate that statistic. This is called the <em>degrees of freedom</em>, here denoted <em>df</em>. This usually (but not necessarily) has a value that is 1,2 or 3 less than the number of data points.</p>
+<p>Then it reports the <em>p</em>-value. A tiny (close to zero) value here means that it thinks it very unlikely that the samples would be as they are if the <em>x</em> and <em>y</em> variables were not correlated in the populations from which the samples were drawn. A high (by which we usually mean greater than 0.05) value means that there is a reasonable chance that the actual non-zero correlation coefficient could have been found between <em>x</em> and <em>y</em> in the samples, even though those values were not correlated in the wider populations from which the samples were drawn. In that case we would have found no evidence that the <em>x</em> and <em>y</em> data within the population were correlated. This doesn’t mean that they aren’t, just that we have insufficient evidence to reject the null hypothesis that they are not.</p>
+<p>The <em>p</em>-value reported here is 4.3e-12. That is R’s way of saying what in standard form would be written 4.3 x 10<sup>-12</sup>. This is a really tiny value. It is 0.0000000000043, which is a very inconvenient way to write such a small number. Hence R’s way of doing it or the standard form way of doing it. In the context of a statistical test and when <em>p</em> is is that small we don’t care about its exact value, we simply note that it is very, very small. We thus can confidently reject the null hypothesis and assert that the data provide evidence that <em>x</em> and <em>y</em> are correlated, in this case positively.</p>
+<p>Further, it reports the actual correlation coefficient. Here it finds <em>r</em> = 0.797, which we happen to know to be correct because we created this data set ourselves, and a 95% confidence interval for the coefficient. The precise meaning of the confidence interval is subtle, but it is a kind of error bar for the correlation coefficient <em>r</em>. It means that if we drew sample after sample from the population and calculated the confidence interval for <em>r</em> for each sample, then 95% of the time that interval would capture the true value of <em>r</em>. Thus, you can reasonably think of the confidence interval as being the range of values within which the true population correlation coefficient plausibly lies, given the value that was found for the sample.</p>
+<p>If the <em>p</em>-value is small enough that we reject the null-hypothesis, then this confidence interval should not encompass zero. Why? Because any value inside the confidence interval is a plausible value for the population correlation coefficient andif we are going to reject the null hypothesis, then zero should <em>not</em> be a plausible value for the population correlation coefficient, given the data.</p>
+<p>If the <em>p</em>-value is large enough that we do not reject the null hypothesis then this confidence interval <em>will</em> encompass zero. Why? Becuase if the confidence interval encompasses zero, then zero <em>is</em> a plausible value for the correlation coefficient and so we should not reject the null.</p>
+<p>Here, the confidence interval is from 0.67 to 0.88. This does not encompass zero. In fact it is far from zero, so is consistent with our finding a really small <em>p</em>-value. On both groundss, we reject the null.</p>
+<p>To report the result of this test we would say something like:</p>
+<blockquote class="blockquote">
+<p>We find evidence for a strong positive correlation between <em>x</em> and <em>y</em> (Pearson <em>r</em> =0.80, <em>t</em>=9.1, <em>df</em>=48, <em>p</em>&lt;0.001)</p>
+</blockquote>
+<p>Note that when the <em>p</em>-value is much less than 0.05 as it is here we do not normally report its exact value, but simply write <em>p</em>&lt;0.01, or <em>p</em>&lt;0.001, and so on. The point is that these ways of reporting it tell the reader that <em>p</em> is <em>way</em> less than 0.05. This is all they need to know to see that we can confidently reject the null hypothesis.</p>
+</section>
+<section id="sec-iris-correlation" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="sec-iris-correlation"><span class="header-section-number">11.4</span> Correlations for real data</h2>
+<p>Let us look at the Iris data set that is built into R. It contains values for the Sepal Width, Sepal Length, Petal Width and Petal Length for samples of 50 plants from each of three species of Iris, <em>setosa</em>, <em>versicolor</em> and <em>virginica</em>. Here are the first few rows:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+</div>
+<p>We will look to see if the data allow us to reject the idea that sepal width and sepal length are not correlated within the wider populations of each of these species:</p>
+<p>First, let’s plot the data</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">colour =</span> Species)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Width (mm)"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sepal Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="what-we-can-tell-from-plotting-the-data" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="what-we-can-tell-from-plotting-the-data"><span class="header-section-number">11.4.1</span> What we can tell from plotting the data</h3>
+<p>Having seen the plots, do you think it plausible that there is a linear relationship between sepal width and length? Only in this case can you use a Pearson correlation test (see below). If not linear, do you think there is at least a monotonic relationship between petal width and length (ie no peaks or troughs)? That, at least, would enable you to use a Spearman’s Rank correlation test. If neither are true, then you can’t use either test.</p>
+</section>
+<section id="test-for-normality" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="test-for-normality"><span class="header-section-number">11.4.2</span> Test for normality</h3>
+<p>It does look as though there is a plausibly linear relationship between sepal width and length, so we might be able to use the Pearson method for calculating correlation coefficient. This is the ‘parametric’ method that is more powerful than the ‘non-parametric’ alternative, the Spearman’s rank method.</p>
+<p>In principle, however, this method requires that each group of the data be approximately normally distributed around its repective mean (that is what the word parametric is getting at), so we ought to test for this. We can do this either graphically or using a normality test such as the Shapiro wilk test. Let us do the latter here:</p>
+<p>First we do it for one species, for example the <code>setosa</code>. We can use the <code>filter</code> function from the <code>dplyr</code> packages within <code>tidyverse</code> to separate the data for this species from that for the others. We will save it as a new data frame called <code>setosa</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>setosa <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">"setosa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we use the <code>shapiro.test()</code> function to assess the normality of the <code>Sepal.Length</code> column data</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(setosa<span class="sc">$</span>Sepal.Length)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Note the use of the dollar notation to pick out a particular column of a data frame. Here we pick out the <code>Sepal.Length</code> column of the <code>setosa</code> data frame.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  setosa$Sepal.Length
+W = 0.9777, p-value = 0.4595</code></pre>
+</div>
+</div>
+<p>and then of the <code>Sepal.Width</code> column of data:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(setosa<span class="sc">$</span>Sepal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  setosa$Sepal.Width
+W = 0.97172, p-value = 0.2715</code></pre>
+</div>
+</div>
+<p>WHen we do it for all species, for both sepal width and sepal length, we find</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  Species    Sepal.Length_p.val Sepal.Width_p.val
+  &lt;fct&gt;                   &lt;dbl&gt;             &lt;dbl&gt;
+1 setosa                  0.460             0.272
+2 versicolor              0.465             0.338
+3 virginica               0.258             0.181</code></pre>
+</div>
+</div>
+<p>All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear realtionships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!</p>
+</section>
+<section id="calculate-the-correlation-coefficients" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="calculate-the-correlation-coefficients"><span class="header-section-number">11.4.3</span> Calculate the correlation coefficients</h3>
+<p>Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for <em>versicolar</em> and <em>virginica</em> than it is for <em>setosa</em>. Knowing the sepal width for that species gives you a much better idea of the sepal length, and vice-versa, than is true for the other two species.</p>
+<p>Let us find out:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>estimate,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lower.bound95 =</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">upper.bound95 =</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"p value"</span> <span class="ot">=</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  Species        r lower.bound95 upper.bound95 `p value`
+  &lt;fct&gt;      &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;
+1 setosa     0.743         0.585         0.846  6.71e-10
+2 versicolor 0.526         0.290         0.702  8.77e- 5
+3 virginica  0.457         0.205         0.653  8.43e- 4</code></pre>
+</div>
+</div>
+<p>The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the 95% confidence interval for that coefficient and the <em>p</em>-value.</p>
+<p>Do these output provide evidence for a correlation between sepal length and sepal width in each case?</p>
+</section>
+</section>
+<section id="the-problem-of-missing-confounding-variables" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="the-problem-of-missing-confounding-variables"><span class="header-section-number">11.5</span> The problem of missing confounding variables</h2>
+<p>Suppose in the above analysis we had not distinguished between the three species. If we had plotted the speal length and width data we would have seen this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Width (mm)"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sepal Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This looks like a weak <em>negative</em> correlation, as is confirmed by calculating the Spearman’s (in this case) rank correlation coefficient.</p>
+<p>If we had in fact accounted for species and plotted the data separately for each species, or together but distinguishing each species by colour we would have seen the falsity of that conclusion:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length, <span class="at">colour =</span> Species)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Width (mm)"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sepal Length (mm)"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The message here is that failure to spot important ‘missing’ variables, in the case species, can lead to grossly misleading ideas as to whether two variables are correlated, and if so, how.</p>
+</section>
+<section id="the-pearson-correlation-coefficient-measures-the-degree-of-linear-association." class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="the-pearson-correlation-coefficient-measures-the-degree-of-linear-association."><span class="header-section-number">11.6</span> The Pearson correlation coefficient measures the degree of <em>linear</em> association.</h2>
+<section id="pearson-correlation-coefficient" class="level3" data-number="11.6.1">
+<h3 data-number="11.6.1" class="anchored" data-anchor-id="pearson-correlation-coefficient"><span class="header-section-number">11.6.1</span> Pearson correlation coefficient</h3>
+<p>Sometimes the Pearson correlation coefficient <em>r</em> is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.</p>
+<p>Consider first a data set where there is a very strong association between variables, but where the data set contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by ‘strong’ that knowing the value of one variable gives you a very good idea of the value of the other.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.015, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+</section>
+<section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="11.6.2">
+<h3 data-number="11.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">11.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
+<p>The Spearman’s rank correlation coefficient is a valid measure of the association between two variables providing their relationship is <em>monotonic</em> - that is, continuously rising or flat, or continuously falling or flat. Linear relationships are monotonic, so the Spearman’s rank correlation coefficient is always a useful (if not necessarily the most powerful - Pearson would trump it if it could be used) measure of association for such cases, but it will still be valid when the relationship is monotonic but non-linear, whereas the Pearson correlation coefficient would <em>not</em> be.<br>
+</p>
+<p>Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub> can also be be used for ordinal data, whereas Pearson’s <em>r</em> coefficient cannot be. This makes it very useful in much of ecology, animal behaviour and environmental studies where ordinal scales are commonly used.</p>
+</section>
+</section>
+<section id="when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="when-is-it-appropriate-to-calculate-a-correlation-coefficient"><span class="header-section-number">11.7</span> When is it appropriate to calculate a correlation coefficient?</h2>
+<p>So, to sum up, we note that the Pearson correlation coefficient is a measure of <em>linear</em> association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman’s Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer <em>needs</em> to be a linear relationship between the two variables, but there must at least be a <em>monotonic</em> one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant. There should be no peaks or troughs in the data.</p>
+</section>
+<section id="association-is-not-the-same-thing-as-causation" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="association-is-not-the-same-thing-as-causation"><span class="header-section-number">11.8</span> Association is not the same thing as causation</h2>
+<p>A very important and often repeated point to note is that correlation measures the degree of linear (Pearson) or monotonic (Spearman) association. But association is not the same as causation. Two entities can have a strong degree of monotonic or linear association without there being any causal relation between the two. There could be a confounding variable that underlies the association.</p>
+<p>For example you would probaly find a strong positive correlation between the number of pubs in towns and the nubmer of churches. You would be mistaken, however, in thinking that this provides evidence that drink drives people to religion, or the reverse, since there is a very obvious confounding variable underlying this association, which is the population of the towns: the more people, the more pubs, the more churches, the more of pretty much anything.</p>
+<p>That said, if you spot a strong association beween two variables, it <em>may</em> be an indicator of a causal relationship, so it is at least worth pausing for thought to decide whether this is worthy of further investigation.</p>
+<p>Be careful though, as spurious correlations can easily arise. See <a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a> for many amusing examples of these.</p>
+</section>
+<section id="examples" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="examples"><span class="header-section-number">11.9</span> Examples</h2>
+<section id="adult-human-heights" class="level3" data-number="11.9.1">
+<h3 data-number="11.9.1" class="anchored" data-anchor-id="adult-human-heights"><span class="header-section-number">11.9.1</span> Adult human heights</h3>
+<p>Here we use data from <a href="https://ourworldindata.org/human-height#all-charts_">Our World in Data: Human Height</a></p>
+<p>The figure below shows the mean heights of adult men vs adult women in many different countries who were born in 1996. There is a strong positive and linear correlation between these heights (r<sub>sp</sub> = 0.941, p &lt; 0.001). The Spearman’s rank correlation coefficient is calculated because the male mean heights are not normally distributed among themselves.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cyclones" class="level3" data-number="11.9.2">
+<h3 data-number="11.9.2" class="anchored" data-anchor-id="cyclones"><span class="header-section-number">11.9.2</span> Cyclones</h3>
+<p>Cyclones are areas of low atmospheric pressure around which steep gradients in air pressure can cause strong winds to develop, which in turn may create large waves if the cylone is over the oceans. Depending on where they occur, these storms are variously also known as hurricanes and typhoons. Here we consider whether the peak wind speeds are associated with the depth of the low pressure at the eye of the storm, and whether the peak wave sizes are associated with how wide the storm is. If the answer to either of these questions is yes, then an outcome of practical importance - wind speed, wave height - can be predicted at least in part by a variable that can be measured easily - pressure, distance.</p>
+<section id="south-west-indian-ocean-intense-tropical-cyclones-1973---2024" class="level4" data-number="11.9.2.1">
+<h4 data-number="11.9.2.1" class="anchored" data-anchor-id="south-west-indian-ocean-intense-tropical-cyclones-1973---2024"><span class="header-section-number">11.9.2.1</span> South West Indian Ocean intense tropical cyclones 1973 - 2024</h4>
+<p>Pressure gradients cause winds so it is reasoable to ask whether there a correlation between the peak wind speed and minimum pressure at the eye of cyclones. Here we look at data for for intense tropical cyclones in the south west Indian Ocean over the period 1973-2024. The data are taken (scraped using the R package <code>rvest</code>!) from: https://en.wikipedia.org/wiki/List_of_South-West_Indian_Ocean_intense_tropical_cyclones . The original data sources are available on that site.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this figure we see that there is a weak but significant <em>negative</em> correlation between the peak recorded wind speed and the minimum recorded pressure at the centre of intense tropical cyclones that occurred in the south west Indian Ocean between 1973 and 2024. Neither wind speed nor pressure were normally distributed, so the Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub> has been calculated, and not the Pearson <em>r</em> coefficient.</p>
+</section>
+<section id="significant-wave-height-vs-size-of-cyclone" class="level4" data-number="11.9.2.2">
+<h4 data-number="11.9.2.2" class="anchored" data-anchor-id="significant-wave-height-vs-size-of-cyclone"><span class="header-section-number">11.9.2.2</span> Significant wave height vs size of cyclone</h4>
+<p>Here we look at results displayed in Figure 3f of a paper by Oh et al <span class="citation" data-cites="oh2023">(<a href="#ref-oh2023" role="doc-biblioref">2023</a>)</span>. In this paper the authors seek to determine whether there is an association between the size of a cyclone, measured by the ‘R50’ distance measured outward from the storm centre to where the wind speeds have subsided to 50 kph, and the maximum ‘significant wave height’ of the swell created by the storm. Significant wave height is a widely used measure that is the average height of the heighest 1/3 of the waves, these being the ones that impact most on practical matters like the fuel consumption of ships, the erosion of shores, and so on.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot shows that there is a monotonically rising relationship between the R50 radius of the cyclones included in the study and the maximum significant wave height of swell created by them. The relationship is not linear however, so the only appropriate measure of correlation coefficient is the Spearman’s rank, which gives <span class="math inline">\(r_{sp} = 0.948, p&lt;0.001\)</span>, indicating a very strong positive association between the size of a cyclone and the height of the waves it creates.<br>
+</p>
+<p>Why do you think this relationship flattens off for larger storm sizes?<br>
+</p>
+</section>
+</section>
+<section id="lichen-abundance" class="level3" data-number="11.9.3">
+<h3 data-number="11.9.3" class="anchored" data-anchor-id="lichen-abundance"><span class="header-section-number">11.9.3</span> Lichen abundance</h3>
+<p>In a <span class="citation" data-cites="jovan2008">(<a href="#ref-jovan2008" role="doc-biblioref">2008</a>)</span> paper, Jovan <em>et al</em>. investigated the utility of using lichen as bioindicators of air quality. Is there, they asked, an association between air quality and the abundance of this or that species of lichen?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br>
+We note that the relationship between air quality score and proportion of nitrophyte abundance is plausibly linear.<br>
+<br>
+</p>
+<p>There is a strong negative correlation (<em>r</em><sub>Sp</sub>=-0.78, <em>p</em>&lt;0.001) between air quality score and proportion of nitrophyte lichen. This suggests that this proportion can be used as a bioindicator of air quality.<br>
+</p>
+<p><br>
+A Spearman’s rank correlation coefficient was calculated in this case rather than a Pearson correlation coefficient, despite the fact that both the <em>x</em> and <em>y</em> variables are plausibly drawn from normally distributed populations of values, according to a Shapiro-Wilk test. The problem is that both the air quality score and the proportion of nitrophyte abundance are ordinal variables - something we learn from reading the paper in which this figure appears. This means that analysis using parametric tests such as the Pearson method for determining linear correlation are not appropriate. A non-parametric method such as Spearman’s rank method can be used instead.<br>
+</p>
+</section>
+<section id="soil-bacteria" class="level3" data-number="11.9.4">
+<h3 data-number="11.9.4" class="anchored" data-anchor-id="soil-bacteria"><span class="header-section-number">11.9.4</span> Soil bacteria</h3>
+<p>Here we look at figures published in a paper by Lauber and co-workers <span class="citation" data-cites="lauber2009">(<a href="#ref-lauber2009" role="doc-biblioref">2009</a>)</span> in which they investigate the evidence for an association between soil pH and the abundance of various species of bacteria.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/soil_bacteria.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="648"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the Figure above, note that the Pearson <em>r</em>-values for <strong>C</strong> and <strong>E</strong> are close to zero, and the <em>p</em>-values are greater than 0.1, meaning that at this significance level there is no evidence from these data that there is <em>any</em> linear association between soil pH and the relative abundances of <em>Alphaproteobacteria</em> or <em>Beta/Gammaproteobacteria</em>. From the plots, it looks in <strong>C</strong> as if there no assocation at all, whereas in <strong>E</strong> it looks as though there might be, but if so then not a linear or even monotonic association, for which the correlation coefficient (Pearson <em>r</em> or Spearman <em>r</em><sub>Sp</sub>) would be a poor measure.</p>
+</section>
+<section id="birds" class="level3" data-number="11.9.5">
+<h3 data-number="11.9.5" class="anchored" data-anchor-id="birds"><span class="header-section-number">11.9.5</span> Birds</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/bird_shot_ingestion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1073"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This figure is from a study by Pain et al <span class="citation" data-cites="pain2019">(<a href="#ref-pain2019" role="doc-biblioref">2019</a>)</span> on the impact on bird populations of ingestion of lead from spent lead ammunition arising from hunting using rifles and shot guns. For several species of wetland birds, the population trend (as measured by a proxy scale) is plotted against the prevalence of carcasses found to contain lead shot.</p>
+<p>There is a clear negative trend here that is plausibly linear, or at least monotonic. Shapiro-Wilk tests show that neither data set is plausibly drawn from a normally distributed population, so a Spearman’s rank correlation coefficient is calculated. The result is <span class="math inline">\(r_{\text{Sp}} = -0.697, p &lt; 0.01\)</span> so we can say that there is evidence of a significant and strong negative correlation between lead shot ingestion of waterbird species and their population trends.</p>
+</section>
+<section id="heart-rate-vs-life-expectancy" class="level3" data-number="11.9.6">
+<h3 data-number="11.9.6" class="anchored" data-anchor-id="heart-rate-vs-life-expectancy"><span class="header-section-number">11.9.6</span> Heart rate vs life expectancy</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here we see a strong negative linear correlation between the life expectancy of different species and the log of the mean heart rate in beats per minute. On this plot, humans are almost an outlier. In this case, use of a Shapiro-Wilk test showed that both life expectancy and log of the heart rate were found to be consistent with being drawn from normally distributed populations, so the Pearson method was used to calculate the correlation coefficient.</p>
+</section>
+</section>
+<section id="exercise-1" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="exercise-1"><span class="header-section-number">11.10</span> Exercise 1</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Plots A to F above show scatter plots of different data sets <em>Y</em> against <em>X</em>.</p>
+<ul>
+<li>Which of them show linear behaviour?</li>
+<li>Which of them show monotonic behaviour?</li>
+<li>For which of them might it be appropriate to calculate the following correlation coefficients between <em>X</em> and <em>Y</em>?
+<ul>
+<li>Pearson <em>r</em></li>
+<li>Spearman rank <em>r</em><sub>sp</sub></li>
+</ul></li>
+</ul>
+</section>
+<section id="exercise-2" class="level2" data-number="11.11">
+<h2 data-number="11.11" class="anchored" data-anchor-id="exercise-2"><span class="header-section-number">11.11</span> Exercise 2</h2>
+<p>Measurements were made on female Adelie penguins on a series of islands in the Antarctic. The bill lengths and depths of 73 individuals were recorded and are shown in the plot below.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="correlation_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From this information and plot, decide</p>
+<ul>
+<li>Whether it is plausible that there is a linear relationship between the bill depths and lengths within the data set</li>
+<li>Whether the correlation coefficient within the data set is likely to be positive or negative</li>
+<li>Whether the correlation is ‘strong’ or ‘weak’ ie is the absolute value of the correlation coefficient likely to be close to 1 or close to zero</li>
+<li>Whether there might be evidence from this data that there is any correlation between bill depth and bill length in the population from which this data set was drawn.</li>
+</ul>
+<section id="tests-for-normality" class="level4" data-number="11.11.0.1">
+<h4 data-number="11.11.0.1" class="anchored" data-anchor-id="tests-for-normality"><span class="header-section-number">11.11.0.1</span> Tests for normality</h4>
+<p>Shapiro-Wilk tests are carried out to check for normality of the two sets of data:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_depths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  bill_depths
+W = 0.9831, p-value = 0.4364</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_lengths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  bill_lengths
+W = 0.99117, p-value = 0.8952</code></pre>
+</div>
+</div>
+<p>On this basis, we see that we can use the Pearson method to calculate the correlation coefficient between bill depth and bill length. What is telling us this?</p>
+</section>
+<section id="calculate-correlation-coefficient" class="level4" data-number="11.11.0.2">
+<h4 data-number="11.11.0.2" class="anchored" data-anchor-id="calculate-correlation-coefficient"><span class="header-section-number">11.11.0.2</span> Calculate correlation coefficient</h4>
+<p>For these data, we calculate the correlation coefficient using the Pearson method.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bill_depths,bill_lengths, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  bill_depths and bill_lengths
+t = 1.3714, df = 71, p-value = 0.1746
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.07209557  0.37677877
+sample estimates:
+      cor 
+0.1606361 </code></pre>
+</div>
+</div>
+<p>Which part(s) of this output tell us that:</p>
+<ul>
+<li>There is a weak positive correlation between bill length and depth <em>within the sample</em>?</li>
+<li>There is no evidence that this correlation exists in the wider population from which this data set was drawn?</li>
+</ul>
+<p>How would you report this result?</p>
+</section>
+</section>
+<section id="exercise-3" class="level2" data-number="11.12">
+<h2 data-number="11.12" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">11.12</span> Exercise 3</h2>
+<ol type="1">
+<li><p>If you haven’t done so already, click on <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this link</a> to download the practice project for correlation. You may then need to unzip it.</p></li>
+<li><p>Open the project in RStudio using File/Open Project then navigating to the project and clicking on the <code>correlation.Rproj</code> file</p></li>
+<li><p>Open the notebook <code>correlation.qmd</code> that you will find in the notebooks subfolder.</p></li>
+<li><p>Run the initial code chunks to load packages and the penguin and iris data</p></li>
+<li><p>Check in the Environment pane that you have created data frames called <code>penguins</code> and <code>iris</code>. Note the variable (column) names in each case.</p></li>
+<li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iris-correlation</span></a> as a guide, create a faceted plot of petal length against petal width for each species. To do this you need to create a new code chunk, paste the code from <a href="#sec-iris-correlation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iris-correlation</span></a> into it and then adapt it a necessary.</p></li>
+<li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-iris-correlation</span></a> as a guide, calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
+</ol>
+<ul>
+<li>Does it appear that the petal length and petal width are correlated for each species?<br>
+</li>
+<li>Is the correlation positive or negative?<br>
+</li>
+<li>For which species is the correlation strongest?<br>
+</li>
+<li>Do the correlation coefficients make sense, given the plots?</li>
+</ul>
+<p>Moving on to the penguin data….</p>
+<ol start="8" type="1">
+<li>Use the <code>filter()</code> function from the <code>dplyr</code> package in <code>tidyverse</code> to filter the penguin data down to Gentoo males. Save the data in a data frame called <code>gentoo_m</code>. You can do this by including the following code chunk in your notebook:</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m &lt;- penguins |&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="in">filter(sex == "male") |&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="in">filter(species == "Gentoo")</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="9" type="1">
+<li>Plot the bill depth vs bill length using code similar to this:</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m |&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "Bill depth (mm)",</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Bill length (mm)") +</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_classic()</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="10" type="1">
+<li><p>Look at the plot and decide if it is plausible that the association between bill depth and bill length is plausibly monotonic and if so, if it is plausibly linear. On this basis, before even considerinrg the issue of normality, decide if it is appropriate to use Pearson or Spearman’s rank measures of correlation with this data.</p></li>
+<li><p>If your answer to 10. was Yes, use the <code>shapiro.test()</code> function to determine if it is OK to use the Pearson measure of correlation. To do this you must separately test both the <code>bill_length_mm</code> and <code>bill_depth_mm</code> columns of the <code>gentoo_m</code> for normality. Remember that you can pick a particular column of a data frame by using the dollar notation. For example, <code>df$X</code> would pick out the column <code>X</code> from the data frame <code>df</code>.</p></li>
+<li><p>Use the <code>cor.test()</code> function with the appropriate method argument (<code>method = "pearson"</code> or <code>method = "spearman"</code>), as appropriate, to determine if the bill length and bill depth variables are correlated. This means using an expression of the form <code>cor.test(df$X, df$Y, method = "pearson")</code> if you wanted to determine the Pearson correlation coefficient between the <code>X</code> and <code>Y</code> columns of the data frame <code>df</code>.</p></li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-freedman1991" class="csl-entry" role="listitem">
+Freedman, David, Robert Pisani, Roger Purves, and Ani Adhikari. 1991. <em>Statistics</em>. 2nd ed. W. W. Norton &amp; Company.
+</div>
+<div id="ref-jovan2008" class="csl-entry" role="listitem">
+Jovan, Sarah. 2008. <span>“Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results from Monitoring in Washington, Oregon, and California.”</span> <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>.
+</div>
+<div id="ref-lauber2009" class="csl-entry" role="listitem">
+Lauber, Christian L., Micah Hamady, Rob Knight, and Noah Fierer. 2009. <span>“Pyrosequencing-Based Assessment of Soil pH as a Predictor of Soil Bacterial Community Structure at the Continental Scale.”</span> <em>Applied and Environmental Microbiology</em> 75 (15): 5111–20. <a href="https://doi.org/10.1128/aem.00335-09">https://doi.org/10.1128/aem.00335-09</a>.
+</div>
+<div id="ref-oh2023" class="csl-entry" role="listitem">
+Oh, Youjung, Sang Myeong Oh, Pil-Hun Chang, and Il-Ju Moon. 2023. <span>“Optimal Tropical Cyclone Size Parameter for Determining Storm-Induced Maximum Significant Wave Height.”</span> <em>Frontiers in Marine Science</em> 10 (February). <a href="https://doi.org/10.3389/fmars.2023.1134579">https://doi.org/10.3389/fmars.2023.1134579</a>.
+</div>
+<div id="ref-pain2019" class="csl-entry" role="listitem">
+Pain, Deborah J., Rafael Mateo, and Rhys E. Green. 2019. <span>“Effects of Lead from Ammunition on Birds and Other Wildlife: A Review and Update.”</span> <em>Ambio</em> 48 (9): 935–53. <a href="https://doi.org/10.1007/s13280-019-01159-0">https://doi.org/10.1007/s13280-019-01159-0</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./fishers-exact-test.html" class="pagination-link" aria-label="Fisher's Exact Test">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./simple-linear-regression.html" class="pagination-link" aria-label="Simple linear regression">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/correlation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Install packages – From questions to data to answers using R</title>
+<title>13&nbsp; GLM introduction – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workflow.html" rel="next">
-<link href="./test_finder.html" rel="prev">
+<link href="./glm_poisson_with_count_data.html" rel="next">
+<link href="./simple-linear-regression.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +68,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -116,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install_packages.html">Working with R</a></li><li class="breadcrumb-item"><a href="./install_packages.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./GLM.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -178,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install_packages.html" class="sidebar-item-text sidebar-link active">
+  <a href="./install_packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></span></a>
   </div>
 </li>
@@ -294,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GLM.html" class="sidebar-item-text sidebar-link">
+  <a href="./GLM.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></span></a>
   </div>
 </li>
@@ -380,15 +377,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-to-do-when-the-linear-model-is-not-applicable" id="toc-what-to-do-when-the-linear-model-is-not-applicable" class="nav-link active" data-scroll-target="#what-to-do-when-the-linear-model-is-not-applicable"><span class="header-section-number">13.1</span> What to do when the linear model is not applicable?</a></li>
+  <li><a href="#introduction-to-genralized-linear-models-glms" id="toc-introduction-to-genralized-linear-models-glms" class="nav-link" data-scroll-target="#introduction-to-genralized-linear-models-glms"><span class="header-section-number">13.2</span> Introduction to Genralized Linear Models (GLMs)</a></li>
+  <li><a href="#the-error-structure" id="toc-the-error-structure" class="nav-link" data-scroll-target="#the-error-structure"><span class="header-section-number">13.3</span> The Error Structure</a></li>
+  <li><a href="#the-linear-predictor" id="toc-the-linear-predictor" class="nav-link" data-scroll-target="#the-linear-predictor"><span class="header-section-number">13.4</span> The linear predictor</a></li>
+  <li><a href="#fitted-values" id="toc-fitted-values" class="nav-link" data-scroll-target="#fitted-values"><span class="header-section-number">13.5</span> Fitted values</a>
+  <ul class="collapse">
+  <li><a href="#deviance-a-general-measure-of-variability" id="toc-deviance-a-general-measure-of-variability" class="nav-link" data-scroll-target="#deviance-a-general-measure-of-variability"><span class="header-section-number">13.5.1</span> Deviance: a general measure of variability</a></li>
+  </ul></li>
+  <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function"><span class="header-section-number">13.6</span> The link function</a></li>
+  <li><a href="#canonical-link-functions" id="toc-canonical-link-functions" class="nav-link" data-scroll-target="#canonical-link-functions"><span class="header-section-number">13.7</span> Canonical link functions</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/GLM.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install_packages.html">Working with R</a></li><li class="breadcrumb-item"><a href="./install_packages.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./GLM.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></h1>
 </div>
 
 
@@ -405,45 +417,226 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>WHen you first download and install it, R is an already very powerful and versatile programming language aimed mainly at those who want to do statistical analysis of data. However it can be augmented as and when you want to by the addition of so-called packages, of which there are now thousnds. Packages are collection of additional functions and or datasets that you might find useful. Often they are aimed at particular specialisms that not everyone wants</p>
-<p>This code chunk will install on your machine a list of packages, unless you already have them installed.</p>
-<p>As time goes on this list may be updated (or you may update it!), so it will be worth coming back to this script and running it again, from time to time.</p>
+<p>This chapter draws on Michael Crawley’s Statistics: An introduction using R, 2nd Ed, Wiley.</p>
+<hr>
+<p>In many settings we have a response variable such as a weight, length or concentration that is a continuous real number.</p>
+<p>For many common analyses of those variables, such as t-test, regression, ANOVA, or in fact any manifestation of the linear model, the data needs to have the following attributes:</p>
+<ul>
+<li>random sampling</li>
+<li>constant variance</li>
+<li>normally distributed errors</li>
+<li>independent errors</li>
+<li>additive effects</li>
+</ul>
+<p>If one or more of these assumptions is wrong, the analyses become unreliable in that the claims that they make will be based on assumptions that are false.</p>
+<p>In ecology and many other fields, this is very commonly the case.</p>
+<p>Consider for example the variance of some commonly encountered types of data:</p>
+<p><strong>Count data</strong></p>
+<p>These are whole numbers that can never be negative. That straight away gives a problem with the assumptons of the linear model if the counts are typically low. To have ‘normally distributed errors’ would require that some of the counts be negative, which is nonsense.</p>
+<p>Regardless of that, it is the case with many examples of count data - examples where we know how often something <em>did</em> happen, but not how often it did <em>not</em> happen - that the higher the counts, the higher the variance of the counts: think say of a situation where you were recording the numbers of individuals of some species per unit time or area. If the mean number were 5 then you might find counts that varied, say, between 3 and 7, but if the mean number were 500 then would not expect the individual counts to be constrained between 498 and 502. You would expect a greater variance than when the mean was only 5. This is common for count data but it breaks a key assumption of the linear model.</p>
+<p>Count data also often has the ‘zero inflation’ problem whereby the number of zeros recorded is high.</p>
+<p>We said that this increase in variance with mean count value is found for count data where we know how often something <em>did</em> happen but not how often it did <em>not</em> happen. Examples of this are counts of lightning strikes, meiofauna on a petri dish, birds in a churchyard,</p>
+<p><strong>Proportion data</strong></p>
+<p>Sometimes, however, as well as knowing how often something did happen, we also know how often it did not happen. We can express each count as a <em>poportion</em> of the total. We could characterise the first counts as ‘successes’ and the second as ‘failures’, although this can sometimes be somewhat macabre in a medical context. Both counts are important to a full analysis of the data.</p>
+<p>Examples are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Successes</th>
+<th>Failures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dead</td>
+<td>alive</td>
+</tr>
+<tr class="even">
+<td>female</td>
+<td>male</td>
+</tr>
+<tr class="odd">
+<td>diseased</td>
+<td>healthy</td>
+</tr>
+<tr class="even">
+<td>occupied</td>
+<td>unoccupied</td>
+</tr>
+<tr class="odd">
+<td>pollinated</td>
+<td>not pollinated</td>
+</tr>
+<tr class="even">
+<td>adult</td>
+<td>juvenile</td>
+</tr>
+<tr class="odd">
+<td>exhibits behaviour A</td>
+<td>does not exhibit behaviour A</td>
+</tr>
+<tr class="even">
+<td>heterozygous</td>
+<td>homozygous</td>
+</tr>
+</tbody>
+</table>
+<p>As another example you might be studying the behaviour of civets in a zoo in time blocks of 20 minutes. For every minute within each block you record whether the civets appeared agitated. At the end of each block you will know the proportion <em>p</em> of one minute slots within which they were agitated and the proportion <em>1-p</em> when they were not.</p>
+<p>This type of data has low variance when proportions are very low, around zero, or very high, around one, since all or nearly all individuals are alike in either case. In between, the variance peaks when the proportion is around 0.5 (50:50) and there are many successes <em>and</em> failures.</p>
+<p>Hence, unlike count data where the variance increases monotonically with the mean count, with proportion data the variance is a humped function of the mean. For this reason, proportion data is often analysed using the <strong>Binomial distribution</strong>. If <em>p</em> is the probability of a success and <em>(1-p)</em> is the probability of a failure, the mean number of successes is <em>np</em> and the variance of this number of success is <em>np(1-p)</em>. Hence this variance will be zero if <em>p</em> = 0 or if <em>p</em> = 1, and is maximised if <em>p</em> = 0.5.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>list.of.packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lubridate"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"here"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"readxl"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"googlesheets4"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"janitor"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"cowplot"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"ggfortify"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"ggridges"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"GGally"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"sf"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"terra"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"vegan"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lme4"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Rcpp"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rgbif"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"leaflet"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"tmap"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"broom"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"remotes"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"palmerpenguins"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rmarkdown"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"knitr"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"data.table"</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lidR"</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rstatix"</span>,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"quarto"</span>,</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"kableExtra"</span>,</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"openintro"</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>new.packages <span class="ot">&lt;-</span> list.of.packages[<span class="sc">!</span>(list.of.packages <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="st">"Package"</span>])]</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(new.packages)) <span class="fu">install.packages</span>(new.packages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GLM_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
+</div>
+</div>
+<p><strong>Percentage cover data</strong></p>
+<p>This is a type of proportion data where the data are continuous but bounded, ranging from 0% to 100%, with values outside that range being impossible and meaningless. You might encounter this when doing flora and fauna surveys with quadrats, and are recording a species for which individual counts are not possible, for example barnacles or many macroalgae on a rocky shore, or grasses in a meadow. Its variance will vary in a similar way to proportion data derived from count data: tendding towards zero for either 0% or 100% cover, and maximal when the cover is around 50%. In this case, a common approach is to arcsine transform the data, and then analyse it using linear models, but consider usin the GLM approaches discussed below.</p>
+<section id="what-to-do-when-the-linear-model-is-not-applicable" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="what-to-do-when-the-linear-model-is-not-applicable"><span class="header-section-number">13.1</span> What to do when the linear model is not applicable?</h2>
+<p>A common approach to try to solve at least part of the problem is to ‘transform’ the response data such that its distribution more resembles that of a ‘normal’ distribution. This usually means operating on it with functions such as square root or log that have the effect of pulling in the long tails of highly skewed distributions. This approach has its limitations. For one thing, it is the errors (ie the difference between the actual and the predicted values) that should be normally distributed, not the the data themselves.</p>
+<p>A more powerful and versatile approach is to use generalized linear models, commonly referred to as GLMs.</p>
+</section>
+<section id="introduction-to-genralized-linear-models-glms" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="introduction-to-genralized-linear-models-glms"><span class="header-section-number">13.2</span> Introduction to Genralized Linear Models (GLMs)</h2>
+<p>A generalized linear model has three important properties:</p>
+<ul>
+<li>the error structure</li>
+<li>the linear predictor</li>
+<li>the link function</li>
+</ul>
+<p>While none of these concepts is likely to be familiar, the ideas behind each of them are straightforward and it is worth getting to know what each one involves.</p>
+</section>
+<section id="the-error-structure" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="the-error-structure"><span class="header-section-number">13.3</span> The Error Structure</h2>
+<p>In the linear model, which underpins such analyses as the various forms of t-test, ANOVA, linear regression or pearson correlation, the errors are assumed to be normally distributed. By ‘error’ we means the difference between the observed value and the mean of a population, or the difference between an observed or a fitted value, as in regression.</p>
+<p>Often, this is not the case, certainly in ecology and in many studies within the life sciences. It is common to have data for which the errors do <em>not</em> have a normal distribution.</p>
+<p>The errors may be:</p>
+<ul>
+<li>strongly skewed - a few errors are much larger (most common) or smaller than the rest</li>
+<li>strongly kurtotic - much more scrunched up or spread out than would be consistent with a normal distribution</li>
+<li>strictly bounded - they can’t imply values beyond the realms of what is phyiscally possible, as in proportion data.</li>
+<li>strictly positive - as with count data, where negative values are meaningless.</li>
+</ul>
+<p>Before the advent of GLMs, any of these error issues would have required the use either of a transformation of the response data or the use of non-parametric methods, whereby the response data were ranked and only those ranks were then used in subsequent analysis, the actual values being ignored, with consequent loss of power as a result of not using this information. A GLM allows one to specify a variety of commonly encountered types of error distribution:</p>
+<ul>
+<li>Poisson errors - useful with count data</li>
+<li>binomial errors - useful with proportion data</li>
+<li>gamma errors - useful with data that show a constant coefficient of variation</li>
+<li>exponential errors - useful with data on time to death (survival analysis)</li>
+</ul>
+<p>In <code>R</code> the error structure is defined by means of the <code>family</code> argument, thus:</p>
+<p><code>glm(y ~ z, family = poisson)</code></p>
+<p>if the response variable has Poisson errors</p>
+<p>or</p>
+<p><code>glm(y ~ z, family = binomial)</code></p>
+<p>if the response is binary and has binomial errors.</p>
+<p>The response variable <code>z</code> can be continuous, leading to a regression analysis, or categorical, leading to an ANOVA-like procedure called analysis of deviance.</p>
+</section>
+<section id="the-linear-predictor" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="the-linear-predictor"><span class="header-section-number">13.4</span> The linear predictor</h2>
+<p>In a GLM, each observed value <em>y</em> is related to a predicted value, which is obtained by transformation of the value emerging from the <em>linear predictor</em> <span class="math inline">\(\eta\)</span>. This linear predictor is a linear sum of the effects of one or more explanatory variables <span class="math inline">\(x_j\)</span>. It is what you would see if you asked in R for <code>summary.lm</code>.</p>
+<p><span class="math display">\[
+\eta_i = \sum_{j=1}^px_{ib}\beta_j
+\]</span> The <span class="math inline">\(x\)</span>s are the values of the <em>p</em> different explanatory variables and the <span class="math inline">\(\beta\)</span>s are the (usually) unknown poarameters to be estimated from the data. The right-hand side of this equation is called the <em>linear structure</em>. Thre are as many terms in this as there are parameters to be estimated, that is <em>p</em>.</p>
+</section>
+<section id="fitted-values" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="fitted-values"><span class="header-section-number">13.5</span> Fitted values</h2>
+<section id="deviance-a-general-measure-of-variability" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="deviance-a-general-measure-of-variability"><span class="header-section-number">13.5.1</span> Deviance: a general measure of variability</h3>
+<p><em>Deviance</em> is a generalisation of the concept of variance: it is a measure of the lack of fit of the model to the data.</p>
+<p><span class="math display">\[
+\text{deviance} = -2\times\text{log likelihood}
+\]</span></p>
+<p>where the log likelihood depends on the model, <em>given the data</em>. Deviance is the same as variance when we have constant variance and normally distributed errors, as with linear regression, ANOVA and ANCOVA. That is, the appropriate measure of lack of it is <span class="math inline">\((y-\hat{y})^2\)</span>. For count data, however, we need another measure of lack of fit, which turns out to be <span class="math inline">\(y\log(\frac{y}{\hat{y}})\)</span>. Other types of data need yet other measures of lack of it. Here is a summary table of them:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Deviance</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Error</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">linear</td>
+<td style="text-align: left;">$\sum \left(y-\hat{y}\right)^2$</td>
+<td style="text-align: left;">Gaussian</td>
+<td style="text-align: left;">identity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log linear</td>
+<td style="text-align: left;">$2\sum y\log{\left(\dfrac{y}{\hat{y}}\right)}$</td>
+<td style="text-align: left;">Poisson</td>
+<td style="text-align: left;">log</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">logistic</td>
+<td style="text-align: left;">$2\sum y\log{\left(\dfrac{y}{\hat{y}}\right)} +(n-y)\log{\left(\dfrac{n-y}{n-\hat{y}}\right)}$</td>
+<td style="text-align: left;">binomial</td>
+<td style="text-align: left;">logit</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gamma</td>
+<td style="text-align: left;">$2\sum {\dfrac{(y-\hat{y})}{y} - \log{\left(\dfrac{y}{\hat{y}}\right)} }$</td>
+<td style="text-align: left;">gamma</td>
+<td style="text-align: left;">reciprocal</td>
+</tr>
+</tbody>
+</table>
 
 
+</div>
+</div>
+</section>
+</section>
+<section id="the-link-function" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="the-link-function"><span class="header-section-number">13.6</span> The link function</h2>
+<p>The predicted value of <em>y</em> is related to the linear predictor value <span class="math inline">\(\eta\)</span> via the link function <em>g</em>:</p>
+<p><span class="math display">\[
+\eta = g(\mu)
+\]</span> What we mean by this is that the value of <span class="math inline">\(\eta\)</span> is obtained by transforming <em>y</em> by the link function, and the predicted value of <em>y</em> is obtained by applying the inverse of the link function to <span class="math inline">\(\eta\)</span>.</p>
+<p>In the case of the <em>identity link</em>, the linear predictor <em>is</em> the predicted value of <em>y</em>. Hence, in simple linear regression, we are in effect using a special case of the GLM, one where the link function is the <em>identity</em> ie do nothing.</p>
+</section>
+<section id="canonical-link-functions" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="canonical-link-functions"><span class="header-section-number">13.7</span> Canonical link functions</h2>
+<p>The most commonly used link functions are shown below. A key requirement of any link function is to ensure that fitted values stay within reasonable bounds. Thus if the response is a count, the fitted values should all be zero or positive, and if a proportion, should be between zero and one, and so on.</p>
+<p>Thus for count data, the log function is an appropriate link function, since the fitted values are then antilogs of the linear predictor, and so are guaranteed to be greater than or equal to zero. For proportion data, the logit function is appropriate since the fitted value is then the antilog of the log odds <span class="math inline">\(\log(\frac{p}{q})\)</span>, ie <span class="math inline">\(\frac{p}{q}\)</span>, which is a proportion, guaranteed to be between zero and one since <span class="math inline">\(p\leq q\)</span> and both <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are non-negative.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Error</th>
+<th>Canonical Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gaussian</td>
+<td>identity</td>
+</tr>
+<tr class="even">
+<td>poisson</td>
+<td>log</td>
+</tr>
+<tr class="odd">
+<td>binomial</td>
+<td>logit</td>
+</tr>
+<tr class="even">
+<td>Gamma</td>
+<td>reciprocal</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -865,13 +1058,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./test_finder.html" class="pagination-link" aria-label="Test finder">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Test finder</span>
+      <a href="./simple-linear-regression.html" class="pagination-link" aria-label="Simple linear regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow.html" class="pagination-link" aria-label="A recommended analysis workflow">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./glm_poisson_with_count_data.html" class="pagination-link" aria-label="GLM poisson with count data">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -883,7 +1076,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/install_packages.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/GLM.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
