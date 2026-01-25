@@ -28,6 +28,7 @@ book:
       - test_finder.qmd
     - part: "Working with R"
       chapters:
+      - install_packages.qmd
       - workflow.qmd
       - ggplot_examples.qmd
       - titles_labels_and_annotations.qmd

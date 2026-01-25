@@ -4,6 +4,8 @@ format: html
 editor: visual
 ---
 
+WHen you first download and install it, R is an already very powerful and versatile programming language aimed mainly at those who want to do statistical analysis of data. However it can be augmented as and when you want to by the addition of so-called packages, of which there are now thousnds. Packages are collection of additional functions and or datasets that you might find useful. Often they are aimed at particular specialisms that not everyone wants
+
 This code chunk will install on your machine a list of packages, unless you already have them installed.
 
 As time goes on this list may be updated (or you may update it!), so it will be worth coming back to this script and running it again, from time to time.

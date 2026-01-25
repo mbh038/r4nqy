@@ -26,8 +26,6 @@ and our alternate, two-sided hypothesis is:
 
 *There is a difference between airborne ozone concentrations in the east and the west of the city.*
 
-
-
 ## Pros and cons of the *t*-test
 
 ### Pros
@@ -153,8 +151,6 @@ In addition, do the data look as though each group is drawn from a normally dist
 Let's now do some stats.
 
 ## Step Three: Check that the data meet the criteria required for a *t-test*
-
-
 
 ### Are the data normally distributed?
 
