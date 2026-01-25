@@ -583,7 +583,7 @@ window.Quarto = {
 <section id="step-two-plot-the-data" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="step-two-plot-the-data"><span class="header-section-number">5.2.2</span> Step Two: Plot the data</h3>
 <p>Remember, before we do any statistical analysis, it is almost always a good idea to plot the data in some way. We can often get a very good idea as to the answer to our research question just from the plots we do.</p>
-<p>In <a href="#fig-histograms" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-histograms</span></a>, we will use <code>ggplot()</code> in R to plot a histogram of ozone levels, one for each side of the city. We will stack the histograms one above the other, all the better to help us spot any differences between east and west.</p>
+<p>In <a href="#fig-histograms" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>, we will use <code>ggplot()</code> in R to plot a histogram of ozone levels, one for each side of the city. We will stack the histograms one above the other, all the better to help us spot any differences between east and west.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>snails <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>shell_mass_g)) <span class="sc">+</span></span>
@@ -624,7 +624,7 @@ Figure&nbsp;5.2: Side-byside box and whisker plots of the distribution of values
 </div>
 </div>
 </div>
-<p>or as a dot plot of the means with standard errors of the mean included as error bars, as in <a href="#fig-means-se" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-means-se</span></a></p>
+<p>or as a dot plot of the means with standard errors of the mean included as error bars, as in <a href="#fig-means-se" class="quarto-xref">Figure&nbsp;<span>5.3</span></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for this chart we will use the summary table that we created above.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -688,7 +688,7 @@ Figure&nbsp;5.3: The data points show mean values, the error bars show plus or m
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99656, p-value = 0.3631</code></pre>
+W = 0.99768, p-value = 0.7232</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -696,7 +696,7 @@ W = 0.99656, p-value = 0.3631</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.95457, p-value = 2.794e-11</code></pre>
+W = 0.95488, p-value = 3.111e-11</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a high <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, and a very low <em>p</em>-value for the data that we knew were not.</p>

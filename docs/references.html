@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Ordination – From questions to data to answers using R</title>
+<title>References – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -50,8 +49,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./PCA.html" rel="next">
-<link href="./glm_with_count_data_ancova.html" rel="prev">
+<link href="./power-analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +100,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -309,7 +307,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ordination.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ordination.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
@@ -355,7 +353,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -366,22 +364,15 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">16.1</span> Introduction</a></li>
-  <li><a href="#reading-list" id="toc-reading-list" class="nav-link" data-scroll-target="#reading-list"><span class="header-section-number">16.2</span> Reading List</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ordination.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></h1>
+<h1 class="title">References</h1>
 </div>
 
 
@@ -398,26 +389,63 @@ div.csl-indent {
 </header>
 
 
-<section id="introduction" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">16.1</span> Introduction</h2>
-<p>In ecology, genetics and other fields data is often gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.</p>
-<p>Ordination is the general term for several techniques that try to find order in this chaos. A main task they tackle is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, yet can be depicted in a two-dimensional plot and made sense of.</p>
-</section>
-<section id="reading-list" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="reading-list"><span class="header-section-number">16.2</span> Reading List</h2>
-<p>Oksanan <span class="citation" data-cites="oksanen2004">(<a href="references.html#ref-oksanen2004" role="doc-biblioref">2004</a>)</span> is a comprehensive set of lecture notes from one of the main architects of the <code>vegan</code> package. This gives succinct explanations of all the main multivariate analysis methods including PCA and NMDS.</p>
-<p>Shlens <span class="citation" data-cites="shlens2014">(<a href="references.html#ref-shlens2014" role="doc-biblioref">2014</a>)</span> is a mathematical but clear treatment, which gets to the core of what PCA is doing.</p>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-crawley2014" class="csl-entry" role="listitem">
+Crawley, Michael J. 2014. <em>Statistics: An Introduction Using r</em>.
+2nd ed. Wiley Blackwell.
+</div>
+<div id="ref-cumming2007" class="csl-entry" role="listitem">
+Cumming, Geoff, Fiona Fidler, and David L. Vaux. 2007. <span>“Error Bars
+in Experimental Biology.”</span> <em>Journal of Cell Biology</em> 177
+(1): 7–11. <a href="https://doi.org/10.1083/jcb.200611141">https://doi.org/10.1083/jcb.200611141</a>.
+</div>
+<div id="ref-freedman1991" class="csl-entry" role="listitem">
+Freedman, David, Robert Pisani, Roger Purves, and Ani Adhikari. 1991.
+<em>Statistics</em>. 2nd ed. W. W. Norton &amp; Company.
+</div>
+<div id="ref-gilbert2017" class="csl-entry" role="listitem">
+Gilbert, Francis, Peter McGregor, and Chris Barnard. 2017. <em>Asking
+Questions in Biology; a Guide to Hypothesis Testing, Experimental Design
+and Presentation in Practical Work and Research Projects</em>. 5th ed.
+Benjamin Cummings.
+</div>
+<div id="ref-holland2019" class="csl-entry" role="listitem">
+Holland, Steven M. 2019. <span>“Principal Components Analysis
+(PCA).”</span> <a href="http://strata.uga.edu/8370/handouts/pcaTutorial.pdf">http://strata.uga.edu/8370/handouts/pcaTutorial.pdf</a>.
+</div>
+<div id="ref-jovan2008" class="csl-entry" role="listitem">
+Jovan, Sarah. 2008. <span>“Lichen Bioindication of Biodiversity, Air
+Quality, and Climate: Baseline Results from Monitoring in Washington,
+Oregon, and California.”</span> <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>.
+</div>
+<div id="ref-lauber2009" class="csl-entry" role="listitem">
+Lauber, Christian L., Micah Hamady, Rob Knight, and Noah Fierer. 2009.
+<span>“Pyrosequencing-Based Assessment of Soil pH as a Predictor of Soil
+Bacterial Community Structure at the Continental Scale.”</span>
+<em>Applied and Environmental Microbiology</em> 75 (15): 5111–20. <a href="https://doi.org/10.1128/aem.00335-09">https://doi.org/10.1128/aem.00335-09</a>.
+</div>
+<div id="ref-oh2023" class="csl-entry" role="listitem">
+Oh, Youjung, Sang Myeong Oh, Pil-Hun Chang, and Il-Ju Moon. 2023.
+<span>“Optimal Tropical Cyclone Size Parameter for Determining
+Storm-Induced Maximum Significant Wave Height.”</span> <em>Frontiers in
+Marine Science</em> 10 (February). <a href="https://doi.org/10.3389/fmars.2023.1134579">https://doi.org/10.3389/fmars.2023.1134579</a>.
+</div>
 <div id="ref-oksanen2004" class="csl-entry" role="listitem">
-Oksanen, Jari. 2004. <span>“Multivariate Analysis in Ecology - Lecture Notes.”</span> <a href="https://web.archive.org/web/20181024083948/http://cc.oulu.fi:80/~jarioksa/opetus/metodi/notes.pdf">https://web.archive.org/web/20181024083948/http://cc.oulu.fi:80/~jarioksa/opetus/metodi/notes.pdf</a>.
+Oksanen, Jari. 2004. <span>“Multivariate Analysis in Ecology - Lecture
+Notes.”</span> <a href="https://web.archive.org/web/20181024083948/http://cc.oulu.fi:80/~jarioksa/opetus/metodi/notes.pdf">https://web.archive.org/web/20181024083948/http://cc.oulu.fi:80/~jarioksa/opetus/metodi/notes.pdf</a>.
+</div>
+<div id="ref-pain2019" class="csl-entry" role="listitem">
+Pain, Deborah J., Rafael Mateo, and Rhys E. Green. 2019. <span>“Effects
+of Lead from Ammunition on Birds and Other Wildlife: A Review and
+Update.”</span> <em>Ambio</em> 48 (9): 935–53. <a href="https://doi.org/10.1007/s13280-019-01159-0">https://doi.org/10.1007/s13280-019-01159-0</a>.
 </div>
 <div id="ref-shlens2014" class="csl-entry" role="listitem">
-Shlens, Jonathon. 2014. <span>“A Tutorial on Principal Component Analysis.”</span> <a href="https://doi.org/10.48550/arXiv.1404.1100">https://doi.org/10.48550/arXiv.1404.1100</a>.
+Shlens, Jonathon. 2014. <span>“A Tutorial on Principal Component
+Analysis.”</span> <a href="https://doi.org/10.48550/arXiv.1404.1100">https://doi.org/10.48550/arXiv.1404.1100</a>.
 </div>
 </div>
-</section>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -839,14 +867,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./glm_with_count_data_ancova.html" class="pagination-link" aria-label="GLM with count data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span>
+      <a href="./power-analysis.html" class="pagination-link" aria-label="Power Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Power Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./PCA.html" class="pagination-link" aria-label="Principal Components Analysis (PCA)">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -857,7 +882,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ordination.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
