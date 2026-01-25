@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Install packages – From questions to data to answers using R</title>
+<title>6&nbsp; ANOVA explained – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workflow.html" rel="next">
-<link href="./test_finder.html" rel="prev">
+<link href="./ANOVA_one_way.html" rel="next">
+<link href="./tests_for_difference_two_levels.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,6 +69,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -116,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install_packages.html">Working with R</a></li><li class="breadcrumb-item"><a href="./install_packages.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tests_for_difference_two_levels.html">Tests for difference</a></li><li class="breadcrumb-item"><a href="./ANOVA_how_it_works_penguins.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -178,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./install_packages.html" class="sidebar-item-text sidebar-link active">
+  <a href="./install_packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></span></a>
   </div>
 </li>
@@ -219,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
   </div>
 </li>
@@ -380,15 +375,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-basic-principles-of-anova" id="toc-the-basic-principles-of-anova" class="nav-link active" data-scroll-target="#the-basic-principles-of-anova"><span class="header-section-number">6.1</span> The basic principles of ANOVA</a>
+  <ul class="collapse">
+  <li><a href="#the-scenario" id="toc-the-scenario" class="nav-link" data-scroll-target="#the-scenario"><span class="header-section-number">6.1.1</span> The Scenario</a></li>
+  </ul></li>
+  <li><a href="#summarise-the-data-calculate-means" id="toc-summarise-the-data-calculate-means" class="nav-link" data-scroll-target="#summarise-the-data-calculate-means"><span class="header-section-number">6.2</span> Summarise the data: calculate means</a></li>
+  <li><a href="#calculate-variabilities-around-the-means-sums-of-squared-differences" id="toc-calculate-variabilities-around-the-means-sums-of-squared-differences" class="nav-link" data-scroll-target="#calculate-variabilities-around-the-means-sums-of-squared-differences"><span class="header-section-number">6.3</span> Calculate variabilities around the means: sums of squared differences</a>
+  <ul class="collapse">
+  <li><a href="#sst-the-total-sum-of-squares" id="toc-sst-the-total-sum-of-squares" class="nav-link" data-scroll-target="#sst-the-total-sum-of-squares"><span class="header-section-number">6.3.1</span> SST: the total sum of squares</a></li>
+  <li><a href="#sse---error-sum-of-squares" id="toc-sse---error-sum-of-squares" class="nav-link" data-scroll-target="#sse---error-sum-of-squares"><span class="header-section-number">6.3.2</span> SSE - Error sum of squares</a></li>
+  <li><a href="#ssg---group-species-sum-of-squares" id="toc-ssg---group-species-sum-of-squares" class="nav-link" data-scroll-target="#ssg---group-species-sum-of-squares"><span class="header-section-number">6.3.3</span> SSG - group (species) sum of squares</a></li>
+  </ul></li>
+  <li><a href="#partitioning-the-sums-of-squares-sst-sse-ssg" id="toc-partitioning-the-sums-of-squares-sst-sse-ssg" class="nav-link" data-scroll-target="#partitioning-the-sums-of-squares-sst-sse-ssg"><span class="header-section-number">6.4</span> Partitioning the sums of squares: SST = SSE + SSG</a></li>
+  <li><a href="#partitioning-the-degrees-of-freedom" id="toc-partitioning-the-degrees-of-freedom" class="nav-link" data-scroll-target="#partitioning-the-degrees-of-freedom"><span class="header-section-number">6.5</span> Partitioning the degrees of freedom</a></li>
+  <li><a href="#variances-per-degree-of-freedom-mean-squares" id="toc-variances-per-degree-of-freedom-mean-squares" class="nav-link" data-scroll-target="#variances-per-degree-of-freedom-mean-squares"><span class="header-section-number">6.6</span> Variances per degree of freedom: Mean Squares</a></li>
+  <li><a href="#f-ratios" id="toc-f-ratios" class="nav-link" data-scroll-target="#f-ratios"><span class="header-section-number">6.7</span> <em>F</em>-ratios</a></li>
+  <li><a href="#what-does-the-anova-result-tell-us" id="toc-what-does-the-anova-result-tell-us" class="nav-link" data-scroll-target="#what-does-the-anova-result-tell-us"><span class="header-section-number">6.8</span> What does the ANOVA result tell us?</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ANOVA_how_it_works_penguins.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install_packages.html">Working with R</a></li><li class="breadcrumb-item"><a href="./install_packages.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tests_for_difference_two_levels.html">Tests for difference</a></li><li class="breadcrumb-item"><a href="./ANOVA_how_it_works_penguins.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></h1>
 </div>
 
 
@@ -405,43 +421,244 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>WHen you first download and install it, R is an already very powerful and versatile programming language aimed mainly at those who want to do statistical analysis of data. However it can be augmented as and when you want to by the addition of so-called packages, of which there are now thousnds. Packages are collection of additional functions and or datasets that you might find useful. Often they are aimed at particular specialisms that not everyone wants</p>
-<p>This code chunk will install on your machine a list of packages, unless you already have them installed.</p>
-<p>As time goes on this list may be updated (or you may update it!), so it will be worth coming back to this script and running it again, from time to time.</p>
+<section id="the-basic-principles-of-anova" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-basic-principles-of-anova"><span class="header-section-number">6.1</span> The basic principles of ANOVA</h2>
+<p>There are many varieties of ANOVA but we will start with the simplest.</p>
+<p>We would carry out a ‘One-way’ ANOVA (<strong>AN</strong>alysis <strong>O</strong>f <strong>VA</strong>riance) when we have independent replicates from three or more populations and we want to know if there is evidence for a difference between at least one pair of these in respect of the mean value of a numerical variable in which we ae interested. There almost certainly <em>will</em> be a difference between the sample means but these samples are just that - <em>samples</em> - randomly (we hope) drawn from their respective populations. If we drew three samples from the <em>same</em> population they would also almost certainly differ in their means! The differences are due to the random variation within the populations and our random method of choosing samples from them.</p>
+<p>What we want to know is whether the differences we see between our samples are big enough for us to reject the null hypothesis that there is no difference between the populations - that they are, in effect, the same population.</p>
+<p>Here we will go through an example in detail and work out all the mechanics, but once we have done that and seen how the output is derived from the input we will not need to do it again. We will use R to do the heavy lifting. We will just need to know when it is appropriate to use ANOVA, how to get R to do it and how to interpret the output that R produces.</p>
+<p>An ANOVA analysis (bit like saying MOT test!) attempts to determine whether the differences between samples are significant by investigating the variability in the data. It investigates how the variability <em>between</em> samples compares to the variability <em>within</em> samples.</p>
+<section id="the-scenario" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="the-scenario"><span class="header-section-number">6.1.1</span> The Scenario</h3>
+<p>As our case study we consider the three species of penguin, Adelie, Chinstrap and Gentoo for which data has been gathered and made available in the <code>palmerpenguins</code> R package. For dozens of individuals of each species, records have been logged of the species, sex, year, bill length, bill depth, flipper length and body mass. Suppose we are interested in the shape of the bills and so create for each individual a new variable which is the ratio of bill length to bill depth. We wish to know if there is evidence from the data for whether this bill shape differs between the species. In the manner of the bills of the various species of finch spread across the islands of the Galapagos archipeligo, this might indicate a different food source for each species and more generally, indicate that each species occupies a different ecological niche from the others.</p>
+<p>When we plot the data as in <a href="#fig-species-boxplot" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-species-boxplot</span></a> we see that the species do differ in their bill shapes but that there is also a lot of variation between penguins of the same species.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>list.of.packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lubridate"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"here"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"readxl"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"googlesheets4"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"janitor"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"cowplot"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"ggfortify"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"ggridges"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"GGally"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"sf"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"terra"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"vegan"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lme4"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Rcpp"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rgbif"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"leaflet"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"tmap"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"broom"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"remotes"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"palmerpenguins"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rmarkdown"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"knitr"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"data.table"</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lidR"</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rstatix"</span>,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"quarto"</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>new.packages <span class="ot">&lt;-</span> list.of.packages[<span class="sc">!</span>(list.of.packages <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="st">"Package"</span>])]</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(new.packages)) <span class="fu">install.packages</span>(new.packages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-species-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-species-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ANOVA_how_it_works_penguins_files/figure-html/fig-species-boxplot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-species-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: The distribution of bill shape for each of the three penguin species.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="summarise-the-data-calculate-means" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="summarise-the-data-calculate-means"><span class="header-section-number">6.2</span> Summarise the data: calculate means</h2>
+<p><strong>First step</strong>: calculate the <strong>grand mean</strong></p>
+<p>First we calculate the ‘grand mean’, the mean of the bill shapes across all penguins in the data set:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.658853</code></pre>
+</div>
+</div>
+<p><strong>Second step</strong>: calculate the <strong>group means</strong></p>
+<p>Next, we calculate the mean bill shape for each species - these are what we will call the group means.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  species       n pmean id_min id_max
+  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;int&gt;  &lt;int&gt;
+1 Adelie       10  2.06      1     10
+2 Chinstrap    10  2.66     11     20
+3 Gentoo       10  3.26     21     30</code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-variabilities-around-the-means-sums-of-squared-differences" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="calculate-variabilities-around-the-means-sums-of-squared-differences"><span class="header-section-number">6.3</span> Calculate variabilities around the means: sums of squared differences</h2>
+<p>Now we can calculate and plot the deviations of the data around these means. That will allow us to visualise and calculate what turn out to be the key quatities in carrying out an ANOVA analysis: the sums of squared differences. There are three of these and we will turn to them now:</p>
+<section id="sst-the-total-sum-of-squares" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="sst-the-total-sum-of-squares"><span class="header-section-number">6.3.1</span> SST: the total sum of squares</h3>
+<p>FRom the deviations of each individual arounnd the grand mean we can calculate what we will call <strong>SST: the total sum of squares</strong>. This is the sum of the squared differences between each individual penguin bill shape and the grand mean. In this and other measures of variability we square the differences so that we do not distinguish between positive and negative deviations.</p>
+<p>SST is a measure of the total variability of the data set. For our penguins we find that SST = 8.147</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-grand-mean" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-grand-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ANOVA_how_it_works_penguins_files/figure-html/fig-grand-mean-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grand-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: The overall variability of the data (SST) is measured as the sum of the squared differences between each individual value and the grand mean, which is the mean of the whole data set. The individual differences are shown in the figure as vertical dotted lines. If there are <em>n</em> data points, then SST will have <em>n</em>-1 degrees of freedom.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we determine two more measures of variability: the deviations of individual penguins from their group means, and the the deviations of those group means from the grand mean. For each of these measures, we will square them so that we do not distinguish between positive and negative deviations, and then sum these squares to get a measure of the total variabilities.</p>
+</section>
+<section id="sse---error-sum-of-squares" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="sse---error-sum-of-squares"><span class="header-section-number">6.3.2</span> SSE - Error sum of squares</h3>
+<p>SSE is the <strong>error sum of squares</strong>. It is the sum of the squares of the deviations of the data around the three separate species means. This is a measure of the variation between individuals of the same species.</p>
+</section>
+<section id="ssg---group-species-sum-of-squares" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="ssg---group-species-sum-of-squares"><span class="header-section-number">6.3.3</span> SSG - group (species) sum of squares</h3>
+<p>SSG is the <strong>group sum of squares</strong>. This is the sum of the squares of the deviations of the group (species, in this case) means from the grand mean. This is a measure of the variation between individuals of different species.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-SSE-SSG-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-SSE-SSG-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ANOVA_how_it_works_penguins_files/figure-html/fig-SSE-SSG-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SSE-SSG-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: a) Each species has a mean value for bill shape, shown by the three horizontal lines. Each individual penguin has a bill shape that differs from that by the length of the vertical dotted lines shown. When we square each of these lengths and then add up all these squares we get what we are calling here SSE: the error sum of squares. This is a measure of the variability between penguins of the same species. b) For each species, the mean bill shape differs from the grand mean by the length of the dotted lines shown. When we square and then sum these three lengths we get what we are calling here SSG: the squared sum of groups. This is a measure of the variability between penguins of different species.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>When the three species means are fitted, there is an obvious reduction in variability around the three means compared to that around the grand mean: SSE is less than SST, but it is not obvious if bill shape differs between the species.</p>
+<p>At what point do we decide if the amount of variation explained by fitting the means is significant? By this, we mean, “When is the variability between the group means greater than we would expect by chance alone?</p>
+<p>First, we note that SSE and SSG partition between them the total variability SST in the data:</p>
+</section>
+</section>
+<section id="partitioning-the-sums-of-squares-sst-sse-ssg" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="partitioning-the-sums-of-squares-sst-sse-ssg"><span class="header-section-number">6.4</span> Partitioning the sums of squares: SST = SSE + SSG</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sum of Squares</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SSE</td>
+<td>0.936</td>
+</tr>
+<tr class="even">
+<td>SSG</td>
+<td>7.212</td>
+</tr>
+<tr class="odd">
+<td>SST</td>
+<td>8.147</td>
+</tr>
+<tr class="even">
+<td>SSE + SSG</td>
+<td>8.148 = SST</td>
+</tr>
+</tbody>
+</table>
+<p>So the total variability has been divided into two components. That due to differences between individuals of different species (SSG) and that due to differences between individuals of the same species. (SSE). Variability must be due to one or other of these components. Separating the total SS into its component SS is known as partitioning the sums of squares.</p>
+<p>A comparison of SSG and SSE is going to indicate whether fitting the three species means accounts for a significant amount of variability.</p>
+<p>However, to make a proper comparison, we really need to compare the variability per degree of freedom ie the variance, so first we need to discuss what we mean by <code>degrees of freedom</code> for each of the sums of squares calculated so far, and how we calculate them.</p>
+</section>
+<section id="partitioning-the-degrees-of-freedom" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="partitioning-the-degrees-of-freedom"><span class="header-section-number">6.5</span> Partitioning the degrees of freedom</h2>
+<p>Every sum of squares (SS) has been calculated using a number of independent pieces of information. In each, case, we call this number the number of degrees of freedom for the SS.</p>
+<p>For SST this number is one less than the number of data points <em>n</em>. This is because when we calculate the deviations of each data point around a grand mean there are only <em>n-1</em> of them that are independent, since by definition the sum of these deviations is zero, and so when <em>n-1</em> of them have been calculated, the final one is pre-determined.</p>
+<p>Similarly, when we calculate SSG, which measures the deviation of the <span class="math inline">\(k\)</span> species means from the grand mean, we have <span class="math inline">\(k\)</span>-1 degrees of freedom, (where in the present example <span class="math inline">\(k\)</span>, the number of species, is equal to three) since the deviations must sum to zero, so when <span class="math inline">\(k\)</span>-1 of them have been calculated, the last one is pre-determined.</p>
+<p>Finally, SSE, which measures deviation around the group means will have <em>n</em>-<em>k</em> degrees of freedom, since the sum of each of the deviations around one of the group means must sum to zero, and so when all but one of them have been calculated, the final one is pre-determined. There are <span class="math inline">\(k\)</span> group means, so the total degrees of freedom for SSE is <em>n</em>-<em>k</em>.</p>
+<p>The degrees of freedom are additive:</p>
+<p><span class="math display">\[
+df(\text{SST}) = df(\text{SSE}) + df(\text{SSG})
+\]</span></p>
+<p>Check: <span class="math display">\[
+\begin{align*}
+df(\text{SST}) &amp;= n-1\\
+df(\text{SSE}) &amp;= k-1\\
+df(\text{SSG}) &amp;= n-k\\
+\therefore df(\text{SSE}) + df(\text{SSG}) &amp;= k-1 + n-k\\
+&amp;=n-1\\
+&amp;=df(\text{SST})
+\end{align*}
+\]</span></p>
+</section>
+<section id="variances-per-degree-of-freedom-mean-squares" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="variances-per-degree-of-freedom-mean-squares"><span class="header-section-number">6.6</span> Variances per degree of freedom: Mean Squares</h2>
+<p>Now we can calculate the <em>variances</em> which are a measure of the amount of variability per degree of freedom.</p>
+<p>In this context, we call them <em>mean squares</em>. To find each one we divide each of the sums of squares (SS) by its corresponding degrees of freedom.</p>
+<p><strong>Group Mean Square</strong> (GMS) = SSG / <em>k</em> - 1. This is the variation per <em>df</em> between individuals of different species.</p>
+<p><strong>Error Mean Square</strong> (EMS) = SSE / <em>n</em> - <em>k</em>. This is the variation per <em>df</em> between individuals of the same species.</p>
+<p><strong>Total Mean Square</strong> (TMS) = SST / <em>n</em> - 1. This is the total variance per <em>df</em> of the dataset.</p>
+<p>Unlike the SS, the MS are not additive. That is, GMS + EMS <span class="math inline">\(\neq\)</span> TMS as we see in the table below where we list these values for our penguins sample:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Mean Square</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GMS</td>
+<td>2.73</td>
+</tr>
+<tr class="even">
+<td>EMS</td>
+<td>0.0154</td>
+</tr>
+<tr class="odd">
+<td>TMS</td>
+<td>0.171</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="f-ratios" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="f-ratios"><span class="header-section-number">6.7</span> <em>F</em>-ratios</h2>
+<p>If species did not influence bill shape, we would expect as much variation between the penguins of the same species as between penguins of different species.</p>
+<p>We can express this in terms of the mean squares: the mean square for groups (species) would be about the same as the mean square for error and so their ratio would be about equal to 1:</p>
+<p><span class="math display">\[
+F=\frac{\text{GMS}}{\text{EMS}}\approx1\quad{\text{No difference between groups}}
+\]</span></p>
+<p>We call this ratio the <strong><em>F</em>-ratio</strong>. This is the so-called ‘test statistic’ that ANOVA calculates from your data. <em>F</em>-ratios can never be negative since they are the ratio of two mean square values, both of which must be non-negative, but there is no limit to how large they can be. In fact,</p>
+<p><span class="math display">\[
+F = \frac{\text{GMS}}{\text{EMS}}\gt 1\quad{\text{Possible difference between groups}}
+\]</span></p>
+<p><span class="math display">\[
+F = \frac{\text{GMS}}{\text{EMS}}\gg 1\quad{\text{Probable difference between groups}}
+\]</span></p>
+<p>Even if the species were identical, the <em>F</em>-ratio is unlikely to be exactly 1 - it could by chance take a whole range of values. It turns out that <em>F</em>-ratios have a known distribution, the <strong>F-distribution</strong>, which represents the range and likelihood of all possible <em>F</em> ratios under the null hypothesis. ie when the species were identical.</p>
+<p>The shape of the F distribution depends on the degrees of freedom of GMS and EMS, and we normally specify it by giving the values of each. In <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-f-pdfs</span></a> below we show F distributions for 2 and 27 degrees of freedom (ie 3 species, so <em>k</em> = 3, so the degrees of freedom of GMS = <em>k</em>-1 = 2, and 10 individuals per species, so <em>n</em> = 3 x 10 = 30, and hence the degrees of freedom of EMS = <em>n</em>-<em>k</em> = 30 - 3 = 27), and for 10 and 27 degrees of freedom.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-f-pdfs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-pdfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ANOVA_how_it_works_penguins_files/figure-html/fig-f-pdfs-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-pdfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: The F-distributions for (left) 2 and 27 degrees of freedom and (right) 10 and 27 degrees of freedom
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that, whatever the degrees of freedom, <em>F</em>-distributions are examples of so-called probability density functions. The area beneath them between any two values of <em>F</em>-ratio is equal to the probability of getting an <em>F</em>-ratio in that range. Hence the total area under the curves is equal to 1, since the <em>F</em>-ratio must take some value between zero and infinity, and the area under the tail to the right of any given <em>F</em>-ratio is the probability of getting an <em>F</em>-ratio bigger than that value.</p>
+<p>Hence, the probability under the null hypothesis of getting an <em>F</em>-ratio as large or larger than the value we actually got is the area to the right of this <em>F</em>-ratio under the appropriate F distribution. We often call this probability the <em>p</em>-value. p for probability. p-values are the the probability of getting data as extreme (same <em>F</em>-ratio,) or more extreme (bigger <em>F</em>-ratio) as the data you got you got if the null hypothesis were true.</p>
+<p>If the species were very different, then the GMS would be much greater than the EMS and the <em>F</em>-ratio would be greater than one. However it can be quite large even when there are no differences between the levels (here, Adelie, Chinstrap and Gentoo) of a factor (here, species). So how do we decide when the size of the <em>F</em>-ratio is due to a real difference between the levels rather than to chance?</p>
+<p>Our <em>p</em>-value (the probability that the <em>F</em>-ratio would have been as large as it is or larger under the null hypothesis) represents the strength of evidence against the null hypothesis. The smaller it is, the stronger the evidence, and, as a pragmatic choice, only when it is less than 0.05 do we regard the evidence as strong enough to reject the null. Note though that even if we had inside knowledge that the null hypothesis was in fact true, we would still get an <em>F</em>-ratio that large or larger and thus a p-value less than or equal to 0.05 5% of the time.</p>
+<p>We find for our penguin data that the F ratio is 104</p>
+<p>If we look at the <em>F</em> distribution in the left-hand figure in <a href="#fig-f-pdfs" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-f-pdfs</span></a> the one that corresponds to our case, with 2 and 27 degrees of freedom, we see that it has already fallen to near zero by the time <em>F</em> is equal to 5 or 6. There is essentially zero area beneath the curve to the right of the much larger F value we found for our data, <em>F</em> = 104. That means there is essentially zero chance of getting an <em>F</em> value this big or bigger if the null hypothesis were true (ie the p-value is esentially zero), and so we can confidently reject the null hypothesis.</p>
+</section>
+<section id="what-does-the-anova-result-tell-us" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="what-does-the-anova-result-tell-us"><span class="header-section-number">6.8</span> What does the ANOVA result tell us?</h2>
+<p>The null hypothesis of the ANOVA is that all the samples are drawn from populations with the same mean. If the F-value is so large that we reject this null hypothesis, then we infer that at least two of the population means differ. We not learn from the ANOVA where the difference or differences lie.</p>
+<p>To find that out we typically need to continue the analysis with multiple pair-wise comparisons between the samples, taking care to control for the study-wide error rate.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: bill_shape
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+species    2 7.2117  3.6058  104.05 2.05e-13 ***
+Residuals 27 0.9357  0.0347                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -863,13 +1080,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./test_finder.html" class="pagination-link" aria-label="Test finder">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Test finder</span>
+      <a href="./tests_for_difference_two_levels.html" class="pagination-link" aria-label="Tests for difference: one factor, two levels">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow.html" class="pagination-link" aria-label="A recommended analysis workflow">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ANOVA_one_way.html" class="pagination-link" aria-label="One-way ANOVA">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -881,7 +1098,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/install_packages.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ANOVA_how_it_works_penguins.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

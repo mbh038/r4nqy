@@ -235,7 +235,6 @@ See if you can tally the other effect values in the summary table with the mean 
 Here is a table to help you interpret the output of the `summary()` function.
 
 ```{r additional table, echo = FALSE}
-library(tidytidbits)
 library(kableExtra)
 summary.table <- broom::tidy(summary(model0)) |>
   mutate(absolute_value = ifelse(term=="(Intercept)",estimate, estimate + estimate[1])) |>
@@ -254,7 +253,13 @@ summary.table <- broom::tidy(summary(model0)) |>
                       "wheat + supersupp")) |>
   mutate(estimate = round(estimate,2),
          absolute_value = round(absolute_value,2),
-         p_value=as_formatted_p_value(p.value,prefix = "", alpha=0.05)) |>
+         prefix = "",
+         alpha=0.05) |>
+  mutate(p_value = case_when(
+    p.value <= 0.001 ~ "<0.001",
+    p.value > 0.001 & p.value <= 0.01 ~ "<0.01",
+    p.value > 0.01 & p.value <= 0.05 ~ as.character(round(p.value,3)),
+    p.value > 0.05 ~ "n.s.")) |>
   mutate(significance = case_when(
     p.value <= 0.001 ~ "***",
     p.value > 0.001 & p.value <= 0.01 ~ "**",
