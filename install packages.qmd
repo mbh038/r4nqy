@@ -1,0 +1,41 @@
+---
+title: "Install packages"
+format: html
+editor: visual
+---
+
+This code chunk will install on your machine a list of packages, unless you already have them installed.
+
+As time goes on this list may be updated (or you may update it!), so it will be worth coming back to this script and running it again, from time to time.
+
+```{r}
+list.of.packages <- c("tidyverse",
+                      "lubridate",
+                      "here",
+                      "readxl",
+                      "googlesheets4",
+                      "janitor",
+                      "cowplot",
+                      "ggfortify",
+                      "GGally",
+                      "sf",
+                      "terra",
+                      "vegan",
+                      "lme4",
+                      "Rcpp",
+                      "rgbif",
+                      "leaflet",
+                      "tmap",
+                      "broom",
+                      "remotes",
+                      "palmerpenguins",
+                      "rmarkdown",
+                      "knitr",
+                      "data.table",
+                      "lidR",
+                      "rstatix",
+                      "quarto")
+
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+```
