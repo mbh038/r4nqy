@@ -24,12 +24,9 @@ library(readxl)
 library(cowplot)
 library(gridExtra)
 library(janitor)
-
-
-library(UsingR) # for Pearson's father-son data
-data(PearsonLee) # for Pearson's mother-daughter data
+library(HistData) # for PearsonLee
+data(PearsonLee) # Pearson and Lee's data on the Heights of Parents and Children by Gender
 data(iris)
-
 
 #set.seed=232342
 ```
