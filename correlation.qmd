@@ -87,7 +87,7 @@ theme_bare_axes <- function () {
 }
 ```
 
-The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
+The notable statistician Karl Pearson and Alice Lee carried out a study to investigate the resemblance between children and their parents. As part of the study, they measured the heights of 1078 parents and of their children at maturity. Here we use a subset of of their data, that comprises 746 parent-child pairs, avaialble in the `HistData` package. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
 
 ```{r,out.width="100%"}
 

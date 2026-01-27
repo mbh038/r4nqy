@@ -1,5 +1,6 @@
 # Ordination
 
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ordination/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 ## Introduction
 
 In ecology, genetics and other fields data is often gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.
