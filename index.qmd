@@ -1,5 +1,3 @@
-![QRcode](figures/r4nqy-2048px.png){fig-align="centre"  width=60%}
-
 # Introduction {.unnumbered}
 
 
