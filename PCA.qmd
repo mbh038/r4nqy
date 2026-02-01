@@ -1,8 +1,13 @@
 # Principal Components Analysis (PCA)
 
+
+In studies of the natural world it is common to make observations at several sites or of individual samples,  animals or plants. At each site or for each individual sample, plant or animal it is also common to make measurements of several different variables. Where these are environmental variables that are measured using a numerical scale the principal component analysis is a useful ordination teachnique.
+
+
+
 ## Example One: Geological samples
 
-This exercise is adapeted slightly from that of Holland [-@holland2019]
+This exercise is adapted slightly from that of Holland [-@holland2019]
 
 Before we do anything else, let's load the packages we are going to use, just like we always do:
 
@@ -95,10 +100,6 @@ rownames(loadings) <- colnames(geochem)
 # These show the values each data point has for each of the principal components
 scores <- pca$x
 ```
-
-### What does PCA do?
-
-First think of each of the samples in this study as being characterised by eight different variables, the concentrations of the the eight elements and isotope ratios that were measured in each of them. We can think of each of these variables as representing an axis in 8 dimensional space (don't think too long over this or your head might pop!). If we could draw this space (we can't!) then each sample would be at a point specified by its values of these eight variables, just as a point on a 2 dimensional graph might be specified by its coordinates, say (3,2), meaning the point where the variable x had the value 3 and the variable y had the value 2. The whole data set would be a cloud of points in this space.
 
 ### Scree Plot
 

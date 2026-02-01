@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Ordination – From questions to data to answers using R</title>
+<title>17&nbsp; Ordination – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./PCA.html" rel="next">
-<link href="./glm_with_count_data_ancova.html" rel="prev">
+<link href="./community_ecology.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +102,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./community_ecology.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -301,7 +301,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Ordination</span></a>
+ <span class="menu-text">Multivariate Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -309,14 +309,26 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./community_ecology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ordination.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./PCA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NMDS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
   </div>
 </li>
       </ul>
@@ -333,13 +345,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,16 +383,16 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reading-list" id="toc-reading-list" class="nav-link active" data-scroll-target="#reading-list"><span class="header-section-number">16.1</span> Reading List</a></li>
+  <li><a href="#reading-list" id="toc-reading-list" class="nav-link active" data-scroll-target="#reading-list"><span class="header-section-number">17.1</span> Reading List</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ordination.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ordination.html">Ordination</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./community_ecology.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./ordination.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></h1>
 </div>
 
 
@@ -399,9 +411,13 @@ div.csl-indent {
 
 <p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/ordination/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and try out the exercises at the end. ## Introduction</p>
 <p>In ecology, genetics and other fields data is often gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.</p>
-<p>Ordination is the general term for several techniques that try to find order in this chaos. A main task they tackle is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, yet can be depicted in a two-dimensional plot and made sense of.</p>
-<section id="reading-list" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="reading-list"><span class="header-section-number">16.1</span> Reading List</h2>
+<p>Ordination is the general term for several techniques that try to find order in this chaos. A main task they tackle in order to do this is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved in this reduced number of dimensions, yet can be depicted in a two-dimensional plot and made sense of. It is a bit like shining a bright light at an elephant and looking at the shadow cast onto a screen behind the elephant. The shadow is a depiction of the elephant in which the full three-dimensional object is viewed in only two dimensions. Some details of the real object are lost, but enough remains in the two dimensions for real insights to be possible. You would still recognise the shadow as being that of an elephant, no?</p>
+<p>In one of our examples in this chapter we have a data set where many geological samples were taken and in each one measurements were made of eight different variables - the concentrations of two radioisotopes and of six different elements. We can think of each of these variables as representing an axis in eight dimensional space (don’t think too long over this or your head might pop!). If we could draw this space (we can’t!) then each sample would be at a point specified by its values of these eight variables, just as a point on a 2 dimensional graph might be specified by its coordinates, say (3,2), meaning the point where the variable x had the value 3 and the variable y had the value 2. The whole data set would be a cloud of points in this space.</p>
+<p>In this space, samples that were similar to each other would lie close to each other and samples that were very different would be far apart. Samples that had high concentrations of aluminium would be far along the aluminium concentration axis, and also far along the calcium axis if in addition they had high concentrations of calcium, and so on. These are the patterns and environmental drivers of those patterns that we would see in the raw data if we could plot it in full, but we cannot because we cannot visualize, let alone draw in eight dimensions.</p>
+<p>Ordination techniques try to solve this problem, in one way or another, by reducing the dimensionality of the data set in such a way that the patterns of similarity / dissimilarity present in the full set of dimensions are still there, at least approximately in two, sometimes three, dimensions where we can see them and make sense of them.</p>
+<p>To determine these patterns an ordination technique has to find some way of</p>
+<section id="reading-list" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="reading-list"><span class="header-section-number">17.1</span> Reading List</h2>
 <p>Oksanan <span class="citation" data-cites="oksanen2004">(<a href="references.html#ref-oksanen2004" role="doc-biblioref">2004</a>)</span> is a comprehensive set of lecture notes from one of the main architects of the <code>vegan</code> package. This gives succinct explanations of all the main multivariate analysis methods including PCA and NMDS.</p>
 <p>Shlens <span class="citation" data-cites="shlens2014">(<a href="references.html#ref-shlens2014" role="doc-biblioref">2014</a>)</span> is a mathematical but clear treatment, which gets to the core of what PCA is doing.</p>
 
@@ -836,13 +852,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./glm_with_count_data_ancova.html" class="pagination-link" aria-label="GLM with count data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span>
+      <a href="./community_ecology.html" class="pagination-link" aria-label="Community Ecology">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./PCA.html" class="pagination-link" aria-label="Principal Components Analysis (PCA)">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

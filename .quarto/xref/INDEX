@@ -82,5 +82,11 @@
   },
   "install_packages.qmd": {
     "install_packages.html": "de64192e"
+  },
+  "community_ecology.qmd": {
+    "community_ecology.html": "f56a6190"
+  },
+  "NMDS.qmd": {
+    "NMDS.html": "8e282b91"
   }
 }

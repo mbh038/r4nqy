@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Power Analysis – From questions to data to answers using R</title>
+<title>21&nbsp; Power Analysis – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./power-analysis.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./power-analysis.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Ordination</span></a>
+ <span class="menu-text">Multivariate Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -323,14 +323,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./community_ecology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ordination.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./PCA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NMDS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
   </div>
 </li>
       </ul>
@@ -347,13 +359,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power-analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,19 +397,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#simulation-of-one-trial" id="toc-simulation-of-one-trial" class="nav-link active" data-scroll-target="#simulation-of-one-trial"><span class="header-section-number">19.1</span> Simulation of one trial</a></li>
-  <li><a href="#simulation-of-many-trials" id="toc-simulation-of-many-trials" class="nav-link" data-scroll-target="#simulation-of-many-trials"><span class="header-section-number">19.2</span> Simulation of many trials</a></li>
-  <li><a href="#calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" id="toc-calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" class="nav-link" data-scroll-target="#calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes"><span class="header-section-number">19.3</span> Calculate the power of the study for a range of sample and effect sizes</a></li>
-  <li><a href="#factors-that-affect-the-power-of-a-study" id="toc-factors-that-affect-the-power-of-a-study" class="nav-link" data-scroll-target="#factors-that-affect-the-power-of-a-study"><span class="header-section-number">19.4</span> Factors that affect the power of a study</a></li>
+  <li><a href="#simulation-of-one-trial" id="toc-simulation-of-one-trial" class="nav-link active" data-scroll-target="#simulation-of-one-trial"><span class="header-section-number">21.1</span> Simulation of one trial</a></li>
+  <li><a href="#simulation-of-many-trials" id="toc-simulation-of-many-trials" class="nav-link" data-scroll-target="#simulation-of-many-trials"><span class="header-section-number">21.2</span> Simulation of many trials</a></li>
+  <li><a href="#calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" id="toc-calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" class="nav-link" data-scroll-target="#calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes"><span class="header-section-number">21.3</span> Calculate the power of the study for a range of sample and effect sizes</a></li>
+  <li><a href="#factors-that-affect-the-power-of-a-study" id="toc-factors-that-affect-the-power-of-a-study" class="nav-link" data-scroll-target="#factors-that-affect-the-power-of-a-study"><span class="header-section-number">21.4</span> Factors that affect the power of a study</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/power-analysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./power-analysis.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./power-analysis.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Power Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></h1>
 </div>
 
 
@@ -420,8 +432,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before riches, however, we have to be sure that it has the desired effect. For the supplement to be a money spinner let’s suppose that we need it to enhance the growth rate of plants by 10% and so we must do a study to see if this is in fact the case.</p>
 <p>In a properly randomised design, we take <em>N</em> plants and give them ‘normal’ plant food, and another <em>N</em> plants and give them the normal food plus our supplement. We keep all other conditions the same for the two groups of plants.</p>
 <p>After 30 days, the plants grown with the usual food grow with a mean mass of 300g and a standard deviation of 30g. The other plants will need to have a mean mass of at least 330g, and we will suppose that they too will have a standard deviation of 30g.</p>
-<section id="simulation-of-one-trial" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="simulation-of-one-trial"><span class="header-section-number">19.1</span> Simulation of one trial</h2>
+<section id="simulation-of-one-trial" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="simulation-of-one-trial"><span class="header-section-number">21.1</span> Simulation of one trial</h2>
 <p>Suppose we chose <em>N</em> = 100. Then we can simulate the masses of the individual plants in the two samples, supposing there were a 10% effect of supplement. We do this by using the <code>rnorm()</code> function to draw samples of 100 replicates each from a normally distributed population, in one case with a mean of 300g and in the other with a mean of 330g, both with standard deviations of 30g</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="dv">100</span></span>
@@ -466,13 +478,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.09102576</code></pre>
+<pre><code>[1] 0.009032233</code></pre>
 </div>
 </div>
 <p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>
 </section>
-<section id="simulation-of-many-trials" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="simulation-of-many-trials"><span class="header-section-number">19.2</span> Simulation of many trials</h2>
+<section id="simulation-of-many-trials" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="simulation-of-many-trials"><span class="header-section-number">21.2</span> Simulation of many trials</h2>
 <p>A way to find out is to carry out this simulation many times and see in what fraction of our trials we see a significant effect (that is, p &lt; 0.05), supposing that the supplement really does work. That will give us an idea of the power of our study.</p>
 <p>That is what we will now do:</p>
 <p>We write a function that will return TRUE or FALSE depending on the <em>p</em>-value of a trial in which we specifiy the mean value of the control group, the standard deviation of the control group (assumed to be the same in the treatment group), the size of the effect <code>delta</code>, where if delta is 0.1, say, then we mean that the effect size is a 10% increase in growth mass, <em>N</em> is the sample size for each group and <em>alpha</em> is the significance level that we choose (most likely, but not necessarily 0.05).</p>
@@ -488,8 +500,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes"><span class="header-section-number">19.3</span> Calculate the power of the study for a range of sample and effect sizes</h2>
+<section id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="calculate-the-power-of-the-study-for-a-range-of-sample-and-effect-sizes"><span class="header-section-number">21.3</span> Calculate the power of the study for a range of sample and effect sizes</h2>
 <p>Now we run this trial as many times as we want. Let us run it 10,000 times, for a range of sample sizes and effect sizes. In any one trial we may or may not reject the null. We want to see, for a given set of conditons, in what fraction of trials, in the long run, we do reject the null. That will be an estimate of the power of our study: the likelihood that we will detect an effect if the effect really exists, as it does here.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>trials<span class="ot">&lt;-</span><span class="dv">10000</span></span>
@@ -552,8 +564,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If the signicance level is reduced, say to 0.01 from 0.05, the power will go down. We are reducing the type 1 error rate, but at the same increasing the type 2 error rate. It is les likely, even if there is an effect, that we will detect it.</li>
 </ul>
 </section>
-<section id="factors-that-affect-the-power-of-a-study" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="factors-that-affect-the-power-of-a-study"><span class="header-section-number">19.4</span> Factors that affect the power of a study</h2>
+<section id="factors-that-affect-the-power-of-a-study" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="factors-that-affect-the-power-of-a-study"><span class="header-section-number">21.4</span> Factors that affect the power of a study</h2>
 <p><strong>What factors about a study force you to have larger sample sizes for a given power? </strong></p>
 <p>If the effect size is small, the population variation is large or the significance level required is small.</p>
 <p><strong>How would you know what the variation of your population is? How could you reduce this?</strong>.</p>
@@ -991,7 +1003,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./qq_plots.html" class="pagination-link" aria-label="Quantile-quantile plots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

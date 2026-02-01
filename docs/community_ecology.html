@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>16&nbsp; Community Ecology – From questions to data to answers using R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ordination.html" rel="next">
+<link href="./glm_with_count_data_ancova.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./community_ecology.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./community_ecology.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">From questions to data to answers using R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/mbh038/r4nqy" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test_finder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Test finder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Working with R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Install packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot_examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./titles_labels_and_annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tests for difference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tests_for_difference_two_levels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Count data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fishers-exact-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Trend data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models (GLM)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glm_poisson_with_count_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glm_with_count_data_ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Multivariate Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./community_ecology.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ordination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PCA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NMDS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Additional help</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">References</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="header-section-number">16.1</span> Preliminaries</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">16.2</span> Load packages</a></li>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link" data-scroll-target="#read-in-data"><span class="header-section-number">16.3</span> Read in data</a></li>
+  <li><a href="#species-richness" id="toc-species-richness" class="nav-link" data-scroll-target="#species-richness"><span class="header-section-number">16.4</span> Species richness</a>
+  <ul class="collapse">
+  <li><a href="#species-richness-the-classic-r-way" id="toc-species-richness-the-classic-r-way" class="nav-link" data-scroll-target="#species-richness-the-classic-r-way"><span class="header-section-number">16.4.1</span> Species richness the classic R way</a></li>
+  <li><a href="#species-richness-the-tidyverse-way" id="toc-species-richness-the-tidyverse-way" class="nav-link" data-scroll-target="#species-richness-the-tidyverse-way"><span class="header-section-number">16.4.2</span> Species richness the tidyverse way</a></li>
+  <li><a href="#species-richness-the-vegan-way" id="toc-species-richness-the-vegan-way" class="nav-link" data-scroll-target="#species-richness-the-vegan-way"><span class="header-section-number">16.4.3</span> Species richness the <code>vegan</code> way</a></li>
+  <li><a href="#species-richness-of-the-dune-data-set." id="toc-species-richness-of-the-dune-data-set." class="nav-link" data-scroll-target="#species-richness-of-the-dune-data-set."><span class="header-section-number">16.4.4</span> Species richness of the <code>dune</code> data set.</a></li>
+  <li><a href="#species-richness-of-the-dune-data-set---doing-it-the-tidyverse-way" id="toc-species-richness-of-the-dune-data-set---doing-it-the-tidyverse-way" class="nav-link" data-scroll-target="#species-richness-of-the-dune-data-set---doing-it-the-tidyverse-way"><span class="header-section-number">16.4.5</span> Species richness of the <code>dune</code> data set - doing it the tidyverse way</a></li>
+  </ul></li>
+  <li><a href="#diversity-index" id="toc-diversity-index" class="nav-link" data-scroll-target="#diversity-index"><span class="header-section-number">16.5</span> Diversity Index</a>
+  <ul class="collapse">
+  <li><a href="#shannons-diversity-index" id="toc-shannons-diversity-index" class="nav-link" data-scroll-target="#shannons-diversity-index"><span class="header-section-number">16.5.1</span> Shannon’s Diversity Index</a></li>
+  <li><a href="#simpsons-and-inverse-simpsons-diversity-index" id="toc-simpsons-and-inverse-simpsons-diversity-index" class="nav-link" data-scroll-target="#simpsons-and-inverse-simpsons-diversity-index"><span class="header-section-number">16.5.2</span> Simpson’s and Inverse Simpson’s Diversity Index</a></li>
+  </ul></li>
+  <li><a href="#calculation-of-bird-species-diversities-in-a-range-of-habitats" id="toc-calculation-of-bird-species-diversities-in-a-range-of-habitats" class="nav-link" data-scroll-target="#calculation-of-bird-species-diversities-in-a-range-of-habitats"><span class="header-section-number">16.6</span> Calculation of bird species diversities in a range of habitats</a>
+  <ul class="collapse">
+  <li><a href="#are-these-diversities-different" id="toc-are-these-diversities-different" class="nav-link" data-scroll-target="#are-these-diversities-different"><span class="header-section-number">16.6.1</span> Are these diversities different?</a></li>
+  </ul></li>
+  <li><a href="#dissimilarity" id="toc-dissimilarity" class="nav-link" data-scroll-target="#dissimilarity"><span class="header-section-number">16.7</span> (Dis)similarity</a></li>
+  <li><a href="#visualising-similarity" id="toc-visualising-similarity" class="nav-link" data-scroll-target="#visualising-similarity"><span class="header-section-number">16.8</span> Visualising similarity</a>
+  <ul class="collapse">
+  <li><a href="#heatmaps" id="toc-heatmaps" class="nav-link" data-scroll-target="#heatmaps"><span class="header-section-number">16.8.1</span> Heatmaps</a></li>
+  <li><a href="#dendrograms" id="toc-dendrograms" class="nav-link" data-scroll-target="#dendrograms"><span class="header-section-number">16.8.2</span> Dendrograms</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/community_ecology.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./community_ecology.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./community_ecology.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>As an ecologist you might visit several sites and at each one record either presence/absence or abundance data for whatever flora and/or fauna species you find there, together, possibly, with a range of environmental variables that characterise the site on that day in some way, such as properties of the soil, meteorological conditions, the site designation, aspect and so on.</p>
+<p>You could have questions about each site, such as its species richness or its diversity, but you might also have questions about what links or differentiates the sites. Which are most and least similar to each other in terms of species assemblages, and how is this driven by the environmental variables?</p>
+<p>In this tutorial we introduce some elementary techniques that enable us to address these questions.</p>
+<section id="preliminaries" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">16.1</span> Preliminaries</h2>
+<p>The <code>vegan</code> package used here provides tools for descriptive community ecology. <a href="https://cran.r-project.org/web/packages/vegan/index.html">It can be found on CRAN</a>.</p>
+<p>Some of the data used here is from Mark Gardener’s book: Statistics for Ecologists Using R and Excel.</p>
+<p>You will need to add the data sets <code>plant_species_lists.csv</code> and <code>bird.csv</code> to your <code>data</code> folder inside your project folder.</p>
+<p>This worksheet assumes that you are using RStudio and have it open on your laptop.</p>
+<p>You should have a project folder on your laptop where you are doing the R work related to this module. You will have given it a name that is meaningful and useful to you. In what follows, I will refer to it as your <code>RStuff</code> folder.</p>
+<p>You should be working within this Project. If you are not doing so already, go to File/Open Project then navigate to your <code>RStuff</code> (or whatever you have called your project) folder and click on the RStuff.Rproj file within it. RStudio will then restart and you will see the name of your project folder at the top-right-hand corner of the RStudio window.</p>
+<p>Using File/New File/R Notebook, start a new R Notebook in your RStuff/scripts folder. Delete all the explanatory material beneath the <code>yaml</code>, amend the title in the <code>yaml</code> to something sensible then add <code>author</code> and <code>date</code> lines to the <code>yaml</code>, so that you end up with something like the <code>yaml</code> at the top of this script.</p>
+</section>
+<section id="load-packages" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">16.2</span> Load packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the cowplot package provides an excellent theme that helps plots to look good, and functions to arrange multiple plots within a figure</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Suppose we have visited several sites and listed the different species present at each site. We have not recorded how many of each species are present</p>
+</section>
+<section id="read-in-data" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="read-in-data"><span class="header-section-number">16.3</span> Read in data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"plant_species_lists.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plrich<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(plrich)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 183
+Columns: 2
+$ Site    &lt;chr&gt; "ML1", "ML1", "ML1", "ML1", "ML1", "ML1", "ML1", "ML1", "ML1",…
+$ Species &lt;chr&gt; "Achillea millefolium", "Centaurea nigra", "Lathyrus pratensis…</code></pre>
+</div>
+</div>
+<p>There are two columns of data, one containing site names and one containing species names.</p>
+<p>Here are the first few rows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(plrich)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  Site  Species             
+  &lt;chr&gt; &lt;chr&gt;               
+1 ML1   Achillea millefolium
+2 ML1   Centaurea nigra     
+3 ML1   Lathyrus pratensis  
+4 ML1   Leucanthemum vulgare
+5 ML1   Lotus corniculatus  
+6 ML1   Plantago lanceolata </code></pre>
+</div>
+</div>
+</section>
+<section id="species-richness" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="species-richness"><span class="header-section-number">16.4</span> Species richness</h2>
+<p>Suppose that initially we just want to find how many species were recorded at each site. There are several ways we could do this:</p>
+<section id="species-richness-the-classic-r-way" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="species-richness-the-classic-r-way"><span class="header-section-number">16.4.1</span> Species richness the classic R way</h3>
+<p>Old-school R is terse and sometimes opaque, but it is also very powerful.</p>
+<p>First we create a table indicating the presence/absence of each of the species at each of the sites.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ps<span class="ot">&lt;-</span><span class="fu">table</span>(plrich<span class="sc">$</span>Species,plrich<span class="sc">$</span>Site)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ps <span class="co"># - uncomment this line if you want to see the table we have just created -it is big!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          
+                           ML1 ML2 MU1 MU2 PL2 PU2 SL1 SL2 SU1 SU2
+  Achillea millefolium       1   1   1   1   0   1   0   0   0   0
+  Aegopodium podagraris      0   0   0   0   0   0   0   1   0   0
+  Agrostis capillaris        0   1   1   1   1   0   1   1   1   0
+  Agrostis stolonifera       0   0   0   0   0   1   0   1   0   0
+  Anthriscus sylvestris      0   0   0   0   0   0   0   0   1   1
+  Arctium minus              0   0   0   0   0   0   0   0   0   1
+  Arrhenatherum elatius      0   0   0   0   1   0   0   1   1   1
+  Bidens cernua              0   0   0   0   1   0   0   0   0   0
+  Brachythecium rutabulum    0   0   0   0   1   0   1   1   1   0
+  Bromus hordeaceus          0   0   0   0   0   0   1   0   1   0
+  Calystegia sepium          0   0   0   0   0   0   0   1   0   0
+  Capsella bursa-pastoris    0   0   0   0   1   1   0   0   0   0
+  Cardamine pratensis        0   0   0   0   1   0   0   0   0   0
+  Centaurea nigra            1   1   1   1   0   0   0   0   0   0
+  Cerastium fontanum         0   0   1   0   0   1   0   0   1   1
+  Chamerion angustifolium    0   0   0   0   0   0   0   0   1   0
+  Chenopodium album          0   0   0   0   0   0   0   0   1   0
+  Cirsium arvense            1   0   1   1   1   1   1   1   1   1
+  Cirsium palustre           0   0   0   0   1   0   0   0   0   0
+  Crataegus monogyna (s)     0   0   0   0   0   0   0   0   1   0
+  Cynosurus cristatus        1   0   0   1   0   0   0   0   0   0
+  Dactylis glomerata         0   0   0   0   0   0   0   1   1   1
+  Deschampsia flexuosa       1   0   1   0   0   0   0   0   0   0
+  Elytrigia repens           0   0   0   0   0   0   0   1   0   0
+  Epilobium hirsutum         0   0   0   0   0   0   0   1   0   1
+  Epilobium montanum         0   0   0   0   1   0   0   0   0   1
+  Fallopia convolvulus       0   0   0   0   0   0   0   0   1   1
+  Festuca rubra              1   0   1   0   0   0   0   0   0   0
+  Filipendula ulmaria        0   0   0   0   0   0   0   1   0   0
+  Fraxinus excelsior (s)     0   0   0   0   0   0   0   0   1   0
+  Galium aparine             0   0   0   0   0   0   1   1   1   1
+  Galium verum               0   1   1   0   0   0   0   0   0   0
+  Geranium columbinum        0   0   0   0   0   0   1   0   0   0
+  Geranium molle             0   0   0   0   0   0   1   0   0   0
+  Glechoma hederacea         0   0   0   0   0   0   0   0   0   1
+  Hedera helix (g)           0   0   0   0   0   0   0   0   0   1
+  Heracleum sphondylium      0   0   0   0   0   0   0   0   1   1
+  Holcus lanatus             1   1   1   0   0   1   1   1   1   1
+  Impatiens glandulifera     0   0   0   0   0   0   0   1   0   0
+  Juncus effusus             0   0   0   0   1   0   0   0   0   0
+  Juncus inflexus            0   0   0   0   0   0   0   0   0   1
+  Lathyrus pratensis         1   0   0   0   0   0   0   1   0   0
+  Leucanthemum vulgare       1   1   1   1   0   0   0   0   0   0
+  Lolium perenne             0   0   0   0   0   1   1   0   0   1
+  Lotus corniculatus         1   1   1   1   0   1   0   0   0   0
+  Phalaris arundinacea       0   0   0   0   0   0   0   1   0   0
+  Plantago lanceolata        1   1   1   1   0   0   0   0   0   0
+  Plantago major             0   1   1   1   0   0   0   0   0   0
+  Poa pratensis              0   0   0   0   0   0   0   0   1   0
+  Poa trivialis              0   0   0   0   0   0   0   1   0   0
+  Prunella vulgaris          1   1   0   1   0   0   0   0   0   0
+  Quercus robur (s)          0   1   0   0   0   0   0   0   1   0
+  Quercus seedling/sp        0   0   1   0   0   0   0   0   0   0
+  Ranunculus acris           1   0   1   0   0   0   0   0   0   0
+  Ranunculus repens          0   1   1   1   1   1   1   1   1   0
+  Rubus fruticosus agg (g)   0   0   0   0   0   0   1   1   1   1
+  Rumex acetosa              0   1   1   1   0   0   0   0   0   0
+  Rumex crispus              0   0   0   0   0   0   1   0   1   0
+  Rumex obtusifolius         0   0   1   0   0   0   0   1   1   1
+  Rumex sanguineus           0   0   0   0   0   0   1   0   0   0
+  Salix caprea (s)           0   0   0   0   0   0   0   0   0   1
+  Salix fragilis (s)         0   0   0   0   0   0   0   1   0   0
+  Silene dioica              0   0   0   0   0   0   0   0   0   1
+  Sonchus arvensis           0   0   0   0   0   0   1   0   1   1
+  Sonchus asper              0   0   0   0   0   0   0   0   0   1
+  Stachys sylvatica          0   0   0   0   0   0   0   1   1   1
+  Symphytum officinale       0   0   0   0   0   0   0   1   0   0
+  Tanacetum vulgare          0   0   0   0   0   0   0   0   0   1
+  Taraxacum seedling/sp      0   0   1   1   0   0   0   0   0   0
+  Thuidium tamariscinum      0   0   0   0   0   0   1   0   0   0
+  Trifolium dubium           0   0   0   0   0   1   0   0   0   0
+  Trifolium pratense         1   1   1   1   0   0   0   0   0   0
+  Trifolium repens           1   1   1   0   1   1   0   0   0   0
+  Urtica dioica              0   1   0   0   1   0   1   1   1   1
+  Veronica arvensis          0   0   0   0   0   0   0   0   1   0
+  Vicia hirsuta              0   0   0   0   0   0   0   0   1   1</code></pre>
+</div>
+</div>
+<p>Note that in this table, most of the entries are zeros. This is common in data recording of this kind. At any one site, most of the species are not found.</p>
+<p>Then we calculate the sum of each column. This will give us the number of species found at each site.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>psr<span class="ot">&lt;-</span><span class="fu">colSums</span>(ps)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>psr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ML1 ML2 MU1 MU2 PL2 PU2 SL1 SL2 SU1 SU2 
+ 15  16  21  14  13  11  16  24  27  26 </code></pre>
+</div>
+</div>
+<p>Note that the actual number of species at each site will be greater than these values. How much greater, do you think, and how could we estimate the true richness from the observed richness?</p>
+</section>
+<section id="species-richness-the-tidyverse-way" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="species-richness-the-tidyverse-way"><span class="header-section-number">16.4.2</span> Species richness the tidyverse way</h3>
+<p>We can use the <code>group_by()</code> and <code>summarise()</code> combo yet again. In this code chunk we finish off with the <code>arrange()</code> function from the <code>dplyr</code> package (the sub-package of <code>tidyverse</code> that is used for data manipulation) to present the sites in descending order of species richness.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plr<span class="ot">&lt;-</span>plrich <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">species.richness=</span><span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Site)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   Site  species.richness
+   &lt;chr&gt;            &lt;int&gt;
+ 1 ML1                 15
+ 2 ML2                 16
+ 3 MU1                 21
+ 4 MU2                 14
+ 5 PL2                 13
+ 6 PU2                 11
+ 7 SL1                 16
+ 8 SL2                 24
+ 9 SU1                 27
+10 SU2                 26</code></pre>
+</div>
+</div>
+<p>Try tweaking the code so that you get this table in ascending order of richness, or in alphabetical order of site. Hint: try adjusting the argument of the <code>arrange()</code> function.</p>
+<p><strong>Plot of species richness</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plrich <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">species.richness=</span><span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#ggplot(aes(x=Site,y=species.richness)) +</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">fct_reorder</span>(Site,species.richness),<span class="at">y=</span>species.richness)) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Site"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Species richness"</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="community_ecology_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="species-richness-the-vegan-way" class="level3" data-number="16.4.3">
+<h3 data-number="16.4.3" class="anchored" data-anchor-id="species-richness-the-vegan-way"><span class="header-section-number">16.4.3</span> Species richness the <code>vegan</code> way</h3>
+<p><code>vegan</code> is a package that brings with it a lot of functions intended for analysis of community ecology data. It’s style is ‘old-school’ R rather than <code>tidyverse</code> R, which is what we have mainly been using.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ps<span class="ot">&lt;-</span><span class="fu">table</span>(plrich<span class="sc">$</span>Species,plrich<span class="sc">$</span>Site)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">specnumber</span>(ps,<span class="at">MARGIN=</span><span class="dv">2</span>) <span class="co">#MARGIN=2 means summing over columns (not the usual vegan way!)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ML1 ML2 MU1 MU2 PL2 PU2 SL1 SL2 SU1 SU2 
+ 15  16  21  14  13  11  16  24  27  26 </code></pre>
+</div>
+</div>
+</section>
+<section id="species-richness-of-the-dune-data-set." class="level3" data-number="16.4.4">
+<h3 data-number="16.4.4" class="anchored" data-anchor-id="species-richness-of-the-dune-data-set."><span class="header-section-number">16.4.4</span> Species richness of the <code>dune</code> data set.</h3>
+<p>This data set is built into the <code>vegan</code> package. It contains cover class values of 30 species at 20 sites, with the sites arranged by row and the species by column. This is the default expectation of functions in <code>vegan</code>. The species names are abbreviated to 4+4 letters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(dune)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> (dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Achimill Agrostol Airaprae Alopgeni Anthodor Bellpere Bromhord Chenalbu
+1        1        0        0        0        0        0        0        0
+2        3        0        0        2        0        3        4        0
+3        0        4        0        7        0        2        0        0
+4        0        8        0        2        0        2        3        0
+5        2        0        0        0        4        2        2        0
+6        2        0        0        0        3        0        0        0
+  Cirsarve Comapalu Eleopalu Elymrepe Empenigr Hyporadi Juncarti Juncbufo
+1        0        0        0        4        0        0        0        0
+2        0        0        0        4        0        0        0        0
+3        0        0        0        4        0        0        0        0
+4        2        0        0        4        0        0        0        0
+5        0        0        0        4        0        0        0        0
+6        0        0        0        0        0        0        0        0
+  Lolipere Planlanc Poaprat Poatriv Ranuflam Rumeacet Sagiproc Salirepe
+1        7        0       4       2        0        0        0        0
+2        5        0       4       7        0        0        0        0
+3        6        0       5       6        0        0        0        0
+4        5        0       4       5        0        0        5        0
+5        2        5       2       6        0        5        0        0
+6        6        5       3       4        0        6        0        0
+  Scorautu Trifprat Trifrepe Vicilath Bracruta Callcusp
+1        0        0        0        0        0        0
+2        5        0        5        0        0        0
+3        2        0        2        0        2        0
+4        2        0        1        0        2        0
+5        3        2        2        0        2        0
+6        3        5        5        0        6        0</code></pre>
+</div>
+</div>
+<p>To find the species richness of the sites we use the <code>specnumber()</code> function to find the number of non-zero values in each row:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specnumber</span>(dune,<span class="at">MARGIN=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
+ 5 10 10 13 14 11 13 12 13 12  9  9 10  7  8  8  7  9  9  8 </code></pre>
+</div>
+</div>
+<p>Note that we use <code>MARGIN=1</code> in this case, which instructs vegan to sum along rows since the sites are arranged by row, rather than by column. In fact, we could have left it out, since as we can see from the help for <code>specnumber</code>, the default value for <code>MARGIN</code> is 1, ie sites in rows, species in columns, which is the default expectation of <code>vegan</code>. If we wanted the opposite, sites in columns and species in rows, then we would have specified <code>MARGIN=2</code>.</p>
+</section>
+<section id="species-richness-of-the-dune-data-set---doing-it-the-tidyverse-way" class="level3" data-number="16.4.5">
+<h3 data-number="16.4.5" class="anchored" data-anchor-id="species-richness-of-the-dune-data-set---doing-it-the-tidyverse-way"><span class="header-section-number">16.4.5</span> Species richness of the <code>dune</code> data set - doing it the tidyverse way</h3>
+<p>You can take this section or leave it - I’ll take it!. If you find the <code>vegan</code> talk of <code>MARGIN</code> confusing, then you might prefer to use the <code>tidyverse</code> style to find the species richness of the sites in the <code>dune</code> data set.</p>
+<p>In the code chunk below we note that the <code>dune</code> data set is not at all tidy. To be so, all 30 columns in the original data set should be collapsed into two, which here we will call “species” and “abundance”. We use the (I find) repeatedly useful function <code>pivot_longer()</code> to do this. Before we do this it will be useful to use the <code>mutate()</code> function to add a column that gives an ID number for each site.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dune <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id=</span><span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())) <span class="sc">|&gt;</span><span class="co"># add in a site ID column</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>,<span class="at">names_to=</span><span class="st">"species"</span>,<span class="at">values_to=</span><span class="st">"abundance"</span>) <span class="sc">|&gt;</span> <span class="co">#tidy the abundance data</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(abundance<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="co"># remove the lines where the the abundance is zero</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span> <span class="co"># group by site</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">species.richness=</span><span class="fu">n</span>()) <span class="co"># count the number of species (rows) left for each site.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 2
+      id species.richness
+   &lt;int&gt;            &lt;int&gt;
+ 1     1                5
+ 2     2               10
+ 3     3               10
+ 4     4               13
+ 5     5               14
+ 6     6               11
+ 7     7               13
+ 8     8               12
+ 9     9               13
+10    10               12
+11    11                9
+12    12                9
+13    13               10
+14    14                7
+15    15                8
+16    16                8
+17    17                7
+18    18                9
+19    19                9
+20    20                8</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="diversity-index" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="diversity-index"><span class="header-section-number">16.5</span> Diversity Index</h2>
+<p>‘<em>Better stories can be told about Simpson’s index than about Shannon’s index, and still grander narratives about rarefaction (Hurlbert 1971). However, these indices are all very closely related (Hill 1973), and there is no reason to despise one more than others (but if you are a graduate student, don’t drag me in, but obey your Professor’s orders).</em>’</p>
+<p>If we have abundance data. or each species at a site, for example percentage cover, we have more information than if had simply had presence-absence data. Hence, not surprisingly, w can Given the proportion <span class="math inline">\(p_i\)</span> of each of several species <span class="math inline">\(i\)</span> within a population, we can estimate the so-called diversity of the population in one of several ways from proportions <span class="math inline">\(\hat p_i\)</span> of each species within a sample. The proportions can be of total counts or of total percentage cover.</p>
+<section id="shannons-diversity-index" class="level3" data-number="16.5.1">
+<h3 data-number="16.5.1" class="anchored" data-anchor-id="shannons-diversity-index"><span class="header-section-number">16.5.1</span> Shannon’s Diversity Index</h3>
+<p>This calculates <span class="math inline">\(H\)</span> where</p>
+<p><span class="math display">\[H=-\sum{p_i\log_b p_i}\]</span></p>
+<p>where <span class="math inline">\(b\)</span> is the base of the log. Most commonly, natural logs to base <span class="math inline">\(e^1\)</span> are used. Those are the ones often denoted <code>ln</code> on calculators and in some books. Or sometimes <code>log_e</code>, or sometimes just <code>log</code>. Confusing, eh? It is usually clear from the context when natural logs are being used.</p>
+</section>
+<section id="simpsons-and-inverse-simpsons-diversity-index" class="level3" data-number="16.5.2">
+<h3 data-number="16.5.2" class="anchored" data-anchor-id="simpsons-and-inverse-simpsons-diversity-index"><span class="header-section-number">16.5.2</span> Simpson’s and Inverse Simpson’s Diversity Index</h3>
+<p>These are based on the quantity</p>
+<p><span class="math display">\[D=\sum_ip_i^2\]</span></p>
+<p>Simpson’s index is <span class="math inline">\(1-D\)</span> and varies from 0 to 1 while the inverse Simpson’s index is <span class="math inline">\(1/D\)</span></p>
+<p>Note how this measure <span class="math inline">\(D\)</span> makes sense as a diversity index. If a site had one species that comprised 100% of the cover of the site, ie <span class="math inline">\(p = 1\)</span> for that species and <span class="math inline">\(p = 0\)</span> for every other species, then the diversity of that site would be low, right? The value of <span class="math inline">\(D\)</span> would be 1 and the Simpson’s index value would thus be zero.</p>
+<p>On the other hand, if we had a more diverse site with each of ten species having a percentage cover of 10%, so that each of the <span class="math inline">\(p_i\)</span> would be 0.1, then the value of <span class="math inline">\(D\)</span> would be <span class="math inline">\(\sum_ip_i^2=10\times 0.1^2=0.1\)</span> This would give a Simpson’s diversity index value of 0.9.</p>
+<p>Try this out for a site with two species, or five, or 100, each with equal cover <span class="math inline">\(p_n\)</span>. What values do you get in these cases for the Simpson’s index?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 7%">
+<col style="width: 44%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(N\)</span> species</th>
+<th><span class="math inline">\(p\)</span></th>
+<th><span class="math inline">\(D\)</span></th>
+<th>Simpson’s Index = <span class="math inline">\(1-D\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>0.5</td>
+<td><span class="math inline">\(p_1^2 + p_2^2 = 0.5\)</span></td>
+<td><span class="math inline">\(1-0.5 = 0.5\)</span></td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0.2</td>
+<td><span class="math inline">\(p_1^2 + \cdots p_5^2 = 0.2\)</span></td>
+<td><span class="math inline">\(1-0.2 = 0.8\)</span>.</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>0.01</td>
+<td><span class="math inline">\(p_1^2 + \cdots p_{100}^2 = 0.01\)</span></td>
+<td><span class="math inline">\(1-0.01 = 0.99\)</span>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="calculation-of-bird-species-diversities-in-a-range-of-habitats" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="calculation-of-bird-species-diversities-in-a-range-of-habitats"><span class="header-section-number">16.6</span> Calculation of bird species diversities in a range of habitats</h2>
+<p>As an example, let us suppose we have gathered count data on the numbers of unique individuals of different species of birds observed in a range of habitats. What are the diversities of bird species in each of the habitats?</p>
+<p>Our data collection sheet might look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bird<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"bird.csv"</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>bird</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Species       Garden Hedgerow Parkland Pasture Woodland
+  &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 Blackbird         47       10       40       2        2
+2 Chaffinch         19        3        5       0        2
+3 Great Tit         50        0       10       7        0
+4 House Sparrow     46       16        8       4        0
+5 Robin              9        3        0       0        2
+6 Song Thrush        4        0        6       0        0</code></pre>
+</div>
+</div>
+<p>This is nice for us to read, but not the best for analysis. It is not ‘tidy’. Each of the habitats surveyed is really a different level of the single variable ‘habitat’. Hence, this variable is appearing across five columns. A tidy data set has any variable appear only once in any one row. When this is the case, analysis becomes much easier. We can tidy this data set using the command <code>pivot_longer()</code>, which we use here to produce a new version of the data set called <code>tidy.bird</code>, in which we have just two columns, <code>habitat</code> and <code>abundance</code>. This data set is tidy.</p>
+<p>Note that tidy data sets tend to be longer and thinner than untidy data sets, with more rows and fewer columns.</p>
+<p>In the chunk below, we start with the data frame <code>bird</code>, tidy it, then write the result into an object called <code>tidy.bird</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tidy.bird<span class="ot">&lt;-</span> bird <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(Garden<span class="sc">:</span>Woodland,<span class="at">names_to=</span><span class="st">"habitat"</span>,<span class="at">values_to=</span><span class="st">"abundance"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(habitat) <span class="co"># sort in order of habitat name</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>tidy.bird <span class="co"># have a look at it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 3
+   Species       habitat  abundance
+   &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;
+ 1 Blackbird     Garden          47
+ 2 Chaffinch     Garden          19
+ 3 Great Tit     Garden          50
+ 4 House Sparrow Garden          46
+ 5 Robin         Garden           9
+ 6 Song Thrush   Garden           4
+ 7 Blackbird     Hedgerow        10
+ 8 Chaffinch     Hedgerow         3
+ 9 Great Tit     Hedgerow         0
+10 House Sparrow Hedgerow        16
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+<p>In this next chunk we use the tidy data set to calculate the three diversity indices - Shannon, Simpson and Inverse Simpson, for each of the habitats. First we do this in a ‘home-made’ way, typing in the formulae for each index ourselves</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tidy.bird <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habitat) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(abundance<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">sum</span>(abundance),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">shannon.di=</span><span class="sc">-</span><span class="fu">sum</span>((abundance<span class="sc">/</span><span class="fu">sum</span>(abundance))<span class="sc">*</span><span class="fu">log</span>(abundance<span class="sc">/</span><span class="fu">sum</span>(abundance))),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">simpson.di=</span><span class="dv">1</span><span class="sc">-</span><span class="fu">sum</span>((abundance<span class="sc">/</span><span class="fu">sum</span>(abundance))<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">inv.simpson.di=</span><span class="dv">1</span><span class="sc">/</span><span class="fu">sum</span>((abundance<span class="sc">/</span><span class="fu">sum</span>(abundance))<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>shannon.di) <span class="sc">|&gt;</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">habitat</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">N</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">shannon.di</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">simpson.di</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">inv.simpson.di</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Garden</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">1.542</td>
+<td style="text-align: right;">0.762</td>
+<td style="text-align: right;">4.205</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Parkland</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1.248</td>
+<td style="text-align: right;">0.617</td>
+<td style="text-align: right;">2.609</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hedgerow</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">1.154</td>
+<td style="text-align: right;">0.635</td>
+<td style="text-align: right;">2.738</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Woodland</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.099</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">3.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pasture</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0.984</td>
+<td style="text-align: right;">0.592</td>
+<td style="text-align: right;">2.449</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Now let’s do that using the <code>diversity()</code> function in <code>vegan</code>. I have left in the MARGIN and base arguments, but we could have left them out since we are happy to use their default values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MARGIN =2 means sum along rows</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tidy.bird <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habitat) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">N=</span><span class="fu">sum</span>(abundance),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">shannon.di=</span><span class="fu">diversity</span>(abundance, <span class="at">index =</span> <span class="st">"shannon"</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>,<span class="at">base=</span><span class="fu">exp</span>(<span class="dv">1</span>)),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">simpson.di=</span><span class="fu">diversity</span>(abundance, <span class="at">index =</span> <span class="st">"simpson"</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">inv.simpson.di=</span><span class="fu">diversity</span>(abundance, <span class="at">index =</span> <span class="st">"invsimpson"</span>, <span class="at">MARGIN =</span> <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>shannon.di) <span class="sc">|&gt;</span> <span class="co"># sort rows in descending order of shannon diversity index</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">habitat</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">N</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">shannon.di</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">simpson.di</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">inv.simpson.di</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Garden</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">1.542</td>
+<td style="text-align: right;">0.762</td>
+<td style="text-align: right;">4.205</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Parkland</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">1.248</td>
+<td style="text-align: right;">0.617</td>
+<td style="text-align: right;">2.609</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hedgerow</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">1.154</td>
+<td style="text-align: right;">0.635</td>
+<td style="text-align: right;">2.738</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Woodland</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.099</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">3.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pasture</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0.984</td>
+<td style="text-align: right;">0.592</td>
+<td style="text-align: right;">2.449</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>In the next chunk we use the <code>diversity()</code> function alone to give us the Shannon diversities for each of the habitats. This line of code uses the original untidy data set <code>bird</code>, and asks that the counts in columns 2 to 6 be used to caclulate the diversities of each of the habitats. <code>MARGIN=2</code> is the instruction to look down the columns (<code>MARGIN=1</code> would mean look along the rows) , while <code>[,2:6]</code> is an example of how data fames can be spliced and diced. <code>bird[2,3]</code> would mean take the element at row 2, column 3, while <code>[,2:6]</code> means take the block of data in <em>all</em> the rows, and columns 2 to 6</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diversity</span>(bird[,<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>],<span class="at">MARGIN=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Garden  Hedgerow  Parkland   Pasture  Woodland 
+1.5422709 1.1538939 1.2483919 0.9839614 1.0986123 </code></pre>
+</div>
+</div>
+<p>In this example we see that the <code>vegan</code> package provides functions that do useful things for us that we sometimes could have done in another way, but where that way might have been more complicated. In this example, use of the <code>diversity()</code> function from <code>vegan</code> means that we don’t have to know or type in the actual formulae for whichever index we are after.</p>
+<p>Now let us find the Shannon diversity index of the 20 sites in the <code>dune</code> dataset. That is, species in columns, sites in rows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(dune)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diversity</span>(dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3        4        5        6        7        8 
+1.440482 2.252516 2.193749 2.426779 2.544421 2.345946 2.471733 2.434898 
+       9       10       11       12       13       14       15       16 
+2.493568 2.398613 2.106065 2.114495 2.099638 1.863680 1.979309 1.959795 
+      17       18       19       20 
+1.876274 2.079387 2.134024 2.048270 </code></pre>
+</div>
+</div>
+<p>See how easy this is to implement when we have arranged our data as in the <code>dune</code> dataset?</p>
+<section id="are-these-diversities-different" class="level3" data-number="16.6.1">
+<h3 data-number="16.6.1" class="anchored" data-anchor-id="are-these-diversities-different"><span class="header-section-number">16.6.1</span> Are these diversities different?</h3>
+<p>If we have a number of habitats, and for each of them we have arrived at one or other of the diversity indices considered above, we might reasonably ask if there is a significant difference between the indices.</p>
+<p>This is difficult. For each habitat we have a single number, so we cannot use a t-test/ANOVA, and the number is not a count, so we cannot use a chi-squared test.</p>
+</section>
+</section>
+<section id="dissimilarity" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="dissimilarity"><span class="header-section-number">16.7</span> (Dis)similarity</h2>
+<p>The last problem, of telling how similar or dissimilar sites are, based on the species assemblages found at them or on a clutch of environmental variables measured at each site, or both, is a common task in ecology.</p>
+<p>In this and the following sections we will explore the concept of ‘dissimilarity’ and the various ways it can be calculated and displayed.</p>
+<p>The <code>vegan</code> package has the function <code>vegdist()</code> which permits dissimilarity indices to be calculated for both presence-absence data and for data where abundances have been recorded in some form (eg count, frequency, percentage cover).</p>
+<p>For more information on <code>vegdist</code>, particularly on the specifics of what the possible indices are that can be calculated, type <code>?vegdist</code> into the console window and look at the Help information that appears in the bottom-right pane of RStudio.</p>
+<p>Let us calculate the <strong>Jaccard</strong> index of dissimilarity between the sites of the <code>dune</code> data set. This data set, remember, gives cover class values of 30 species on 20 sites. Note that there is an accompanying data set <code>dune.env</code> which contains environmental data for each of the sites. This is a common scenario, whereby you gather both species and environmental data for a given site.</p>
+<p>The Jaccard index of dissimilarity between two sites is the ratio of the number of species that they have in common to the total number of species contained in either one or both sites.</p>
+<p>This can be calculated as follows:</p>
+<ul>
+<li>Number of species in site A = A</li>
+<li>Number of species in site B = B</li>
+<li>Number of species common to both sites = C</li>
+<li>Thus, total number of species across both sites = A + B - C</li>
+</ul>
+<p>From which Jaccard Index J = C / (A + B - C)</p>
+<p>If each site has exactly the same species assemblage, so that they are identical in this respect, then this index is 1. If there are no shared species between the sites so that there is no point of similarity, then this index is 0. Hence the Jaccard index <em>J</em> between two sites is always between 0 and 1.</p>
+<p>For example if clifftop site A contains <em>Armeria maritima</em>, <em>Jasione montana</em> and <em>Silene uniflora</em> while clifftop site B contains <em>Armeria maritima</em>, <em>Jasione montana</em> and <em>Anthyllis vulneraria</em>, the number of species they have in common is two, while the total number of species between them is four so that the Jaccard index of dissimilarity between them <span class="math inline">\(J(A,B) = J(B,A) = \frac{2}{4}= 0.5\)</span></p>
+<p>THe Sorensen index is similar</p>
+<p>Since we have 20 sites, so that each site has to be compared with 19 others, and since the dissimilarity of site 1 and site 2 is the same as that of site 2 and site 1 ie J(1,2) = J(2,1), just as the distance from Bristol to Bath is the same as the distance from Bath to Bristol, this gives 190 distinct Jaccard indices for this data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>dune.dist<span class="ot">&lt;-</span><span class="fu">round</span>(<span class="fu">vegdist</span>(dune,<span class="at">method=</span><span class="st">"jaccard"</span>,<span class="at">binary=</span><span class="cn">FALSE</span>),<span class="dv">2</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>dune.dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+2  0.64                                                                      
+3  0.62 0.51                                                                 
+4  0.69 0.53 0.43                                                            
+5  0.78 0.58 0.64 0.67                                                       
+6  0.78 0.68 0.72 0.78 0.46                                                  
+7  0.71 0.61 0.64 0.67 0.37 0.37                                             
+8  0.79 0.70 0.49 0.58 0.78 0.74 0.69                                        
+9  0.75 0.65 0.51 0.55 0.67 0.75 0.66 0.48                                   
+10 0.73 0.45 0.64 0.65 0.52 0.48 0.43 0.70 0.75                              
+11 0.72 0.70 0.71 0.74 0.77 0.62 0.62 0.69 0.75 0.58                         
+12 0.96 0.83 0.61 0.69 0.82 0.78 0.77 0.61 0.52 0.84 0.80                    
+13 0.91 0.75 0.60 0.68 0.81 0.86 0.78 0.54 0.58 0.85 0.86 0.52               
+14 1.00 0.88 0.86 0.89 0.94 0.89 0.93 0.72 0.86 0.86 0.90 0.82 0.79          
+15 1.00 0.95 0.83 0.85 0.92 0.89 0.91 0.60 0.80 0.92 0.85 0.77 0.81 0.53     
+16 0.96 0.94 0.80 0.80 0.94 0.92 0.94 0.60 0.79 0.94 0.93 0.74 0.75 0.70 0.53
+17 0.94 0.90 0.94 0.95 0.77 0.81 0.80 0.94 0.94 0.77 0.82 0.96 0.93 0.95 0.94
+18 0.88 0.75 0.76 0.80 0.70 0.66 0.71 0.78 0.81 0.65 0.49 0.85 0.89 0.91 0.84
+19 1.00 0.89 0.91 0.88 0.83 0.84 0.85 0.85 0.88 0.83 0.71 0.82 0.90 0.92 0.88
+20 1.00 0.97 0.87 0.87 0.94 0.92 0.94 0.66 0.82 0.94 0.89 0.82 0.84 0.62 0.46
+     16   17   18   19
+2                     
+3                     
+4                     
+5                     
+6                     
+7                     
+8                     
+9                     
+10                    
+11                    
+12                    
+13                    
+14                    
+15                    
+16                    
+17 1.00               
+18 0.93 0.86          
+19 0.95 0.72 0.71     
+20 0.51 0.95 0.82 0.85</code></pre>
+</div>
+</div>
+</section>
+<section id="visualising-similarity" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="visualising-similarity"><span class="header-section-number">16.8</span> Visualising similarity</h2>
+<section id="heatmaps" class="level3" data-number="16.8.1">
+<h3 data-number="16.8.1" class="anchored" data-anchor-id="heatmaps"><span class="header-section-number">16.8.1</span> Heatmaps</h3>
+<p>One way to visualise this dissimilarity matric is to use a heat map, in which the darker colours indicate greater ‘dissimilarity’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(<span class="fu">as.matrix</span>(dune.dist))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="community_ecology_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dendrograms" class="level3" data-number="16.8.2">
+<h3 data-number="16.8.2" class="anchored" data-anchor-id="dendrograms"><span class="header-section-number">16.8.2</span> Dendrograms</h3>
+<p>As we have seen, the function <code>vegdist()</code> produces a matrix of distance values between every pair of sites. We used a heat map to give a visual indication of the overall pattern of dissimilarity between the sites. A dendrogram is another useful way to visualize this to help us identify where the greatest similarities and differences lie.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dune.hc1<span class="ot">&lt;-</span><span class="fu">hclust</span>(dune.dist)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dune.hc2<span class="ot">&lt;-</span><span class="fu">hclust</span>(dune.dist,<span class="at">method=</span><span class="st">"ward.D2"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>opar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dune.hc2,<span class="at">hang=</span><span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="community_ecology_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot(dune.hc2, hang=-1)</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The dendrograms are a useful, but for most real data, approximate summary of the distance matrix. The key way to interpret them is that the height at which two sites are joined is an indication of their dis-similarity. The higher that is, the less similar they are. These dendrograms sometimes suggest which clusters may exist in your data, but they can also sometimes be misleading about that. They are most accurate near the bottom, so in this example the suggestion from the dendrogram that sites 6 and 7 are most similar to each other, similarly 3 and 4, is probably correct.</p>
+<p>Note also that dendrograms become very hard to interpret when the number of data points (in this case sites) becomes very large. This is less often an issue in the field of ecology where we are typically dealing within a samll number of sites, as here, but in other settings such as molecular biology of the gene where the data may consist of thousands of DNA sequences, they become impossible to decipher, and also very expensive computationally.</p>
+<p><strong>Exercise</strong></p>
+<p>For the dune data, find the species richness and Simpson diversity index for each site, then create a dendrogram that illustrates which sites are most similar/dissimilar to each other</p>
+<p>We suppose that we have already the data into a data frame called <code>dune</code> from a <code>.csv</code> file, which is arranged the <code>vegan</code> way, with sites as rows, species as columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># species richness</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">specnumber</span>(dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
+ 5 10 10 13 14 11 13 12 13 12  9  9 10  7  8  8  7  9  9  8 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simpson's diversity index</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diversity</span>(dune, <span class="at">index =</span> <span class="st">"simpson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2         3         4         5         6         7         8 
+0.7345679 0.8900227 0.8787500 0.9007407 0.9140076 0.9001736 0.9075000 0.9087500 
+        9        10        11        12        13        14        15        16 
+0.9115646 0.9031909 0.8671875 0.8685714 0.8521579 0.8333333 0.8506616 0.8429752 
+       17        18        19        20 
+0.8355556 0.8614540 0.8740895 0.8678460 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dissimilarity dendrogram</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>dune.dist<span class="ot">&lt;-</span><span class="fu">vegdist</span>(dune)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>dune.hc<span class="ot">&lt;-</span><span class="fu">hclust</span>(dune.dist)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dune.hc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="community_ecology_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./glm_with_count_data_ancova.html" class="pagination-link" aria-label="GLM with count data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ordination.html" class="pagination-link" aria-label="Ordination">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/community_ecology.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -48,13 +48,15 @@ book:
       - simple-linear-regression.qmd
     - part: "Generalised Linear Models (GLM)"
       chapters: 
-        - GLM.qmd
-        - glm_poisson_with_count_data.qmd
-        - glm_with_count_data_ancova.qmd
-    - part: "Ordination"
+      - GLM.qmd
+      - glm_poisson_with_count_data.qmd
+      - glm_with_count_data_ancova.qmd
+    - part: "Multivariate Analysis"
       chapters:
+      - community_ecology.qmd
       - ordination.qmd
       - PCA.qmd
+      - NMDS.qmd
     - part: "Additional help"
       chapters:
       - qq_plots.qmd

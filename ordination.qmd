@@ -5,7 +5,19 @@ For this chapter you will find it useful to have [this RStudio project folder](h
 
 In ecology, genetics and other fields data is often gathered across a great many variables - many sites and species, many environmental variables. To see patterns and relationships in this multidimensional data can be tricky. Which sites are most similar or dissimilar, which environmental variables are most important in driving these differences? It can be hard to tell.
 
-Ordination is the general term for several techniques that try to find order in this chaos. A main task they tackle is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved, yet can be depicted in a two-dimensional plot and made sense of.
+Ordination is the general term for several techniques that try to find order in this chaos. A main task they tackle in order to do this is to reduce the dimensionality of a problem down to two or three such that the patterns that exist in the full data set are at least approximately preserved in this reduced number of dimensions, yet can be depicted in a two-dimensional plot and made sense of. It is a bit like shining a bright light at an elephant and looking at the shadow cast onto a screen behind the elephant. The shadow is a depiction of the elephant in which the full three-dimensional object is viewed in only two dimensions. Some details of the real object are lost, but enough remains in the two dimensions for real insights to be possible. You would still recognise the shadow as being that of an elephant, no?
+
+In one of our examples in this chapter we have a data set where many geological samples were taken and in each one measurements were made of eight different variables - the concentrations of two radioisotopes and of six different elements. We can think of each of these variables as representing an axis in eight dimensional space (don't think too long over this or your head might pop!). If we could draw this space (we can't!) then each sample would be at a point specified by its values of these eight variables, just as a point on a 2 dimensional graph might be specified by its coordinates, say (3,2), meaning the point where the variable x had the value 3 and the variable y had the value 2. The whole data set would be a cloud of points in this space.
+
+In this space, samples that were similar to each other would lie close to each other and samples that were very different would be far apart. Samples that had high concentrations of aluminium would be far along the aluminium concentration axis, and also far along the calcium axis if in addition they had high concentrations of calcium, and so on. These are the patterns and environmental drivers of those patterns that we would see in the raw data if we could plot it in full, but we cannot because we cannot visualize, let alone draw in eight dimensions. 
+
+Ordination techniques try to solve this problem, in one way or another, by reducing the dimensionality of the data set in such a way that the patterns of similarity / dissimilarity present in the full set of dimensions are still there, at least approximately in two, sometimes three, dimensions where we can see them and make sense of them.
+
+To determine these patterns an ordination technique has to find some way of 
+
+
+
+
 
 ## Reading List
 
