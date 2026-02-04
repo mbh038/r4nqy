@@ -29,6 +29,7 @@ book:
     - part: "Working with R"
       chapters:
       - install_packages.qmd
+      - set_up_a_project.qmd
       - workflow.qmd
       - ggplot_examples.qmd
       - titles_labels_and_annotations.qmd

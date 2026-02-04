@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>14&nbsp; GLM poisson with count data – From questions to data to answers using R</title>
+<title>15&nbsp; GLM poisson with count data – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./glm_poisson_with_count_data.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./glm_poisson_with_count_data.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,20 +208,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./set_up_a_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set up a basic Project folder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot_examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./titles_labels_and_annotations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,25 +244,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tests_for_difference_two_levels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,13 +279,13 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fishers-exact-test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></span></a>
   </div>
 </li>
       </ul>
@@ -296,13 +302,13 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-linear-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -319,19 +325,19 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GLM.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./glm_poisson_with_count_data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./glm_with_count_data_ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
   </div>
 </li>
       </ul>
@@ -348,25 +354,25 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./community_ecology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Community Ecology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordination.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./PCA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NMDS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
   </div>
 </li>
       </ul>
@@ -383,13 +389,13 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -419,22 +425,22 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="header-section-number">14.1</span> Preliminaries</a></li>
+<li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="header-section-number">15.1</span> Preliminaries</a></li>
   <li>
-<a href="#the-wrong-way-to-analyse-the-data---do-a-linear-model" id="toc-the-wrong-way-to-analyse-the-data---do-a-linear-model" class="nav-link" data-scroll-target="#the-wrong-way-to-analyse-the-data---do-a-linear-model"><span class="header-section-number">14.2</span> The wrong way to analyse the data - do a linear model</a>
+<a href="#the-wrong-way-to-analyse-the-data---do-a-linear-model" id="toc-the-wrong-way-to-analyse-the-data---do-a-linear-model" class="nav-link" data-scroll-target="#the-wrong-way-to-analyse-the-data---do-a-linear-model"><span class="header-section-number">15.2</span> The wrong way to analyse the data - do a linear model</a>
   <ul class="collapse">
-<li><a href="#diagnostic-plots-of-linear-model" id="toc-diagnostic-plots-of-linear-model" class="nav-link" data-scroll-target="#diagnostic-plots-of-linear-model"><span class="header-section-number">14.2.1</span> Diagnostic plots of linear model</a></li>
+<li><a href="#diagnostic-plots-of-linear-model" id="toc-diagnostic-plots-of-linear-model" class="nav-link" data-scroll-target="#diagnostic-plots-of-linear-model"><span class="header-section-number">15.2.1</span> Diagnostic plots of linear model</a></li>
   </ul>
 </li>
-  <li><a href="#the-right-way---using-a-glm" id="toc-the-right-way---using-a-glm" class="nav-link" data-scroll-target="#the-right-way---using-a-glm"><span class="header-section-number">14.3</span> The right way - using a GLM</a></li>
-  <li><a href="#interpret-the-glm" id="toc-interpret-the-glm" class="nav-link" data-scroll-target="#interpret-the-glm"><span class="header-section-number">14.4</span> Interpret the GLM</a></li>
-  <li><a href="#remake-the-figure-and-add-fitted-line" id="toc-remake-the-figure-and-add-fitted-line" class="nav-link" data-scroll-target="#remake-the-figure-and-add-fitted-line"><span class="header-section-number">14.5</span> Remake the figure and add fitted line</a></li>
+  <li><a href="#the-right-way---using-a-glm" id="toc-the-right-way---using-a-glm" class="nav-link" data-scroll-target="#the-right-way---using-a-glm"><span class="header-section-number">15.3</span> The right way - using a GLM</a></li>
+  <li><a href="#interpret-the-glm" id="toc-interpret-the-glm" class="nav-link" data-scroll-target="#interpret-the-glm"><span class="header-section-number">15.4</span> Interpret the GLM</a></li>
+  <li><a href="#remake-the-figure-and-add-fitted-line" id="toc-remake-the-figure-and-add-fitted-line" class="nav-link" data-scroll-target="#remake-the-figure-and-add-fitted-line"><span class="header-section-number">15.5</span> Remake the figure and add fitted line</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/glm_poisson_with_count_data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./glm_poisson_with_count_data.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GLM.html">Generalised Linear Models (GLM)</a></li><li class="breadcrumb-item"><a href="./glm_poisson_with_count_data.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span>
+<span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span>
 </h1>
 </div>
 
@@ -451,8 +457,8 @@ window.Quarto = {
 
 </header><p>This exercise is taken from Chapter 7 of Beckerman, Childs and Petchey: Getting Started with R</p>
 <p>We study variation of number of offspring of Soay sheep with mother’s body weight. These are count data. They are not normally distributed since they are discrete and bounded by zero - a ewe cannot have a negative number of births. Moreover, the variance of the data set is not constant - the spread of values tends to increase the more offspring a ewe has. This is common (but not universal) with count data.</p>
-<section id="preliminaries" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="preliminaries">
-<span class="header-section-number">14.1</span> Preliminaries</h2>
+<section id="preliminaries" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="preliminaries">
+<span class="header-section-number">15.1</span> Preliminaries</h2>
 <p><strong>Load packages</strong></p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -496,15 +502,15 @@ $ body.size &lt;dbl&gt; 6.373546, 7.183643, 6.164371, 8.595281, 7.329508, 6.1795
 <li>The trend is <em>not</em> linear. There is a clear upwards curve.</li>
 <li>The spread of values increases as the mother’s body mass increases. This is common with count data.</li>
 <li>There are no negative response values - while a ewe could have no lambs, it definitely cannot have a negative number of lambs.</li>
-</ul></section><section id="the-wrong-way-to-analyse-the-data---do-a-linear-model" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="the-wrong-way-to-analyse-the-data---do-a-linear-model">
-<span class="header-section-number">14.2</span> The wrong way to analyse the data - do a linear model</h2>
+</ul></section><section id="the-wrong-way-to-analyse-the-data---do-a-linear-model" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="the-wrong-way-to-analyse-the-data---do-a-linear-model">
+<span class="header-section-number">15.2</span> The wrong way to analyse the data - do a linear model</h2>
 <p>We should have an inkling that this is the wrong way since the variation of offspring with body weight is clearly not linear!</p>
 <p>For insight, let’s do it anyway using <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, and look at the diagnostic plots we get when we give the resulting model <code>soay.linear</code> to <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code></p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">soay.linear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fitness</span> <span class="op">~</span> <span class="va">body.size</span>, data <span class="op">=</span> <span class="va">soay</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="diagnostic-plots-of-linear-model" class="level3" data-number="14.2.1"><h3 data-number="14.2.1" class="anchored" data-anchor-id="diagnostic-plots-of-linear-model">
-<span class="header-section-number">14.2.1</span> Diagnostic plots of linear model</h3>
+<section id="diagnostic-plots-of-linear-model" class="level3" data-number="15.2.1"><h3 data-number="15.2.1" class="anchored" data-anchor-id="diagnostic-plots-of-linear-model">
+<span class="header-section-number">15.2.1</span> Diagnostic plots of linear model</h3>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">soay.linear</span>, smooth.colour <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://wilkelab.org/cowplot/reference/theme_cowplot.html">theme_cowplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -515,21 +521,21 @@ $ body.size &lt;dbl&gt; 6.373546, 7.183643, 6.164371, 8.595281, 7.329508, 6.1795
 </div>
 </div>
 <p>These plots show us that these data violate all the properties required of data before they can be sensibly analysed using a linear model.</p>
-<section id="top-left-residuals-vs-fitted-values" class="level4" data-number="14.2.1.1"><h4 data-number="14.2.1.1" class="anchored" data-anchor-id="top-left-residuals-vs-fitted-values">
-<span class="header-section-number">14.2.1.1</span> Top-left: residuals vs fitted values</h4>
+<section id="top-left-residuals-vs-fitted-values" class="level4" data-number="15.2.1.1"><h4 data-number="15.2.1.1" class="anchored" data-anchor-id="top-left-residuals-vs-fitted-values">
+<span class="header-section-number">15.2.1.1</span> Top-left: residuals vs fitted values</h4>
 <p>This has a clear U-shape, when, for a linear model to be appropriate, there should be no systematic pattern. This is a consequence of trying to fit a straight lines through a data cloud that has a clear non-linear trend. We underestimate fitness at small body sizes, then over-estimate at middling body sizes and finally underestimate it again at the largest body sizes</p>
-</section><section id="top-right-the-normal-q-q-plot" class="level4" data-number="14.2.1.2"><h4 data-number="14.2.1.2" class="anchored" data-anchor-id="top-right-the-normal-q-q-plot">
-<span class="header-section-number">14.2.1.2</span> Top-right: the normal Q-Q plot</h4>
+</section><section id="top-right-the-normal-q-q-plot" class="level4" data-number="15.2.1.2"><h4 data-number="15.2.1.2" class="anchored" data-anchor-id="top-right-the-normal-q-q-plot">
+<span class="header-section-number">15.2.1.2</span> Top-right: the normal Q-Q plot</h4>
 <p>This is not right: for a linear model to be valid the points should be scattered around a straight line. Here, there is systematic deviation from that at both ends, in a way that indicates over-dispersion of the residuals compared to what they would be if they were normally distributed <a href="https://rpubs.com/mbh038/725314">see this for an explanation of Q-Qplots</a>. Over dispersion means bring more spread out, in particular with thicker tails, than would be the case with normally distributed data.</p>
-</section><section id="bottom-left-scale-location-plot" class="level4" data-number="14.2.1.3"><h4 data-number="14.2.1.3" class="anchored" data-anchor-id="bottom-left-scale-location-plot">
-<span class="header-section-number">14.2.1.3</span> Bottom left: Scale location plot</h4>
+</section><section id="bottom-left-scale-location-plot" class="level4" data-number="15.2.1.3"><h4 data-number="15.2.1.3" class="anchored" data-anchor-id="bottom-left-scale-location-plot">
+<span class="header-section-number">15.2.1.3</span> Bottom left: Scale location plot</h4>
 <p>This plot shows us that there is a positive relationship between the absolute size of the residuals and the fitted values. This reflects the increasing vertical spread of the data. For a linear model to be appropriate, the spread of residuals values should be approximately constant across the whole range of fitted values.</p>
-</section><section id="bottom-right-residuals-leverage-plot" class="level4" data-number="14.2.1.4"><h4 data-number="14.2.1.4" class="anchored" data-anchor-id="bottom-right-residuals-leverage-plot">
-<span class="header-section-number">14.2.1.4</span> Bottom-right: residuals leverage plot</h4>
+</section><section id="bottom-right-residuals-leverage-plot" class="level4" data-number="15.2.1.4"><h4 data-number="15.2.1.4" class="anchored" data-anchor-id="bottom-right-residuals-leverage-plot">
+<span class="header-section-number">15.2.1.4</span> Bottom-right: residuals leverage plot</h4>
 <p>This is actually not too bad. There are no obvious outliers, so no single poiunt will have an undue influence on the analysis.</p>
 <p>However, one out four is not good enough, as Meatloaf didn’t quite say. The linear model clearly does not do a very good job of describing the data, so we need a different approach.</p>
-</section></section></section><section id="the-right-way---using-a-glm" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="the-right-way---using-a-glm">
-<span class="header-section-number">14.3</span> The right way - using a GLM</h2>
+</section></section></section><section id="the-right-way---using-a-glm" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="the-right-way---using-a-glm">
+<span class="header-section-number">15.3</span> The right way - using a GLM</h2>
 <p>The linear model is based on the errors of the data being normally distributed, but this is very often not the case for count data, for at least these obvious reasons:</p>
 <ul>
 <li>The normal; distribution concerns continuous variables that may be fractional, whereas count data are discrete 0, 1, 2… Ewes cannot give birth to 2.5 offspring.</li>
@@ -579,8 +585,8 @@ P(x) = \frac{e^{-\lambda}\lambda^x}{x!}
 </div>
 </div>
 <p>These are much better than they were with the linear model. The <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot()</a></code> function ensures that these will look right if the error distribution of the model does indeed follow a Poisson distribution.</p>
-</section><section id="interpret-the-glm" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="interpret-the-glm">
-<span class="header-section-number">14.4</span> Interpret the GLM</h2>
+</section><section id="interpret-the-glm" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="interpret-the-glm">
+<span class="header-section-number">15.4</span> Interpret the GLM</h2>
 <p>To do this we use the same <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> functions that we are used to suing with <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>. For something produced by <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code> produces an ANOVA table, but for someting produced by <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> it produces an Analysis of Deviance table.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># use anova() and summary() to interpret the model</span></span>
@@ -626,8 +632,8 @@ AIC: 210.85
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 </div>
-</section><section id="remake-the-figure-and-add-fitted-line" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="remake-the-figure-and-add-fitted-line">
-<span class="header-section-number">14.5</span> Remake the figure and add fitted line</h2>
+</section><section id="remake-the-figure-and-add-fitted-line" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="remake-the-figure-and-add-fitted-line">
+<span class="header-section-number">15.5</span> Remake the figure and add fitted line</h2>
 <p><strong>Find min and max of the x data</strong></p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">min.size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">soay</span><span class="op">$</span><span class="va">body.size</span><span class="op">)</span></span>
@@ -1146,12 +1152,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./GLM.html" class="pagination-link" aria-label="GLM introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./glm_with_count_data_ancova.html" class="pagination-link" aria-label="GLM with count data">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">GLM with count data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

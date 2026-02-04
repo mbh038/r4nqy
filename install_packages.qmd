@@ -6,7 +6,7 @@ editor: visual
 
 When you first download and install it, R is an already very powerful and versatile programming language aimed mainly at those who want to do statistical analysis of data. However a major strength of it and other open source software is that anyone can contribute to their development. In the case of R this has led to it being augmented by the creation of so-called packages, of which there are now thousands, from which you can pick and choose and add to your instance of R whenever you want. Each packag comprises additional functions and/or data sets Often these are aimed at particular specialisms that not everyone wants
 
-This code chunk will install on your machine a list of packages, unless you already have them installed.
+This code chunk will install on your machine the list of packages that you see, unless you already have them installed. To run it you can either include the chunk in a notebook an then run that, or, most easily, you can copy the whole chunk, paste it into the console pane (the one at the bottom left of the screen, where the command proment `>` is, and press Enter. That'll do it.)
 
 As time goes on this list may be updated (or you may update it!), so it will be worth coming back to this script and running it again, from time to time.
 

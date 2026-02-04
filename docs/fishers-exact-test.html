@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Fisher’s Exact Test – From questions to data to answers using R</title>
+<title>11&nbsp; Fisher’s Exact Test – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chi-square.html">Count data</a></li><li class="breadcrumb-item"><a href="./fishers-exact-test.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chi-square.html">Count data</a></li><li class="breadcrumb-item"><a href="./fishers-exact-test.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -213,20 +213,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./set_up_a_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set up a basic Project folder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A recommended analysis workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot_examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Building plots using the package <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./titles_labels_and_annotations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Titles, labels and annotations</span></span></a>
   </div>
 </li>
       </ul>
@@ -243,25 +249,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tests_for_difference_two_levels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Tests for difference: one factor, two levels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_how_it_works_penguins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ANOVA explained</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_one_way.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">One-way ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ANOVA_two_way_with_model_simplification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Two-way ANOVA with model simplification</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,13 +284,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chi-square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fishers-exact-test.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></span></a>
   </div>
 </li>
       </ul>
@@ -301,13 +307,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./simple-linear-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,19 +330,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GLM.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">GLM introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./glm_poisson_with_count_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM poisson with count data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./glm_with_count_data_ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">GLM with count data</span></span></a>
   </div>
 </li>
       </ul>
@@ -353,25 +359,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./community_ecology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Community Ecology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Community Ecology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ordination.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Ordination</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./PCA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./NMDS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
   </div>
 </li>
       </ul>
@@ -388,13 +394,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -426,25 +432,25 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-hypergeometric-function" id="toc-the-hypergeometric-function" class="nav-link active" data-scroll-target="#the-hypergeometric-function"><span class="header-section-number">10.1</span> The Hypergeometric Function</a></li>
-  <li><a href="#hypergeometric-distribution-in-r" id="toc-hypergeometric-distribution-in-r" class="nav-link" data-scroll-target="#hypergeometric-distribution-in-r"><span class="header-section-number">10.2</span> Hypergeometric Distribution in R</a></li>
-  <li><a href="#back-to-fishers-exact-test" id="toc-back-to-fishers-exact-test" class="nav-link" data-scroll-target="#back-to-fishers-exact-test"><span class="header-section-number">10.3</span> Back to Fisher’s Exact Test</a>
+  <li><a href="#the-hypergeometric-function" id="toc-the-hypergeometric-function" class="nav-link active" data-scroll-target="#the-hypergeometric-function"><span class="header-section-number">11.1</span> The Hypergeometric Function</a></li>
+  <li><a href="#hypergeometric-distribution-in-r" id="toc-hypergeometric-distribution-in-r" class="nav-link" data-scroll-target="#hypergeometric-distribution-in-r"><span class="header-section-number">11.2</span> Hypergeometric Distribution in R</a></li>
+  <li><a href="#back-to-fishers-exact-test" id="toc-back-to-fishers-exact-test" class="nav-link" data-scroll-target="#back-to-fishers-exact-test"><span class="header-section-number">11.3</span> Back to Fisher’s Exact Test</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">10.3.1</span> Example</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">11.3.1</span> Example</a></li>
   </ul></li>
-  <li><a href="#fishers-exact-test-in-r" id="toc-fishers-exact-test-in-r" class="nav-link" data-scroll-target="#fishers-exact-test-in-r"><span class="header-section-number">10.4</span> Fisher’s Exact Test in R</a></li>
-  <li><a href="#what-if-we-just-use-a-chi-square-test" id="toc-what-if-we-just-use-a-chi-square-test" class="nav-link" data-scroll-target="#what-if-we-just-use-a-chi-square-test"><span class="header-section-number">10.5</span> What if we just use a chi-square test?</a></li>
-  <li><a href="#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" id="toc-why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" class="nav-link" data-scroll-target="#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><span class="header-section-number">10.6</span> Why not always use Fisher’s Exact Test instead of a chi-square test?</a></li>
-  <li><a href="#another-cautionary-note" id="toc-another-cautionary-note" class="nav-link" data-scroll-target="#another-cautionary-note"><span class="header-section-number">10.7</span> Another Cautionary Note</a></li>
+  <li><a href="#fishers-exact-test-in-r" id="toc-fishers-exact-test-in-r" class="nav-link" data-scroll-target="#fishers-exact-test-in-r"><span class="header-section-number">11.4</span> Fisher’s Exact Test in R</a></li>
+  <li><a href="#what-if-we-just-use-a-chi-square-test" id="toc-what-if-we-just-use-a-chi-square-test" class="nav-link" data-scroll-target="#what-if-we-just-use-a-chi-square-test"><span class="header-section-number">11.5</span> What if we just use a chi-square test?</a></li>
+  <li><a href="#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" id="toc-why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" class="nav-link" data-scroll-target="#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><span class="header-section-number">11.6</span> Why not always use Fisher’s Exact Test instead of a chi-square test?</a></li>
+  <li><a href="#another-cautionary-note" id="toc-another-cautionary-note" class="nav-link" data-scroll-target="#another-cautionary-note"><span class="header-section-number">11.7</span> Another Cautionary Note</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/fishers-exact-test.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chi-square.html">Count data</a></li><li class="breadcrumb-item"><a href="./fishers-exact-test.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chi-square.html">Count data</a></li><li class="breadcrumb-item"><a href="./fishers-exact-test.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Fisher’s Exact Test</span></h1>
 </div>
 
 
@@ -487,8 +493,8 @@ window.Quarto = {
 <p>In the Fisher’s Exact Test, we accept that the marginal totals are as observed. With this constraint we then determine the probability of getting every possible table of cells, under the null hypothesis that the two factors are independent of each other. The <em>p</em>-value for (lack of) independence of the two variables is then the cumulative sum of the probabilities of getting the table we actually got, plus those of tables that are even less likely. That is just what <em>p</em>-values are - the probabiliy of gettting the data you got, or more extreme data, <em>if</em> the null hypothesis is true.</p>
 <p>To do this, we notice that if the column and row totals have been fixed in advance, then only one of the cell values of the table is independent. We can choose any cell. Once this is known, all the others can be determined, using this first value and the marginal totals. It turns that we can treat this number as a random variable that varies with probabilities governed by the <strong>hypergeometric</strong> distribution. We can thus use this distribution to calculate the probability of getting any possible table, given the row and column totals.</p>
 <p>Let’s see how this works.</p>
-<section id="the-hypergeometric-function" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="the-hypergeometric-function"><span class="header-section-number">10.1</span> The Hypergeometric Function</h2>
+<section id="the-hypergeometric-function" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-hypergeometric-function"><span class="header-section-number">11.1</span> The Hypergeometric Function</h2>
 <p>Imagine an urn with <em>N</em> balls, <em>K</em> of them white, the rest, <em>N</em>-<em>K</em> of them, black.</p>
 <p>Draw a sample of <em>n</em> balls <em>without</em> replacement - that is, don’t put a ball back in the urn once it has been taken out.</p>
 <p>Let <em>x</em> be the number of white balls in the sample.</p>
@@ -524,8 +530,8 @@ N=20, K&amp;=11, n=10, x=7\\
 <p>And finally, and more precisely, if we want to calculate the probability of our app getting this table of results <em>given</em> that its decision for any seedling is independenty of the truth for that seedling, then we have exactly the same set-up asfor the urn, and we can use the hypergeometric function to calculate the probability of getting any particular table of results.</p>
 <p>In case you are worried, <em>we</em> will not normally use the hypergeometric function directly, nor de we even need to know it is being used. We can use the R runction <code>fisher.test()</code>: see below.</p>
 </section>
-<section id="hypergeometric-distribution-in-r" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="hypergeometric-distribution-in-r"><span class="header-section-number">10.2</span> Hypergeometric Distribution in R</h2>
+<section id="hypergeometric-distribution-in-r" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="hypergeometric-distribution-in-r"><span class="header-section-number">11.2</span> Hypergeometric Distribution in R</h2>
 <p>However if you are interested in the hypergeometric function, it is catered for in R like many other distributions by a family of four functions:</p>
 <ul>
 <li><code>dhyper(x, m, n, k)</code>.</li>
@@ -546,8 +552,8 @@ N=20, K&amp;=11, n=10, x=7\\
 <p>In our example, to calculate the probability of a given table of results,</p>
 <p>dhyper(r1c1, col1, nn-col1, row1)</p>
 </section>
-<section id="back-to-fishers-exact-test" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="back-to-fishers-exact-test"><span class="header-section-number">10.3</span> Back to Fisher’s Exact Test</h2>
+<section id="back-to-fishers-exact-test" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="back-to-fishers-exact-test"><span class="header-section-number">11.3</span> Back to Fisher’s Exact Test</h2>
 <p>First we will go through all the steps manually just so you can see what is going on under the hood of a Fisher’s Exact Test, then we will do the test in R.</p>
 <p>In this test we</p>
 <ul>
@@ -568,8 +574,8 @@ X ∼ \text{Hypergeometric} (N=20, K=11, n=10)
 </li>
 <li>If this <em>p</em>-value is less than a predetermined threshold value (the value chosen is usually 0.05) then we reject the null hypothesis and regard the data as providing evidence for an association between the factors. That is we reject the idea that they are independent of each other. In the case presented above, that means we reject the idea</li>
 </ul>
-<section id="example" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">10.3.1</span> Example</h3>
+<section id="example" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">11.3.1</span> Example</h3>
 <p>In the figure below we show all possible tables, along with their respective <em>p</em>-values, calculate using the hypergeometric function. The table of the actual results obtained is picked out in colour. We see that tables</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -584,8 +590,8 @@ X ∼ \text{Hypergeometric} (N=20, K=11, n=10)
 <p>This <em>p</em>-value is bigger than 0.05 so we would normally fail to reject the null hypothesis that there is no association between the two factors. There is no evidence from these data that the app does any better than guessing whether a plant is species A or species B!</p>
 </section>
 </section>
-<section id="fishers-exact-test-in-r" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="fishers-exact-test-in-r"><span class="header-section-number">10.4</span> Fisher’s Exact Test in R</h2>
+<section id="fishers-exact-test-in-r" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="fishers-exact-test-in-r"><span class="header-section-number">11.4</span> Fisher’s Exact Test in R</h2>
 <p>If we already know the four counts for our <span class="math inline">\(2 \times 2\)</span> table we can create a <span class="math inline">\(2 \times 2\)</span> matrix of them like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>app.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
@@ -616,8 +622,8 @@ odds ratio
 </div>
 <p>That’s it! It’s a one liner, just like many statistical tests in R. You will see that this gives the same <em>p</em>-value that we have calculated manually.</p>
 </section>
-<section id="what-if-we-just-use-a-chi-square-test" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="what-if-we-just-use-a-chi-square-test"><span class="header-section-number">10.5</span> What if we just use a chi-square test?</h2>
+<section id="what-if-we-just-use-a-chi-square-test" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="what-if-we-just-use-a-chi-square-test"><span class="header-section-number">11.5</span> What if we just use a chi-square test?</h2>
 <p>If we use a chi-square test on this same data, R gives us a warning, because of the low values in the table:</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
@@ -634,12 +640,12 @@ X-squared = 3.2323, df = 1, p-value = 0.0722</code></pre>
 </div>
 <p>This is a cautionary tale: you can use R to run this or that test on data even when the data are unsuitable for the test, and you will get an output, but the output may not be reliable. Here, at least, we are given a warning that alerts us to this possibility, and in fact our conclusion would be the same as it was when using the Fisher’s Exact Test, but that is not always the case. You need to think carefully as to whether a given test is the right one <em>before</em> you use it.</p>
 </section>
-<section id="why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><span class="header-section-number">10.6</span> Why not always use Fisher’s Exact Test instead of a chi-square test?</h2>
+<section id="why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><span class="header-section-number">11.6</span> Why not always use Fisher’s Exact Test instead of a chi-square test?</h2>
 <p>Fisher’s Exact Test becomes computationally expensive when the number of tables for which a <em>p</em>-value has to be calculated becomes very large. This happens very quickly when each of the two factors has more than two levels, so that the contingency table is no longer <span class="math inline">\(2 \times 2\)</span> but <span class="math inline">\(3 \times 4\)</span> or <span class="math inline">\(4\times 6\)</span> and so on. However for <span class="math inline">\(2 \times 2\)</span> tables it works well and quickly for table cell values into the 1000s and is a perfectly valid alternative to the chi-squared test. But then, in that case, why not just use a chi-squared test? For large cell values this works well and anyone reading your work is more likely to be familiar with it than with the Fisher’s Exact Test.</p>
 </section>
-<section id="another-cautionary-note" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="another-cautionary-note"><span class="header-section-number">10.7</span> Another Cautionary Note</h2>
+<section id="another-cautionary-note" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="another-cautionary-note"><span class="header-section-number">11.7</span> Another Cautionary Note</h2>
 <p>This leads us to think that the Fisher’s Exact Test is only really a better alternative to the chi-squared test when sample sizes are very small and the chi-squared approximation becomes invalid. However, think about it. If you have a small sample then it is likely that it is not very representative of the population from which it has been drawn, and that you will fail to detect any association that there may be between the two factors. The solution therefore, when you have a small sample, is likely not to say Hallelujah! and grasp the Fisher’s Test with glee, but, if you can, to get a bigger sample. However, if that is not possible and you are stuck with a small sample size, then a Fisher’s Exact Test of independence is more reliable than a chi-squared test.</p>
 
 
@@ -1066,12 +1072,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./chi-square.html" class="pagination-link" aria-label="Chi-squared analysis of count data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./correlation.html" class="pagination-link" aria-label="Correlation">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Correlation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

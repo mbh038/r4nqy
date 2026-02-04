@@ -1,9 +1,6 @@
 # Principal Components Analysis (PCA)
 
-
-In studies of the natural world it is common to make observations at several sites or of individual samples,  animals or plants. At each site or for each individual sample, plant or animal it is also common to make measurements of several different variables. Where these are environmental variables that are measured using a numerical scale the principal component analysis is a useful ordination teachnique.
-
-
+PCA is useful where it makes sense to determine dissimilarity between observations using Euclidean distance. That is the case where the variables (eg concentrations, temperatures, pH, masses, weights, heights etc) are measured using a continuous numerical scale. Thus, PCA is often useful for multivariate analysis of environmental data. In the geological example we shall explore below those variables are the concentrations of various elements and radioisotopes. In the penguins example after that, they are the lengths and thicknesses of bills and flippers, and the body weight of the penguins.
 
 ## Example One: Geological samples
 
@@ -21,7 +18,7 @@ library(cowplot)
 theme_set(theme_minimal())
 ```
 
-This data set has geochemical analyses of 200 limestone samples, including the major elements Al, Ca, Fe, K, Mg, Mn, and Si, stable isotope ratios of carbon and oxygen (d13C and d18O). It also records the stratigraphic position of the samples (ie, the depth beneath the surface).
+This data set has geochemical analyses of 200 limestone samples, including the major elements Al, Ca, Fe, K, Mg, Mn, and Si, aswell as stable isotope ratios of carbon and oxygen (d13C and d18O). It also records the stratigraphic position of the samples (ie, the depth beneath the surface).
 
 This data set is in the file `purdin_pca.csv`:
 

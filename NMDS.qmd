@@ -2,19 +2,19 @@
 
 ## Ordination plot of disimilarites using NMDS
 
-Another commonly used technique for spotting patterns of (dis)similarity between sites based on their flora or on environmental variables is to use some form of 'ordination'. Roughly speaking, these are plots that attempt to show in two dimensions patterns that exist among multidimensional data. In the dune case, the multiple dimensions are the many species. What patterns exist among them? Which seem to like similar conditions and tend to appear at the same sites, and vice versa. Also, which sites are similar to each other, in respect of what grows there, and which are different? These are the questions that ordination plots are intended to shed light on. For data based on the presence/absence/abundance of species, Non-Metric Multidimensional Scaling (NMDS) is a widely used type of ordination technique.
+In the dune case, the multiple dimensions are the many species. What patterns exist among them? Which seem to like similar conditions and tend to appear at the same sites, and vice versa. Also, which sites are similar to each other, in respect of what grows there, and which are different? These are the questions that ordination plots are intended to shed light on. For data based on the presence/absence/abundance of species, **Non-Metric Multidimensional Scaling (NMDS)** is a widely used type of ordination technique.
+
+
 
 Here, we will entirely skate over the details, but will carry out the analysis using the `vegan` function `metaMDS()` then plot the result.
+
+We will use as an example the `dune` data set that comes as part of the `vegan` package. This has ordinal plant species abundance data in columns and sites in rows. There are 20 sites and 30 species altogether, although most sites only have a few of these.
 
 ```{r}
 library(tidyverse)
 library(vegan)
 data(dune)
-```
-
-
-```{r}
-data(dune)
+glimpse(dune)
 ```
 
 
