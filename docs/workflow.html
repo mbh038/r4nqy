@@ -510,7 +510,7 @@ window.Quarto = {
 <h2 data-number="3.2" class="anchored" data-anchor-id="statement-of-the-questions-to-be-investigated"><span class="header-section-number">3.2</span> Statement of the question(s) to be investigated</h2>
 <p>Without thinking this through, you won’t know what your notebook is for…</p>
 <p>What is the analysis that will follow for? What question are you trying to answer? What hypotheses are you trying to test?</p>
-<p>Suppose we were trying to test the hypothesis that there is no difference between the petal widths of the <em>setosa</em>, <em>versicolor</em> and <em>virginica</em> species of iris. All we have to go on are the petal widths of the plants we happened to measure. From these measurements we want to make a statement about these three species in general.</p>
+<p>Suppose we were trying to test the hypothesis that there is no difference between the body masss of the <em>setosa</em>, <em>versicolor</em> and <em>virginica</em> species of penguin. All we have to go on are the body masss of the plants we happened to measure. From these measurements we want to make a statement about these three species in general.</p>
 </section>
 <section id="open-a-notebook" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="open-a-notebook"><span class="header-section-number">3.3</span> Open a notebook</h2>
@@ -586,18 +586,16 @@ execute:
 <p>If you have your data in a <code>data</code> subfolder within your project, this chunk will work. Just substitute the name of your data file</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">filepath&lt;-here("data","iris.csv")</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">iris&lt;-read_csv(filepath)</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(iris)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">filepath&lt;-here("data","ozone.csv")</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">ozone&lt;-read_csv(filepath)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(ozone)</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 150
-Columns: 5
-$ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
-$ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
-$ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
-$ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
-$ Species      &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "setosa…</code></pre>
+<pre><code>Rows: 20
+Columns: 3
+$ garden.id       &lt;chr&gt; "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", …
+$ garden.location &lt;chr&gt; "West", "West", "West", "West", "West", "West", "West"…
+$ ozone           &lt;dbl&gt; 61.7, 64.0, 72.4, 56.8, 52.4, 44.8, 70.4, 67.6, 68.8, …</code></pre>
 </div>
 </div>
 </section>
@@ -607,105 +605,99 @@ $ Species      &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "se
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">filepath&lt;-here("data","difference_data.xlsx")</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">iris&lt;-read_excel(path = filepath,</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">                 sheet = "iris", # delete the comma if you choose not to specify the range in the line below</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">                 range= "A1:F151" # optional - try leaving it out first. Only include if necessary.</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">                 ) |&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="in">  clean_names()</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(iris)</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">penguins &lt;- read_excel(path = filepath, sheet = "penguins") |&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">  clean_names()</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(penguins)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 150
-Columns: 6
-$ id           &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17…
-$ sepal_length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
-$ sepal_width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
-$ petal_length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
-$ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
-$ species      &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "setosa…</code></pre>
+<pre><code>Rows: 342
+Columns: 8
+$ species           &lt;chr&gt; "Adelie", "Adelie", "Adelie", "Adelie", "Adelie", "A…
+$ island            &lt;chr&gt; "Torgersen", "Torgersen", "Torgersen", "Torgersen", …
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0…
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2…
+$ flipper_length_mm &lt;dbl&gt; 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18…
+$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250…
+$ sex               &lt;chr&gt; "male", "female", "female", "female", "male", "femal…
+$ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 </div>
 </div>
 </section>
 <section id="if-from-a-url" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="if-from-a-url"><span class="header-section-number">3.5.3</span> If from a URL</h3>
 <p>You can load data into R directly from a URL if you are given one.</p>
-<p>here, we load data from a file stored in a ‘’repo’ on my github account:</p>
+<p>Here, we load data from a file stored in a ‘repo’ on my github account:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">iris&lt;-read_csv("https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/data/iris.csv") |&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">  clean_names()</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(iris)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in"># penguin&lt;-read_csv("https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/data/penguin.csv")</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">#   clean_names()</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in"># glimpse(penguin)</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 150
-Columns: 5
-$ sepal_length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
-$ sepal_width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
-$ petal_length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
-$ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
-$ species      &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "setosa…</code></pre>
-</div>
 </div>
 </section>
 </section>
 <section id="clean-manipulate-the-data" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="clean-manipulate-the-data"><span class="header-section-number">3.6</span> Clean / Manipulate the data</h2>
 <p>Often we need to do some sort of data ‘wrangling’ to get the data into the form we want. For example we may wish to tidy it (this has a particular meaning when applied to data sets), to remove rows with missing values, to filter out rows from sites or time periods that we don’t want to include in our analysis, to create new columns and so on.</p>
-<p>For example, let’s create a new data frame for just the <em>setosa</em> species of iris:</p>
+<p>For example, let’s create a new data frame for just the <em>adelie</em> penguins:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">setosa &lt;- iris |&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(species == "setosa") # filter picks out rows according to criteria being satisfied in some column</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(setosa)</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">adelie &lt;- penguins |&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(species == "Adelie") # filter picks out rows according to criteria being satisfied in some column</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(adelie)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 50
-Columns: 5
-$ sepal_length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
-$ sepal_width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
-$ petal_length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
-$ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
-$ species      &lt;chr&gt; "setosa", "setosa", "setosa", "setosa", "setosa", "setosa…</code></pre>
+<pre><code>Rows: 151
+Columns: 8
+$ species           &lt;chr&gt; "Adelie", "Adelie", "Adelie", "Adelie", "Adelie", "A…
+$ island            &lt;chr&gt; "Torgersen", "Torgersen", "Torgersen", "Torgersen", …
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0…
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2…
+$ flipper_length_mm &lt;dbl&gt; 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18…
+$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250…
+$ sex               &lt;chr&gt; "male", "female", "female", "female", "male", "femal…
+$ year              &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 </div>
 </div>
-<p>or maybe we just want the columns that contain numeric data and not the one containing the species identifiers, which is text:</p>
+<p>or maybe we just want the columns that contain numeric data and not the one containing the species identifiers, islands, and sex which are text:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="in">iris_numeric &lt;- iris |&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">  select(-species) # select() retains or leaves out particular columns. Here, we leave out the species column.</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(iris_numeric)</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguin_numeric &lt;- penguins |&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in">  dplyr::select(bill_length_mm:body_mass_g) # select() retains or leaves out particular columns. Here, we leave out the species column.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(penguin_numeric)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 150
+<pre><code>Rows: 342
 Columns: 4
-$ sepal_length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
-$ sepal_width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
-$ petal_length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
-$ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…</code></pre>
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0…
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2…
+$ flipper_length_mm &lt;dbl&gt; 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18…
+$ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250…</code></pre>
 </div>
 </div>
 </section>
 <section id="summarise-the-data" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="summarise-the-data"><span class="header-section-number">3.7</span> Summarise the data</h2>
-<p>How big is the difference between the mean of this group over here and that group over there, and how big is that difference compared to the precision with which we know those means? We nearly always want to do this as a first way to get insight into whether we will or will not reject our hypothesis. For example, let’s find the mean petal widths of the three species, the standard errors of those means and save the results to a data frame called <code>petal_summary</code></p>
+<p>How big is the difference between the mean of this group over here and that group over there, and how big is that difference compared to the precision with which we know those means? We nearly always want to do this as a first way to get insight into whether we will or will not reject our hypothesis. For example, let’s find the mean body masss of the three species, the standard errors of those means and save the results to a data frame called <code>petal_summary</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="in">petal_summary&lt;-iris |&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(species) |&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(mean.Pwidth = mean(petal_width),</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="in">            se.Pwidth = sd(petal_width/sqrt(n())))</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="in">petal_summary</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguin_summary&lt;-penguins |&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(species) |&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(n = n(),</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="in">            mean_body_mass = mean(body_mass_g),</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="in">            se_body_mass = sd(body_mass_g/sqrt(n())))</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="in">penguin_summary</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  species    mean.Pwidth se.Pwidth
-  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-1 setosa           0.246    0.0149
-2 versicolor       1.33     0.0280
-3 virginica        2.03     0.0388</code></pre>
+<pre><code># A tibble: 3 × 4
+  species       n mean_body_mass se_body_mass
+  &lt;chr&gt;     &lt;int&gt;          &lt;dbl&gt;        &lt;dbl&gt;
+1 Adelie      151          3701.         37.3
+2 Chinstrap    68          3733.         46.6
+3 Gentoo      123          5076.         45.5</code></pre>
 </div>
 </div>
-<p>We can look at this table and already get an idea as to whether the petal widths are the same or are different for the three species.</p>
+<p>We can look at this table and already get an idea as to whether the body masses are the same or are different for the three species.</p>
 </section>
 <section id="plot-the-data" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">3.8</span> Plot the data</h2>
@@ -714,16 +706,16 @@ $ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2
 <h3 data-number="3.8.1" class="anchored" data-anchor-id="bar-plot-with-error-bars"><span class="header-section-number">3.8.1</span> Bar plot with error bars</h3>
 <p>We could plot a bar plot with error bars, working from the summary data frame that we created:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">petal_summary |&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = species, y = mean.Pwidth)) +</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col(fill="#a6bddb") + # this is the geom that gives us a bar plot when we have already done the calculations</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_errorbar(aes(ymin = mean.Pwidth - se.Pwidth, ymax = mean.Pwidth + se.Pwidth), width = 0.15) +</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="in">  labs( x = "species",</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Mean petal width (mm)",</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Error bars are ± one standard error of the mean") + # important to say what these error bars denote</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot()</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguin_summary |&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = species, y = mean_body_mass)) +</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col(fill="#a6bddb") + # this is the geom that gives us a bar plot when we have already done the calculations</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_errorbar(aes(ymin = mean_body_mass - se_body_mass, ymax = mean_body_mass + se_body_mass), width = 0.15) +</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="in">  labs( x = "species",</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Mean body mass (g)",</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Error bars are ± one standard error of the mean") + # important to say what these error bars denote</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot()</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -739,25 +731,25 @@ $ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2
 <li>the <em>standard deviation</em> tells us about the spread of values in a sample, and is an estimate of the spread of values in a population;<br>
 </li>
 <li>the <em>standard error of the mean</em>, as used here, is an estimate of the precision with which the sample means estimates the respective population means for each of the species.</li>
-<li>the <em>confidence interval</em>, typically a <em>95% confidence interval</em>, gives us the region within which we are (say) 95% confident that the true species mean petal width might plausibly lie.</li>
+<li>the <em>confidence interval</em>, typically a <em>95% confidence interval</em>, gives us the region within which we are (say) 95% confident that the true species mean body mass might plausibly lie.</li>
 </ul>
-<p>Which type of error bar is best to use depends on what story you want to tell. Here, because we are interested in whether there is evidence of a difference in the mean petal width of different species, we have gone for the standard eror of the mean.</p>
+<p>Which type of error bar is best to use depends on what story you want to tell. Here, because we are interested in whether there is evidence of a difference in the mean body mass of different species, we have gone for the standard eror of the mean.</p>
 <p>Regardless of which error bar you use and why, you should always tell the reader which one you have gone for, as we have in the caption to the figure.</p>
 <p>A second point about this bar plot is that it doesn’t tell us very much, and indeed nothing that we didn’t already know. It only conveys the mean and standard error values for each species, which is information we already have, arguably more compactly and in more easily readable form, in the table we created. Further, it potentially obscures information that might come from knowing the <em>distribution</em> of the data.</p>
-<p>Here are three other plot types that do show the distribution of petal widths for each species and thus add extra information to what we already know from the summary table</p>
+<p>Here are three other plot types that do show the distribution of body masss for each species and thus add extra information to what we already know from the summary table</p>
 </section>
 <section id="box-plot" class="level3" data-number="3.8.2">
 <h3 data-number="3.8.2" class="anchored" data-anchor-id="box-plot"><span class="header-section-number">3.8.2</span> Box plot</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="in">iris |&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x=species, y=petal_width)) + # what we want to plot</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_boxplot(fill="#a6bddb",notch=FALSE) + # what kind of plot we want</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="in">  labs (x = "species",</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Petal Width (mm)") +</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot() # choose a theme to give the plot a 'look' that we like</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguins |&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x=species, y=body_mass_g)) + # what we want to plot</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_boxplot(fill="#a6bddb",notch=FALSE) + # what kind of plot we want</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="in">  labs (x = "species",</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Body mass (g)") +</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot() # choose a theme to give the plot a 'look' that we like</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -766,21 +758,21 @@ $ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2
 </div>
 </div>
 </div>
-<p>Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. The ‘jitter’ adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of petal widths is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.</p>
+<p>Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. The ‘jitter’ adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of body masss is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.</p>
 </section>
 <section id="violin-plot" class="level3" data-number="3.8.3">
 <h3 data-number="3.8.3" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">3.8.3</span> Violin plot</h3>
 <p>A useful alternative to the box plot, especially when the data set is large, is the violin plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="in">iris |&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = species, y = petal_width)) + # what we want to plot</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_violin(fill="#a6bddb",notch=TRUE) + # what kind of plot we want</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="in">  #geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="in">  labs (x = "species",</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Petal Width (mm)") +</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot() # choose a theme to give the plot a 'look' that we like</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguins |&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = species, y = body_mass_g)) + # what we want to plot</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_violin(fill="#a6bddb",notch=TRUE) + # what kind of plot we want</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="in">  #geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="in">  labs (x = "species",</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Body mass (g)") +</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot() # choose a theme to give the plot a 'look' that we like</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -789,22 +781,22 @@ $ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2
 </div>
 </div>
 </div>
-<p>The widths of the blobs (I am probably supposed to call them ‘violins’!) show us the distribution of the data - where they are widest is where the data are concentrated, while the height of the blobs shows us the range of variation of the data. The positions of the blobs tells us the mean petal widths of the different species and gives us an idea of the differences between them.</p>
+<p>The widths of the blobs (I am probably supposed to call them ‘violins’!) show us the distribution of the data - where they are widest is where the data are concentrated, while the height of the blobs shows us the range of variation of the data. The positions of the blobs tells us the mean body masss of the different species and gives us an idea of the differences between them.</p>
 </section>
 <section id="ridge-plot" class="level3" data-number="3.8.4">
 <h3 data-number="3.8.4" class="anchored" data-anchor-id="ridge-plot"><span class="header-section-number">3.8.4</span> Ridge plot</h3>
 <p>A bit like a violin plot. This needs the package <code>ggridges</code> to be installed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: fenced</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> petal_width,<span class="at">y =</span> species)) <span class="sc">+</span> <span class="co"># what we want to plot</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">fill=</span><span class="st">"#a6bddb"</span>) <span class="sc">+</span> <span class="co"># what kind of plot we want</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">x =</span> <span class="st">"Petal Width (mm)"</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"species"</span>) <span class="sc">+</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="co"># choose a theme to give the plot a 'look' that we like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: fenced</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> species)) <span class="sc">+</span> <span class="co"># what we want to plot</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">fill=</span><span class="st">"#a6bddb"</span>) <span class="sc">+</span> <span class="co"># what kind of plot we want</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">x =</span> <span class="st">"Body mass (g)"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"species"</span>) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="co"># choose a theme to give the plot a 'look' that we like</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -813,28 +805,28 @@ $ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2
 </div>
 </div>
 </div>
-<p>Having seen the summary and one of these plots of the data, would you be inclined to reject, or fail to reject, a null hypothesis that said that there was no difference between the petal widths of the three species?</p>
+<p>Having seen the summary and one of these plots of the data, would you be inclined to reject, or fail to reject, a null hypothesis that said that there was no difference between the body masss of the three species?</p>
 </section>
 </section>
 <section id="statistical-analysis" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="statistical-analysis"><span class="header-section-number">3.9</span> Statistical analysis</h2>
 <p>Only now do we move on to the statistical analysis to try to answer our intial question(s). But by now, after the summary and plot(s), we may already have a pretty good idea what that answer will turn out to be.</p>
-<p>The exact form of the analysis could take many forms. In a typical ecology project you might carry out several types of analysis, each one complementing the other. Here, an appropriate analysis might be to use the linear model in the form of a one-way ANOVA, since we have one factor (species) with three levels (<em>setosa</em>, <em>versicolor</em> and <em>virginica</em>) and an output variable that is numeric and likely to be normally distributed. We can use the <code>lm()</code> function for this.</p>
+<p>The exact form of the analysis could take many forms. In a typical ecology project you might carry out several types of analysis, each one complementing the other. Here, an appropriate analysis might be to use the linear model in the form of a one-way ANOVA, since we have one factor (species) with three levels (Adelie, Chinstrap and Gentoo) and an output variable that is numeric and likely to be normally distributed. We can use the <code>lm()</code> function for this.</p>
 <section id="create-the-model-object" class="level3" data-number="3.9.1">
 <h3 data-number="3.9.1" class="anchored" data-anchor-id="create-the-model-object"><span class="header-section-number">3.9.1</span> Create the model object</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="in">pw.model &lt;-lm (petal_width ~ species, data = iris)</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguin.model &lt;-lm (body_mass_g ~ species, data = penguins)</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="check-the-validity-of-the-model" class="level3" data-number="3.9.2">
 <h3 data-number="3.9.2" class="anchored" data-anchor-id="check-the-validity-of-the-model"><span class="header-section-number">3.9.2</span> Check the validity of the model</h3>
 <p>We won’t go into this here, but an important step is to check that the data satisfy the often finicky requirements of whatever statistical test we have decided to use. The <code>autoplot()</code> function form the <code>ggfortify</code> package is great for doing this graphically.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="in">autoplot( pw.model) + theme_cowplot()</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="in">autoplot( penguin.model) + theme_cowplot()</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -848,7 +840,7 @@ $ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2
 <section id="the-overall-picture" class="level3" data-number="3.9.3">
 <h3 data-number="3.9.3" class="anchored" data-anchor-id="the-overall-picture"><span class="header-section-number">3.9.3</span> The overall picture</h3>
 <p>Typically, statistical tests are testing the likelihood of the data being as they are, or more ‘extreme’ than they are, <em>if</em> the null hypothesis were true. Thus, the null hypothesis is central to statistical testing.</p>
-<p>The null hypothesis is typically that the ‘nothing going on’, ‘no difference’ or ’ no association’ scenario is true. In this case, it would be that there is no difference between the petal widths of the the three species of iris being considered here.</p>
+<p>The null hypothesis is typically that the ‘nothing going on’, ‘no difference’ or ’ no association’ scenario is true. In this case, it would be that there is no difference between the body masss of the the three species of penguin being considered here.</p>
 <p>Typically too, a test will in the end spit out a <em>p</em>-value which is the probability that we would have got the data we got, or more extreme data, <em>if</em> the null hypothesis were true. Being a probability, it will always be a value between 0 and 1, where 0 means impossible, and 1 means certain. The closer the <em>p</em>-value is to zero, the less likely it is we would have got our data if the null hypothesis were true. At some point, if the <em>p</em>-value is small enough, we will decide that the probability of getting the data we actually got if the null hypothesis were true is so small that we reject the null hypothesis. Typically, the threshold beyond which we do this is when <em>p</em> = 0.05, but we could choose other thresholds. (Sounds arbitrary - yes, it is, but the choice of 0.05 is a compromise value that makes the risk of making each of two types of error - rejecting the null when we should not, and failing to reject it when we should, both acceptably small. This is a big topic which we won’t explore further here.)</p>
 <p>In the end, whatever other information we get from it, the outcome of a statisical test is typically that we either reject the null hypothesis or we fail to reject it. If we reject it then we are claiming to have detected evidence for an ‘effect’ and we go on to determine how big that effect is and whether it is scientifically interesting. If we fail to reject the null, that does not necessarily mean that there is no ‘effect’ (difference, trend, association etc). That might be the case, but it might also just mean that we didn’t find evidence for one from our data.</p>
 <p>It is all a bit like in a law court where the ‘null hypothesis’ is that the defendant is innocent, and at the end of the proceedings this null is either rejected (Guilty!) because the evidence is such as to make it untenable to hold onto the null hypothesis, or not rejected, because the evidence is not strong enough to convict, in which case the defendant walks free - but is not declared innocent. Formally, the court has simply found insufficient evidence to convict. In the latter case, the court would have failed to reject the null hypothesis. Crucially, it would <em>not</em> have declared that the defendant was innocent. In the same way, in a scientific study, we either reject or fail to reject a null hypothesis. We never <em>ever</em> accept the null hypothesis as true.</p>
@@ -861,64 +853,64 @@ $ petal_width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2
 <p>Is there evidence for a difference between at least two of the mean values?</p>
 <p>To see if there is evidence for this, an ANOVA test calculate the ratio between the dfference <em>betweeN</em> the groups compared to the differences <em>within</em> the groups. it calls this ratio <span class="math inline">\(F\)</span>. The bigger <span class="math inline">\(F\)</span> is, the more likely we are to reject the null hypothesis that there is no difference between he groups.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="in">anova(pw.model)</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="in">anova(penguin.model)</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
-Response: petal_width
-           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-species     2 80.413  40.207  960.01 &lt; 2.2e-16 ***
-Residuals 147  6.157   0.042                      
+Response: body_mass_g
+           Df    Sum Sq  Mean Sq F value    Pr(&gt;F)    
+species     2 146864214 73432107  343.63 &lt; 2.2e-16 ***
+Residuals 339  72443483   213698                      
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>The <em>F</em> value is huge. The null hypothesis of this test, as with many tests, is that there is no difference between the petal widths of the three populations from which these samples have been drawn. In that case, the <em>F</em> value would be one. The <em>p</em>-value is telling us how likely it is that we would get an <em>F</em> value as big or bigger than the one we got for our samples if the null hypothesis were true. Since the <em>p</em>-value is effectively zero here, we reject the null hypothesis: we have evidence from our data that there is a significant varation of petal width between species.</p>
-<p>The degrees of freedom <code>Df</code> tells us the number of independent pieces of information that were used to calculate the result. Let’s not dwell on this here, but there are two that we have to report in this case: the number of levels minus one ie 3-1 = 2, and the number of individual data points in each level minus one, times the number of levels ie (50-1) x 3 = 147.</p>
+<p>The <em>F</em> value is huge. The null hypothesis of this test, as with many tests, is that there is no difference between the body masses of the three populations from which these samples have been drawn. In that case, the <em>F</em> value would be one. The <em>p</em>-value is telling us how likely it is that we would get an <em>F</em> value as big or bigger than the one we got for our samples if the null hypothesis were true. Since the <em>p</em>-value is effectively zero here, we reject the null hypothesis: we have evidence from our data that there is a significant varation of body mass between species.</p>
+<p>The degrees of freedom <code>Df</code> tells us the number of independent pieces of information that were used to calculate the result. Let’s not dwell on this here, but there are two that we have to report in this case: the number of levels minus one ie 3-1 = 2, and the number of individual data points minus the number of levels ie 342-1 = 339.</p>
 </section>
 <section id="effect-size" class="level3" data-number="3.9.5">
 <h3 data-number="3.9.5" class="anchored" data-anchor-id="effect-size"><span class="header-section-number">3.9.5</span> Effect size</h3>
-<p>Now that we have established that at least two species of iris have differing petal widths, we go onto investigate where the differences lie, and how big they are. This is important: effect sizes matter. It is one thing to establish that a difference is statistically significant (and typically even the tiniest difference can show up as significant in a study if the sample size is big enough), it is quite another to establish whether the difference is big enough to be scientifically interesting.</p>
+<p>Now that we have established that at least two species of penguin have differing body masses, we go on to investigate where the differences lie, and how big they are. This is important: effect sizes matter. It is one thing to establish that a difference is statistically significant (and typically even the tiniest difference can show up as significant in a study if the sample size is big enough), it is quite another to establish whether the difference is big enough to be scientifically interesting.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="in">summary(pw.model)</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="in">summary(penguin.model)</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = petal_width ~ species, data = iris)
+lm(formula = body_mass_g ~ species, data = penguins)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--0.626 -0.126 -0.026  0.154  0.474 
+     Min       1Q   Median       3Q      Max 
+-1126.02  -333.09   -33.09   316.91  1223.98 
 
 Coefficients:
-                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)        0.24600    0.02894    8.50 1.96e-14 ***
-speciesversicolor  1.08000    0.04093   26.39  &lt; 2e-16 ***
-speciesvirginica   1.78000    0.04093   43.49  &lt; 2e-16 ***
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       3700.66      37.62   98.37   &lt;2e-16 ***
+speciesChinstrap    32.43      67.51    0.48    0.631    
+speciesGentoo     1375.35      56.15   24.50   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.2047 on 147 degrees of freedom
-Multiple R-squared:  0.9289,    Adjusted R-squared:  0.9279 
-F-statistic:   960 on 2 and 147 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 462.3 on 339 degrees of freedom
+Multiple R-squared:  0.6697,    Adjusted R-squared:  0.6677 
+F-statistic: 343.6 on 2 and 339 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>The output here is typical of that from a 1-way ANOVA analysis in R. Each line refers to one of the three levels of the factor being investigated, which is petal width in this case. By default, those levels are arranged alphabetically, so in this case the order is <em>setosa</em>, <em>versicolor</em> then <em>virginica</em>. The first row is always labelled <code>(Intercept)</code>, so here that row is referring to <em>setosa</em>. This level is used as the ‘control’ or reference level- the one with which the others are compared. If we are happy to have <em>setosa</em> as that control then we can just carry on, but if we are not, then we have to tell R which level we want to play that role. We’ll go through how to do that later on.</p>
-<p>In the Estimate column the value 0.246 cm in the first row refers to the actual mean petal width of the <em>setosa</em> plants in the sample. If we go back to the summary table we created earlier on, or look at one of the plots we created, we see that that is the case.</p>
-<p>For all other rows, the value in the Estimate column is not referring to the absolute mean petal width but to the difference between the mean petal width for that species and the mean petal width of the control species. So we see that the mean petal width of the <em>versicolor</em> in our sample is 1.08 cm greater than that of <em>setosa</em> and so is equal to .246 + 1.08 = 1.326 cm, while that of the <em>virginica</em> is 1.78 cm greater and so is equal to 2.026 cm. Check from the table of mean values we created and the plots that this is correct.</p>
-<p>Here though, we are not interested in absolute values so much as we are in differences, which is why that is what the summary table here gives us. Look again at the differences between the mean petal widths for <em>versicolor</em> and <em>virginica</em> and that for <em>setosa</em> and compare them with the standard erros of those differences, which are given in the second column of the table. These standard errors are much smaller than the differences, meaning that we can have confidence that the differences are statistically significant.</p>
-<p>This is borne out by the <em>p</em>-value in the right hand column of the table. The null hypothesis of this table is that there is no difference in petal width between populations of the different species from which these samples have been drawn.</p>
-<p>Lastly, the adjusted <span class="math inline">\(R^2\)</span> tells us the proportion of variation of petal width that is accounted for by taking note of the species. Here, the value is 0.93, which tells us hat little else besides species determines the relative petal widths. Ther are no other variables that we need to have taken into account.</p>
+<p>The output here is typical of that from a 1-way ANOVA analysis in R. Each line refers to one of the three levels of the factor being investigated, which in this case is body mass. By default, those levels are arranged alphabetically, so in this case the order is Adelie, Chinstrap then Gentoo. The first row is always labelled <code>(Intercept)</code>, so here that row is referring to Adelie. This level is used as the ‘control’ or reference level- the one with which the others are compared. If we are happy to have Adelie as that control then we can just carry on, but if we are not, then we have to tell R which level we want to play that role. We’ll go through how to do that later on.</p>
+<p>In the Estimate column the value 3700.66 g in the first row refers to the actual mean body mass of the Adelie penguins in the sample. If we go back to the summary table we created earlier on, or look at one of the plots we created, we see that that is the case.</p>
+<p>For all other rows, the value in the Estimate column is not referring to the absolute mean body mass but to the difference between the mean body mass for that species and the mean body mass of the control species. So we see that the mean body mass of the Chinstrap in our sample is 32.43 g greater than that of Adelie and so is equal to 3700.66 + 32.43 = 3733.09 g, while that of the Gentoo is 1375.35 g greater and so is equal to 5076.01 g. Check from the table of mean values we created and the plots that this is correct.</p>
+<p>Here though, we are not interested in absolute values so much as we are in differences, which is why that is what the summary table here gives us. Look again at the differences between the mean body masss for Chinstrap and Gentoo and that for Adelie and compare them with the standard errors of those differences, which are given in the second column of the table. These standard errors are much smaller than the differences, meaning that we can have confidence that the differences are statistically significant.</p>
+<p>This is borne out by the <em>p</em>-value in the right hand column of the table. The null hypothesis of this table is that there is no difference in body mass between populations of the different species from which these samples have been drawn.</p>
+<p>Lastly, the adjusted <span class="math inline">\(R^2\)</span> tells us the proportion of variation of body mass that is accounted for by taking note of the species. Here, the value is 0.668, which tells us that about two thirds of the variability in body mass is aconted for by species.</p>
 </section>
 </section>
 <section id="report-in-plain-english" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="report-in-plain-english"><span class="header-section-number">3.10</span> Report in plain English</h2>
 <p>You would say something like</p>
-<p>We find evidence that petal widths are not the same acros thhree species of iris, with <em>virginica</em> &gt; <em>versicolor</em> &gt; <em>setosa</em>. (ANOVA, df = 2, p &lt; 0.001)</p>
+<p>We find evidence that body masss are not the same acros thhree species of penguin, with Gentoo penguins having a signifiantly greater mass than Adelie and Chinstrap. (ANOVA, df = 2, p &lt; 0.001)</p>
 
 
 </section>

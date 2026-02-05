@@ -31,7 +31,7 @@ Without thinking this through, you won't know what your notebook is for...
 
 What is the analysis that will follow for? What question are you trying to answer? What hypotheses are you trying to test?
 
-Suppose we were trying to test the hypothesis that there is no difference between the petal widths of the *setosa*, *versicolor* and *virginica* species of iris. All we have to go on are the petal widths of the plants we happened to measure. From these measurements we want to make a statement about these three species in general.
+Suppose we were trying to test the hypothesis that there is no difference between the body masss of the *setosa*, *versicolor* and *virginica* species of penguin. All we have to go on are the body masss of the plants we happened to measure. From these measurements we want to make a statement about these three species in general.
 
 ## Open a notebook
 
@@ -119,9 +119,9 @@ If you have your data in a `data` subfolder within your project, this chunk will
 ```{r}
 #| echo: fenced
 
-filepath<-here("data","iris.csv")
-iris<-read_csv(filepath)
-glimpse(iris)
+filepath<-here("data","ozone.csv")
+ozone<-read_csv(filepath)
+glimpse(ozone)
 ```
 
 ### If from an Excel file
@@ -132,67 +132,65 @@ You will need to use `read_excel()` from the `readxl` package, and you have to s
 #| echo: fenced
 
 filepath<-here("data","difference_data.xlsx")
-iris<-read_excel(path = filepath,
-                 sheet = "iris", # delete the comma if you choose not to specify the range in the line below
-                 range= "A1:F151" # optional - try leaving it out first. Only include if necessary.
-                 ) |>
+penguins <- read_excel(path = filepath, sheet = "penguins") |>
   clean_names()
-glimpse(iris)
+glimpse(penguins)
 ```
 
 ### If from a URL
 
 You can load data into R directly from a URL if you are given one.
 
-here, we load data from a file stored in a ''repo' on my github account:
+Here, we load data from a file stored in a 'repo' on my github account:
 
 ```{r}
 #| echo: fenced
 
-iris<-read_csv("https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/data/iris.csv") |>
-  clean_names()
-glimpse(iris)
+# penguin<-read_csv("https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/data/penguin.csv")
+#   clean_names()
+# glimpse(penguin)
 ```
 
 ## Clean / Manipulate the data
 
 Often we need to do some sort of data 'wrangling' to get the data into the form we want. For example we may wish to tidy it (this has a particular meaning when applied to data sets), to remove rows with missing values, to filter out rows from sites or time periods that we don't want to include in our analysis, to create new columns and so on.
 
-For example, let's create a new data frame for just the *setosa* species of iris:
+For example, let's create a new data frame for just the *adelie* penguins:
 
 ```{r}
 #| echo: fenced
 
-setosa <- iris |>
-  filter(species == "setosa") # filter picks out rows according to criteria being satisfied in some column
-glimpse(setosa)
+adelie <- penguins |>
+  filter(species == "Adelie") # filter picks out rows according to criteria being satisfied in some column
+glimpse(adelie)
 ```
 
-or maybe we just want the columns that contain numeric data and not the one containing the species identifiers, which is text:
+or maybe we just want the columns that contain numeric data and not the one containing the species identifiers, islands, and sex which are text:
 
 ```{r}
 #| echo: fenced
 
-iris_numeric <- iris |>
-  select(-species) # select() retains or leaves out particular columns. Here, we leave out the species column.
-glimpse(iris_numeric)
+penguin_numeric <- penguins |>
+  dplyr::select(bill_length_mm:body_mass_g) # select() retains or leaves out particular columns. Here, we leave out the species column.
+glimpse(penguin_numeric)
 ```
 
 ## Summarise the data
 
-How big is the difference between the mean of this group over here and that group over there, and how big is that difference compared to the precision with which we know those means? We nearly always want to do this as a first way to get insight into whether we will or will not reject our hypothesis. For example, let's find the mean petal widths of the three species, the standard errors of those means and save the results to a data frame called `petal_summary`
+How big is the difference between the mean of this group over here and that group over there, and how big is that difference compared to the precision with which we know those means? We nearly always want to do this as a first way to get insight into whether we will or will not reject our hypothesis. For example, let's find the mean body masss of the three species, the standard errors of those means and save the results to a data frame called `petal_summary`
 
 ```{r}
 #| echo: fenced
 
-petal_summary<-iris |>
+penguin_summary<-penguins |>
   group_by(species) |>
-  summarise(mean.Pwidth = mean(petal_width),
-            se.Pwidth = sd(petal_width/sqrt(n())))
-petal_summary
+  summarise(n = n(),
+            mean_body_mass = mean(body_mass_g),
+            se_body_mass = sd(body_mass_g/sqrt(n())))
+penguin_summary
 ```
 
-We can look at this table and already get an idea as to whether the petal widths are the same or are different for the three species.
+We can look at this table and already get an idea as to whether the body masses are the same or are different for the three species.
 
 ## Plot the data
 
@@ -205,12 +203,12 @@ We could plot a bar plot with error bars, working from the summary data frame th
 ```{r}
 #| echo: fenced
 
-petal_summary |>
-  ggplot(aes(x = species, y = mean.Pwidth)) +
+penguin_summary |>
+  ggplot(aes(x = species, y = mean_body_mass)) +
   geom_col(fill="#a6bddb") + # this is the geom that gives us a bar plot when we have already done the calculations
-  geom_errorbar(aes(ymin = mean.Pwidth - se.Pwidth, ymax = mean.Pwidth + se.Pwidth), width = 0.15) +
+  geom_errorbar(aes(ymin = mean_body_mass - se_body_mass, ymax = mean_body_mass + se_body_mass), width = 0.15) +
   labs( x = "species",
-        y = "Mean petal width (mm)",
+        y = "Mean body mass (g)",
         caption = "Error bars are ± one standard error of the mean") + # important to say what these error bars denote
   theme_cowplot()
 ```
@@ -223,31 +221,31 @@ First, what about those error bars? Three types of error bar are in common usage
 
 -   the *standard deviation* tells us about the spread of values in a sample, and is an estimate of the spread of values in a population;\
 -   the *standard error of the mean*, as used here, is an estimate of the precision with which the sample means estimates the respective population means for each of the species.
--   the *confidence interval*, typically a *95% confidence interval*, gives us the region within which we are (say) 95% confident that the true species mean petal width might plausibly lie.
+-   the *confidence interval*, typically a *95% confidence interval*, gives us the region within which we are (say) 95% confident that the true species mean body mass might plausibly lie.
 
-Which type of error bar is best to use depends on what story you want to tell. Here, because we are interested in whether there is evidence of a difference in the mean petal width of different species, we have gone for the standard eror of the mean.
+Which type of error bar is best to use depends on what story you want to tell. Here, because we are interested in whether there is evidence of a difference in the mean body mass of different species, we have gone for the standard eror of the mean.
 
 Regardless of which error bar you use and why, you should always tell the reader which one you have gone for, as we have in the caption to the figure.
 
 A second point about this bar plot is that it doesn't tell us very much, and indeed nothing that we didn't already know. It only conveys the mean and standard error values for each species, which is information we already have, arguably more compactly and in more easily readable form, in the table we created. Further, it potentially obscures information that might come from knowing the *distribution* of the data.
 
-Here are three other plot types that do show the distribution of petal widths for each species and thus add extra information to what we already know from the summary table
+Here are three other plot types that do show the distribution of body masss for each species and thus add extra information to what we already know from the summary table
 
 ### Box plot
 
 ```{r}
 #| echo: fenced
 
-iris |>
-  ggplot(aes(x=species, y=petal_width)) + # what we want to plot
+penguins |>
+  ggplot(aes(x=species, y=body_mass_g)) + # what we want to plot
   geom_boxplot(fill="#a6bddb",notch=FALSE) + # what kind of plot we want
   geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
   labs (x = "species",
-        y = "Petal Width (mm)") +
+        y = "Body mass (g)") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
 
-Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. The 'jitter' adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of petal widths is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.
+Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. The 'jitter' adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of body masss is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.
 
 ### Violin plot
 
@@ -256,16 +254,16 @@ A useful alternative to the box plot, especially when the data set is large, is 
 ```{r}
 #| echo: fenced
 
-iris |>
-  ggplot(aes(x = species, y = petal_width)) + # what we want to plot
+penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) + # what we want to plot
   geom_violin(fill="#a6bddb",notch=TRUE) + # what kind of plot we want
   #geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
   labs (x = "species",
-        y = "Petal Width (mm)") +
+        y = "Body mass (g)") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
 
-The widths of the blobs (I am probably supposed to call them 'violins'!) show us the distribution of the data - where they are widest is where the data are concentrated, while the height of the blobs shows us the range of variation of the data. The positions of the blobs tells us the mean petal widths of the different species and gives us an idea of the differences between them.
+The widths of the blobs (I am probably supposed to call them 'violins'!) show us the distribution of the data - where they are widest is where the data are concentrated, while the height of the blobs shows us the range of variation of the data. The positions of the blobs tells us the mean body masss of the different species and gives us an idea of the differences between them.
 
 ### Ridge plot
 
@@ -275,29 +273,29 @@ A bit like a violin plot. This needs the package `ggridges` to be installed.
 library(ggridges)
 #| echo: fenced
 
-iris |>
-  ggplot(aes(x = petal_width,y = species)) + # what we want to plot
+penguins |>
+  ggplot(aes(x = body_mass_g, y = species)) + # what we want to plot
   geom_density_ridges(fill="#a6bddb") + # what kind of plot we want
   #geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
-  labs (x = "Petal Width (mm)",
+  labs (x = "Body mass (g)",
         y = "species") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
 
-Having seen the summary and one of these plots of the data, would you be inclined to reject, or fail to reject, a null hypothesis that said that there was no difference between the petal widths of the three species?
+Having seen the summary and one of these plots of the data, would you be inclined to reject, or fail to reject, a null hypothesis that said that there was no difference between the body masss of the three species?
 
 ## Statistical analysis
 
 Only now do we move on to the statistical analysis to try to answer our intial question(s). But by now, after the summary and plot(s), we may already have a pretty good idea what that answer will turn out to be.
 
-The exact form of the analysis could take many forms. In a typical ecology project you might carry out several types of analysis, each one complementing the other. Here, an appropriate analysis might be to use the linear model in the form of a one-way ANOVA, since we have one factor (species) with three levels (*setosa*, *versicolor* and *virginica*) and an output variable that is numeric and likely to be normally distributed. We can use the `lm()` function for this.
+The exact form of the analysis could take many forms. In a typical ecology project you might carry out several types of analysis, each one complementing the other. Here, an appropriate analysis might be to use the linear model in the form of a one-way ANOVA, since we have one factor (species) with three levels (Adelie, Chinstrap and Gentoo) and an output variable that is numeric and likely to be normally distributed. We can use the `lm()` function for this.
 
 ### Create the model object
 
 ```{r}
 #| echo: fenced
 
-pw.model <-lm (petal_width ~ species, data = iris)
+penguin.model <-lm (body_mass_g ~ species, data = penguins)
 ```
 
 ### Check the validity of the model
@@ -307,7 +305,7 @@ We won't go into this here, but an important step is to check that the data sati
 ```{r}
 #| echo: fenced
 
-autoplot( pw.model) + theme_cowplot()
+autoplot( penguin.model) + theme_cowplot()
 ```
 
 Here we note in particular that although the spread of data within each level is not roughly the same (top left figure)), the QQ plot is pretty straight (top-right figure). This means that the data are approximately normally distributed around their respective means. Taken together, this means that these data satisfy reasonably well the requirements of a linear model, so the output of that model should be reliable.
@@ -316,7 +314,7 @@ Here we note in particular that although the spread of data within each level is
 
 Typically, statistical tests are testing the likelihood of the data being as they are, or more 'extreme' than they are, *if* the null hypothesis were true. Thus, the null hypothesis is central to statistical testing.
 
-The null hypothesis is typically that the 'nothing going on', 'no difference' or ' no association' scenario is true. In this case, it would be that there is no difference between the petal widths of the the three species of iris being considered here.
+The null hypothesis is typically that the 'nothing going on', 'no difference' or ' no association' scenario is true. In this case, it would be that there is no difference between the body masss of the the three species of penguin being considered here.
 
 Typically too, a test will in the end spit out a *p*-value which is the probability that we would have got the data we got, or more extreme data, *if* the null hypothesis were true. Being a probability, it will always be a value between 0 and 1, where 0 means impossible, and 1 means certain. The closer the *p*-value is to zero, the less likely it is we would have got our data if the null hypothesis were true. At some point, if the *p*-value is small enough, we will decide that the probability of getting the data we actually got if the null hypothesis were true is so small that we reject the null hypothesis. Typically, the threshold beyond which we do this is when *p* = 0.05, but we could choose other thresholds. (Sounds arbitrary - yes, it is, but the choice of 0.05 is a compromise value that makes the risk of making each of two types of error - rejecting the null when we should not, and failing to reject it when we should, both acceptably small. This is a big topic which we won't explore further here.)
 
@@ -339,37 +337,37 @@ To see if there is evidence for this, an ANOVA test calculate the ratio between 
 ```{r}
 #| echo: fenced
 
-anova(pw.model)
+anova(penguin.model)
 ```
 
-The *F* value is huge. The null hypothesis of this test, as with many tests, is that there is no difference between the petal widths of the three populations from which these samples have been drawn. In that case, the *F* value would be one. The *p*-value is telling us how likely it is that we would get an *F* value as big or bigger than the one we got for our samples if the null hypothesis were true. Since the *p*-value is effectively zero here, we reject the null hypothesis: we have evidence from our data that there is a significant varation of petal width between species.
+The *F* value is huge. The null hypothesis of this test, as with many tests, is that there is no difference between the body masses of the three populations from which these samples have been drawn. In that case, the *F* value would be one. The *p*-value is telling us how likely it is that we would get an *F* value as big or bigger than the one we got for our samples if the null hypothesis were true. Since the *p*-value is effectively zero here, we reject the null hypothesis: we have evidence from our data that there is a significant varation of body mass between species.
 
-The degrees of freedom `Df` tells us the number of independent pieces of information that were used to calculate the result. Let's not dwell on this here, but there are two that we have to report in this case: the number of levels minus one ie 3-1 = 2, and the number of individual data points in each level minus one, times the number of levels ie (50-1) x 3 = 147.
+The degrees of freedom `Df` tells us the number of independent pieces of information that were used to calculate the result. Let's not dwell on this here, but there are two that we have to report in this case: the number of levels minus one ie 3-1 = 2, and the number of individual data points minus the number of levels ie 342-1 = 339.
 
 ### Effect size
 
-Now that we have established that at least two species of iris have differing petal widths, we go onto investigate where the differences lie, and how big they are. This is important: effect sizes matter. It is one thing to establish that a difference is statistically significant (and typically even the tiniest difference can show up as significant in a study if the sample size is big enough), it is quite another to establish whether the difference is big enough to be scientifically interesting.
+Now that we have established that at least two species of penguin have differing body masses, we go on to investigate where the differences lie, and how big they are. This is important: effect sizes matter. It is one thing to establish that a difference is statistically significant (and typically even the tiniest difference can show up as significant in a study if the sample size is big enough), it is quite another to establish whether the difference is big enough to be scientifically interesting.
 
 ```{r}
 #| echo: fenced
 
-summary(pw.model)
+summary(penguin.model)
 ```
 
-The output here is typical of that from a 1-way ANOVA analysis in R. Each line refers to one of the three levels of the factor being investigated, which is petal width in this case. By default, those levels are arranged alphabetically, so in this case the order is *setosa*, *versicolor* then *virginica*. The first row is always labelled `(Intercept)`, so here that row is referring to *setosa*. This level is used as the 'control' or reference level- the one with which the others are compared. If we are happy to have *setosa* as that control then we can just carry on, but if we are not, then we have to tell R which level we want to play that role. We'll go through how to do that later on.
+The output here is typical of that from a 1-way ANOVA analysis in R. Each line refers to one of the three levels of the factor being investigated, which in this case is body mass. By default, those levels are arranged alphabetically, so in this case the order is Adelie, Chinstrap then Gentoo. The first row is always labelled `(Intercept)`, so here that row is referring to Adelie. This level is used as the 'control' or reference level- the one with which the others are compared. If we are happy to have Adelie as that control then we can just carry on, but if we are not, then we have to tell R which level we want to play that role. We'll go through how to do that later on.
 
-In the Estimate column the value 0.246 cm in the first row refers to the actual mean petal width of the *setosa* plants in the sample. If we go back to the summary table we created earlier on, or look at one of the plots we created, we see that that is the case.
+In the Estimate column the value 3700.66 g in the first row refers to the actual mean body mass of the Adelie penguins in the sample. If we go back to the summary table we created earlier on, or look at one of the plots we created, we see that that is the case.
 
-For all other rows, the value in the Estimate column is not referring to the absolute mean petal width but to the difference between the mean petal width for that species and the mean petal width of the control species. So we see that the mean petal width of the *versicolor* in our sample is 1.08 cm greater than that of *setosa* and so is equal to .246 + 1.08 = 1.326 cm, while that of the *virginica* is 1.78 cm greater and so is equal to 2.026 cm. Check from the table of mean values we created and the plots that this is correct.
+For all other rows, the value in the Estimate column is not referring to the absolute mean body mass but to the difference between the mean body mass for that species and the mean body mass of the control species. So we see that the mean body mass of the Chinstrap in our sample is 32.43 g greater than that of Adelie and so is equal to 3700.66 + 32.43 = 3733.09 g, while that of the Gentoo is 1375.35 g greater and so is equal to 5076.01 g. Check from the table of mean values we created and the plots that this is correct.
 
-Here though, we are not interested in absolute values so much as we are in differences, which is why that is what the summary table here gives us. Look again at the differences between the mean petal widths for *versicolor* and *virginica* and that for *setosa* and compare them with the standard erros of those differences, which are given in the second column of the table. These standard errors are much smaller than the differences, meaning that we can have confidence that the differences are statistically significant.
+Here though, we are not interested in absolute values so much as we are in differences, which is why that is what the summary table here gives us. Look again at the differences between the mean body masss for Chinstrap and Gentoo and that for Adelie and compare them with the standard errors of those differences, which are given in the second column of the table. These standard errors are much smaller than the differences, meaning that we can have confidence that the differences are statistically significant.
 
-This is borne out by the *p*-value in the right hand column of the table. The null hypothesis of this table is that there is no difference in petal width between populations of the different species from which these samples have been drawn.
+This is borne out by the *p*-value in the right hand column of the table. The null hypothesis of this table is that there is no difference in body mass between populations of the different species from which these samples have been drawn.
 
-Lastly, the adjusted $R^2$ tells us the proportion of variation of petal width that is accounted for by taking note of the species. Here, the value is 0.93, which tells us hat little else besides species determines the relative petal widths. Ther are no other variables that we need to have taken into account.
+Lastly, the adjusted $R^2$ tells us the proportion of variation of body mass that is accounted for by taking note of the species. Here, the value is 0.668, which tells us that about two thirds of the variability in body mass is aconted for by species.
 
 ## Report in plain English
 
 You would say something like
 
-We find evidence that petal widths are not the same acros thhree species of iris, with *virginica* \> *versicolor* \> *setosa*. (ANOVA, df = 2, p \< 0.001)
+We find evidence that body masss are not the same acros thhree species of penguin, with Gentoo penguins having a signifiantly greater mass than Adelie and Chinstrap. (ANOVA, df = 2, p \< 0.001)
