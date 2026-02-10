@@ -77,7 +77,6 @@ pca <- prcomp(geochem_trans, scale.=TRUE)
 From this, we get these outputs:
 
 ```{r}
-
 # The variance vector shows how much of the variance in the data is explained by each PC. A variance is the square of a standard deviation.
 variance <- (pca$sdev)^2
 
@@ -297,3 +296,10 @@ autoplot(penguins_pca, data = penguins,colour='species',
          loadings.label.size = 3) +
   coord.system
 ```
+
+
+
+
+
+
+

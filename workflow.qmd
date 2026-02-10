@@ -278,7 +278,7 @@ penguins |>
   geom_density_ridges(fill="#a6bddb") + # what kind of plot we want
   #geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
   labs (x = "Body mass (g)",
-        y = "species") +
+        y = "Species") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
 

@@ -455,8 +455,11 @@ window.Quarto = {
   <li><a href="#inspect-model" id="toc-inspect-model" class="nav-link" data-scroll-target="#inspect-model"><span class="header-section-number">13.3.6</span> Inspect model</a></li>
   <li><a href="#replot-the-data-model-included" id="toc-replot-the-data-model-included" class="nav-link" data-scroll-target="#replot-the-data-model-included"><span class="header-section-number">13.3.7</span> Replot the data, model included</a></li>
   </ul></li>
-  <li><a href="#multivariate-data" id="toc-multivariate-data" class="nav-link" data-scroll-target="#multivariate-data"><span class="header-section-number">13.4</span> Multivariate data</a></li>
-  <li><a href="#sample-script" id="toc-sample-script" class="nav-link" data-scroll-target="#sample-script"><span class="header-section-number">13.5</span> Sample script</a></li>
+  <li><a href="#multivariate-data" id="toc-multivariate-data" class="nav-link" data-scroll-target="#multivariate-data"><span class="header-section-number">13.4</span> Multivariate data</a>
+  <ul class="collapse">
+  <li><a href="#tree-volume-from-height-and-girth" id="toc-tree-volume-from-height-and-girth" class="nav-link" data-scroll-target="#tree-volume-from-height-and-girth"><span class="header-section-number">13.4.1</span> Tree volume from height and girth</a></li>
+  <li><a href="#environmental-indicators-data-set" id="toc-environmental-indicators-data-set" class="nav-link" data-scroll-target="#environmental-indicators-data-set"><span class="header-section-number">13.4.2</span> Environmental Indicators data set</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/simple-linear-regression.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -797,6 +800,8 @@ F-statistic: 199.9 on 1 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="multivariate-data" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="multivariate-data"><span class="header-section-number">13.4</span> Multivariate data</h2>
+<section id="tree-volume-from-height-and-girth" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="tree-volume-from-height-and-girth"><span class="header-section-number">13.4.1</span> Tree volume from height and girth</h3>
 <p>We now consider the common case where an outcome might arise as the combined result of more than one explanatory variable.</p>
 <p>Suppose we wanted to know the potential timber yield from a tree. The direct but destructive way to find ot would be to chop it down and weigh it, but a more useful and non-destructive route would be if we could estimate it from variables that we could easily measure that would be reasonable predictors of timber yield, for example the girth of the trunk as measured by its diameter at breast height, and its height, which can easily be found using a protractor, a tape measure and simple trigonometry.</p>
 <div class="cell">
@@ -838,90 +843,168 @@ $ volume   &lt;dbl&gt; 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vol_dh &lt;- lm(volume ~ diameter * height, data = trees)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>vol_dh <span class="ot">&lt;-</span> <span class="fu">lm</span>(Volume <span class="sc">~</span> Height <span class="sc">*</span> Girth, <span class="at">data =</span> trees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># autoplot(vol_dh) + theme_cowplot()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(vol_dh) <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># anova(vol_dh)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(vol_dh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: Volume
+             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+Height        1 2901.2  2901.2 395.460 &lt; 2.2e-16 ***
+Girth         1 4783.0  4783.0 651.965 &lt; 2.2e-16 ***
+Height:Girth  1  223.8   223.8  30.512 7.484e-06 ***
+Residuals    27  198.1     7.3                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(vol_dh)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vol_dh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Volume ~ Height * Girth, data = trees)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.5821 -1.0673  0.3026  1.5641  4.6649 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  69.39632   23.83575   2.911  0.00713 ** 
+Height       -1.29708    0.30984  -4.186  0.00027 ***
+Girth        -5.85585    1.92134  -3.048  0.00511 ** 
+Height:Girth  0.13465    0.02438   5.524 7.48e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.709 on 27 degrees of freedom
+Multiple R-squared:  0.9756,    Adjusted R-squared:  0.9728 
+F-statistic: 359.3 on 3 and 27 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
 </div>
 </section>
-<section id="sample-script" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="sample-script"><span class="header-section-number">13.5</span> Sample script</h2>
-<p>A notebook to do linear regression might look like the following, here written as a .qmd Quarto notebook. For this to work you will need to work within a project, with the data in a sub-folder of that, called “data”. Here, the data is taken to be a .csv file called <code>mydata.csv</code>, with two columns of data, one called <code>x_values</code> and the other called <code>y_values</code>. You need to change these to suit your own data.</p>
-<p>To use this, open a new notebook of your own (<code>File/New File/Quarto Document</code>), delete everything below the yaml section, paste in all the code below, then adapt the code as needed. Remember to save the notebook in your project notebooks folder!</p>
-<p>Alternatively, and more simple perhaps, use the project foler you downloaded at the beginning of this chapter. That contains a working notebook - the one on plant growth, that uses the plant growth csv file in the data subfoled. You could use this for your purposes - all you need to do is to put <em>your</em> data as a csv file into the data subolder, and then change file, data frame and column names in the notebook as appropriate.</p>
-<pre><code>---
-title: "Sensible title"
-author: "your name"
-date: "the date"
-output: html_notebook
----</code></pre>
-<p><strong>load packages</strong></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: load packages</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="in">library(here)</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggfortify)</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(cowplot)</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>load data</strong></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: load data</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="in">filepath &lt;- here("data", "mydata.csv")</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="in">mydata &lt;- read_csv(filepath)</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="in">glimpse(mydata)</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>plot the data</strong></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: plot data</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="in">mydata |&gt;</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x=x_values, y=y_values)) +</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "X variable",</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Y variable") +</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot()</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>fit the model</strong></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fit the linear model</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="in">mydata.model &lt;- lm (y_values ~ x_values, data = mydata)</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>diagnostics</strong></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: diagnostics</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="in">autoplot(mydata.model)</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>investigate the model</strong></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: anova</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="in">anova(mydata.model)</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: summary</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="in">summary(mydata.model)</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>replot the data, now with the model included</strong></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: replot</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="in">mydata |&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x=x_values, y=y_values)) +</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(method="linear") +</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "X variable",</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Y variable") +</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot()</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Report the conclusions in plain English</strong></p>
+<section id="environmental-indicators-data-set" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="environmental-indicators-data-set"><span class="header-section-number">13.4.2</span> Environmental Indicators data set</h3>
+<p>The dataset For this exerecise, we make use of the enviro_indicators dataset from the Kaggle <a href="https://www.kaggle.com/datasets/sazidthe1/global-environmental-indicators?resource=download">Global Environmental Indicators data</a>. The dataset comprises socio-economic and environmental data collected from various countries, focusing on factors related to sustainable development. It includes information such as forest coverage, biodiversity index, protected areas, rural population, and deforestation rates, aimed at understanding the relationship between human activities and land degradation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>env_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/regression_sprint/enviro_indicators.csv'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>env_data <span class="ot">&lt;-</span>env_data <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Country, biodiversity_index, forest_coverage, deforestation_rate, soil_erosion, population_density)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 32
+Columns: 6
+$ Country            &lt;chr&gt; "Vietnam", "Guinea-Bissau", "Bosnia and Herzegovina…
+$ biodiversity_index &lt;dbl&gt; 6.505159, 94.888554, 96.563203, 80.839735, 30.46137…
+$ forest_coverage    &lt;dbl&gt; 36.21781, 76.55000, 61.23958, 51.90609, 20.92130, 2…
+$ deforestation_rate &lt;dbl&gt; 36.58311, 123.38494, 115.74374, 111.75237, 46.45033…
+$ soil_erosion       &lt;dbl&gt; 7.987880, 13.013811, 13.037065, 11.179719, 2.715506…
+$ population_density &lt;dbl&gt; 468.71584, 351.05460, 289.32997, 57.61648, 311.3535…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(env_data[,<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Only deforestion rate appears to be correlated with biodiversity index or to have a clear linear relation with it. However forest coverage is positively correlated and may have a weak linear relationship with biodiversity index, so let us include both as predictors in a linear regression model to predict biodiversity index</p>
+<p>First we make an additive model</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bi.model.additive <span class="ot">&lt;-</span> <span class="fu">lm</span>(biodiversity_index <span class="sc">~</span> deforestation_rate <span class="sc">+</span> forest_coverage, <span class="at">data=</span> env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we make an interactive model, where we explicityl include the possibility that the effect of deforestation rate might depend on the value of forest coverage, and vice-versa.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>bi.model.interactive <span class="ot">&lt;-</span> <span class="fu">lm</span>(biodiversity_index <span class="sc">~</span> deforestation_rate <span class="sc">*</span> forest_coverage, <span class="at">data=</span> env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we use the <code>anova()</code> function to see if the siimpler model, which is nested within the first, has equally good explanatory power. The null hypothesis of this test is that it does.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(bi.model.interactive,bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: biodiversity_index ~ deforestation_rate * forest_coverage
+Model 2: biodiversity_index ~ deforestation_rate + forest_coverage
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1     28 2073.5                           
+2     29 2133.3 -1   -59.824 0.8078 0.3764</code></pre>
+</div>
+</div>
+<p>The p value is high which suggest that there is no need for the interactive model, so we stick with the simpler additive model</p>
+<p>Now we chwck that it is OK to believe the results of a linear regression model</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This all looks fine so on we go</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: biodiversity_index
+                   Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+deforestation_rate  1 27353.1 27353.1 371.829 &lt; 2.2e-16 ***
+forest_coverage     1  2658.2  2658.2  36.134 1.545e-06 ***
+Residuals          29  2133.3    73.6                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>This tells us that both deforestation rate ands forest cover are significan explanatory variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = biodiversity_index ~ deforestation_rate + forest_coverage, 
+    data = env_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.7119  -5.4799   0.4557   5.5636  21.8836 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        -9.40170    4.11993  -2.282     0.03 *  
+deforestation_rate  1.19271    0.06158  19.369  &lt; 2e-16 ***
+forest_coverage    -0.57052    0.09491  -6.011 1.54e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.577 on 29 degrees of freedom
+Multiple R-squared:  0.9336,    Adjusted R-squared:  0.9291 
+F-statistic:   204 on 2 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>The null hypothesis here is that the values of te parameters are zero. We can reject that null for both forest cover and deforestation rate.</p>
+<p>The estimate column tells us the amount by which the biodiversity index will change if either of the factors increases by one unit, <em>while keeping the other factor constant</em>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

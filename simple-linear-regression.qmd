@@ -240,6 +240,8 @@ How would you report this result?
 
 ## Multivariate data
 
+### Tree volume from height and girth
+
 We now consider the common case where an outcome might arise as the combined result of more than one explanatory variable.
 
 Suppose we wanted to know the potential timber yield from a tree. The direct but destructive way to find ot would be to chop it down and weigh it, but a more useful and non-destructive route would be if we could estimate it from variables that we could easily measure that would be reasonable predictors of timber yield, for example the girth of the trunk as measured by its diameter at breast height, and its height, which can easily be found using a protractor, a tape measure and simple trigonometry.
@@ -265,109 +267,74 @@ GGally::ggpairs(trees)
 ```
 
 ```{r}
-# vol_dh <- lm(volume ~ diameter * height, data = trees)
+vol_dh <- lm(Volume ~ Height * Girth, data = trees)
 ```
 
 ```{r}
-# autoplot(vol_dh) + theme_cowplot()
+autoplot(vol_dh) + theme_cowplot()
 ```
 
 ```{r}
-# anova(vol_dh)
+anova(vol_dh)
 ```
 
 ```{r}
-# summary(vol_dh)
+summary(vol_dh)
 ```
 
-## Sample script
+### Environmental Indicators data set
 
-A notebook to do linear regression might look like the following, here written as a .qmd Quarto notebook. For this to work you will need to work within a project, with the data in a sub-folder of that, called "data". Here, the data is taken to be a .csv file called `mydata.csv`, with two columns of data, one called `x_values` and the other called `y_values`. You need to change these to suit your own data.
+The dataset For this exerecise, we make use of the enviro_indicators dataset from the Kaggle [Global Environmental Indicators data](https://www.kaggle.com/datasets/sazidthe1/global-environmental-indicators?resource=download). The dataset comprises socio-economic and environmental data collected from various countries, focusing on factors related to sustainable development. It includes information such as forest coverage, biodiversity index, protected areas, rural population, and deforestation rates, aimed at understanding the relationship between human activities and land degradation.
 
-To use this, open a new notebook of your own (`File/New File/Quarto Document`), delete everything below the yaml section, paste in all the code below, then adapt the code as needed. Remember to save the notebook in your project notebooks folder!
-
-Alternatively, and more simple perhaps, use the project foler you downloaded at the beginning of this chapter. That contains a working notebook - the one on plant growth, that uses the plant growth csv file in the data subfoled. You could use this for your purposes - all you need to do is to put *your* data as a csv file into the data subolder, and then change file, data frame and column names in the notebook as appropriate.
-
-```         
----
-title: "Sensible title"
-author: "your name"
-date: "the date"
-output: html_notebook
----
+```{r}
+env_data <- read_csv('https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/regression_sprint/enviro_indicators.csv')
+env_data <-env_data |>
+  dplyr::select(Country, biodiversity_index, forest_coverage, deforestation_rate, soil_erosion, population_density)
+glimpse(env_data)
 ```
 
-**load packages**
-
-```{{r}}
-#| label: load packages
-
-library(tidyverse)
-library(here)
-library(ggfortify)
-library(cowplot)
+```{r}
+GGally::ggpairs(env_data[,2:6]) 
 ```
 
-**load data**
 
-```{{r}}
-#| label: load data
+Only deforestion rate appears to be correlated with biodiversity index or to have a clear linear relation with it. However forest coverage is positively correlated and may have a weak linear relationship with biodiversity index, so let us include both as predictors in a linear regression model to predict biodiversity index
 
-filepath <- here("data", "mydata.csv")
-mydata <- read_csv(filepath)
-glimpse(mydata)
+
+First we make an additive model
+```{r}
+bi.model.additive <- lm(biodiversity_index ~ deforestation_rate + forest_coverage, data= env_data)
 ```
 
-**plot the data**
-
-```{{r}}
-#| label: plot data
-
-mydata |>
-  ggplot(aes(x=x_values, y=y_values)) +
-  geom_point() +
-  labs(x = "X variable",
-       y = "Y variable") +
-  theme_cowplot()
+Then we make an interactive model, where we explicityl include the possibility that the effect of deforestation rate might depend on the value of forest coverage, and vice-versa.
+```{r}
+bi.model.interactive <- lm(biodiversity_index ~ deforestation_rate * forest_coverage, data= env_data)
 ```
 
-**fit the model**
-
-```{{r}}
-#| label: fit the linear model
-mydata.model <- lm (y_values ~ x_values, data = mydata)
+Now we use the `anova()` function to see if the siimpler model, which is nested within the first, has equally good explanatory power. The null hypothesis of this test is that it does.
+```{r}
+anova(bi.model.interactive,bi.model.additive)
 ```
 
-**diagnostics**
+The p value is high which suggest that there is no need for the interactive model, so we stick with the simpler additive model
 
-```{{r}}
-#| label: diagnostics
-autoplot(mydata.model)
+Now we chwck that it is OK to believe the results of a linear regression model
+
+```{r}
+autoplot(bi.model.additive)
 ```
 
-**investigate the model**
+This all looks fine so on we go
 
-```{{r}}
-#| label: anova
-anova(mydata.model)
+```{r}
+anova(bi.model.additive)
 ```
+This tells us that both deforestation rate ands forest cover are significan explanatory variables.
 
-```{{r}}
-#| label: summary
-summary(mydata.model)
+```{r}
+summary(bi.model.additive)
 ```
+The null hypothesis here is that the values of te parameters are zero. We can reject that null for both forest cover and deforestation rate.
 
-**replot the data, now with the model included**
+The estimate column tells us the amount by which the biodiversity index will change if either of the factors increases by one unit, *while keeping the other factor constant*.
 
-```{{r}}
-#| label: replot
-mydata |>
-  ggplot(aes(x=x_values, y=y_values)) +
-  geom_point() +
-  geom_smooth(method="linear") +
-  labs(x = "X variable",
-       y = "Y variable") +
-  theme_cowplot()
-```
-
-**Report the conclusions in plain English**
