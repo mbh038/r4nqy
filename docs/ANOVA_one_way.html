@@ -556,7 +556,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -628,7 +628,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -656,7 +656,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -679,9 +679,9 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <pre><code>Analysis of Variance Table
 
 Response: body_mass_g
-           Df   Sum Sq  Mean Sq F value    Pr(&gt;F)    
-species     2 60350016 30175008  393.25 &lt; 2.2e-16 ***
-Residuals 162 12430757    76733                      
+           Df   Sum Sq  Mean Sq F value Pr(&gt;F)    
+species     2 60350016 30175008     393 &lt;2e-16 ***
+Residuals 162 12430757    76733                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -704,20 +704,20 @@ Call:
 lm(formula = body_mass_g ~ species, data = females)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--827.21 -193.84   20.26  181.16  622.79 
+   Min     1Q Median     3Q    Max 
+-827.2 -193.8   20.3  181.2  622.8 
 
 Coefficients:
                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)       3368.84      32.42 103.908  &lt; 2e-16 ***
-speciesChinstrap   158.37      57.52   2.754  0.00657 ** 
-speciesGentoo     1310.91      48.72  26.904  &lt; 2e-16 ***
+(Intercept)        3368.8       32.4  103.91   &lt;2e-16 ***
+speciesChinstrap    158.4       57.5    2.75   0.0066 ** 
+speciesGentoo      1310.9       48.7   26.90   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 277 on 162 degrees of freedom
-Multiple R-squared:  0.8292,    Adjusted R-squared:  0.8271 
-F-statistic: 393.2 on 2 and 162 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.829, Adjusted R-squared:  0.827 
+F-statistic:  393 on 2 and 162 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 <p>There is a lot in ths output, so let’s just consider the coefficient table, to begin with. Focus first on the top left value, in the Estimate column. This tells us the mean body mass of the reference or ‘Intercept’ species. In this case that is ‘Adelie’, purely because ‘Adelie’ comes alphabetically before the other two species names, ‘Chinstrap’ and ‘Gentoo’. By default, R will always order levels of a factor alpabetically. This is often a nuisance, and with many data sets we have to tell R to reorder the levels the way we want them, but here the order is OK.</p>
@@ -743,10 +743,10 @@ F-statistic: 393.2 on 2 and 162 DF,  p-value: &lt; 2.2e-16</code></pre>
 Fit: aov(formula = body_mass_g ~ species, data = females)
 
 $species
-                      diff        lwr       upr     p adj
-Chinstrap-Adelie  158.3703   22.32078  294.4197 0.0179471
-Gentoo-Adelie    1310.9058 1195.64908 1426.1624 0.0000000
-Gentoo-Chinstrap 1152.5355 1011.00620 1294.0648 0.0000000</code></pre>
+                 diff    lwr  upr p adj
+Chinstrap-Adelie  158   22.3  294 0.018
+Gentoo-Adelie    1311 1195.6 1426 0.000
+Gentoo-Chinstrap 1153 1011.0 1294 0.000</code></pre>
 </div>
 </div>
 <p>In each row of the output we see the difference between the mean masses of the females of two species, where a positive value tells us that the first named species has the heavier mass. So, we see that Gentoo females in the sample were on average 1310.9 g heavier than Adelie females.</p>

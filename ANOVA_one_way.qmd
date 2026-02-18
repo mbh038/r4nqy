@@ -1,5 +1,12 @@
 # One-way ANOVA
 
+```{r}
+#| include: false
+source("_common.R")
+```
+
+\vspace{-10mm}
+
 For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ANOVA-one-way/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look.
 
 ## Introduction

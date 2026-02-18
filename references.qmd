@@ -1,4 +1,13 @@
 # References {.unnumbered}
 
+Books on using R
+
+[@beckerman2017]
+
+This book is the one whose approach to the use of R aligns most closely with this one. It has very litle statistics
+
+[@crawley2014]\
+This is a statistics book that focuses on the needs of ecologists, with R code throughout.
+
 ::: {#refs}
 :::

@@ -254,20 +254,22 @@ Suppose we wanted to know the potential timber yield from a tree. The direct but
   trees
 ```
 
-```{r}
-data(trees)
-trees |>
-  ggplot(aes(x = Height, y = Volume)) +
-  geom_point() +
-  theme_cowplot()
-```
+We would like to know if there is correlation between the potential predictors. If there is, we call this collinearity. We need to be aware of it since it can make i dificult to decide on the influence of any individual predictor.
+
+Let us look at the correlations between all three variables:
 
 ```{r}
 GGally::ggpairs(trees)
 ```
 
+Tree volume is strongly correlated with tree girth and moderately correllated with tree height.
+
+We see that there is correlation between girth and height, but it is not catastrophic. Since girth and height are our predictors, we sy that there is moderate collinearity between them.
+
+**First attempt at analysis: naive multiple linear regression**
+
 ```{r}
-vol_dh <- lm(Volume ~ Height * Girth, data = trees)
+vol_dh <- lm(volume ~  diameter + height, data = trees)
 ```
 
 ```{r}
@@ -281,6 +283,51 @@ anova(vol_dh)
 ```{r}
 summary(vol_dh)
 ```
+
+This analysis is telling us that girth is a highly significant predictor of volume (p\<0.001) but that height is only weakly signficant (p = 0.0145).
+
+This may not be true. The effect of height may bebeing masked by that of girth, which was given to the model first.
+
+**Variance Inflation Factor (VIF) scores as way of detecting co-linearity**
+
+Variable inflation factor (VIF) scores tell us if there is co-linearity. The higher the score, the more likely that variable is affected by co-linearity.
+
+| VIF       | Co-liniarity    |
+|-----------|-----------------|
+| 1 -5      | no collinearity |
+| VIF \> 5  | concerning      |
+| VIF \> 10 | serious         |
+
+```{r}
+library(car)
+vif(vol_dh)
+```
+
+Our VIF scores are both low, suggesting there is no need to take account of co-linearity.
+
+**A better statistical model: transformation**
+
+THe above analysis shows that we could predict tree volume adequately using both diameter and height as predictors in an additive model. However a better approach might be to look more carefully at *how* volume arises from a combinaion of height and diameter.
+
+Tree volume scales approximately with cross-sectional area × height, so a log–log model is more realistic: logarithms turn mutliplication into addition: log(xy) = log(x) +log(y), so if volume = diamter x height, then log(volume) = log(diameter) x log(height):
+
+```{r}
+vol_dh_log <- lm(log(volume) ~ log(diameter) + log(height), data = trees)
+```
+
+```{r}
+autoplot(vol_dh_log)
+```
+
+```{r}
+anova(vol_dh_log) + theme_cowplot()
+```
+
+```{r}
+summary(vol_dh_log)
+```
+
+SO now both predictors ae highly significant.
 
 ### Environmental Indicators data set
 
@@ -297,21 +344,22 @@ glimpse(env_data)
 GGally::ggpairs(env_data[,2:6]) 
 ```
 
-
 Only deforestion rate appears to be correlated with biodiversity index or to have a clear linear relation with it. However forest coverage is positively correlated and may have a weak linear relationship with biodiversity index, so let us include both as predictors in a linear regression model to predict biodiversity index
 
-
 First we make an additive model
+
 ```{r}
 bi.model.additive <- lm(biodiversity_index ~ deforestation_rate + forest_coverage, data= env_data)
 ```
 
 Then we make an interactive model, where we explicityl include the possibility that the effect of deforestation rate might depend on the value of forest coverage, and vice-versa.
+
 ```{r}
 bi.model.interactive <- lm(biodiversity_index ~ deforestation_rate * forest_coverage, data= env_data)
 ```
 
 Now we use the `anova()` function to see if the siimpler model, which is nested within the first, has equally good explanatory power. The null hypothesis of this test is that it does.
+
 ```{r}
 anova(bi.model.interactive,bi.model.additive)
 ```
@@ -329,12 +377,13 @@ This all looks fine so on we go
 ```{r}
 anova(bi.model.additive)
 ```
+
 This tells us that both deforestation rate ands forest cover are significan explanatory variables.
 
 ```{r}
 summary(bi.model.additive)
 ```
+
 The null hypothesis here is that the values of te parameters are zero. We can reject that null for both forest cover and deforestation rate.
 
 The estimate column tells us the amount by which the biodiversity index will change if either of the factors increases by one unit, *while keeping the other factor constant*.
-

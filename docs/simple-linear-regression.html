@@ -818,12 +818,10 @@ $ height   &lt;dbl&gt; 70, 65, 63, 72, 81, 83, 66, 75, 80, 75, 79, 76, 76, 69, 7
 $ volume   &lt;dbl&gt; 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.9, 2…</code></pre>
 </div>
 </div>
+<p>We would like to know if there is correlation between the potential predictors. If there is, we call this collinearity. We need to be aware of it since it can make i dificult to decide on the influence of any individual predictor.</p>
+<p>Let us look at the correlations between all three variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(trees)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>trees <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Height, <span class="at">y =</span> Volume)) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(trees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -832,78 +830,151 @@ $ volume   &lt;dbl&gt; 10.3, 10.3, 10.2, 16.4, 18.8, 19.7, 15.6, 18.2, 22.6, 19.
 </div>
 </div>
 </div>
+<p>Tree volume is strongly correlated with tree girth and moderately correllated with tree height.</p>
+<p>We see that there is correlation between girth and height, but it is not catastrophic. Since girth and height are our predictors, we sy that there is moderate collinearity between them.</p>
+<p><strong>First attempt at analysis: naive multiple linear regression</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(trees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>vol_dh <span class="ot">&lt;-</span> <span class="fu">lm</span>(volume <span class="sc">~</span>  diameter <span class="sc">+</span> height, <span class="at">data =</span> trees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(vol_dh) <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>vol_dh <span class="ot">&lt;-</span> <span class="fu">lm</span>(Volume <span class="sc">~</span> Height <span class="sc">*</span> Girth, <span class="at">data =</span> trees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(vol_dh) <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(vol_dh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(vol_dh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
-Response: Volume
-             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-Height        1 2901.2  2901.2 395.460 &lt; 2.2e-16 ***
-Girth         1 4783.0  4783.0 651.965 &lt; 2.2e-16 ***
-Height:Girth  1  223.8   223.8  30.512 7.484e-06 ***
-Residuals    27  198.1     7.3                      
+Response: volume
+          Df Sum Sq Mean Sq  F value  Pr(&gt;F)    
+diameter   1 7581.9  7581.9 503.2967 &lt; 2e-16 ***
+height     1  102.4   102.4   6.7953 0.01448 *  
+Residuals 28  421.8    15.1                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vol_dh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vol_dh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Volume ~ Height * Girth, data = trees)
+lm(formula = volume ~ diameter + height, data = trees)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--6.5821 -1.0673  0.3026  1.5641  4.6649 
+-6.4042 -2.6496 -0.2853  2.1998  8.4824 
 
 Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  69.39632   23.83575   2.911  0.00713 ** 
-Height       -1.29708    0.30984  -4.186  0.00027 ***
-Girth        -5.85585    1.92134  -3.048  0.00511 ** 
-Height:Girth  0.13465    0.02438   5.524 7.48e-06 ***
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -57.9876     8.6370  -6.714 2.74e-07 ***
+diameter     56.4992     3.1708  17.819  &lt; 2e-16 ***
+height        0.3392     0.1301   2.607   0.0145 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 2.709 on 27 degrees of freedom
-Multiple R-squared:  0.9756,    Adjusted R-squared:  0.9728 
-F-statistic: 359.3 on 3 and 27 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 3.881 on 28 degrees of freedom
+Multiple R-squared:  0.948, Adjusted R-squared:  0.9442 
+F-statistic:   255 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+<p>This analysis is telling us that girth is a highly significant predictor of volume (p&lt;0.001) but that height is only weakly signficant (p = 0.0145).</p>
+<p>This may not be true. The effect of height may bebeing masked by that of girth, which was given to the model first.</p>
+<p><strong>Variance Inflation Factor (VIF) scores as way of detecting co-linearity</strong></p>
+<p>Variable inflation factor (VIF) scores tell us if there is co-linearity. The higher the score, the more likely that variable is affected by co-linearity.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>VIF</th>
+<th>Co-liniarity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 -5</td>
+<td>no collinearity</td>
+</tr>
+<tr class="even">
+<td>VIF &gt; 5</td>
+<td>concerning</td>
+</tr>
+<tr class="odd">
+<td>VIF &gt; 10</td>
+<td>serious</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(vol_dh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>diameter   height 
+1.369214 1.369214 </code></pre>
+</div>
+</div>
+<p>Our VIF scores are both low, suggesting there is no need to take account of co-linearity.</p>
+<p><strong>A better statistical model: transformation</strong></p>
+<p>THe above analysis shows that we could predict tree volume adequately using both diameter and height as predictors in an additive model. However a better approach might be to look more carefully at <em>how</em> volume arises from a combinaion of height and diameter.</p>
+<p>Tree volume scales approximately with cross-sectional area × height, so a log–log model is more realistic: logarithms turn mutliplication into addition: log(xy) = log(x) +log(y), so if volume = diamter x height, then log(volume) = log(diameter) x log(height):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>vol_dh_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(volume) <span class="sc">~</span> <span class="fu">log</span>(diameter) <span class="sc">+</span> <span class="fu">log</span>(height), <span class="at">data =</span> trees)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(vol_dh_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(vol_dh_log) <span class="sc">+</span> <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vol_dh_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log(volume) ~ log(diameter) + log(height), data = trees)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.168549 -0.048520  0.002473  0.063630  0.129170 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   -1.70475    0.88184  -1.933   0.0634 .  
+log(diameter)  1.98271    0.07501  26.434  &lt; 2e-16 ***
+log(height)    1.11708    0.20442   5.465  7.8e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.08138 on 28 degrees of freedom
+Multiple R-squared:  0.9777,    Adjusted R-squared:  0.9761 
+F-statistic: 613.3 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>SO now both predictors ae highly significant.</p>
 </section>
 <section id="environmental-indicators-data-set" class="level3" data-number="13.4.2">
 <h3 data-number="13.4.2" class="anchored" data-anchor-id="environmental-indicators-data-set"><span class="header-section-number">13.4.2</span> Environmental Indicators data set</h3>
 <p>The dataset For this exerecise, we make use of the enviro_indicators dataset from the Kaggle <a href="https://www.kaggle.com/datasets/sazidthe1/global-environmental-indicators?resource=download">Global Environmental Indicators data</a>. The dataset comprises socio-economic and environmental data collected from various countries, focusing on factors related to sustainable development. It includes information such as forest coverage, biodiversity index, protected areas, rural population, and deforestation rates, aimed at understanding the relationship between human activities and land degradation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>env_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/regression_sprint/enviro_indicators.csv'</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>env_data <span class="ot">&lt;-</span>env_data <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Country, biodiversity_index, forest_coverage, deforestation_rate, soil_erosion, population_density)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>env_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/regression_sprint/enviro_indicators.csv'</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>env_data <span class="ot">&lt;-</span>env_data <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Country, biodiversity_index, forest_coverage, deforestation_rate, soil_erosion, population_density)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 32
 Columns: 6
@@ -916,11 +987,11 @@ $ population_density &lt;dbl&gt; 468.71584, 351.05460, 289.32997, 57.61648, 311.
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(env_data[,<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(env_data[,<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -928,15 +999,15 @@ $ population_density &lt;dbl&gt; 468.71584, 351.05460, 289.32997, 57.61648, 311.
 <p>Only deforestion rate appears to be correlated with biodiversity index or to have a clear linear relation with it. However forest coverage is positively correlated and may have a weak linear relationship with biodiversity index, so let us include both as predictors in a linear regression model to predict biodiversity index</p>
 <p>First we make an additive model</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bi.model.additive <span class="ot">&lt;-</span> <span class="fu">lm</span>(biodiversity_index <span class="sc">~</span> deforestation_rate <span class="sc">+</span> forest_coverage, <span class="at">data=</span> env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>bi.model.additive <span class="ot">&lt;-</span> <span class="fu">lm</span>(biodiversity_index <span class="sc">~</span> deforestation_rate <span class="sc">+</span> forest_coverage, <span class="at">data=</span> env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we make an interactive model, where we explicityl include the possibility that the effect of deforestation rate might depend on the value of forest coverage, and vice-versa.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>bi.model.interactive <span class="ot">&lt;-</span> <span class="fu">lm</span>(biodiversity_index <span class="sc">~</span> deforestation_rate <span class="sc">*</span> forest_coverage, <span class="at">data=</span> env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bi.model.interactive <span class="ot">&lt;-</span> <span class="fu">lm</span>(biodiversity_index <span class="sc">~</span> deforestation_rate <span class="sc">*</span> forest_coverage, <span class="at">data=</span> env_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we use the <code>anova()</code> function to see if the siimpler model, which is nested within the first, has equally good explanatory power. The null hypothesis of this test is that it does.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(bi.model.interactive,bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(bi.model.interactive,bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -950,18 +1021,18 @@ Model 2: biodiversity_index ~ deforestation_rate + forest_coverage
 <p>The p value is high which suggest that there is no need for the interactive model, so we stick with the simpler additive model</p>
 <p>Now we chwck that it is OK to believe the results of a linear regression model</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This all looks fine so on we go</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -976,7 +1047,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>This tells us that both deforestation rate ands forest cover are significan explanatory variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bi.model.additive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
