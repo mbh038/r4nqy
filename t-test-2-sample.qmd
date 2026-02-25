@@ -1,5 +1,12 @@
 # Two-sample *t*-test
 
+```{r}
+#| include: false
+source("_common.R")
+```
+
+\vspace{-10mm}
+
 ## Preliminaries
 
 In this exercise we find out how to use R to run a two-sample *t*-test, to determine whether there is evidence to reject the hypothesis that two samples are drawn from the same population.

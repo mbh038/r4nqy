@@ -19,8 +19,7 @@ We will use a Chi-Square contingency analysis to do this
 
 What do you think a suitable hypothesis should be for this investigation, and what would the corresponding null hypothesis be?
 
-The null hypotheses is: H0: 
-The alternate hypothesis is: H1:
+The null hypotheses is: H0: The alternate hypothesis is: H1:
 
 ## Load packages
 
@@ -84,7 +83,6 @@ What does the plot tell you?
 # Carry out the actual chi-square test, using the lady.mat object as the sole argument
 ```
 
-
-* What does the output of this tell you?
-* Is it consistent with what you see in the plot?
-* How would you report the result?
+-   What does the output of this tell you?
+-   Is it consistent with what you see in the plot?
+-   How would you report the result?

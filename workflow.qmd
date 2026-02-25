@@ -1,5 +1,12 @@
 # A recommended analysis workflow
 
+```{r}
+#| include: false
+source("_common.R")
+```
+
+\vspace{-10mm}
+
 [Click here](https://github.com/mbh038/My_project_folder/archive/refs/heads/main.zip) to download a basic RStudio project folder already set up with data and notebook subfolders. Put the folder anywhere on your computer, just **not** inside another RStudio project folder.
 
 This is intended as a rough outline of the sequence of steps one commonly goes through when working on notebooks:

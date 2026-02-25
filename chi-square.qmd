@@ -1,5 +1,8 @@
 # Chi-squared analysis of count data
 
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/chi-square/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
+
+
 ```{r, include=FALSE}
 library(tidyverse)
 library(here)
@@ -266,59 +269,7 @@ This is mentioned is the output of the test. What does it mean? It adjusts for t
 
 ### R script
 
-```{r}
-file_url <- "https://raw.githubusercontent.com/mbh038/r4nqy/refs/heads/main/chi-square-test-of-independence-template.qmd"
-download.file(file_url,"chisq_independence_template.qmd")
-```
-
-#### Preliminaries
-
--   Create an R notebook called `ladybirds` and save it in the scripts folder within your R project folder on your machine. You will find that it is saved as `ladybirds.Rmd`. Leave the `yaml` bit at the top, between the pairs of lines with three dashes (or maybe add your name and the date), then delete everything else.
--   Save the data file "ladybirds_morph_colour.csv" to the data folder in your R project folder, if is not already there.
--   Make sure that your Project folder is actually what RStudio recognises as a "project". You can navigate to and around it in the Files tab in the bottom right-hand pane of RStudio. If all is good you will see a <MyProjectName>.Rproj file at the top level of the project, and <MyProjectName> will apear at the top right of the RStudio window. If you don't see this, time now to turn your folder into a project!
-
-Read the rest of this section and copy the code in the chunks provided into chunks in your notebook. If you are lucky, your tutor will have provided a template notebook for you! If you are not so lucky, remember that each code chunk neeeds to be between two lines of three back ticks, like this:
-
-````         
-### A suitable heading
-```{r}`r ''`
-# enter your code here
-
-```
-````
-
-so that your notebook will end up looking something like this:
-
-````         
----
-title: " my R notebook"
-date: "the date"
-author: " your name"
----
-
-### Load packages
-```{r}`r ''`
-library(tidyverse)
-librrary(here)
-library(cowplot)
-```
-
-### Load data
-```{r}`r ''`
-# enter your code here
-
-```
-
-### Summarise data
-```{r}`r ''`
-# enter your code here
-
-```
-
-and so on...
-````
-
-On some Windows machines, a shortcut to getting the back ticks around each code chunk is to type `Ctrl-Alt-I`. Annoyingly, this does not seem to work on all Windows machines. If that is the case for you, you will have to type them in manually. On Macs, the shortcut is `option-Cmd-I`.
+To implement this analysis yourself, downloaod the project folder associated with this chapter. Unzip it, put it somewhere sensible on your machine, then, in RStudio, open the project by navigating to it, starting with File/Open Project, then open the `chi_square_independence_template.qmd` notebook. Use the code provided below to fill in the skeleton code chunks in that notebook, and run each chunk in turn.
 
 Note that the code provided below is not the only way to do what we want here. You are encouraged to play with it. For example, if you want to see what a particular line does, you can 'comment it out' by putting a \# at the begining of the line, then running that line again. What difference does it make?
 

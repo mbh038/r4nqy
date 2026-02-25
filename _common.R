@@ -37,6 +37,8 @@ suppressMessages(library(ukbabynames))
 suppressMessages(library(Stat2Data))
 suppressMessages(library(GGally))
 suppressMessages(library(mosaicData))
+suppressMessages(library(cowplot))
+suppressMessages(library(here))
 
 # knitr chunk options ----------------------------------------------------------
 
@@ -77,7 +79,7 @@ options(dplyr.print_min = 6, dplyr.print_max = 6)
 # ggplot2 theme and colors -----------------------------------------------------
 
 if (knitr::is_html_output()) {
-  ggplot2::theme_set(ggplot2::theme_minimal(base_size = 23))
+  ggplot2::theme_set(ggplot2::theme_minimal(base_size = 13))
 } else if (knitr::is_latex_output()) {
   ggplot2::theme_set(ggplot2::theme_minimal(base_size = 12))
 }

@@ -1,5 +1,7 @@
 # Two-way ANOVA with model simplification
 
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ANOVA-two-way-with-model-simplification/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
+
 ```{r load packages hidden, message=FALSE,warning=FALSE, include = FALSE}
 library(tidyverse)  # for data manipulation and plotting, and much else besides
 library(here) # for finding our data easily
@@ -45,7 +47,7 @@ In the following, we present the code you need to analyse this data together wit
 
 ## Open your Project
 
-You should be working within a folder that you have designated as what RStudio calls a 'Project'. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a `scripts` folder for scripts like the one you are working from, and a `data` folder for all the data files. You will also see, at the top level of the Project, the `.RProj` file. You can see all this in the Files pane, bottom-right.
+You should be working within a folder that you have designated as what RStudio calls a 'Project'. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a `notebooks` folder for notrbooks like the one you are working from, and a `data` folder for all the data files. You will also see, at the top level of the Project, the `.RProj` file. You can see all this in the Files pane, bottom-right.
 
 ## Load packages
 
