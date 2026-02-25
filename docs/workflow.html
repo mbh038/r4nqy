@@ -719,7 +719,7 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workflow_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workflow_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -753,7 +753,7 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workflow_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workflow_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -776,7 +776,7 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workflow_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workflow_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -800,7 +800,7 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workflow_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workflow_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -830,7 +830,7 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="workflow_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="workflow_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -860,9 +860,9 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 <pre><code>Analysis of Variance Table
 
 Response: body_mass_g
-           Df    Sum Sq  Mean Sq F value    Pr(&gt;F)    
-species     2 146864214 73432107  343.63 &lt; 2.2e-16 ***
-Residuals 339  72443483   213698                      
+           Df   Sum Sq  Mean Sq F value Pr(&gt;F)    
+species     2 1.47e+08 73432107     344 &lt;2e-16 ***
+Residuals 339 7.24e+07   213698                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -883,20 +883,20 @@ Call:
 lm(formula = body_mass_g ~ species, data = penguins)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1126.02  -333.09   -33.09   316.91  1223.98 
+    Min      1Q  Median      3Q     Max 
+-1126.0  -333.1   -33.1   316.9  1224.0 
 
 Coefficients:
                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)       3700.66      37.62   98.37   &lt;2e-16 ***
-speciesChinstrap    32.43      67.51    0.48    0.631    
-speciesGentoo     1375.35      56.15   24.50   &lt;2e-16 ***
+(Intercept)        3700.7       37.6   98.37   &lt;2e-16 ***
+speciesChinstrap     32.4       67.5    0.48     0.63    
+speciesGentoo      1375.4       56.1   24.50   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 462.3 on 339 degrees of freedom
-Multiple R-squared:  0.6697,    Adjusted R-squared:  0.6677 
-F-statistic: 343.6 on 2 and 339 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 462 on 339 degrees of freedom
+Multiple R-squared:  0.67,  Adjusted R-squared:  0.668 
+F-statistic:  344 on 2 and 339 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 <p>The output here is typical of that from a 1-way ANOVA analysis in R. Each line refers to one of the three levels of the factor being investigated, which in this case is body mass. By default, those levels are arranged alphabetically, so in this case the order is Adelie, Chinstrap then Gentoo. The first row is always labelled <code>(Intercept)</code>, so here that row is referring to Adelie. This level is used as the ‘control’ or reference level- the one with which the others are compared. If we are happy to have Adelie as that control then we can just carry on, but if we are not, then we have to tell R which level we want to play that role. We’ll go through how to do that later on.</p>
