@@ -273,7 +273,7 @@ To implement this analysis yourself, download the project folder associated with
 
 Note that the code provided below is not the only way to do what we want here. You are encouraged to play with it. For example, if you want to see what a particular line does, you can 'comment it out' by putting a \# at the begining of the line, then running that line again. What difference does it make?
 
-#### Load packages we need
+**Load packages we need**
 
 ```{r, echo = TRUE}
 library(tidyverse)
@@ -281,7 +281,7 @@ library(here)
 library(cowplot) # this makes your plots look nicer
 ```
 
-#### Import the data and inspect it
+**Import the data and inspect it**
 
 ```{r, echo = TRUE}
 filepath<-here("data","ladybirds_morph_colour.csv") 
@@ -291,7 +291,7 @@ glimpse(lady) # inspect it.
 
 Are those sensible names for the variables? Is the data tidy?
 
-#### Calculate the totals of each colour in each habitat.
+**Calculate the totals of each colour in each habitat**
 
 We will save these totals into a new data frame called `totals`
 
@@ -304,7 +304,7 @@ totals
 
 Now that we have these totals we use them to plot a bar chart of the data, using `geom_col()` within`ggplot`:
 
-#### Plot the data
+**Plot the data**
 
 ```{r,echo = TRUE, eval=TRUE}
 totals |>
@@ -316,7 +316,7 @@ totals |>
   theme_cowplot() # try leaving out this line (but if you do, leave out the final '+' in the line above). What happens?
 ```
 
-#### Fix the colours
+**Fix the colours**
 
 The fill colours we got in the figure above are defaults from R, which does not realise that a factor of interest for us is the actual colour of the ladybirds. We would like the figure to reflect that, so let us make the bars red and black for red and black ladybirds respectively.
 
@@ -333,13 +333,11 @@ totals |>
   theme(legend.position="none") # this line removes the legend, since we no longer need it
 ```
 
-#### Interpret the graph before we do any 'stats'
+**Interpret the graph before we do any 'stats'**
 
 Look at the plot - given these sample data, does it seem plausible that the proportions among the populations of black ladybirds and red ladybirdsare the same in both industrial and rural settings, or not? Do you expect to retain or to reject the null hypothesis?
 
-#### Making the contingency table from the data
-
-**Preparation**
+**Making the contingency table from the data**
 
 We will use the function `chisq.test()` to carry out the chi square test. However, this requires a matrix of the total counts and our data is in one column of a data frame, spread over 20 rows, one count per colour per site. We need to convert this data frame into a 2x2 matrix of the total counts of each colour in each setting. We can use the `xtabs()` function to do this.
 
@@ -350,7 +348,7 @@ lady.mat
 
 A matrix of this type is sometimes called a **contingency table**.
 
-#### The actual Chi-square test
+**The actual Chi-square test**
 
 Let's do it...
 
@@ -358,7 +356,7 @@ Let's do it...
 chisq.test(lady.mat)
 ```
 
-#### Conclusion
+**Conclusion**
 
 Study the output of the chi-square test. Note that you are given a test-statistic (here called Chi-squared/X-squared), a number of degrees of freedom (*df*) (in some tests you are given more than one of these). This is the number of independent pieces of information used to calculate the test statistic. Lastly, you are a given a *p*-value. This is the probability that you would have got a chi-squared value as big or bigger than the one you got *if* the null hypothesis were true, where here the null hypothesis is that there is no association between ladybird colour and location. Put another way, the p-value is, roughly speaking, the probability of getting the data you got or more extreme data if the null hypothesis were true.
 
@@ -366,7 +364,7 @@ If the p-value is small (by which we usually mean less than 0.05) then we reject
 
 You are also told that this test was done with Yates' continuity correction. All this means is that an adjustment has been made for the fact that our data are discrete and the chi-square distribution that we are using to calculate the *p*-values is continuous. That's it. Thank you, R, for doing this, but we don't need to worry about it.
 
-#### Reporting the result
+**Reporting the result**
 
 Select which of the two following statements would be an appropriate way to report these data, and fill in the missing values.
 
@@ -380,7 +378,7 @@ Select which of the two following statements would be an appropriate way to repo
 
 ### Exercises
 
-#### Exercise One
+**Exercise One**
 
 A researcher investigates whether two species **A** and **B** are associated with one another. If one is present at a site, does the other tend to be present, and if one is absent, does the other tend to be absent?. If the species were not associated with one another, then the presence of one would say nothing about the likely presence or absence of the other. Their occurrences would be independent.
 
@@ -410,7 +408,7 @@ Think about what each row and column in this table represents: as we have constr
 
 ### Solutions
 
-#### Exercise One
+**Exercise One**
 
 2.  Yes, because the data are in the form of counts, each count is independent of the others and no count is less than 5.
 

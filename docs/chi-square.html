@@ -726,16 +726,13 @@ X-squared = 19.103, df = 1, p-value = 1.239e-05</code></pre>
 <h3 data-number="10.2.2" class="anchored" data-anchor-id="implementation-in-r"><span class="header-section-number">10.2.2</span> Implementation in R</h3>
 <p>To implement this analysis yourself, download the project folder associated with this chapter, unzip it and put it somewhere sensible on your machine. Then, in RStudio, open the project by navigating to it, starting with File/Open Project, then open the <code>chi_square_independence_template.qmd</code> notebook. Use the code provided below to fill in the skeleton code chunks in that notebook, and run each chunk in turn.</p>
 <p>Note that the code provided below is not the only way to do what we want here. You are encouraged to play with it. For example, if you want to see what a particular line does, you can ‘comment it out’ by putting a # at the begining of the line, then running that line again. What difference does it make?</p>
-<section id="load-packages-we-need" class="level4" data-number="10.2.2.1">
-<h4 data-number="10.2.2.1" class="anchored" data-anchor-id="load-packages-we-need"><span class="header-section-number">10.2.2.1</span> Load packages we need</h4>
+<p><strong>Load packages we need</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># this makes your plots look nicer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="import-the-data-and-inspect-it" class="level4" data-number="10.2.2.2">
-<h4 data-number="10.2.2.2" class="anchored" data-anchor-id="import-the-data-and-inspect-it"><span class="header-section-number">10.2.2.2</span> Import the data and inspect it</h4>
+<p><strong>Import the data and inspect it</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"ladybirds_morph_colour.csv"</span>) </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lady<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath) <span class="co"># read the data int an object (in this case, a data frame) called lady</span></span>
@@ -750,9 +747,7 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 </div>
 </div>
 <p>Are those sensible names for the variables? Is the data tidy?</p>
-</section>
-<section id="calculate-the-totals-of-each-colour-in-each-habitat." class="level4" data-number="10.2.2.3">
-<h4 data-number="10.2.2.3" class="anchored" data-anchor-id="calculate-the-totals-of-each-colour-in-each-habitat."><span class="header-section-number">10.2.2.3</span> Calculate the totals of each colour in each habitat.</h4>
+<p><strong>Calculate the totals of each colour in each habitat</strong></p>
 <p>We will save these totals into a new data frame called <code>totals</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>totals<span class="ot">&lt;-</span> lady <span class="sc">|&gt;</span></span>
@@ -771,9 +766,7 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 </div>
 </div>
 <p>Now that we have these totals we use them to plot a bar chart of the data, using <code>geom_col()</code> within<code>ggplot</code>:</p>
-</section>
-<section id="plot-the-data" class="level4" data-number="10.2.2.4">
-<h4 data-number="10.2.2.4" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">10.2.2.4</span> Plot the data</h4>
+<p><strong>Plot the data</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>totals <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat,<span class="at">y =</span> total.number,<span class="at">fill=</span>morph_colour))<span class="sc">+</span></span>
@@ -790,9 +783,7 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 </div>
 </div>
 </div>
-</section>
-<section id="fix-the-colours" class="level4" data-number="10.2.2.5">
-<h4 data-number="10.2.2.5" class="anchored" data-anchor-id="fix-the-colours"><span class="header-section-number">10.2.2.5</span> Fix the colours</h4>
+<p><strong>Fix the colours</strong></p>
 <p>The fill colours we got in the figure above are defaults from R, which does not realise that a factor of interest for us is the actual colour of the ladybirds. We would like the figure to reflect that, so let us make the bars red and black for red and black ladybirds respectively.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the data, with sensible colours</span></span>
@@ -813,14 +804,9 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 </div>
 </div>
 </div>
-</section>
-<section id="interpret-the-graph-before-we-do-any-stats-1" class="level4" data-number="10.2.2.6">
-<h4 data-number="10.2.2.6" class="anchored" data-anchor-id="interpret-the-graph-before-we-do-any-stats-1"><span class="header-section-number">10.2.2.6</span> Interpret the graph before we do any ‘stats’</h4>
+<p><strong>Interpret the graph before we do any ‘stats’</strong></p>
 <p>Look at the plot - given these sample data, does it seem plausible that the proportions among the populations of black ladybirds and red ladybirdsare the same in both industrial and rural settings, or not? Do you expect to retain or to reject the null hypothesis?</p>
-</section>
-<section id="making-the-contingency-table-from-the-data" class="level4" data-number="10.2.2.7">
-<h4 data-number="10.2.2.7" class="anchored" data-anchor-id="making-the-contingency-table-from-the-data"><span class="header-section-number">10.2.2.7</span> Making the contingency table from the data</h4>
-<p><strong>Preparation</strong></p>
+<p><strong>Making the contingency table from the data</strong></p>
 <p>We will use the function <code>chisq.test()</code> to carry out the chi square test. However, this requires a matrix of the total counts and our data is in one column of a data frame, spread over 20 rows, one count per colour per site. We need to convert this data frame into a 2x2 matrix of the total counts of each colour in each setting. We can use the <code>xtabs()</code> function to do this.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lady.mat<span class="ot">&lt;-</span><span class="fu">xtabs</span>(number<span class="sc">~</span>Habitat <span class="sc">+</span> morph_colour, <span class="at">data=</span>lady)</span>
@@ -833,9 +819,7 @@ Habitat      black red
 </div>
 </div>
 <p>A matrix of this type is sometimes called a <strong>contingency table</strong>.</p>
-</section>
-<section id="the-actual-chi-square-test" class="level4" data-number="10.2.2.8">
-<h4 data-number="10.2.2.8" class="anchored" data-anchor-id="the-actual-chi-square-test"><span class="header-section-number">10.2.2.8</span> The actual Chi-square test</h4>
+<p><strong>The actual Chi-square test</strong></p>
 <p>Let’s do it…</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(lady.mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -847,30 +831,24 @@ data:  lady.mat
 X-squared = 19.103, df = 1, p-value = 1.239e-05</code></pre>
 </div>
 </div>
-</section>
-<section id="conclusion-1" class="level4" data-number="10.2.2.9">
-<h4 data-number="10.2.2.9" class="anchored" data-anchor-id="conclusion-1"><span class="header-section-number">10.2.2.9</span> Conclusion</h4>
+<p><strong>Conclusion</strong></p>
 <p>Study the output of the chi-square test. Note that you are given a test-statistic (here called Chi-squared/X-squared), a number of degrees of freedom (<em>df</em>) (in some tests you are given more than one of these). This is the number of independent pieces of information used to calculate the test statistic. Lastly, you are a given a <em>p</em>-value. This is the probability that you would have got a chi-squared value as big or bigger than the one you got <em>if</em> the null hypothesis were true, where here the null hypothesis is that there is no association between ladybird colour and location. Put another way, the p-value is, roughly speaking, the probability of getting the data you got or more extreme data if the null hypothesis were true.</p>
 <p>If the p-value is small (by which we usually mean less than 0.05) then we rejectthe null hypothesis.</p>
 <p>You are also told that this test was done with Yates’ continuity correction. All this means is that an adjustment has been made for the fact that our data are discrete and the chi-square distribution that we are using to calculate the <em>p</em>-values is continuous. That’s it. Thank you, R, for doing this, but we don’t need to worry about it.</p>
-</section>
-<section id="reporting-the-result" class="level4" data-number="10.2.2.10">
-<h4 data-number="10.2.2.10" class="anchored" data-anchor-id="reporting-the-result"><span class="header-section-number">10.2.2.10</span> Reporting the result</h4>
+<p><strong>Reporting the result</strong></p>
 <p>Select which of the two following statements would be an appropriate way to report these data, and fill in the missing values.</p>
-</section>
-<section id="option-1" class="level4" data-number="10.2.2.11">
-<h4 data-number="10.2.2.11" class="anchored" data-anchor-id="option-1"><span class="header-section-number">10.2.2.11</span> Option 1</h4>
+<section id="option-1" class="level4" data-number="10.2.2.1">
+<h4 data-number="10.2.2.1" class="anchored" data-anchor-id="option-1"><span class="header-section-number">10.2.2.1</span> Option 1</h4>
 <p>‘Ladybird colour morphs are not equally common in the two habitats (Chi-sq =19.3, df = 1, p&lt;0.001)’</p>
 </section>
-<section id="option-2" class="level4" data-number="10.2.2.12">
-<h4 data-number="10.2.2.12" class="anchored" data-anchor-id="option-2"><span class="header-section-number">10.2.2.12</span> Option 2</h4>
+<section id="option-2" class="level4" data-number="10.2.2.2">
+<h4 data-number="10.2.2.2" class="anchored" data-anchor-id="option-2"><span class="header-section-number">10.2.2.2</span> Option 2</h4>
 <p>‘We find insufficient evidence to reject the null hypothesis that Ladybird colour morphs are equally distributed in the two habitats (Chi-sq =, df = , p = )’</p>
 </section>
 </section>
 <section id="exercises-1" class="level3" data-number="10.2.3">
 <h3 data-number="10.2.3" class="anchored" data-anchor-id="exercises-1"><span class="header-section-number">10.2.3</span> Exercises</h3>
-<section id="exercise-one" class="level4" data-number="10.2.3.1">
-<h4 data-number="10.2.3.1" class="anchored" data-anchor-id="exercise-one"><span class="header-section-number">10.2.3.1</span> Exercise One</h4>
+<p><strong>Exercise One</strong></p>
 <p>A researcher investigates whether two species <strong>A</strong> and <strong>B</strong> are associated with one another. If one is present at a site, does the other tend to be present, and if one is absent, does the other tend to be absent?. If the species were not associated with one another, then the presence of one would say nothing about the likely presence or absence of the other. Their occurrences would be independent.</p>
 <p>The researcher goes to 100 sites and finds the following:</p>
 <table class="caption-top table">
@@ -918,11 +896,9 @@ X-squared = 19.103, df = 1, p-value = 1.239e-05</code></pre>
 <li>What conclusion would you reach if neither species was ever seen in the absence of the other - meaning that the off-diagonal elements of the table would be zero?</li>
 </ol>
 </section>
-</section>
 <section id="solutions-1" class="level3" data-number="10.2.4">
 <h3 data-number="10.2.4" class="anchored" data-anchor-id="solutions-1"><span class="header-section-number">10.2.4</span> Solutions</h3>
-<section id="exercise-one-1" class="level4" data-number="10.2.4.1">
-<h4 data-number="10.2.4.1" class="anchored" data-anchor-id="exercise-one-1"><span class="header-section-number">10.2.4.1</span> Exercise One</h4>
+<p><strong>Exercise One</strong></p>
 <ol start="2" type="1">
 <li><p>Yes, because the data are in the form of counts, each count is independent of the others and no count is less than 5.</p></li>
 <li><p>We use the matrix AB as the argument for <code>chisq.test()</code>.</p></li>
@@ -980,7 +956,6 @@ X-squared = 46.08, df = 1, p-value = 1.135e-11</code></pre>
 </div>
 </div>
 <p>In this case p&lt;0.001. Hence the test tells us that in this case there is evidence that species A and B are strongly associated.</p>
-</section>
 </section>
 </section>
 <section id="the-chi-square-test-explained-optional" class="level2" data-number="10.3">
