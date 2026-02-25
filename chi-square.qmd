@@ -155,7 +155,7 @@ We are going to analyse a scenario of this type to see if there is evidence for 
 
 Behind this the research purpose might be to investigate whether matching of morphological colour of the ladybirds to the prevalent colour of the environment confers an evolutionary advantage. If it does then we would expect there to be an association between morphological colour and environment so that the proportion of black to red ladybirds would be higher in a grimy industrial setting than in it would be in a rural setting.
 
-A **Chi-Square contingency analysis** can be used to investigate this. This type of analysis is used when you have
+A **Chi-Square independence analysis** can be used to investigate this. This type of analysis is used when you have
 
 -   Count data - for example, how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?
 -   Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.
@@ -168,7 +168,7 @@ What do you think a suitable hypothesis should be for this investigation, and wh
 -   The null hypotheses could be: **H~0~**: There is no association between habitat and ladybird colour. This means that whatever the proportion is of black to red ladybirds, it is the same in both habitats.\
 -   The alternate hypothesis could be: **H1**: There is an association between habitat and ladybird colour.
 
-```{r,message=FALSE}
+```{r,message=FALSE, echo = FALSE}
 # Load packages we need
 library(tidyverse)
 library(here)
@@ -177,7 +177,7 @@ library(kableExtra)
 theme_set(theme_cowplot()) # this sets the cowplot theme to be the default theme for any plots we make..
 ```
 
-```{r}
+```{r, echo = FALSE}
 # Import the data
 filepath<-here("data","ladybirds_morph_colour.csv")
 lady<-read_csv(filepath)
@@ -194,7 +194,7 @@ head(lady,20)
 
 The total counts for red and black ladybirds observed in industrial and rural settings are shown below:
 
-```{r}
+```{r, echo = FALSE}
 # Calculate the totals of each colour in each habitat.
 totals<- lady |>
   group_by(Habitat,morph_colour) |>
@@ -209,7 +209,7 @@ totals
 
 From these totals we can create a bar chart:
 
-```{r,eval=TRUE}
+```{r,echo = FALSE, eval=TRUE}
 # plot the data, with sensible colours
 totals |>
   ggplot(aes(x = Habitat,y = total.number,fill=morph_colour))+
@@ -232,7 +232,7 @@ A chi-square test of independence will enable us to determine how likely it is t
 
 To do the chi square test, it helps to set out our count data as a 2 x 2 table of total counts:
 
-```{r}
+```{r, echo = FALSE}
 lady.mat<-xtabs(number~Habitat + morph_colour, data=lady)
 lady.mat
 ```
@@ -267,9 +267,9 @@ An appropriate way to report these data would be:
 
 This is mentioned is the output of the test. What does it mean? It adjusts for the fact that our data are discrete and the chi-square distribution that we are using to calculate the *p*-values is continuous. That's it.
 
-### R script
+### Implementation in R
 
-To implement this analysis yourself, downloaod the project folder associated with this chapter. Unzip it, put it somewhere sensible on your machine, then, in RStudio, open the project by navigating to it, starting with File/Open Project, then open the `chi_square_independence_template.qmd` notebook. Use the code provided below to fill in the skeleton code chunks in that notebook, and run each chunk in turn.
+To implement this analysis yourself, download the project folder associated with this chapter, unzip it and put it somewhere sensible on your machine. Then, in RStudio, open the project by navigating to it, starting with File/Open Project, then open the `chi_square_independence_template.qmd` notebook. Use the code provided below to fill in the skeleton code chunks in that notebook, and run each chunk in turn.
 
 Note that the code provided below is not the only way to do what we want here. You are encouraged to play with it. For example, if you want to see what a particular line does, you can 'comment it out' by putting a \# at the begining of the line, then running that line again. What difference does it make?
 
