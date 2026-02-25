@@ -42,41 +42,101 @@ In a chi-square 'goodness of fit' test, we are testing data where we have a numb
 
 In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.
 
-### Example
+### Example: Mendelian Genetics
 
-Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F1 generation we get 176 offspring , of which 130 were yellow and 46 were green.
+If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 generation shown in @fig-mendelian-inheritance with yellow being dominant, then the offspring in the F2 generation would in the long run be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
+
+```{r}
+#| label: fig-mendelian-inheritance
+#| fig-cap: "An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or a more extreme ratio, *if* Mendelian inheritance were correct. Source: Khan Academy"
+
+myimages<-here::here("figures","mendelian_pea_plants.png")
+knitr::include_graphics(myimages)
+```
+
+Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 125 are yellow and 51 are green. These are the *observed* counts of yellow and green pea plants. 
+The *expected* counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F2 generation.
 
 The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.
 
-Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.
+**Doing the chi-square test manually**
 
-### Doing the chi-square test in R
+You would not normally do this, you would use software such as R, but for learning purposes let us go as far as we can in implementing a chi-square test on this data ourselves just to see the process behind it, then we can see how easy it is to do the test in R.
 
-What we do in R is use the `chisq.test()` function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.
+What we need to do is to calculate from our data a number that tells us how likely is it that we would have got totals for yellow and green pea plants as far or further from the expected 3:1 ratio as we did, if the null hypothesis of Mendelian inheritance were correct. 
+
+That is the very definition of a p-value! So that is what we need to calculate, a p-value.
+
+It turns out that this p-value an be calculated from a number derived from the data that we call the **chi-square statistic**. This number is defined in such a way that the further your actual counts are from thier expected values, the bigger it is.
+
+It is calculated by looking at the squared difference, for each count, between the observed value and the expected value. The squared thing is because we don't care if the observed value is less than or more than the expected value. It is by how much that matters. 
+
+Here is the expression for the chi-square statistic:
+
+$$
+\begin{align}
+\chi^2 &= \sum_{i=\text{Y,G}}\frac{(O_i-E_i)^2}{E_i}\\ &=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
+\end{align}
+$$
+The first line is just a more compact way of witing the second line, where the $\sum$ symbol means 'sum over' a yellow peas term (Y) and a green peas term (G), as laid out in the second line. $O_\text{Y}$ and $O_\text{G}$ mean the observed numbers of yellow and green pea plants respectively, while $E_\text{Y}$ and $E_\text{G}$ mean the expected numbers of each.
+
+Defined in this way, the chi-square statistic $\chi^2$is a number that will always be positive (because it is the sum of squared terms, and they are always positive, divided by an expected number, which can also only be positive) and will be bigger the further from the expected values our observed values turn out to be.
+
+It is also a number that will vary each time you repeat the study because while the expected values $E_i$ are fixed, the observed values $O_i$ will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calculate the chi-sqare statistic you would find that it follows one of a known family of distributions, the so-called (who would have thought it?) chi-square distributions, provided each count is greater than about five. 
+
+To determine which one among them is followed by our own chi-squared statistic we need to know one more thing, the so-called *degrees of freedom*. This is a term that crops up often when using statistical tests. Roughly speaking, it refers to the number of independent pieces of information that are used in arriving at a result, given whatever constraints surround the problem. In our case, the constraint was that there were 176 pea plants in total in the F2 generation. That meant that only one of the sub-totals for each of the colours could be freely chosen. Once it was known the other could be determined as the difference between it and the total: if there are 176 plants in total and 125 of them are yellow, then the green total *has* to be 176 - 125 = 51. So, in our case the degrees of freedom is one.
+
+Finally, knowing the chi-square statistic for our data, and knowing the degrees of freedom for our design, and thus knowing which chi-squae distribution is followed by our statistic, we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (because it is the same thing in the end) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value. We get software such as R to do this last bit for us.
+
+Finally, on that basis we can either reject or fail to reject the null hypothesis.
+
+Let's have a go:
+
+First we calculate our chi-squared statistic:
+
+$$
+\begin{align}
+\chi^2 &=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}\\
+&=\frac{(125-132)^2}{132} + \frac{(51-44)^2}{44}\\
+&=1.48
+\end{align}
+$$
+
+
+```{r}
+pchisq(1.48,1, lower.tail=FALSE)
+```
+
+
+**Doing the chi-square test in R**
+
+What we do in R is use the `chisq.test()` function to see how likely it is we would have got counts of 125 and 51 if the null hypothesis, with its expected counts in the ratio 3:1, were true.
 
 We do it like this:
 
-`chisq.test(c(130,46),p=c(0.75,0.25))`
+`chisq.test(c(125,51),p=c(0.75,0.25))`
 
 There are two arguments. The first is the counts we got, which we enter as a 'vector' `c(z,y,....)`, so we write `c(130,46)`. The second is a vector of the proportions we expect for the two counts, where these proportions should add up to one. So for our expected 3:1 ratio we enter `c(0.75,0.25)`.
 
 Let's do it: type the above function into the console window (bottom left). You will get an output something like this:
 
 ```{r,echo=FALSE}
-chisq.test(c(130,46),p=c(0.75,0.25))
+chisq.test(c(125,51),p=c(0.75,0.25))
 ```
 
 This output is typical of tests done in R. We get the 'test statistic' whose name varies depending on the test. Here it is called `X-squared`, pronounced `chi-squared`. This is a number that the test calculates, based on the data you have given it. For the most part, we don't need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.
 
-In this case, we see that the p-value is 0.73, which is large. We could very plausibly have got yellow:green numbers of 130 and 46 if the null hypothesis were true, so we cannot reject that null hypothesis. In other words, our data are consistent at the 5% significance level with the predictions of simple Mendelian inheritance.
+In this case, we see that the p-value is 0.223, which is large. We could very plausibly have got yellow:green numbers of 125 and 51 if the null hypothesis were true, so we cannot reject that null hypothesis. In other words, our data are consistent at the 5% significance level with the predictions of simple Mendelian inheritance.
 
-### Reporting the result in English
+**Reporting the result in English**
 
 In English, we might report this result as:
 
-*We found counts of 130 yellow plants and 46 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 0.12, p=0.73).*
+*We found counts of 125 yellow plants and 51 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 1.48, df = 1,  p=0.223).*
 
 Note that we do not say we have proved Mendelian inheritance to be correct. We haven't. We never prove things in science. We haven't said anything about the truth of the null hypothesis. All we can say is whether our data are or are not consistent with the null hypothesis. In this case they are. We then report the test we used and the values of the test statistic and p-value. Other tests might give you other details to report too.
+
+
 
 ### Exercises
 
