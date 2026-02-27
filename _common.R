@@ -39,6 +39,10 @@ suppressMessages(library(GGally))
 suppressMessages(library(mosaicData))
 suppressMessages(library(cowplot))
 suppressMessages(library(here))
+suppressMessages(library(readxl))
+suppressMessages(library(terra))
+suppressMessages(library(sf))
+suppressMessages(library(rstatix))
 
 # knitr chunk options ----------------------------------------------------------
 

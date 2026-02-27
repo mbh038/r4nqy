@@ -19,19 +19,27 @@ theme_no_axes<-function(){
 }
 ```
 
-A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there are no replicates. That is, for each category we just have one count.
+A chi-square analysis is used when our data satisfy
 
-What we do is compare the counts we got to some *expected* value according either to chance or to some prior theory.
+* they are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc.
+* Each independent observation must definitely belong to either one group or the other
+* there are no replicates. That is, for each category we just have one count.
+* No counts are too small. A rule of thumb is that all counts should be 5 ore more. 
+
+What we do is compare the counts we got, the so-called *observable* values, to some *expected* values according either to chance or to some prior theory.
 
 For example:
 
--   If we were tossing a fair coin 1000 times we would *expect* 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?
+-   If we were tossing a fair coin 1000 times we would *expect* 500 heads and 500 tails, ie equal parts heads and tails, because on each toss a head or a tail is equally likely for a fair coin. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?
 
--   If we threw a fair dice (I can't bring myself to say *die*. It just sounds wrong.) a large number of times we would *expect* each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score *roughly* 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?
+-   If we threw a fair dice (I can't bring myself to say *die*. It just sounds wrong.) a large number of times we would *expect* each possible score, from 1 to 6, to occur the same number of timesie each score would occur 1/6th of the time, becuase each score is equally likely for a fair dice. In reality we would probably get each score *roughly* 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?
 
--   If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
+-   If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, as illustrated in @fig-mendelian-inheritance then the offspring would be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
 
 ```{r, echo = FALSE}
+#| label: fig-mendelian-inheritance
+#| fig-cap: "An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or a more extreme ratio, *if* Mendelian inheritance were correct. Source: Khan Academy"
+
 myimages<-here("figures","mendelian_pea_plants.png")
 knitr::include_graphics(myimages)
 ```
@@ -45,14 +53,6 @@ In a typical software implementation of the test, such as in R, we give it the c
 ### Example: Mendelian Genetics
 
 If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 generation shown in @fig-mendelian-inheritance with yellow being dominant, then the offspring in the F2 generation would in the long run be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
-
-```{r}
-#| label: fig-mendelian-inheritance
-#| fig-cap: "An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or a more extreme ratio, *if* Mendelian inheritance were correct. Source: Khan Academy"
-
-myimages<-here::here("figures","mendelian_pea_plants.png")
-knitr::include_graphics(myimages)
-```
 
 Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 125 are yellow and 51 are green. These are the *observed* counts of yellow and green pea plants. 
 The *expected* counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F2 generation.
@@ -207,26 +207,29 @@ Note the degrees of freedom that is reported: df = 11. The degrees of freedom is
 
 -   For R code to implement this section, scroll down to the next section \*
 
-A common scenario where we have with count data is that there are two explanatory factors each with two or more levels that enable us to classify the data. This can happen when something is either true or not true, and a test for for this truth gives either a positive or a negative result. We might want to know if the test to determine truth was any better than flipping a coin: is there some association between what the truth is (eg I do or do not have a disease) and what the test says about that (testing positive or negative for the disease). In this example our data would be counts of people in each of four categories: have the disease / test positive, have the disease / test negative, do not have the disease / test positive and do not have the disease / test negative.
+A common scenario we have with count data is that there are two explanatory factors each with two or more levels that enable us to classify the data. This can happen when something is either true or not true, and a test for for this truth gives either a positive or a negative result. We might want to know if the test to determine truth was any better than flipping a coin: is there some association between what the truth is (eg I do or do not have a disease) and what the test says about that (testing positive or negative for the disease). In this example our data would be counts of people in each of four categories: have the disease / test positive, have the disease / test negative, do not have the disease / test positive and do not have the disease / test negative.
 
 ### Example - red and black ladybirds
 
 We are going to analyse a scenario of this type to see if there is evidence for an association between two factors. Suppose we have some count data of ladybirds found in both an industrial and a rural location. In each location, some of the ladybirds are red and some are black. We would like to test for whether there is an association between the ladybird colour and its location. If there isn't then we would expect the proportion of black to red ladybirds to be roughly the same in both habitats. If there is, then we would expect the proportions to be different, meaning that knowing the habitat would tell us something about the likelihood of a ladybird found there being black or red. That is way of saying that the colour of the ladybirds would not be independent of the location.
 
-Behind this the research purpose might be to investigate whether matching of morphological colour of the ladybirds to the prevalent colour of the environment confers an evolutionary advantage. If it does then we would expect there to be an association between morphological colour and environment so that the proportion of black to red ladybirds would be higher in a grimy industrial setting than in it would be in a rural setting.
+Behind this the research purpose might be to investigate whether matching of morphological colour of the ladybirds to the prevalent colour of the environment confers an evolutionary advantage. If it does then we would expect there to be an association between morphological colour and environment so that the proportion of black to red ladybirds would be higher in a grimy industrial setting than in it would be in a shiny bright rural setting.
 
 A **Chi-Square independence analysis** can be used to investigate this. This type of analysis is used when you have
 
--   Count data - for example, how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?
--   Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.
--   Independent counts - each ladybird contributes to only one sub-total. For example, if it is red and found in a rural location, then it contributes to the count of red ladybirds found in a rural location, and not to any other sub-total, such as black ladybirds found in a rural location.
+* Count data - for example, how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?
+* Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.
+* Independent counts - each ladybird contributes to only one sub-total. For example, if it is red and found in a rural location, then it contributes to the count of red ladybirds found in a rural location, and not to any other sub-total, such as black ladybirds found in a rural location.
+* No replicates - for ach combination of the levels of the fators, we have just one count.
+
+All these are true for the ladybird study.
 
 #### Hypotheses
 
 What do you think a suitable hypothesis should be for this investigation, and what would the corresponding null hypothesis be?
 
 -   The null hypotheses could be: **H~0~**: There is no association between habitat and ladybird colour. This means that whatever the proportion is of black to red ladybirds, it is the same in both habitats.\
--   The alternate hypothesis could be: **H1**: There is an association between habitat and ladybird colour.
+-   The alternate hypothesis could be: **H1**: There is an association between habitat and ladybird colour. That is, the proportion of red to black differs between the two habitats.
 
 ```{r,message=FALSE, echo = FALSE}
 # Load packages we need

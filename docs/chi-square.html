@@ -472,33 +472,21 @@ window.Quarto = {
 
 
 <p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/chi-square/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and try out the exercises at the end.</p>
-<p>A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there are no replicates. That is, for each category we just have one count.</p>
-<p>What we do is compare the counts we got to some <em>expected</em> value according either to chance or to some prior theory.</p>
+<p>A chi-square analysis is used when our data satisfy</p>
+<ul>
+<li>they are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc.</li>
+<li>Each independent observation must definitely belong to either one group or the other</li>
+<li>there are no replicates. That is, for each category we just have one count.</li>
+<li>No counts are too small. A rule of thumb is that all counts should be 5 ore more.</li>
+</ul>
+<p>What we do is compare the counts we got, the so-called <em>observable</em> values, to some <em>expected</em> values according either to chance or to some prior theory.</p>
 <p>For example:</p>
 <ul>
-<li><p>If we were tossing a fair coin 1000 times we would <em>expect</em> 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?</p></li>
-<li><p>If we threw a fair dice (I can’t bring myself to say <em>die</em>. It just sounds wrong.) a large number of times we would <em>expect</em> each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score <em>roughly</em> 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?</p></li>
-<li><p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p></li>
+<li><p>If we were tossing a fair coin 1000 times we would <em>expect</em> 500 heads and 500 tails, ie equal parts heads and tails, because on each toss a head or a tail is equally likely for a fair coin. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?</p></li>
+<li><p>If we threw a fair dice (I can’t bring myself to say <em>die</em>. It just sounds wrong.) a large number of times we would <em>expect</em> each possible score, from 1 to 6, to occur the same number of timesie each score would occur 1/6th of the time, becuase each score is equally likely for a fair dice. In reality we would probably get each score <em>roughly</em> 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?</p></li>
+<li><p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, as illustrated in <a href="#fig-mendelian-inheritance" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> then the offspring would be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p></li>
 </ul>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="figures/mendelian_pea_plants.png" class="img-fluid figure-img" width="793"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="chi-square-goodness-of-fit-test" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test"><span class="header-section-number">10.1</span> Chi-square goodness of fit test</h2>
-<p>In a chi-square ‘goodness of fit’ test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts ‘fit’ the expected values.</p>
-<p>In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.</p>
-<section id="example-mendelian-genetics" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="example-mendelian-genetics"><span class="header-section-number">10.1.1</span> Example: Mendelian Genetics</h3>
-<p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 generation shown in <a href="#fig-mendelian-inheritance" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> with yellow being dominant, then the offspring in the F2 generation would in the long run be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>myimages<span class="ot">&lt;-</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"figures"</span>,<span class="st">"mendelian_pea_plants.png"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(myimages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-mendelian-inheritance" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -512,6 +500,13 @@ Figure&nbsp;10.1: An outline of Mendel’s green:yellow pea crossing study. In t
 </div>
 </div>
 </div>
+<section id="chi-square-goodness-of-fit-test" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test"><span class="header-section-number">10.1</span> Chi-square goodness of fit test</h2>
+<p>In a chi-square ‘goodness of fit’ test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts ‘fit’ the expected values.</p>
+<p>In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.</p>
+<section id="example-mendelian-genetics" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="example-mendelian-genetics"><span class="header-section-number">10.1.1</span> Example: Mendelian Genetics</h3>
+<p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 generation shown in <a href="#fig-mendelian-inheritance" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> with yellow being dominant, then the offspring in the F2 generation would in the long run be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p>
 <p>Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 125 are yellow and 51 are green. These are the <em>observed</em> counts of yellow and green pea plants. The <em>expected</em> counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F2 generation.</p>
 <p>The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.</p>
 <p><strong>Doing the chi-square test manually</strong></p>
@@ -541,7 +536,7 @@ Figure&nbsp;10.1: An outline of Mendel’s green:yellow pea crossing study. In t
 \end{align}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="fl">1.48</span>,<span class="dv">1</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(<span class="fl">1.48</span>,<span class="dv">1</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2237745</code></pre>
 </div>
@@ -577,7 +572,7 @@ X-squared = 1.4848, df = 1, p-value = 0.223</code></pre>
 </ul>
 <p>You use R to do a chi-square test of that null hypothesis. Here is the code to do that and the output it would give:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>),<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># we could leave out the second argument here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>),<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># we could leave out the second argument here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Chi-squared test for given probabilities
@@ -594,7 +589,7 @@ X-squared = 1, df = 1, p-value = 0.3173</code></pre>
 <p>Suppose someone told you that the competence of scientists was linked to their astrological zodiac sign. I won’t name all of these, but there are twelve of them: Pisces, Scorpio, Cancer etc. To test this hypothesis, you spend a lot of time on Primo and identify 240 scientists, currently active, that have each published at least five papers in high impact journals in the last year. All of these people, you presume, are successful scientists. You write to each of them and ask them their date of birth. Amazingly(!), all of them respond. You then assign each of them to a zodiac sign according to their birth date and get the following counts for each sign:</p>
 <p>In this code chunk we have typed out the counts and collected them as a vector, using the function `<code>c()`</code>. we have saved this under the name <code>stars</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stars<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stars<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>What would be a suitable null hypothesis in this investigation?</li>
@@ -620,7 +615,7 @@ X-squared = 1, df = 1, p-value = 0.3173</code></pre>
 <li>Note that we do not need to include the second <code>p=...</code> argument in this case since the default presumption, that all proportions are equal, is true here.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(stars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(stars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Chi-squared test for given probabilities
@@ -642,24 +637,26 @@ X-squared = 2.3, df = 11, p-value = 0.9971</code></pre>
 <ul>
 <li>For R code to implement this section, scroll down to the next section *</li>
 </ul>
-<p>A common scenario where we have with count data is that there are two explanatory factors each with two or more levels that enable us to classify the data. This can happen when something is either true or not true, and a test for for this truth gives either a positive or a negative result. We might want to know if the test to determine truth was any better than flipping a coin: is there some association between what the truth is (eg I do or do not have a disease) and what the test says about that (testing positive or negative for the disease). In this example our data would be counts of people in each of four categories: have the disease / test positive, have the disease / test negative, do not have the disease / test positive and do not have the disease / test negative.</p>
+<p>A common scenario we have with count data is that there are two explanatory factors each with two or more levels that enable us to classify the data. This can happen when something is either true or not true, and a test for for this truth gives either a positive or a negative result. We might want to know if the test to determine truth was any better than flipping a coin: is there some association between what the truth is (eg I do or do not have a disease) and what the test says about that (testing positive or negative for the disease). In this example our data would be counts of people in each of four categories: have the disease / test positive, have the disease / test negative, do not have the disease / test positive and do not have the disease / test negative.</p>
 <section id="example---red-and-black-ladybirds" class="level3" data-number="10.2.1">
 <h3 data-number="10.2.1" class="anchored" data-anchor-id="example---red-and-black-ladybirds"><span class="header-section-number">10.2.1</span> Example - red and black ladybirds</h3>
 <p>We are going to analyse a scenario of this type to see if there is evidence for an association between two factors. Suppose we have some count data of ladybirds found in both an industrial and a rural location. In each location, some of the ladybirds are red and some are black. We would like to test for whether there is an association between the ladybird colour and its location. If there isn’t then we would expect the proportion of black to red ladybirds to be roughly the same in both habitats. If there is, then we would expect the proportions to be different, meaning that knowing the habitat would tell us something about the likelihood of a ladybird found there being black or red. That is way of saying that the colour of the ladybirds would not be independent of the location.</p>
-<p>Behind this the research purpose might be to investigate whether matching of morphological colour of the ladybirds to the prevalent colour of the environment confers an evolutionary advantage. If it does then we would expect there to be an association between morphological colour and environment so that the proportion of black to red ladybirds would be higher in a grimy industrial setting than in it would be in a rural setting.</p>
+<p>Behind this the research purpose might be to investigate whether matching of morphological colour of the ladybirds to the prevalent colour of the environment confers an evolutionary advantage. If it does then we would expect there to be an association between morphological colour and environment so that the proportion of black to red ladybirds would be higher in a grimy industrial setting than in it would be in a shiny bright rural setting.</p>
 <p>A <strong>Chi-Square independence analysis</strong> can be used to investigate this. This type of analysis is used when you have</p>
 <ul>
 <li>Count data - for example, how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?</li>
 <li>Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.</li>
 <li>Independent counts - each ladybird contributes to only one sub-total. For example, if it is red and found in a rural location, then it contributes to the count of red ladybirds found in a rural location, and not to any other sub-total, such as black ladybirds found in a rural location.</li>
+<li>No replicates - for ach combination of the levels of the fators, we have just one count.</li>
 </ul>
+<p>All these are true for the ladybird study.</p>
 <section id="hypotheses" class="level4" data-number="10.2.1.1">
 <h4 data-number="10.2.1.1" class="anchored" data-anchor-id="hypotheses"><span class="header-section-number">10.2.1.1</span> Hypotheses</h4>
 <p>What do you think a suitable hypothesis should be for this investigation, and what would the corresponding null hypothesis be?</p>
 <ul>
 <li>The null hypotheses could be: <strong>H<sub>0</sub></strong>: There is no association between habitat and ladybird colour. This means that whatever the proportion is of black to red ladybirds, it is the same in both habitats.<br>
 </li>
-<li>The alternate hypothesis could be: <strong>H1</strong>: There is an association between habitat and ladybird colour.</li>
+<li>The alternate hypothesis could be: <strong>H1</strong>: There is an association between habitat and ladybird colour. That is, the proportion of red to black differs between the two habitats.</li>
 </ul>
 </section>
 <section id="the-data" class="level4" data-number="10.2.1.2">
@@ -713,7 +710,7 @@ X-squared = 2.3, df = 11, p-value = 0.9971</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chi-square_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="chi-square_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -742,7 +739,7 @@ Habitat      black red
 <p>This is generally how statistical tests work. They take your data and use it in a carefully chosen way to calculate some number that in general is called a <em>test statistic</em> but which is referred to by different names when calculated for particular tests. How it is calculated depends on the test and these days we never have to manually do the calculations ourselves. That’s taken care of by software like R. Providing the data meet certain criteria, the statistic will typically have a known probability distribution. This means that the probability that it will exceed a given value if the null hypothesis is true can be calculated. This probability is the <em>p</em>-value. If the <em>p</em>-value is very small, and by that we typically mean less than 0.05 or 0.01, then we can reject the null hypothesis.</p>
 <p>When we run a chi-square test in R on the data in the table above it gives us this as output:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(lady.mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(lady.mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
@@ -770,15 +767,15 @@ X-squared = 19.103, df = 1, p-value = 1.239e-05</code></pre>
 <p>Note that the code provided below is not the only way to do what we want here. You are encouraged to play with it. For example, if you want to see what a particular line does, you can ‘comment it out’ by putting a # at the begining of the line, then running that line again. What difference does it make?</p>
 <p><strong>Load packages we need</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># this makes your plots look nicer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># this makes your plots look nicer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Import the data and inspect it</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"ladybirds_morph_colour.csv"</span>) </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>lady<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath) <span class="co"># read the data int an object (in this case, a data frame) called lady</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(lady) <span class="co"># inspect it.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"ladybirds_morph_colour.csv"</span>) </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lady<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath) <span class="co"># read the data int an object (in this case, a data frame) called lady</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(lady) <span class="co"># inspect it.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 20
 Columns: 4
@@ -792,10 +789,10 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 <p><strong>Calculate the totals of each colour in each habitat</strong></p>
 <p>We will save these totals into a new data frame called <code>totals</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>totals<span class="ot">&lt;-</span> lady <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Habitat,morph_colour) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">total.number =</span> <span class="fu">sum</span>(number))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>totals<span class="ot">&lt;-</span> lady <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Habitat,morph_colour) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">total.number =</span> <span class="fu">sum</span>(number))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
 # Groups:   Habitat [2]
@@ -810,17 +807,17 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 <p>Now that we have these totals we use them to plot a bar chart of the data, using <code>geom_col()</code> within<code>ggplot</code>:</p>
 <p><strong>Plot the data</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>totals <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat,<span class="at">y =</span> total.number,<span class="at">fill=</span>morph_colour))<span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">'dodge'</span>) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Habitat"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Count"</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">"Colour"</span>) <span class="sc">+</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="co"># try leaving out this line (but if you do, leave out the final '+' in the line above). What happens?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>totals <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat,<span class="at">y =</span> total.number,<span class="at">fill=</span>morph_colour))<span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Habitat"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Count"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">"Colour"</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="co"># try leaving out this line (but if you do, leave out the final '+' in the line above). What happens?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chi-square_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="chi-square_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -828,20 +825,20 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 <p><strong>Fix the colours</strong></p>
 <p>The fill colours we got in the figure above are defaults from R, which does not realise that a factor of interest for us is the actual colour of the ladybirds. We would like the figure to reflect that, so let us make the bars red and black for red and black ladybirds respectively.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the data, with sensible colours</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>totals <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat,<span class="at">y =</span> total.number,<span class="at">fill=</span>morph_colour))<span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">'dodge'</span>) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Habitat"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Count"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">"Colour"</span>) <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">black=</span><span class="st">'#312626'</span>,<span class="at">red=</span><span class="st">'#da1717'</span>)) <span class="sc">+</span> <span class="co"># this line manually sets the fill colours for us</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="co"># this line removes the legend, since we no longer need it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the data, with sensible colours</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>totals <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat,<span class="at">y =</span> total.number,<span class="at">fill=</span>morph_colour))<span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Habitat"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Count"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">"Colour"</span>) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">black=</span><span class="st">'#312626'</span>,<span class="at">red=</span><span class="st">'#da1717'</span>)) <span class="sc">+</span> <span class="co"># this line manually sets the fill colours for us</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="co"># this line removes the legend, since we no longer need it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chi-square_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="chi-square_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -851,8 +848,8 @@ $ number       &lt;dbl&gt; 10, 3, 4, 7, 6, 15, 18, 9, 12, 16, 32, 25, 25, 17, 16
 <p><strong>Making the contingency table from the data</strong></p>
 <p>We will use the function <code>chisq.test()</code> to carry out the chi square test. However, this requires a matrix of the total counts and our data is in one column of a data frame, spread over 20 rows, one count per colour per site. We need to convert this data frame into a 2x2 matrix of the total counts of each colour in each setting. We can use the <code>xtabs()</code> function to do this.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lady.mat<span class="ot">&lt;-</span><span class="fu">xtabs</span>(number<span class="sc">~</span>Habitat <span class="sc">+</span> morph_colour, <span class="at">data=</span>lady)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>lady.mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lady.mat<span class="ot">&lt;-</span><span class="fu">xtabs</span>(number<span class="sc">~</span>Habitat <span class="sc">+</span> morph_colour, <span class="at">data=</span>lady)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lady.mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            morph_colour
 Habitat      black red
@@ -864,7 +861,7 @@ Habitat      black red
 <p><strong>The actual Chi-square test</strong></p>
 <p>Let’s do it…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(lady.mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(lady.mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
@@ -921,8 +918,8 @@ X-squared = 19.103, df = 1, p-value = 1.239e-05</code></pre>
 </table>
 <p>They enter these into a 2 x 2 contingency table in R, as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>AB <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">33</span>,<span class="dv">28</span>,<span class="dv">12</span>,<span class="dv">27</span>),<span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>AB <span class="co"># R calls this a matrix - we will refer to it as a table.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>AB <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">33</span>,<span class="dv">28</span>,<span class="dv">12</span>,<span class="dv">27</span>),<span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>AB <span class="co"># R calls this a matrix - we will refer to it as a table.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]   33   12
@@ -946,7 +943,7 @@ X-squared = 19.103, df = 1, p-value = 1.239e-05</code></pre>
 <li><p>We use the matrix AB as the argument for <code>chisq.test()</code>.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(AB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(AB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
@@ -960,14 +957,14 @@ X-squared = 4.3312, df = 1, p-value = 0.03742</code></pre>
 <li>Let us create a new matrix, AB_uniform, with all values equal to 25:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>AB_uniform <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">25</span>,<span class="dv">25</span>,<span class="dv">25</span>),<span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>AB_uniform</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>AB_uniform <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">25</span>,<span class="dv">25</span>,<span class="dv">25</span>),<span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>AB_uniform</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]   25   25
 [2,]   25   25</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(AB_uniform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(AB_uniform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test
@@ -981,14 +978,14 @@ X-squared = 0, df = 1, p-value = 1</code></pre>
 <li>Now we create a matrix wih both off-diagonal elements equal to zero</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>AB_diagonal <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">25</span>),<span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>AB_diagonal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>AB_diagonal <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">25</span>),<span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>AB_diagonal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]   25    0
 [2,]    0   25</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(AB_diagonal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(AB_diagonal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
@@ -1005,7 +1002,7 @@ X-squared = 46.08, df = 1, p-value = 1.135e-11</code></pre>
 <p>You can skip this section if you are not interested in how the chi-square test works. If you are, read on.</p>
 <p>Let’s recall the number of sightings of each colour of ladybird in each habitat:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lady.mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>lady.mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            morph_colour
 Habitat      black red
@@ -1048,18 +1045,18 @@ X^2&amp;=\sum_{i=1}^4\frac{(\lvert O_i-E_i \rvert - 0.5)^2}{E_i}\\
 <p>To answer this we use the fact that the sampling distribution of <span class="math inline">\(X^2\)</span> is a chi-squared distribution with (in this case) <span class="math inline">\((2-1) \times (2-1) = 1\)</span> degrees of freedom. The sampling distribution is the distribution you would get if you were to repeat the study multiple times, each time calculating the <span class="math inline">\(X^2\)</span> statistic from the four counts of black/red, industrial/rural. Each time you would get a slightly different value of <span class="math inline">\(X^2\)</span>. The spread of those hypothetical values is what we call the sampling distribution. Providing none of the cell values in the tables are too samll (see below) it turns out that this distribution has a known mathematical form, known as a chi-square distribution.</p>
 <p>The p-value given in a chi-square test is the probability of getting a chi-squared statistic <span class="math inline">\(X^2\)</span> as big as or bigger than the one you actually got. This is the area under the chi-squared distribution with the appropriate number of degrees of freedom to the right of the test-statistic value <span class="math inline">\(X^2\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>xsquared<span class="ot">&lt;-</span><span class="fl">19.1</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>), <span class="at">xlim =</span> <span class="fu">c</span>(xsquared, <span class="dv">20</span>),</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">geom =</span> <span class="st">"area"</span>, <span class="at">fill =</span> <span class="st">"#84CA72"</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">""</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>xsquared,<span class="at">linewidth=</span><span class="fl">0.2</span>,<span class="at">colour=</span><span class="st">"gray80"</span>) <span class="sc">+</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>xsquared<span class="ot">&lt;-</span><span class="fl">19.1</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>), <span class="at">xlim =</span> <span class="fu">c</span>(xsquared, <span class="dv">20</span>),</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">geom =</span> <span class="st">"area"</span>, <span class="at">fill =</span> <span class="st">"#84CA72"</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">""</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>xsquared,<span class="at">linewidth=</span><span class="fl">0.2</span>,<span class="at">colour=</span><span class="st">"gray80"</span>) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chi-square_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="chi-square_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
