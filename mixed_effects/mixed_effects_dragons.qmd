@@ -1,5 +1,7 @@
 # Mixed effects analysis
 
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/mixed_effects_analysis/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look.
+
 ```{r}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
