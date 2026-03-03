@@ -58,6 +58,9 @@ book:
       - ordination.qmd
       - PCA.qmd
       - NMDS.qmd
+    - part: "Mixed Effects Analyses"
+      chapters: 
+        - mixed_effects/mixed_effects_dragons.qmd
     - part: "Additional help"
       chapters:
       - qq_plots.qmd

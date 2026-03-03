@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./qq_plots.html" rel="next">
+<link href="./mixed_effects/mixed_effects_dragons.html" rel="next">
 <link href="./PCA.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -356,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Additional help</span></a>
+ <span class="menu-text">Mixed Effects Analyses</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -364,14 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  <a href="./mixed_effects/mixed_effects_dragons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Mixed effects analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -379,12 +373,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Additional help</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./power-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">References</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -479,45 +496,54 @@ $ Callcusp &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.1192678 
-Run 1 stress 0.1192678 
-... Procrustes: rmse 8.150161e-05  max resid 0.0002485619 
-... Similar to previous best
-Run 2 stress 0.1192678 
-... Procrustes: rmse 6.161443e-05  max resid 0.0001884444 
-... Similar to previous best
-Run 3 stress 0.1192679 
-... Procrustes: rmse 0.0001541568  max resid 0.0004702297 
-... Similar to previous best
-Run 4 stress 0.1886532 
-Run 5 stress 0.1808911 
-Run 6 stress 0.1183186 
+Run 1 stress 0.1183186 
 ... New best solution
-... Procrustes: rmse 0.02026986  max resid 0.06496041 
-Run 7 stress 0.1990349 
-Run 8 stress 0.1808911 
-Run 9 stress 0.1812933 
-Run 10 stress 0.1183186 
-... Procrustes: rmse 3.995386e-06  max resid 9.970135e-06 
+... Procrustes: rmse 0.02026937  max resid 0.06495781 
+Run 2 stress 0.1183186 
+... New best solution
+... Procrustes: rmse 3.276597e-06  max resid 9.936536e-06 
 ... Similar to previous best
-Run 11 stress 0.1808912 
-Run 12 stress 0.1808911 
-Run 13 stress 0.1192679 
-Run 14 stress 0.1192679 
+Run 3 stress 0.1183186 
+... New best solution
+... Procrustes: rmse 9.4766e-07  max resid 2.651851e-06 
+... Similar to previous best
+Run 4 stress 0.2075713 
+Run 5 stress 0.1192678 
+Run 6 stress 0.1192678 
+Run 7 stress 0.1183186 
+... Procrustes: rmse 5.157912e-06  max resid 1.647102e-05 
+... Similar to previous best
+Run 8 stress 0.1183186 
+... Procrustes: rmse 1.483499e-05  max resid 4.805357e-05 
+... Similar to previous best
+Run 9 stress 0.1886532 
+Run 10 stress 0.1192679 
+Run 11 stress 0.1192679 
+Run 12 stress 0.1183186 
+... Procrustes: rmse 4.344398e-07  max resid 1.310029e-06 
+... Similar to previous best
+Run 13 stress 0.1183186 
+... Procrustes: rmse 7.890433e-06  max resid 2.517713e-05 
+... Similar to previous best
+Run 14 stress 0.1183186 
+... Procrustes: rmse 7.611125e-07  max resid 1.885653e-06 
+... Similar to previous best
 Run 15 stress 0.1183186 
-... Procrustes: rmse 1.041337e-05  max resid 2.996695e-05 
+... Procrustes: rmse 8.078436e-07  max resid 2.464197e-06 
 ... Similar to previous best
-Run 16 stress 0.1192678 
-Run 17 stress 0.1183186 
+Run 16 stress 0.1183186 
 ... New best solution
-... Procrustes: rmse 3.391746e-06  max resid 6.922476e-06 
+... Procrustes: rmse 9.424911e-07  max resid 2.42555e-06 
+... Similar to previous best
+Run 17 stress 0.1183186 
+... Procrustes: rmse 8.037147e-06  max resid 2.587035e-05 
 ... Similar to previous best
 Run 18 stress 0.1192678 
 Run 19 stress 0.1183186 
-... New best solution
-... Procrustes: rmse 3.51398e-06  max resid 1.081828e-05 
+... Procrustes: rmse 2.296505e-06  max resid 4.952919e-06 
 ... Similar to previous best
-Run 20 stress 0.1889646 
-*** Best solution repeated 1 times</code></pre>
+Run 20 stress 0.1809578 
+*** Best solution repeated 3 times</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -987,8 +1013,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./qq_plots.html" class="pagination-link" aria-label="Quantile-quantile plots">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./mixed_effects/mixed_effects_dragons.html" class="pagination-link" aria-label="Mixed effects analysis">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Mixed effects analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
