@@ -333,57 +333,57 @@ SO now both predictors ae highly significant.
 
 The dataset For this exerecise, we make use of the enviro_indicators dataset from the Kaggle [Global Environmental Indicators data](https://www.kaggle.com/datasets/sazidthe1/global-environmental-indicators?resource=download). The dataset comprises socio-economic and environmental data collected from various countries, focusing on factors related to sustainable development. It includes information such as forest coverage, biodiversity index, protected areas, rural population, and deforestation rates, aimed at understanding the relationship between human activities and land degradation.
 
-```{r}
-env_data <- read_csv('https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/regression_sprint/enviro_indicators.csv')
-env_data <-env_data |>
-  dplyr::select(Country, biodiversity_index, forest_coverage, deforestation_rate, soil_erosion, population_density)
-glimpse(env_data)
-```
+<!-- ```{r} -->
+<!-- env_data <- read_csv('https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/regression_sprint/enviro_indicators.csv') -->
+<!-- env_data <-env_data |> -->
+<!--   dplyr::select(Country, biodiversity_index, forest_coverage, deforestation_rate, soil_erosion, population_density) -->
+<!-- glimpse(env_data) -->
+<!-- ``` -->
 
-```{r}
-GGally::ggpairs(env_data[,2:6]) 
-```
+<!-- ```{r} -->
+<!-- GGally::ggpairs(env_data[,2:6])  -->
+<!-- ``` -->
 
-Only deforestion rate appears to be correlated with biodiversity index or to have a clear linear relation with it. However forest coverage is positively correlated and may have a weak linear relationship with biodiversity index, so let us include both as predictors in a linear regression model to predict biodiversity index
+<!-- Only deforestion rate appears to be correlated with biodiversity index or to have a clear linear relation with it. However forest coverage is positively correlated and may have a weak linear relationship with biodiversity index, so let us include both as predictors in a linear regression model to predict biodiversity index -->
 
-First we make an additive model
+<!-- First we make an additive model -->
 
-```{r}
-bi.model.additive <- lm(biodiversity_index ~ deforestation_rate + forest_coverage, data= env_data)
-```
+<!-- ```{r} -->
+<!-- bi.model.additive <- lm(biodiversity_index ~ deforestation_rate + forest_coverage, data= env_data) -->
+<!-- ``` -->
 
-Then we make an interactive model, where we explicityl include the possibility that the effect of deforestation rate might depend on the value of forest coverage, and vice-versa.
+<!-- Then we make an interactive model, where we explicityl include the possibility that the effect of deforestation rate might depend on the value of forest coverage, and vice-versa. -->
 
-```{r}
-bi.model.interactive <- lm(biodiversity_index ~ deforestation_rate * forest_coverage, data= env_data)
-```
+<!-- ```{r} -->
+<!-- bi.model.interactive <- lm(biodiversity_index ~ deforestation_rate * forest_coverage, data= env_data) -->
+<!-- ``` -->
 
-Now we use the `anova()` function to see if the siimpler model, which is nested within the first, has equally good explanatory power. The null hypothesis of this test is that it does.
+<!-- Now we use the `anova()` function to see if the siimpler model, which is nested within the first, has equally good explanatory power. The null hypothesis of this test is that it does. -->
 
-```{r}
-anova(bi.model.interactive,bi.model.additive)
-```
+<!-- ```{r} -->
+<!-- anova(bi.model.interactive,bi.model.additive) -->
+<!-- ``` -->
 
-The p value is high which suggest that there is no need for the interactive model, so we stick with the simpler additive model
+<!-- The p value is high which suggest that there is no need for the interactive model, so we stick with the simpler additive model -->
 
-Now we chwck that it is OK to believe the results of a linear regression model
+<!-- Now we chwck that it is OK to believe the results of a linear regression model -->
 
-```{r}
-autoplot(bi.model.additive)
-```
+<!-- ```{r} -->
+<!-- autoplot(bi.model.additive) -->
+<!-- ``` -->
 
-This all looks fine so on we go
+<!-- This all looks fine so on we go -->
 
-```{r}
-anova(bi.model.additive)
-```
+<!-- ```{r} -->
+<!-- anova(bi.model.additive) -->
+<!-- ``` -->
 
-This tells us that both deforestation rate ands forest cover are significan explanatory variables.
+<!-- This tells us that both deforestation rate ands forest cover are significan explanatory variables. -->
 
-```{r}
-summary(bi.model.additive)
-```
+<!-- ```{r} -->
+<!-- summary(bi.model.additive) -->
+<!-- ``` -->
 
-The null hypothesis here is that the values of te parameters are zero. We can reject that null for both forest cover and deforestation rate.
+<!-- The null hypothesis here is that the values of te parameters are zero. We can reject that null for both forest cover and deforestation rate. -->
 
-The estimate column tells us the amount by which the biodiversity index will change if either of the factors increases by one unit, *while keeping the other factor constant*.
+<!-- The estimate column tells us the amount by which the biodiversity index will change if either of the factors increases by one unit, *while keeping the other factor constant*. -->

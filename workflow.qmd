@@ -2,7 +2,7 @@
 
 ```{r}
 #| include: false
-source("_common.R")
+source(here::here("_common.R"))
 ```
 
 \vspace{-10mm}

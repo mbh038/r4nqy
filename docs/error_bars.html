@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>20&nbsp; NMDS – From questions to data to answers using R</title>
+<title>24&nbsp; Error bars – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./mixed_effects/mixed_effects_dragons.html" rel="next">
-<link href="./PCA.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./power-analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,6 +69,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -116,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./community_ecology.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./NMDS.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NMDS</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./error_bars.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -347,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./NMDS.html" class="sidebar-item-text sidebar-link active">
+  <a href="./NMDS.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NMDS</span></span></a>
   </div>
 </li>
@@ -393,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./error_bars.html" class="sidebar-item-text sidebar-link">
+  <a href="./error_bars.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></span></a>
   </div>
 </li>
@@ -426,17 +421,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ordination-plot-of-disimilarites-using-nmds" id="toc-ordination-plot-of-disimilarites-using-nmds" class="nav-link active" data-scroll-target="#ordination-plot-of-disimilarites-using-nmds"><span class="header-section-number">20.1</span> Ordination plot of disimilarites using NMDS</a></li>
-  <li><a href="#how-well-does-the-nmds-plot-reflect-true-patterns-in-the-data" id="toc-how-well-does-the-nmds-plot-reflect-true-patterns-in-the-data" class="nav-link" data-scroll-target="#how-well-does-the-nmds-plot-reflect-true-patterns-in-the-data"><span class="header-section-number">20.2</span> How well does the NMDS plot reflect true patterns in the data?</a></li>
+  <li><a href="#what-are-error-bars-for" id="toc-what-are-error-bars-for" class="nav-link active" data-scroll-target="#what-are-error-bars-for"><span class="header-section-number">24.1</span> What are error bars for?</a></li>
+  <li><a href="#descriptive-error-bars" id="toc-descriptive-error-bars" class="nav-link" data-scroll-target="#descriptive-error-bars"><span class="header-section-number">24.2</span> Descriptive error bars</a></li>
+  <li><a href="#inferential-error-bars" id="toc-inferential-error-bars" class="nav-link" data-scroll-target="#inferential-error-bars"><span class="header-section-number">24.3</span> Inferential Error Bars</a>
+  <ul class="collapse">
+  <li><a href="#the-standard-error" id="toc-the-standard-error" class="nav-link" data-scroll-target="#the-standard-error"><span class="header-section-number">24.3.1</span> The standard error</a></li>
+  <li><a href="#the-confidence-interval" id="toc-the-confidence-interval" class="nav-link" data-scroll-target="#the-confidence-interval"><span class="header-section-number">24.3.2</span> The confidence interval</a></li>
+  <li><a href="#how-to-interpret-figures" id="toc-how-to-interpret-figures" class="nav-link" data-scroll-target="#how-to-interpret-figures"><span class="header-section-number">24.3.3</span> How to interpret figures</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/NMDS.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/error_bars.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./community_ecology.html">Multivariate Analysis</a></li><li class="breadcrumb-item"><a href="./NMDS.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NMDS</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./error_bars.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">NMDS</span></h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></h1>
 </div>
 
 
@@ -453,131 +454,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="ordination-plot-of-disimilarites-using-nmds" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="ordination-plot-of-disimilarites-using-nmds"><span class="header-section-number">20.1</span> Ordination plot of disimilarites using NMDS</h2>
-<p>In the dune case, the multiple dimensions are the many species. What patterns exist among them? Which seem to like similar conditions and tend to appear at the same sites, and vice versa. Also, which sites are similar to each other, in respect of what grows there, and which are different? These are the questions that ordination plots are intended to shed light on. For data based on the presence/absence/abundance of species, <strong>Non-Metric Multidimensional Scaling (NMDS)</strong> is a widely used type of ordination technique.</p>
-<p>Here, we will entirely skate over the details, but will carry out the analysis using the <code>vegan</code> function <code>metaMDS()</code> then plot the result.</p>
-<p>We will use as an example the <code>dune</code> data set that comes as part of the <code>vegan</code> package. This has ordinal plant species abundance data in columns and sites in rows. There are 20 sites and 30 species altogether, although most sites only have a few of these.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(dune)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 20
-Columns: 30
-$ Achimill &lt;dbl&gt; 1, 3, 0, 0, 2, 2, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0
-$ Agrostol &lt;dbl&gt; 0, 0, 4, 8, 0, 0, 0, 4, 3, 0, 0, 4, 5, 4, 4, 7, 0, 0, 0, 5
-$ Airaprae &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 3, 0
-$ Alopgeni &lt;dbl&gt; 0, 2, 7, 2, 0, 0, 0, 5, 3, 0, 0, 8, 5, 0, 0, 4, 0, 0, 0, 0
-$ Anthodor &lt;dbl&gt; 0, 0, 0, 0, 4, 3, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0
-$ Bellpere &lt;dbl&gt; 0, 3, 2, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0
-$ Bromhord &lt;dbl&gt; 0, 4, 0, 3, 2, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-$ Chenalbu &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0
-$ Cirsarve &lt;dbl&gt; 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-$ Comapalu &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0
-$ Eleopalu &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 5, 8, 0, 0, 0, 4
-$ Elymrepe &lt;dbl&gt; 4, 4, 4, 4, 4, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-$ Empenigr &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0
-$ Hyporadi &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 5, 0
-$ Juncarti &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 4
-$ Juncbufo &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0, 4, 3, 0, 0, 0, 0, 0, 0, 0
-$ Lolipere &lt;dbl&gt; 7, 5, 6, 5, 2, 6, 6, 4, 2, 6, 7, 0, 0, 0, 0, 0, 0, 2, 0, 0
-$ Planlanc &lt;dbl&gt; 0, 0, 0, 0, 5, 5, 5, 0, 0, 3, 3, 0, 0, 0, 0, 0, 2, 3, 0, 0
-$ Poaprat  &lt;dbl&gt; 4, 4, 5, 4, 2, 3, 4, 4, 4, 4, 4, 0, 2, 0, 0, 0, 1, 3, 0, 0
-$ Poatriv  &lt;dbl&gt; 2, 7, 6, 5, 6, 4, 5, 4, 5, 4, 0, 4, 9, 0, 0, 2, 0, 0, 0, 0
-$ Ranuflam &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 4
-$ Rumeacet &lt;dbl&gt; 0, 0, 0, 0, 5, 6, 3, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0
-$ Sagiproc &lt;dbl&gt; 0, 0, 0, 5, 0, 0, 0, 2, 2, 0, 2, 4, 2, 0, 0, 0, 0, 0, 3, 0
-$ Salirepe &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 5
-$ Scorautu &lt;dbl&gt; 0, 5, 2, 2, 3, 3, 3, 3, 2, 3, 5, 2, 2, 2, 2, 0, 2, 5, 6, 2
-$ Trifprat &lt;dbl&gt; 0, 0, 0, 0, 2, 5, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-$ Trifrepe &lt;dbl&gt; 0, 5, 2, 1, 2, 5, 2, 2, 3, 6, 3, 3, 2, 6, 1, 0, 0, 2, 2, 0
-$ Vicilath &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0
-$ Bracruta &lt;dbl&gt; 0, 0, 2, 2, 2, 6, 2, 2, 2, 2, 4, 4, 0, 0, 4, 4, 0, 6, 3, 4
-$ Callcusp &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 3</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Run 0 stress 0.1192678 
-Run 1 stress 0.1183186 
-... New best solution
-... Procrustes: rmse 0.02026994  max resid 0.06495913 
-Run 2 stress 0.1183186 
-... New best solution
-... Procrustes: rmse 6.186961e-06  max resid 2.159628e-05 
-... Similar to previous best
-Run 3 stress 0.1192679 
-Run 4 stress 0.1192678 
-Run 5 stress 0.1183186 
-... Procrustes: rmse 1.097896e-05  max resid 3.494324e-05 
-... Similar to previous best
-Run 6 stress 0.1183186 
-... Procrustes: rmse 2.658342e-06  max resid 6.869919e-06 
-... Similar to previous best
-Run 7 stress 0.1192679 
-Run 8 stress 0.1809578 
-Run 9 stress 0.1192678 
-Run 10 stress 0.1809578 
-Run 11 stress 0.1192678 
-Run 12 stress 0.119268 
-Run 13 stress 0.2108378 
-Run 14 stress 0.1192678 
-Run 15 stress 0.1183186 
-... Procrustes: rmse 1.124671e-05  max resid 3.706121e-05 
-... Similar to previous best
-Run 16 stress 0.1192678 
-Run 17 stress 0.1192679 
-Run 18 stress 0.1183186 
-... Procrustes: rmse 1.58163e-06  max resid 4.345892e-06 
-... Similar to previous best
-Run 19 stress 0.1192679 
-Run 20 stress 0.1192679 
-*** Best solution repeated 5 times</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ord, <span class="at">type =</span> <span class="st">"t"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(ord, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">cex =</span> <span class="fl">0.2</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">bg=</span><span class="st">"yellow"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="NMDS_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#text(ord, display = "spec", cex=0.7, col="blue")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The plot shows in two dimensions the sites, here numbered 1-18, and in red, the species. Sites that appear close together on this plot are more similar than sites that are far apart. Species that are close together on the plot tend to occur together, while species that are far apart do so less often.</p>
-<p>Check that this plot accords with the dendrogram above.</p>
-<p>Improvements to this plot can be made using <code>ggplot</code> - plenty of blogs exist that tell you how to do this.</p>
+<section id="what-are-error-bars-for" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="what-are-error-bars-for"><span class="header-section-number">24.1</span> What are error bars for?</h2>
+<p>Error bars perform two main functions. One of these is a descriptive function, to give readers an idea of the spread of values within a data set, and thus of the spread within the population from which the data have been drawn. The other is inferential, to enable readers to make inferences from a data set, for example to enable them to determine whether two data sets are plausibly drawn from the same population. These two functions are quite different.</p>
 </section>
-<section id="how-well-does-the-nmds-plot-reflect-true-patterns-in-the-data" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="how-well-does-the-nmds-plot-reflect-true-patterns-in-the-data"><span class="header-section-number">20.2</span> How well does the NMDS plot reflect true patterns in the data?</h2>
-<p>This can be quantified by calculating the ‘stress’ of the process. A low value indicates that the NMDS ordination plot is capturing the true patterns in the data well. Anything above about 0.2 means that it is doing a poor job and that you may need to transform the data in some way and try again.</p>
+<section id="descriptive-error-bars" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="descriptive-error-bars"><span class="header-section-number">24.2</span> Descriptive error bars</h2>
+<p>We could indicate the spread of values of a data set using the <em>range</em> or the <em>standard deviation</em>. Range error bars go from the highest to the lowest value in the data set, while standard deviation <span class="math inline">\(SD\)</span> is calculated using the formula</p>
+<p><span class="math display">\[
+SD=\sqrt{\frac{\sum_{i=1}^n\left(y_i-\bar{y}\right)^2}{n-1}}
+\]</span> where the sum <span class="math inline">\(\sum\)</span> is of the squared differences between the sample values <span class="math inline">\(y_i\)</span> and the sample mean <span class="math inline">\(\bar{y}\)</span>, over all <span class="math inline">\(n\)</span> data points in the sample. <span class="math inline">\(SD\)</span> can be thought of, roughly speaking, as the average deviation of data points in a sample from the mean of the sample.</p>
+<p>For a sample of data points that are approximately normally distributed around their mean, about two thirds of the data set will lie within one standard deviation either side of the mean while about 95% of the data set will lie within about two standard deviations of the mean. Thus, only about 5% of all such data are more than two SDs away from the mean, so if a new data point <em>is</em> more than 2 SD from the mean, you can regard it as unusual.</p>
+<p>The standard deviation of a sample will in general be approximately equal to the population standard deviation <span class="math inline">\(\sigma\)</span> and so can be used as an estimate for it. It gives an idea of the spread of values within the population, and also of the likely spread of values in any other sample taken from that population. If we take sample after sample from the population we would get a different sample standard deviation every time but there would be no systematic reduction in standard deviation for larger sample sizes. Instead, these values would dot around the true value for the population, but with less and less fluctuation for larger sample sizes: the larger the sample size, the closer the sample standard deviation is likely to be to the population standard deviation.</p>
+<p>However, the SD of the experimental results will approximate to <span class="math inline">\(\sigma\)</span>, whether <em>n</em> is large or small. Like M, SD does not change systematically as <em>n</em> changes, and we can use SD as our best estimate of the unknown <span class="math inline">\(\sigma\)</span>, whatever the value of <em>n</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ord<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1183186</code></pre>
-</div>
-</div>
-<p>We find here a stress value of less than 0.2, so we can infer that the NMDS plot gives a useful indication of patterns in the data.</p>
-<p>A <strong>Shephard Plot</strong> is another way to visually indicatye the degree of stress. If the data ate tightly grouped around a diagonal straight line then there is low strees. If they are, the stres is higher.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stressplot</span>(ord)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="NMDS_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="error_bars_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>For our data, the plot indicates low stress, in accordance with the direct measurement of the stress value.</p>
+<p>The figure above shows means with error bars for three cases of sample size: <em>n</em> = 3, <em>n</em> = 10, and <em>n</em> = 30. The small black dots are data points and the large black dots represent the sample means. The red bars against each sample show range, while the blue bars show standard deviation (SD). The mean <span class="math inline">\(\bar{y}\)</span> and SD have been made to be the same for every case here, but notice how much the range increases with <span class="math inline">\(n\)</span>. This happens because larger samples are more likely to capture extreme values within a population than small samples. Note also that although the range error bars encompass all of the experimental results, they do not necessarily cover all the results that could possibly occur. The population may include larger or smaller individuals than those included in the sample.</p>
+<p>SD error bars include about two thirds of the sample, and 2 x SD error bars would encompass roughly 95% of the sample.</p>
+</section>
+<section id="inferential-error-bars" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="inferential-error-bars"><span class="header-section-number">24.3</span> Inferential Error Bars</h2>
+<section id="the-standard-error" class="level3" data-number="24.3.1">
+<h3 data-number="24.3.1" class="anchored" data-anchor-id="the-standard-error"><span class="header-section-number">24.3.1</span> The standard error</h3>
+<p>Often in biology and ecology one wants to know if two or more samples of data provide convincing evidence that the populations from which they have been drawn are different. One wants to <em>infer</em> from what we know to be the case for the samples, (that they have this or that sample means and standard deviations), to a statement about their respective populations. To indicate this in a figure, we can use either of two other types of error bar: the <em>standard error of the mean</em> or the <em>confidence interval</em>.</p>
+<p>If we know these then we know, roughly speaking, the range of values within which the means of the whole populations from which we drew our samples might plausibly lie, and thus whether we can reasonably reject the claim that there is no difference between these, so that the samples must have effectively been drawn from the same population.</p>
+<p>Supposing, in a hypothetical world, you could take sample after sample from a population, each sample presumed to be independent of all the others, and all of size <em>n</em> replicates. Each would most likely have a different mean from all the others, but the collection of sample means would be normally distributed around the true population mean. The ‘standard error of the mean’ is the standard deviation of <em>this</em> distribution, which is often referred to as the <strong>sampling distribution</strong>. This is the ‘typical’ or roughly speaking the average deviation between a randomly chosen sample mean and the true, population mean. It is given by</p>
+<p><span class="math display">\[SE = \frac{SD}{\sqrt{n}} \]</span></p>
+<p>where SD is the standard deviation of an individual sample and <em>n</em> is the sample size. Thus, unlike the standard deviation of a sample, the standard error of the mean of the samples <em>does</em> systematically get smaller as the sample size <em>n</em> increases. This is another way of saying that, the larger a sample is, the closer its mean is likely to be to the population mean. Another thing to notice is that the SE is proportional to the SD, which is to say that sample means are more likely to be a close approximation to the population mean if the spread of values within the population, and thus the sample, is small. Smaller SD means smaller SE. Who knew?</p>
+</section>
+<section id="the-confidence-interval" class="level3" data-number="24.3.2">
+<h3 data-number="24.3.2" class="anchored" data-anchor-id="the-confidence-interval"><span class="header-section-number">24.3.2</span> The confidence interval</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="error_bars_files/figure-html/confidence interval-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Means and 95% CIs for 20 independent sets of results, each of size <em>n</em> = 10, from a population with mean μ = 40 (marked by the dotted line). In the long run we expect 95% of such CIs to capture μ; here 19 do so (large black dots) and 1 does not (red dot). Successive CIs vary considerably, not only in position relative to μ, but also in length. The variation from CI to CI would be less for larger sets of results, for example n = 30 or more, but variation in position and in CI length would be even greater for smaller samples, for example n = 3.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="error_bars_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The confidence interval is an inferential tool, like the standard error and unlike the standard deviation. That means, we repeat, that it does not so much indicate the spread of values in a sample or estimate the spread of values in a population - that is what the standard deviation does. Instead, like the standard error, it indicates the range of values within which the true mean of a population might plausibly lie.</p>
+<p>What do we mean by plausibly? Well, we could mean, say, that we are confident that the true mean would be in the interval 95% of the time if we calculated it again and again. Then, if recall that the sample means are (or, at least, would be if took loads of samples) normally distributed, with a ‘standard deviation’ (ie average difference from the mean) that we call the ‘standard error’ <span class="math inline">\(SE\)</span>, a value that is related to the standard deviation of an individual sample by <span class="math inline">\(SE=\frac{SD}{\sqrt{n}}\)</span>,</p>
+</section>
+<section id="how-to-interpret-figures" class="level3" data-number="24.3.3">
+<h3 data-number="24.3.3" class="anchored" data-anchor-id="how-to-interpret-figures"><span class="header-section-number">24.3.3</span> How to interpret figures</h3>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1000,13 +940,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./PCA.html" class="pagination-link" aria-label="Principal Components Analysis (PCA)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Components Analysis (PCA)</span></span>
+      <a href="./power-analysis.html" class="pagination-link" aria-label="Power Analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Power Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./mixed_effects/mixed_effects_dragons.html" class="pagination-link" aria-label="Mixed effects analysis">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Mixed effects analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1018,7 +958,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/NMDS.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/error_bars.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
