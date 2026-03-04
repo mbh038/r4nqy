@@ -46,13 +46,13 @@ Have a look at the data distribution of this response variable:
 ```{r}
 dragons |>
   ggplot(aes(x = testScore)) +
-  geom_histogram(binwidth = 10, fill = "cornflowerblue", alpha = 0.5) +
+  geom_histogram(binwidth = 10, colour = "gray60",fill = "white") +
   labs(x = "Test score",
        y = "Frequency")
 ```
 This seems close to being a normal distribution - good!
 
-It is good practice to standardise your explanatory variables before proceeding, so that they have a mean of zero and standard deviation of one. It ensures that the estimated coefficients are all on the same scale, making it easier to compare effect sizes (and it improves model convergence). To do that we subtract the mean and divide by the standard deviation, and save the standardied daa in a new column called `bodyLength2`:
+It is good practice to standardise your explanatory variables before proceeding, so that they have a mean of zero and standard deviation of one. It ensures that the estimated coefficients are all on the same scale, making it easier to compare effect sizes (and it improves model convergence). To do that we subtract the mean and divide by the standard deviation, and save the standardised daa in a new column called `bodyLength2`:
 
 ```{r}
 dragons <- dragons |>
@@ -254,7 +254,7 @@ Our site variable is a three-level factor, with sites called a, b and c. The nes
 ```{r}
 #| label: create sample variable
 dragons <- dragons |>
-  mutate(sample = factor(mountainRange:site))
+  mutate(sample = factor(str_c(mountainRange,site)))
 ```
 
 Now it’s obvious that we have 24 samples (8 mountain ranges x 3 sites) and not just 3 - our sample is a 24-level factor and we should use that instead of using site in our models: each site belongs to a specific mountain range.
@@ -284,7 +284,7 @@ Here, we are trying to account for all the mountain-range-level and all the site
 dragons |>
   ggplot(aes(x = bodyLength, y = testScore, colour = site)) +
   facet_wrap(~mountainRange, nrow=3) +
-  geom_point() +
+  geom_point(alpha=0.5) +
   geom_line(data = cbind(dragons, pred = predict(mixed.lmer2)), aes(y = pred)) +
   theme(legend.position = "none")
 ```
