@@ -101,7 +101,14 @@ where SD is the standard deviation of an individual sample and *n* is the sample
 
 ### The confidence interval
 
+The confidence interval is an inferential tool, like the standard error and unlike the standard deviation. That means, we repeat, that it does not so much indicate the spread of values in a sample or estimate the spread of values in a population - that is what the standard deviation does. Instead, like the standard error, it indicates the range of values within which the true mean of a population might plausibly lie. 
+
+What do we mean by plausibly? Well, we could mean, say, that we are confident that the true mean would be in the interval 95% of the time if we calculated it again and again, as in @fig-confidence-interval. Then, if recall that the sample means are (or, at least, would be if took loads of samples) normally distributed, with a 'standard deviation' (ie average difference from the mean) that we call the 'standard error' $SE$, a value that is related to the standard deviation of an individual sample by $SE=\frac{SD}{\sqrt{n}}$, 
+
 ```{r confidence interval}
+#| label: fig-confidence-interval
+#| fig-cap: "Means and 95% CIs for 20 independent sets of results, each of size *n* = 10, from a population with mean μ = 40 (marked by the dotted line). In the long run we expect 95% of such CIs to capture μ; here 19 do so (large black dots) and 1 does not (red dot). Successive CIs vary considerably, not only in position relative to μ, but also in length. The variation from CI to CI would be less for larger sets of results, for example n = 30 or more, but variation in position and in CI length would be even greater for smaller samples, for example n = 3."
+
 # set.seed(876543212)
 alpha<-0.05
 
@@ -146,13 +153,7 @@ estimators |>
 
 
 
-
-Means and 95% CIs for 20 independent sets of results, each of size *n* = 10, from a population with mean μ = 40 (marked by the dotted line). In the long run we expect 95% of such CIs to capture μ; here 19 do so (large black dots) and 1 does not (red dot). Successive CIs vary considerably, not only in position relative to μ, but also in length. The variation from CI to CI would be less for larger sets of results, for example n = 30 or more, but variation in position and in CI length would be even greater for smaller samples, for example n = 3.
-
-
 ```{r}
-
-
 df_summary |>
   ggplot(aes(x = s,y = mean.s)) +
   # geom_col(fill="gray90",colour="gray50",width=0.5)+
@@ -176,12 +177,6 @@ df_summary |>
   theme(axis.text.x=element_blank(),axis.ticks.x=element_blank()) +
   theme(axis.text.y = element_markdown())
 ```
-
-The confidence interval is an inferential tool, like the standard error and unlike the standard deviation. That means, we repeat, that it does not so much indicate the spread of values in a sample or estimate the spread of values in a population - that is what the standard deviation does. Instead, like the standard error, it indicates the range of values within which the true mean of a population might plausibly lie. 
-
-What do we mean by plausibly? Well, we could mean, say, that we are confident that the true mean would be in the interval 95% of the time if we calculated it again and again. Then, if recall that the sample means are (or, at least, would be if took loads of samples) normally distributed, with a 'standard deviation' (ie average difference from the mean) that we call the 'standard error' $SE$, a value that is related to the standard deviation of an individual sample by $SE=\frac{SD}{\sqrt{n}}$, 
-
-
 
 ### How to interpret figures
 
