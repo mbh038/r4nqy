@@ -52,10 +52,11 @@ dragons |>
 ```
 This seems close to being a normal distribution - good!
 
-It is good practice to standardise your explanatory variables before proceeding, so that they have a mean of zero and standard deviation of one. It ensures that the estimated coefficients are all on the same scale, making it easier to compare effect sizes (and it improves model convergence). You can use `scale()` to do that:
+It is good practice to standardise your explanatory variables before proceeding, so that they have a mean of zero and standard deviation of one. It ensures that the estimated coefficients are all on the same scale, making it easier to compare effect sizes (and it improves model convergence). To do that we subtract the mean and divide by the standard deviation, and save the standardied daa in a new column called `bodyLength2`:
 
 ```{r}
-dragons$bodyLength2 <- scale(dragons$bodyLength)
+dragons <- dragons |>
+  mutate(bodyLength2 = (bodyLength - mean(bodyLength))/sd(bodyLength))
 ```
 
 Back to our question: is test score affected by body length?
