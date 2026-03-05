@@ -37,18 +37,20 @@ flowchart TD
   F2N --> F22N(n-way repeated measures ANOVA)
   D --> E[One]
   E --> G{How many levels?}
-  G --> H[Two]
+  G --> H[One]
+  G --> Ha[Two]
   G --> I[More than two]
   I --> J{Independent samples?}
   J --> K[No]
   J --> L[Yes]
   K --> S(Repeated measures one-way ANOVA or Friedman Test)
   L --> T(One way ANOVA or Kruskal Wallis one-way test)
-  H --> M{Independent samples?}
+  H --> R(One sample t-test or Mann Whitney U test)
+  Ha --> M{Independent samples?}
   M --> N[No]
   M --> O[Yes]
-  N --> P(paired t-test or Signed rank test)
-  O --> Q(two sample t-test or Matt Whitney U test)
+  N --> P(Paired t-test or Signed rank test)
+  O --> Q(Two sample t-test or Mann Whitney U test)
   
 ```
 
