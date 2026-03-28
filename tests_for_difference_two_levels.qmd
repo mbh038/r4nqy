@@ -10,7 +10,6 @@ library(gt)
 
 In this chapter we consider tests for difference where there are two levels being compared.
 
-
 ## Two sample t-test: the parametric case
 
 In this exercise we find out how to run a two-sample *t*-test, to determine whether there is evidence to reject the hypothesis that two samples are drawn from the same population.
@@ -470,7 +469,7 @@ Before we do any test on some data to find evidence for a difference or a trend,
 
 In this case there is work to do before we can plot the data. The problem is that the data is 'untidy'. The two levels of the factor `month` are spread across two columns, August and November. For plotting purposes it will be useful to 'tidy' the data so that there is only one column containing both levels of `month` and another containing the aluminium concentrations. The function `pivot_longer()` can do this for us:
 
-```{r, echo = TRUE}
+```{r, echo = FALSE}
 poplars_tidy <- poplars |>
   pivot_longer (August:November,names_to="month",values_to="Al_conc")
 head(poplars_tidy,8)

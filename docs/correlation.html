@@ -531,7 +531,7 @@ window.Quarto = {
 
 <p>Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by Freedman, Pisani and Purves <span class="citation" data-cites="freedman1991">(<a href="references.html#ref-freedman1991" role="doc-biblioref">1991</a>)</span>.</p>
 <p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and try out the exercises at the end.</p>
-<p>The notable statistician Karl Pearson and Alice Lee carried out a study to investigate the resemblance between children and their parents. As part of the study, they measured the heights of 1078 parents and of their children at maturity. Here we use a subset of of their data, that comprises 746 parent-child pairs, avaialble in the <code>HistData</code> package. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
+<p>The notable statisticians Karl Pearson and Alice Lee carried out a study to investigate the resemblance between children and their parents. As part of the study, they measured the heights of 1078 parents and of their children at maturity. Here we use a subset of of their data, that comprises 746 parent-child pairs, available in the <code>HistData</code> package. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -543,9 +543,9 @@ window.Quarto = {
 </div>
 <p>The taller a father, the taller his sons tend to be. It is the same with mothers and daughters.</p>
 <p>There is a positive association between a father’s height and the height of his sons.</p>
-<p>But there is a lot variation - the association is weak.</p>
+<p>But there is a lot of variation - the association is weak.</p>
 <p>If you know the height of a father, how much does that tell you about the height of his sons?</p>
-<p>Consider fathers who are about about 67 inches tall, and look at the wide variation in the heights of their sons - - all the points between the two vertical dotted lines. The same is true for the daughters of mother who are about 63 inches tall.</p>
+<p>Consider fathers who are about about 67 inches tall, and look at the wide variation in the heights of their sons - - all the points between the two vertical dotted lines. The same is true for the daughters of motherss who are about 63 inches tall.</p>
 <p>If there is a strong association between two variables, then knowing one helps a lot in predicting the other. But when there is a weak association, information about one variable does not help much in guessing the other. When there is no association, it does not help at all.</p>
 <section id="the-correlation-coefficient" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="the-correlation-coefficient"><span class="header-section-number">12.1</span> The correlation coefficient</h2>
@@ -631,13 +631,13 @@ window.Quarto = {
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1159, df = 48, p-value = 4.792e-12
+t = 9.1279, df = 48, p-value = 4.602e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6652319 0.8795827
+ 0.6658139 0.8798190
 sample estimates:
       cor 
-0.7961583 </code></pre>
+0.7965405 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -732,7 +732,7 @@ data:  setosa$Sepal.Width
 W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
-<p>WHen we do it for all species, for both sepal width and sepal length, we find</p>
+<p>When we do it for all species, for both sepal width and sepal length, we find</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -743,7 +743,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 3 virginica               0.258             0.181</code></pre>
 </div>
 </div>
-<p>All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear realtionships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!</p>
+<p>All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear relationships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!</p>
 </section>
 <section id="calculate-the-correlation-coefficients" class="level3" data-number="12.4.3">
 <h3 data-number="12.4.3" class="anchored" data-anchor-id="calculate-the-correlation-coefficients"><span class="header-section-number">12.4.3</span> Calculate the correlation coefficients</h3>
@@ -775,7 +775,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sepal.Width, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> point_colour) <span class="sc">+</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sepal Width (mm)"</span>,</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sepal Length (mm)"</span>) <span class="sc">+</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
@@ -823,7 +823,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at -0.144, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.077, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="12.6.2">
 <h3 data-number="12.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">12.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>

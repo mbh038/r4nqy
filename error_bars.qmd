@@ -155,3 +155,39 @@ estimators |>
 
 ### How to interpret figures
 
+```{r}
+N <- 10
+as <- rnorm(N)
+bs <- rnorm(N, mean = 1)
+cs <- rnorm(N, mean = 2)
+
+t_ba <- t.test(bs,as)
+t_cb <- t.test(cs,bs)
+t_ca <- t.test(cs,as)
+
+raw <- tibble(ID = c(rep("B-A", N), rep("C-B", N), rep("C-A", N)),
+              ys = c(bs-as,cs-bs,cs-as))
+
+t_results <- tibble(
+  ID = c("B-A", "C-B", "C-A"),
+  estimate = c(mean(bs)-mean(as), mean(cs)-mean(bs), mean(cs)-mean(as)),
+  LB = c(t_ba$conf.int[1],t_cb$conf.int[1],t_ca$conf.int[1]),
+  UB = c(t_ba$conf.int[2],t_cb$conf.int[2],t_ca$conf.int[2])
+)
+
+# ggplot(data = raw, aes(x = ID, y = ys)) +
+ggplot(data = t_results, aes(x= ID, y = estimate, colour = ID)) +
+
+geom_point(size = 5, shape = 18) +
+geom_errorbar(data = t_results, aes(ymin = LB, ymax = UB), width = 0.2) +
+geom_point(data = raw, aes(x = ID, y = ys, colour = ID), alpha = 0.5) +
+# scale_y_continuous(limits = c(-3, 4), expand = c(0, 0)) +
+geom_segment(aes(x = 0, y = 0, xend = 3.5, yend = 0), linewidth = 0.5, colour = "gray40") +
+coord_flip() +
+theme_cowplot() +
+  theme(axis.line.y=element_blank()) +
+  theme(legend.position = "none")
+
+```
+
+

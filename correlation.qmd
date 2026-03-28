@@ -87,7 +87,7 @@ theme_bare_axes <- function () {
 }
 ```
 
-The notable statistician Karl Pearson and Alice Lee carried out a study to investigate the resemblance between children and their parents. As part of the study, they measured the heights of 1078 parents and of their children at maturity. Here we use a subset of of their data, that comprises 746 parent-child pairs, avaialble in the `HistData` package. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
+The notable statisticians Karl Pearson and Alice Lee carried out a study to investigate the resemblance between children and their parents. As part of the study, they measured the heights of 1078 parents and of their children at maturity. Here we use a subset of of their data, that comprises 746 parent-child pairs, available in the `HistData` package. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
 
 ```{r,out.width="100%"}
 
@@ -119,11 +119,11 @@ The taller a father, the taller his sons tend to be. It is the same with mothers
 
 There is a positive association between a father's height and the height of his sons.
 
-But there is a lot variation - the association is weak.
+But there is a lot of variation - the association is weak.
 
 If you know the height of a father, how much does that tell you about the height of his sons?
 
-Consider fathers who are about about 67 inches tall, and look at the wide variation in the heights of their sons - - all the points between the two vertical dotted lines. The same is true for the daughters of mother who are about 63 inches tall.
+Consider fathers who are about about 67 inches tall, and look at the wide variation in the heights of their sons - - all the points between the two vertical dotted lines. The same is true for the daughters of motherss who are about 63 inches tall.
 
 If there is a strong association between two variables, then knowing one helps a lot in predicting the other. But when there is a weak association, information about one variable does not help much in guessing the other. When there is no association, it does not help at all.
 
@@ -570,7 +570,7 @@ and then of the `Sepal.Width` column of data:
 shapiro.test(setosa$Sepal.Width)
 ```
 
-WHen we do it for all species, for both sepal width and sepal length, we find
+When we do it for all species, for both sepal width and sepal length, we find
 
 ```{r}
 iris |>
@@ -578,7 +578,7 @@ iris |>
   summarise(Sepal.Length_p.val = shapiro.test(Sepal.Length)$p.value,Sepal.Width_p.val = shapiro.test(Sepal.Width)$p.value)
 ```
 
-All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear realtionships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!
+All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear relationships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!
 
 ### Calculate the correlation coefficients
 
@@ -606,7 +606,7 @@ Suppose in the above analysis we had not distinguished between the three species
 ```{r,echo=TRUE}
 iris |>
   ggplot(aes(x = Sepal.Width, y = Sepal.Length)) +
-  geom_point() +
+  geom_point(colour = point_colour) +
   labs(x = "Sepal Width (mm)",
        y = "Sepal Length (mm)") +
   theme_classic() +

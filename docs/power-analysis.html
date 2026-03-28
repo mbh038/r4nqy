@@ -507,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.000109183</code></pre>
+<pre><code>[1] 0.002162533</code></pre>
 </div>
 </div>
 <p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>
@@ -595,7 +595,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="factors-that-affect-the-power-of-a-study" class="level2" data-number="23.4">
 <h2 data-number="23.4" class="anchored" data-anchor-id="factors-that-affect-the-power-of-a-study"><span class="header-section-number">23.4</span> Factors that affect the power of a study</h2>
-<p><strong>What factors about a study force you to have larger sample sizes for a given power? </strong></p>
+<p><strong>What factors about a study force you to have larger sample sizes for a given power?</strong></p>
 <p>If the effect size is small, the population variation is large or the significance level required is small.</p>
 <p><strong>How would you know what the variation of your population is? How could you reduce this?</strong>.</p>
 <p>You might look at the literature. Very likely, someone has done a study similar to yours. What variation did they see? Alternatively, you could do a pilot study and with relatively little effort get an idea yourself of the variation within your population of interest of the attrivute you want to measure.</p>

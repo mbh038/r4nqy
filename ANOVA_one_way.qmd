@@ -2,7 +2,7 @@
 
 ```{r}
 #| include: false
-source("_common.R")
+source(here::here("_common.R"))
 ```
 
 \vspace{-10mm}
@@ -88,7 +88,7 @@ penguins_clean  |>
        y = "Body mass (g)",
        fill = "Sex") +
   scale_colour_brewer(palette = "Set1") +
-  # theme_bw() +
+  theme_bw() +
   theme(legend.position= c(0.1,0.8))
 ```
 

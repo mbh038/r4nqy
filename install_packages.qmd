@@ -4,9 +4,39 @@ format: html
 editor: visual
 ---
 
-When you first download and install it, R is an already very powerful and versatile programming language aimed mainly at those who want to do statistical analysis of data. However a major strength of it and other open source software is that anyone can contribute to their development. In the case of R this has led to it being augmented by the creation of so-called packages, of which there are now thousands, from which you can pick and choose and add to your instance of R whenever you want. Each packag comprises additional functions and/or data sets Often these are aimed at particular specialisms that not everyone wants
+When you first download and install it, R is an already very powerful and versatile programming language aimed mainly at those who want to do statistical analysis of data. However a major strength of it and other open source softwares like it is that anyone can contribute to their development. In the case of R this has led to it being augmented by the creation of so-called *packages* of which there are now thousands and from which you can pick and choose and add to your instance of R whenever you want. Each package comprises additional functions and/or data sets. Often, these are aimed at particular specialisms that not everyone wants.
 
-This code chunk will install on your machine the list of packages that you see, unless you already have them installed. To run it you can either include the chunk in a notebook an then run that, or, most easily, you can copy the whole chunk, paste it into the console pane (the one at the bottom left of the screen, where the command proment `>` is, and press Enter. That'll do it.)
+**To be able to use a package in an R notebook that you write there are two things you have to do.** We will describe them now in reverse order:
+
+**The *second* thing you have to do** is to include a line like this somewhere in your notebook:
+
+```{{r}}
+library(readxl)
+```
+
+This delves into the guts of R on your machine and loads into your R session the (very useful) `readxl` package and makes whatever functions and data sets it brings with it available to your notebook. You need a line like this in a notebook for every package you make use of. I usually include at or near the top of any notebook I write a code chunk that has has a `library` line like this for each package I want to use in the notebook, so it is easy to see which ones have been loaded. I typically load four or five packages in nearly every notebook I write, plus a smattering of others from time to time.
+
+How will you know which packages you want? Don't worry! You will pick this up as you go along. To begin with copy the example notebooks you come across and see what packages they load. Look up these packages using the built-in help in R (type ?<name of package> into the console pane), Google the package, or ask Chat etc. Mayb even ask your lecturer!)
+
+That was the *second* thing, what about the *first* thing?
+
+You can't make use of a package unless you have first installed it on whatever machine you are using. So that brings us to
+
+**The fist thing you have to do** is to install the package on your machine. This bit is like downloading an app from whichever app store you use. You can't use an app on your phone until you have done that, but you only have to do it once. Once the app is on your phone you don't need to download it again. It is the same with R packages. 
+
+You can install an app in different ways. I usually do it *in the console pane*  using the `install.packages()` function. This is how I would do it for the `readxl` package:
+
+`>install.packages("readxl")`
+
+Note the quote marks!
+
+To avoid having to do this piecemeal every time you come across a package you haven't installed before, why not do a mass install of packages, all in one go?
+
+That is what we turn to now:
+
+## Install all the packages you are likely to need
+
+This code chunk will install on your machine the list of packages shown, unless you already have them installed. To run it you can either include the chunk in a notebook and then run that, or, most easily, you can copy the whole chunk, paste it into the console pane (the one at the bottom left of the screen, where the command prompt `>` is, and press Enter. That'll do it.)
 
 As time goes on this list may be updated (or you may update it!), so it will be worth coming back to this script and running it again, from time to time.
 

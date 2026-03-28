@@ -99,6 +99,10 @@ library(tidyverse) # some actual R code
 
 ## Load Packages
 
+R is a very powerful statistical programming language, but anyone using it typically enhances it in ways that suit them by adding in extra functions and data sets. This is done by loading so-called **packages**. There are thousands of these, contributed by a host of subject specialists around the world. It is *totally normal* to use a few packages when doing an analysis in R.
+
+
+
 You will nearly always want the first five packages, and often you will appreciate the sixth, `janitor`. Others, such as `vegan` will be useful from time to time, depending on what you are doing. If any of these lines throw an error, it is most likely because of a typo or because you have not yet installed that package. Do so in the console pane (not in this notebook!) using the function `install.packages("name of package")`. Then run this whole chunk again.
 
 ```{r}
