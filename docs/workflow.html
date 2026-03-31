@@ -769,7 +769,7 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguins |&gt;</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x=species, y=body_mass_g)) + # what we want to plot</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_boxplot(fill="#a6bddb",notch=FALSE) + # what kind of plot we want</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">    geom_jitter(colour = "grey50", fill = "grey60", width = 0.2, alpha = 0.5) +</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="in">  labs (x = "species",</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Body mass (g)") +</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_cowplot() # choose a theme to give the plot a 'look' that we like</span></span>
@@ -782,7 +782,7 @@ $ body_mass_g       &lt;dbl&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 
 </div>
 </div>
 </div>
-<p>Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. The ‘jitter’ adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of body masss is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.</p>
+<p>Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. It indicates the sample size and gives more detail as to the actual distribution of the points. The ‘jitter’ adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of body masss is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.</p>
 </section>
 <section id="violin-plot" class="level3" data-number="3.8.3">
 <h3 data-number="3.8.3" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">3.8.3</span> Violin plot</h3>

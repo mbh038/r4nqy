@@ -138,10 +138,13 @@ females <- penguins |>
 Then let's summarise these values to find the number of individuals, the mean body mass for each species, and the standard errors of those means:
 
 ```{r}
-females |>
+females.summary <- females |>
   group_by(species) |>
-  summarise(n = n(), mean.mass_f = mean(body_mass_g), se.mass_f = sd(body_mass_g)/sqrt(n()))
-
+  summarise(n = n(),
+            mean.mass_f = mean(body_mass_g),
+            sd.mass_f = sd(body_mass_g),
+            se.mass_f = sd.mass_f/sqrt(n()))
+females.summary
 ```
 
 We should inspect this summary table and see what we already think about whether the null hypothesis is likely to be rejected, or not.
@@ -156,8 +159,28 @@ females  |>
   geom_boxplot(fill = "#9ebcda") +  # pick your favourite colour from https://colorbrewer2.org/
   labs(x = "Species",
        y = "Body mass (g)")
-  # theme_bw()
+  theme_bw()
 ```
+::: callout-note
+
+The box-plot shown above is OK, but here is a better plot. More code is needed to make it, but it gives you an idea of what you can do with `ggplot`. The plot shows mean values and standard devation error bars above a cloud of the actual data points for each species, where some sideways jitter has been added to these so that they do not lie on top of one another.
+
+```{r}
+females  |>
+  ggplot(aes(x=species, y = body_mass_g)) +
+  geom_jitter(colour = "#9ebcda", fill = "#9ebcda", width = 0.2, alpha = 0.5) +  # pick your favourite colour from https://colorbrewer2.org/
+  geom_errorbar(data = females.summary,
+                inherit.aes = FALSE,
+                aes(x = species, ymin = mean.mass_f - sd.mass_f, ymax = mean.mass_f + sd.mass_f ),
+                colour = "gray50",
+                width = 0) +
+  geom_point(data = females.summary, aes(x = species, y = mean.mass_f), colour = "gray40", size = 3) +
+  labs(x = "Species",
+       y = "Body mass (g)") +
+  theme_bw()
+```
+:::
+
 
 From the summary table and the plot, what do you think? Do the masses differ between the species?
 
@@ -181,7 +204,7 @@ Here the `lm()` function has done all the maths of the ANOVA, and we have saved 
 
 All linear models are only valid if the data meet a number of criteria. Chief among these for an ANOVA is that the spread of the data should be roughly the same in each subset, and that the data within each subset should be normally distributed around their respective mean values. Only if these conditions are at least approximately met can we just go on and trust the output of the model. If they are not, we need to transform the data in some way until they are, or use a different test. A commonly used non-parametric alternative to the one-way ANOVA is the Kruskal-Wallis test.
 
-There are various ways we can find out whether these conditions are met. A useful one is to do it graphically, and a useful way to do that is to use the `autoplot()` function from the `ggfortify` package. Let's do it:
+There are various ways we can find out whether these conditions are met. A useful one is to do it graphically, and a handy way to do that is to use the `autoplot()` function from the `ggfortify` package. Let's do it:
 
 ```{r}
 autoplot(females.model) + theme_bw()
@@ -191,7 +214,7 @@ All four graphs presented here tell us something about the validity or not of ou
 
 -   top-left: this shows the spread of the residual masses (diference between an individual's mass and the mean mass for its species) for each species. We see that the spread of these values is aout the same for all three species. Check!
 
--   top-right: this is a `quantile-quantile` plot, often referred to as a qq-plot. This compares the distribution of the residuals for each species with a normal distribution. If the residuals are normally distributed, we will get a straight line. If not, we won't. To get an idea of what qq-plots, histograms and box-plots look like for data that definitely are not normally distriuted, see [this useful summary](https://rpubs.com/mbh038/725314). In our case, there is a hint of a curve, but this qq-plot is really a pretty good approximation to linear for a real data set. No such data is ever perfectly normally distributed, so the best we are looking for, in practice is something approximating a straight line, often with some raggedness at either end. So, check again!
+-   top-right: this is a `quantile-quantile` plot, often referred to as a qq-plot. This compares the distribution of the residuals for each species with those of a normal distribution. If the residuals are normally distributed, we will get a straight line. If not, we won't. To get an idea of what qq-plots, histograms and box-plots look like for data that definitely are not normally distriuted, see [this useful summary](https://rpubs.com/mbh038/725314). In our case, there is a hint of a curve, but this qq-plot is really a pretty good approximation to linear for a real data set. No such data is ever perfectly normally distributed, so the best we are looking for, in practice is something approximating a straight line, often with some raggedness at either end. So, check again!
 
 On both counts, we are good to go: we can reasonably trust the output of the ANOVA.
 
@@ -237,7 +260,7 @@ What about Gentoo females? Were they heavier than Adelie penguins, and if so, by
 
 Why doesn't `summary()` just tell us the actual body masses instead for all three species instead of doing it in this round about way? The reason is that ANOVA is concerned with detecting evidence of *difference*. This is why we are being told what the differences are between each of the levels and one reference level, which here is Adelie.
 
-Are those differences signifcant? We use the right hand p-value column for that. Look in the rows for Chinstrap and Gentoo penguins. In both cases the p values are much less than 0.05. This is telling us that in both cases there is evidence that females of these species are significantly heavier than those of the Adelie species.
+Are those differences significant? We use the right hand p-value column to determine that. Look in the rows for Chinstrap and Gentoo penguins. In both cases the p values are much less than 0.05. This is telling us that in both cases there is evidence that females of these species are significantly heavier than those of the Adelie species.
 
 Note that we have only been told, so far, about the magnitude and significance of differences between all the levels and the reference level. We are not told the significance of any difference between any other pair of levels. So in particular, the ANOVA does not tell us whether there is a significant difference between the masses of Chinstrap and Gentoo females (although we may have a good idea what the answer is, from our initial summary table and plot).
 
@@ -245,19 +268,24 @@ To find the answer to that, we do post-hoc tests:
 
 ### Post hoc tests.
 
-A final step of most ANOVA analyses is to perform so-called post-hoc ('after the fact') tests which make pairwise comparisons between all possible pairs of levels, tell us what the differences are between those pairs and whether these differences are significant. Whatever method is used for this, it needs to take account of the danger of making Type-one errors that arises when multiple pair-wise tests are done.
+A final step of most ANOVA analyses is to perform so-called post-hoc ('after the fact') tests which make pairwise comparisons between all possible pairs of levels. These tell us what the differences are between those pairs and whether these differences are significant. Whatever method is used for this, it needs to take account of the danger of making Type-one errors that arises when multiple pair-wise tests are done.
 
-A commonly used function for doing this is Tukey's Honest Signficant Difference: `TukeyHSD()`
+A commonly used way to do this is to use the `emmeans` package
 
 ```{r}
-TukeyHSD(aov(body_mass_g ~ species, data = females))
+library(emmeans)
+emm <- emmeans(females.model, ~ species)
+pairs(emm, adjust = "tukey")
 ```
 
-In each row of the output we see the difference between the mean masses of the females of two species, where a positive value tells us that the first named species has the heavier mass. So, we see that Gentoo females in the sample were on average 1310.9 g heavier than Adelie females.
+THis gives all pairwise comparisons between groups with Tukey-adjusted p-values (equivalent to Tukey's HSD, but more flexible) to keep the study-wide error rate down despite multiple pairwise testing.
+
+
+In each row of the `estimate` column of the output we are given the difference between the mean masses of the females of the two species named in the `contrast` column, where the mean of the second named species is subtracted from the mean of the first. A negative difference means that the mean of the second named species is greater than that of the first. So, we see that Gentoo females in the sample were on average 1310.9 g heavier than Adelie females.
 
 Compare these differences with your initial summary table and your box plot. Do they agree? They should!
 
-The right-hand column 'p adj' tells us whether these difference are significant. If the p values are less than 0.05 then they are, at the 5% significance level. In this case they all are. The p values are so tiny for the differences between Gentoo and the other two species that that they are reported as zero.
+The right-hand column 'p.value' tells us whether these difference are significant. If the p values are less than 0.05 then they are, at the 5% significance level. In this case they all are. The p values are so tiny for the differences between Gentoo and the other two species that their exact values are not reported. We are just told that each is less than 0.0001 That is enought to tell us that they are *much* less than 0.05 which is all we need to know.
 
 ### Reporting the Result.
 

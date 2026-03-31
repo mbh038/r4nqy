@@ -250,13 +250,13 @@ Here are three other plot types that do show the distribution of body masss for 
 penguins |>
   ggplot(aes(x=species, y=body_mass_g)) + # what we want to plot
   geom_boxplot(fill="#a6bddb",notch=FALSE) + # what kind of plot we want
-  geom_jitter(width=0.1, colour = "#f03b20",alpha=0.5) +
+    geom_jitter(colour = "grey50", fill = "grey60", width = 0.2, alpha = 0.5) +
   labs (x = "species",
         y = "Body mass (g)") +
   theme_cowplot() # choose a theme to give the plot a 'look' that we like
 ```
 
-Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. The 'jitter' adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of body masss is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.
+Here, we have added the points themselves on top of the box plot. When there are not too many data points, this can be useful. It indicates the sample size and gives more detail as to the actual distribution of the points. The 'jitter' adds some horizontal or vertical jitter, or both, so that the points do not lie on top of each other. In this case we see that the variability of body masss is not the same for each species and that the data are roughly symmetrically distributed around the median values in each case. This information is useful in helping us determine which statistical test might be appropriate for these data.
 
 ### Violin plot
 

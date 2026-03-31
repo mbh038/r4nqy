@@ -454,59 +454,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>When you first download and install it, R is an already very powerful and versatile programming language aimed mainly at those who want to do statistical analysis of data. However a major strength of it and other open source softwares like it is that anyone can contribute to their development. In the case of R this has led to it being augmented by the creation of so-called <em>packages</em> of which there are now thousands and from which you can pick and choose and add to your instance of R whenever you want. Each package comprises additional functions and/or data sets. Often, these are aimed at particular specialisms that not everyone wants.</p>
 <p><strong>To be able to use a package in an R notebook that you write there are two things you have to do.</strong> We will describe them now in reverse order:</p>
-<p><strong>The <em>second</em> thing you have to do</strong> is to include a line like this somewhere in your notebook:</p>
+<p><strong>The <em>second</em> thing you have to do</strong> is something you have to do each time you first run a notebook, for each package that it uses. This is to include a line like this somewhere in your notebook:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(readxl)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(&lt;name of package&gt;)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This delves into the guts of R on your machine and loads into your R session the (very useful) <code>readxl</code> package and makes whatever functions and data sets it brings with it available to your notebook. You need a line like this in a notebook for every package you make use of. I usually include at or near the top of any notebook I write a code chunk that has has a <code>library</code> line like this for each package I want to use in the notebook, so it is easy to see which ones have been loaded. I typically load four or five packages in nearly every notebook I write, plus a smattering of others from time to time.</p>
-<p>How will you know which packages you want? Don’t worry! You will pick this up as you go along. To begin with copy the example notebooks you come across and see what packages they load. Look up these packages using the built-in help in R (type ?<name of="" package=""> into the console pane), Google the package, or ask Chat etc. Mayb even ask your lecturer!)</name></p>
+<p>So far the (very useful) <code>readxl</code> package (guess what that does!) you would write:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(readxl)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This delves into the guts of R on your machine and loads into your R session the <code>readxl</code> package and makes whatever functions and data sets it brings with it available to your notebook. You need a line like this in a notebook for every package you make use of. I usually include at or near the top of any notebook I write a code chunk that has a <code>library</code> line like this for each package I want to use in the notebook, so it is easy to see which ones have been loaded. I typically load four or five packages in nearly every notebook I write, plus a smattering of others from time to time.</p>
+<p>How will you know which packages you want? Don’t worry! You will pick this up as you go along. To begin with you can copy the example notebooks you come across and see what packages they load. Look up these packages using the built-in help in R (type ?<name of="" package=""> into the console pane), Google the package, or ask Chat etc. Mayb even ask your lecturer!)</name></p>
 <p>That was the <em>second</em> thing, what about the <em>first</em> thing?</p>
 <p>You can’t make use of a package unless you have first installed it on whatever machine you are using. So that brings us to</p>
-<p><strong>The fist thing you have to do</strong> is to install the package on your machine. This bit is like downloading an app from whichever app store you use. You can’t use an app on your phone until you have done that, but you only have to do it once. Once the app is on your phone you don’t need to download it again. It is the same with R packages.</p>
+<p><strong>The fist thing you have to do</strong> which is to install the package on your machine. This bit is like downloading an app from whichever app store you use. You can’t use an app on your phone until you have done that, but <em>you only have to do it once</em>. Once the app is on your phone you don’t need to download it again. It is the same with R packages.</p>
 <p>You can install an app in different ways. I usually do it <em>in the console pane</em> using the <code>install.packages()</code> function. This is how I would do it for the <code>readxl</code> package:</p>
 <p><code>&gt;install.packages("readxl")</code></p>
 <p>Note the quote marks!</p>
-<p>To avoid having to do this piecemeal every time you come across a package you haven’t installed before, why not do a mass install of packages, all in one go?</p>
+<p>To avoid you having to do this piecemeal every time you come across a package you haven’t installed before, why not do a mass install of packages, all in one go?</p>
 <p>That is what we turn to now:</p>
 <section id="install-all-the-packages-you-are-likely-to-need" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="install-all-the-packages-you-are-likely-to-need"><span class="header-section-number">1.1</span> Install all the packages you are likely to need</h2>
 <p>This code chunk will install on your machine the list of packages shown, unless you already have them installed. To run it you can either include the chunk in a notebook and then run that, or, most easily, you can copy the whole chunk, paste it into the console pane (the one at the bottom left of the screen, where the command prompt <code>&gt;</code> is, and press Enter. That’ll do it.)</p>
 <p>As time goes on this list may be updated (or you may update it!), so it will be worth coming back to this script and running it again, from time to time.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>list.of.packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lubridate"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"here"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"readxl"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"googlesheets4"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"janitor"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"cowplot"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"ggfortify"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"ggridges"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"GGally"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"sf"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"terra"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"vegan"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lme4"</span>,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Rcpp"</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rgbif"</span>,</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"leaflet"</span>,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"tmap"</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"broom"</span>,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"remotes"</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"palmerpenguins"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rmarkdown"</span>,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"knitr"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"data.table"</span>,</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lidR"</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"rstatix"</span>,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"quarto"</span>,</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"kableExtra"</span>,</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"openintro"</span>,</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"RColorBrewer"</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>new.packages <span class="ot">&lt;-</span> list.of.packages[<span class="sc">!</span>(list.of.packages <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="st">"Package"</span>])]</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(new.packages)) <span class="fu">install.packages</span>(new.packages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">list.of.packages &lt;- c("tidyverse",</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">                      "lubridate",</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">                      "here",</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">                      "readxl",</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">                      "googlesheets4",</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">                      "janitor",</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="in">                      "cowplot",</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">                      "ggfortify",</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">                      "ggridges",</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">                      "GGally",</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">                      "sf",</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">                      "terra",</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">                      "vegan",</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="in">                      "lme4", </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="in">                      "Rcpp",</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="in">                      "rgbif",</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="in">                      "leaflet",</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">                      "tmap",</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">                      "broom",</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">                      "remotes",</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">                      "palmerpenguins",</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">                      "rmarkdown",</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">                      "knitr",</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="in">                      "data.table",</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="in">                      "lidR",</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="in">                      "rstatix",</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="in">                      "quarto",</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="in">                      "kableExtra",</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="in">                      "openintro",</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="in">                      "RColorBrewer",</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="in">                      "emmeans")</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in">new.packages &lt;- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="in">if(length(new.packages)) install.packages(new.packages)</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
