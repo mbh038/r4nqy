@@ -650,370 +650,14 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#9ebcda"</span>) <span class="sc">+</span>  <span class="co"># pick your favourite colour from https://colorbrewer2.org/</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body mass (g)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;theme&gt; List of 144
- $ line                            : &lt;ggplot2::element_line&gt;
-  ..@ colour       : chr "black"
-  ..@ linewidth    : num 0.5
-  ..@ linetype     : num 1
-  ..@ lineend      : chr "butt"
-  ..@ linejoin     : chr "round"
-  ..@ arrow        : logi FALSE
-  ..@ arrow.fill   : chr "black"
-  ..@ inherit.blank: logi TRUE
- $ rect                            : &lt;ggplot2::element_rect&gt;
-  ..@ fill         : chr "white"
-  ..@ colour       : chr "black"
-  ..@ linewidth    : num 0.5
-  ..@ linetype     : num 1
-  ..@ linejoin     : chr "round"
-  ..@ inherit.blank: logi TRUE
- $ text                            : &lt;ggplot2::element_text&gt;
-  ..@ family       : chr ""
-  ..@ face         : chr "plain"
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : chr "black"
-  ..@ size         : num 11
-  ..@ hjust        : num 0.5
-  ..@ vjust        : num 0.5
-  ..@ angle        : num 0
-  ..@ lineheight   : num 0.9
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 0 0
-  ..@ debug        : logi FALSE
-  ..@ inherit.blank: logi TRUE
- $ title                           : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : NULL
-  ..@ vjust        : NULL
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : NULL
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ point                           : &lt;ggplot2::element_point&gt;
-  ..@ colour       : chr "black"
-  ..@ shape        : num 19
-  ..@ size         : num 1.5
-  ..@ fill         : chr "white"
-  ..@ stroke       : num 0.5
-  ..@ inherit.blank: logi TRUE
- $ polygon                         : &lt;ggplot2::element_polygon&gt;
-  ..@ fill         : chr "white"
-  ..@ colour       : chr "black"
-  ..@ linewidth    : num 0.5
-  ..@ linetype     : num 1
-  ..@ linejoin     : chr "round"
-  ..@ inherit.blank: logi TRUE
- $ geom                            : &lt;ggplot2::element_geom&gt;
-  ..@ ink        : chr "black"
-  ..@ paper      : chr "white"
-  ..@ accent     : chr "#3366FF"
-  ..@ linewidth  : num 0.5
-  ..@ borderwidth: num 0.5
-  ..@ linetype   : int 1
-  ..@ bordertype : int 1
-  ..@ family     : chr ""
-  ..@ fontsize   : num 3.87
-  ..@ pointsize  : num 1.5
-  ..@ pointshape : num 19
-  ..@ colour     : NULL
-  ..@ fill       : NULL
- $ spacing                         : 'simpleUnit' num 5.5points
-  ..- attr(*, "unit")= int 8
- $ margins                         : &lt;ggplot2::margin&gt; num [1:4] 5.5 5.5 5.5 5.5
- $ aspect.ratio                    : NULL
- $ axis.title                      : NULL
- $ axis.title.x                    : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : NULL
-  ..@ vjust        : num 1
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 2.75 0 0 0
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.title.x.top                : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : NULL
-  ..@ vjust        : num 0
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 2.75 0
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.title.x.bottom             : NULL
- $ axis.title.y                    : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : NULL
-  ..@ vjust        : num 1
-  ..@ angle        : num 90
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 2.75 0 0
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.title.y.left               : NULL
- $ axis.title.y.right              : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : NULL
-  ..@ vjust        : num 1
-  ..@ angle        : num -90
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 0 2.75
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.text                       : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : chr "#4D4D4DFF"
-  ..@ size         : 'rel' num 0.8
-  ..@ hjust        : NULL
-  ..@ vjust        : NULL
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : NULL
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.text.x                     : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : NULL
-  ..@ vjust        : num 1
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 2.2 0 0 0
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.text.x.top                 : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : NULL
-  ..@ vjust        : num 0
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 2.2 0
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.text.x.bottom              : NULL
- $ axis.text.y                     : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : num 1
-  ..@ vjust        : NULL
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 2.2 0 0
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.text.y.left                : NULL
- $ axis.text.y.right               : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : num 0
-  ..@ vjust        : NULL
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 0 2.2
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.text.theta                 : NULL
- $ axis.text.r                     : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : num 0.5
-  ..@ vjust        : NULL
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 2.2 0 2.2
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ axis.ticks                      : &lt;ggplot2::element_line&gt;
-  ..@ colour       : chr "#333333FF"
-  ..@ linewidth    : NULL
-  ..@ linetype     : NULL
-  ..@ lineend      : NULL
-  ..@ linejoin     : NULL
-  ..@ arrow        : logi FALSE
-  ..@ arrow.fill   : chr "#333333FF"
-  ..@ inherit.blank: logi TRUE
- $ axis.ticks.x                    : NULL
- $ axis.ticks.x.top                : NULL
- $ axis.ticks.x.bottom             : NULL
- $ axis.ticks.y                    : NULL
- $ axis.ticks.y.left               : NULL
- $ axis.ticks.y.right              : NULL
- $ axis.ticks.theta                : NULL
- $ axis.ticks.r                    : NULL
- $ axis.minor.ticks.x.top          : NULL
- $ axis.minor.ticks.x.bottom       : NULL
- $ axis.minor.ticks.y.left         : NULL
- $ axis.minor.ticks.y.right        : NULL
- $ axis.minor.ticks.theta          : NULL
- $ axis.minor.ticks.r              : NULL
- $ axis.ticks.length               : 'rel' num 0.5
- $ axis.ticks.length.x             : NULL
- $ axis.ticks.length.x.top         : NULL
- $ axis.ticks.length.x.bottom      : NULL
- $ axis.ticks.length.y             : NULL
- $ axis.ticks.length.y.left        : NULL
- $ axis.ticks.length.y.right       : NULL
- $ axis.ticks.length.theta         : NULL
- $ axis.ticks.length.r             : NULL
- $ axis.minor.ticks.length         : 'rel' num 0.75
- $ axis.minor.ticks.length.x       : NULL
- $ axis.minor.ticks.length.x.top   : NULL
- $ axis.minor.ticks.length.x.bottom: NULL
- $ axis.minor.ticks.length.y       : NULL
- $ axis.minor.ticks.length.y.left  : NULL
- $ axis.minor.ticks.length.y.right : NULL
- $ axis.minor.ticks.length.theta   : NULL
- $ axis.minor.ticks.length.r       : NULL
- $ axis.line                       : &lt;ggplot2::element_blank&gt;
- $ axis.line.x                     : NULL
- $ axis.line.x.top                 : NULL
- $ axis.line.x.bottom              : NULL
- $ axis.line.y                     : NULL
- $ axis.line.y.left                : NULL
- $ axis.line.y.right               : NULL
- $ axis.line.theta                 : NULL
- $ axis.line.r                     : NULL
- $ legend.background               : &lt;ggplot2::element_rect&gt;
-  ..@ fill         : NULL
-  ..@ colour       : logi NA
-  ..@ linewidth    : NULL
-  ..@ linetype     : NULL
-  ..@ linejoin     : NULL
-  ..@ inherit.blank: logi TRUE
- $ legend.margin                   : NULL
- $ legend.spacing                  : 'rel' num 2
- $ legend.spacing.x                : NULL
- $ legend.spacing.y                : NULL
- $ legend.key                      : NULL
- $ legend.key.size                 : 'simpleUnit' num 1.2lines
-  ..- attr(*, "unit")= int 3
- $ legend.key.height               : NULL
- $ legend.key.width                : NULL
- $ legend.key.spacing              : NULL
- $ legend.key.spacing.x            : NULL
- $ legend.key.spacing.y            : NULL
- $ legend.key.justification        : NULL
- $ legend.frame                    : NULL
- $ legend.ticks                    : NULL
- $ legend.ticks.length             : 'rel' num 0.2
- $ legend.axis.line                : NULL
- $ legend.text                     : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : 'rel' num 0.8
-  ..@ hjust        : NULL
-  ..@ vjust        : NULL
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : NULL
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ legend.text.position            : NULL
- $ legend.title                    : &lt;ggplot2::element_text&gt;
-  ..@ family       : NULL
-  ..@ face         : NULL
-  ..@ italic       : chr NA
-  ..@ fontweight   : num NA
-  ..@ fontwidth    : num NA
-  ..@ colour       : NULL
-  ..@ size         : NULL
-  ..@ hjust        : num 0
-  ..@ vjust        : NULL
-  ..@ angle        : NULL
-  ..@ lineheight   : NULL
-  ..@ margin       : NULL
-  ..@ debug        : NULL
-  ..@ inherit.blank: logi TRUE
- $ legend.title.position           : NULL
- $ legend.position                 : chr "right"
- $ legend.position.inside          : NULL
- $ legend.direction                : NULL
- $ legend.byrow                    : NULL
- $ legend.justification            : chr "center"
- $ legend.justification.top        : NULL
- $ legend.justification.bottom     : NULL
- $ legend.justification.left       : NULL
- $ legend.justification.right      : NULL
- $ legend.justification.inside     : NULL
-  [list output truncated]
- @ complete: logi TRUE
- @ validate: logi TRUE</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1026,20 +670,21 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The box-plot shown above is OK, but here is a better plot. More code is needed to make it, but it gives you an idea of what you can do with <code>ggplot</code>. The plot shows mean values and standard devation error bars above a cloud of the actual data points for each species, where some sideways jitter has been added to these so that they do not lie on top of one another.</p>
+<p>The box-plot shown above is OK, but consider this alternative plot. More code is needed to make it, but it gives you an idea of what you can do with <code>ggplot</code>. The plot shows mean values and standard devation error bars above a cloud of the actual data points for each species, where some sideways jitter has been added to these so that they do not lie on top of one another.</p>
+<p>Unlike the box plot, this plot gives you a clear sense of the sample sizes and of the actual distribution of data within each sample.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>females  <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> <span class="st">"#9ebcda"</span>, <span class="at">fill =</span> <span class="st">"#9ebcda"</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># pick your favourite colour from https://colorbrewer2.org/</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> females.summary,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">ymin =</span> mean.mass_f <span class="sc">-</span> sd.mass_f, <span class="at">ymax =</span> mean.mass_f <span class="sc">+</span> sd.mass_f ),</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour =</span> <span class="st">"gray50"</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> females.summary, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean.mass_f), <span class="at">colour =</span> <span class="st">"gray40"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>females  <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">colour =</span> <span class="st">"#9ebcda"</span>, <span class="at">fill =</span> <span class="st">"#9ebcda"</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># pick your favourite colour from https://colorbrewer2.org/</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> females.summary,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">ymin =</span> mean.mass_f <span class="sc">-</span> sd.mass_f, <span class="at">ymax =</span> mean.mass_f <span class="sc">+</span> sd.mass_f ),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour =</span> <span class="st">"gray50"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> females.summary, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean.mass_f), <span class="at">colour =</span> <span class="st">"gray40"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body mass (g)"</span>) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1060,7 +705,7 @@ Note
 <section id="construct-the-model" class="level4" data-number="8.4.5.1">
 <h4 data-number="8.4.5.1" class="anchored" data-anchor-id="construct-the-model"><span class="header-section-number">8.4.5.1</span> Construct the model</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>females.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>females.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here the <code>lm()</code> function has done all the maths of the ANOVA, and we have saved the results of that in an object called <code>females.model</code>. Note the use of the formula <code>body_mass_g ~ species</code> as the first argument of the <code>lm()</code> function, where this means ‘body mass as a function of species’.</p>
 </section>
@@ -1069,7 +714,7 @@ Note
 <p>All linear models are only valid if the data meet a number of criteria. Chief among these for an ANOVA is that the spread of the data should be roughly the same in each subset, and that the data within each subset should be normally distributed around their respective mean values. Only if these conditions are at least approximately met can we just go on and trust the output of the model. If they are not, we need to transform the data in some way until they are, or use a different test. A commonly used non-parametric alternative to the one-way ANOVA is the Kruskal-Wallis test.</p>
 <p>There are various ways we can find out whether these conditions are met. A useful one is to do it graphically, and a handy way to do that is to use the <code>autoplot()</code> function from the <code>ggfortify</code> package. Let’s do it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(females.model) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(females.model) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1091,7 +736,7 @@ Note
 <p><strong>The overall picture</strong></p>
 <p>First, we use the <code>anova()</code> function</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(females.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(females.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -1114,7 +759,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p><strong>The detailed picture</strong></p>
 <p>We use the <code>summary()</code> function for this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(females.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(females.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1152,9 +797,9 @@ F-statistic:  393 on 2 and 162 DF,  p-value: &lt;2e-16</code></pre>
 <p>A final step of most ANOVA analyses is to perform so-called post-hoc (‘after the fact’) tests which make pairwise comparisons between all possible pairs of levels. These tell us what the differences are between those pairs and whether these differences are significant. Whatever method is used for this, it needs to take account of the danger of making Type-one errors that arises when multiple pair-wise tests are done.</p>
 <p>A commonly used way to do this is to use the <code>emmeans</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(females.model, <span class="sc">~</span> species)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(emm, <span class="at">adjust =</span> <span class="st">"tukey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(females.model, <span class="sc">~</span> species)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(emm, <span class="at">adjust =</span> <span class="st">"tukey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast           estimate   SE  df t.ratio p.value
  Adelie - Chinstrap     -158 57.5 162  -2.750  0.0180

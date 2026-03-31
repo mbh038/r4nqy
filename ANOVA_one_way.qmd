@@ -158,12 +158,14 @@ females  |>
   ggplot(aes(x=species, y = body_mass_g)) +
   geom_boxplot(fill = "#9ebcda") +  # pick your favourite colour from https://colorbrewer2.org/
   labs(x = "Species",
-       y = "Body mass (g)")
+       y = "Body mass (g)") +
   theme_bw()
 ```
 ::: callout-note
 
-The box-plot shown above is OK, but here is a better plot. More code is needed to make it, but it gives you an idea of what you can do with `ggplot`. The plot shows mean values and standard devation error bars above a cloud of the actual data points for each species, where some sideways jitter has been added to these so that they do not lie on top of one another.
+The box-plot shown above is OK, but consider this alternative plot. More code is needed to make it, but it gives you an idea of what you can do with `ggplot`. The plot shows mean values and standard devation error bars above a cloud of the actual data points for each species, where some sideways jitter has been added to these so that they do not lie on top of one another.
+
+Unlike the box plot, this plot gives you a clear sense of the sample sizes and of the actual distribution of data within each sample.
 
 ```{r}
 females  |>
