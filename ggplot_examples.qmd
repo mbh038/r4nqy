@@ -1,6 +1,6 @@
 # Building plots using the package `ggplot2`
 
-For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ggplot2/archive/refs/heads/master.zip) if you wish to follow along and/or see how a complete script might look.
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ggplot2/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look.
 
 In this exercise we are going to produce and improve a variety of useful and widely used plots using the package `ggplot2` which is part of the larger `tidyverse` package.
 
