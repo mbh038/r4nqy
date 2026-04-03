@@ -461,13 +461,23 @@ window.Quarto = {
   <li><a href="#summary-stats-on-all-the-numeric-columns" id="toc-summary-stats-on-all-the-numeric-columns" class="nav-link" data-scroll-target="#summary-stats-on-all-the-numeric-columns"><span class="header-section-number">4.4</span> Summary stats on all the numeric columns</a></li>
   <li><a href="#remove-the-rows-with-nas" id="toc-remove-the-rows-with-nas" class="nav-link" data-scroll-target="#remove-the-rows-with-nas"><span class="header-section-number">4.5</span> Remove the rows with NAs</a></li>
   <li><a href="#how-many-observations-are-there-for-each-species" id="toc-how-many-observations-are-there-for-each-species" class="nav-link" data-scroll-target="#how-many-observations-are-there-for-each-species"><span class="header-section-number">4.6</span> How many observations are there for each species?</a></li>
-  <li><a href="#mean-value-for-each-numerical-variable-for-each-species" id="toc-mean-value-for-each-numerical-variable-for-each-species" class="nav-link" data-scroll-target="#mean-value-for-each-numerical-variable-for-each-species"><span class="header-section-number">4.7</span> Mean value for each numerical variable, for each species</a>
+  <li><a href="#mean-value-for-each-numerical-variable-for-each-species" id="toc-mean-value-for-each-numerical-variable-for-each-species" class="nav-link" data-scroll-target="#mean-value-for-each-numerical-variable-for-each-species"><span class="header-section-number">4.7</span> Mean value for each numerical variable, for each species</a></li>
+  <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots"><span class="header-section-number">4.8</span> Scatter plots</a>
   <ul class="collapse">
-  <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots"><span class="header-section-number">4.7.1</span> Scatter plots</a></li>
-  <li><a href="#repeat-for-bill-length-and-flipper-length" id="toc-repeat-for-bill-length-and-flipper-length" class="nav-link" data-scroll-target="#repeat-for-bill-length-and-flipper-length"><span class="header-section-number">4.7.2</span> Repeat for bill length and flipper length</a></li>
-  <li><a href="#add-yet-more-informtion-to-the-plot" id="toc-add-yet-more-informtion-to-the-plot" class="nav-link" data-scroll-target="#add-yet-more-informtion-to-the-plot"><span class="header-section-number">4.7.3</span> Add yet more informtion to the plot</a></li>
-  <li><a href="#distribution-of-penguin-flipper-lengths" id="toc-distribution-of-penguin-flipper-lengths" class="nav-link" data-scroll-target="#distribution-of-penguin-flipper-lengths"><span class="header-section-number">4.7.4</span> Distribution of penguin flipper lengths</a></li>
-  <li><a href="#bar-chart-with-error-bar" id="toc-bar-chart-with-error-bar" class="nav-link" data-scroll-target="#bar-chart-with-error-bar"><span class="header-section-number">4.7.5</span> Bar chart with error bar</a></li>
+  <li><a href="#repeat-for-bill-length-and-flipper-length" id="toc-repeat-for-bill-length-and-flipper-length" class="nav-link" data-scroll-target="#repeat-for-bill-length-and-flipper-length"><span class="header-section-number">4.8.1</span> Repeat for bill length and flipper length</a></li>
+  <li><a href="#add-yet-more-informtion-to-the-plot" id="toc-add-yet-more-informtion-to-the-plot" class="nav-link" data-scroll-target="#add-yet-more-informtion-to-the-plot"><span class="header-section-number">4.8.2</span> Add yet more informtion to the plot</a></li>
+  </ul></li>
+  <li><a href="#plots-that-show-the-distribution-of-data" id="toc-plots-that-show-the-distribution-of-data" class="nav-link" data-scroll-target="#plots-that-show-the-distribution-of-data"><span class="header-section-number">4.9</span> Plots that show the distribution of data</a>
+  <ul class="collapse">
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">4.9.1</span> Histogram</a></li>
+  <li><a href="#density-plot" id="toc-density-plot" class="nav-link" data-scroll-target="#density-plot"><span class="header-section-number">4.9.2</span> Density plot</a></li>
+  <li><a href="#box-plots" id="toc-box-plots" class="nav-link" data-scroll-target="#box-plots"><span class="header-section-number">4.9.3</span> Box plots</a></li>
+  <li><a href="#violin-plot-using-geom_violin" id="toc-violin-plot-using-geom_violin" class="nav-link" data-scroll-target="#violin-plot-using-geom_violin"><span class="header-section-number">4.9.4</span> Violin Plot using <code>geom_violin()</code></a></li>
+  <li><a href="#ridge-plot" id="toc-ridge-plot" class="nav-link" data-scroll-target="#ridge-plot"><span class="header-section-number">4.9.5</span> Ridge plot</a></li>
+  </ul></li>
+  <li><a href="#bar-chart-with-error-bar" id="toc-bar-chart-with-error-bar" class="nav-link" data-scroll-target="#bar-chart-with-error-bar"><span class="header-section-number">4.10</span> Bar chart with error bar</a>
+  <ul class="collapse">
+  <li><a href="#standard-deviation-or-standard-error" id="toc-standard-deviation-or-standard-error" class="nav-link" data-scroll-target="#standard-deviation-or-standard-error"><span class="header-section-number">4.10.1</span> Standard deviation or standard error?</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/ggplot_examples.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -494,6 +504,7 @@ window.Quarto = {
 </header>
 
 
+<p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/ggplot2/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and/or see how a complete script might look.</p>
 <p>In this exercise we are going to produce and improve a variety of useful and widely used plots using the package <code>ggplot2</code> which is part of the larger <code>tidyverse</code> package.</p>
 <p>You will see that the code to do each plot is very similar, whatever the type of plot, and that plots can be built up from very basic forms to become really attractive, informative versions with very little additional effort.</p>
 <p>You need to read the examples in this worksheet and then fill in the missing code or alter what is provided already in the empty code chunks of the accompanying template script. Instructions for getting that are given below.</p>
@@ -623,8 +634,9 @@ Using the first match ...</code></pre>
 3 Gentoo              47.6          15.0              217.       5092. 2008.</code></pre>
 </div>
 </div>
-<section id="scatter-plots" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="scatter-plots"><span class="header-section-number">4.7.1</span> Scatter plots</h3>
+</section>
+<section id="scatter-plots" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="scatter-plots"><span class="header-section-number">4.8</span> Scatter plots</h2>
 <p>Is flipper length correlated with body mass?</p>
 <p>We could a do correlation test to find this out, but let us first plot the data. We will show here how an elegant plot can be built up, starting from a very basic one, so that you see what each line of code for the finished version actually does. In the chunks below, run each one in turn to see the effect of each successive change that you make.</p>
 <p>First we feed the penguin data to the function <code>ggplot()</code>, and use its <code>aes()</code> argument to tell it which variables are to be ‘mapped’ to which aesthetic (which means, roughly speaking, ‘visible’) features of the plot, such as the x-axis, the y-axis, point and line colours, fill colours, symbol types and size etc:</p>
@@ -769,9 +781,8 @@ Using the first match ...</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="repeat-for-bill-length-and-flipper-length" class="level3" data-number="4.7.2">
-<h3 data-number="4.7.2" class="anchored" data-anchor-id="repeat-for-bill-length-and-flipper-length"><span class="header-section-number">4.7.2</span> Repeat for bill length and flipper length</h3>
+<section id="repeat-for-bill-length-and-flipper-length" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="repeat-for-bill-length-and-flipper-length"><span class="header-section-number">4.8.1</span> Repeat for bill length and flipper length</h3>
 <p>Modify the code of the previous plot so that you now plot bill length vs flipper length. Adjust any labels and titles as necessary. This time, put the legend in the bottom right of the plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -796,8 +807,8 @@ Using the first match ...</code></pre>
 </div>
 <p>Do you see how straightforwrd it is to adapt the code that produces one plot to get the code you need for another, similar plot?</p>
 </section>
-<section id="add-yet-more-informtion-to-the-plot" class="level3" data-number="4.7.3">
-<h3 data-number="4.7.3" class="anchored" data-anchor-id="add-yet-more-informtion-to-the-plot"><span class="header-section-number">4.7.3</span> Add yet more informtion to the plot</h3>
+<section id="add-yet-more-informtion-to-the-plot" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="add-yet-more-informtion-to-the-plot"><span class="header-section-number">4.8.2</span> Add yet more informtion to the plot</h3>
 <p>Let us include the information of which island the penguins come from by making the shape of the plotted points be dependent on that:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -822,11 +833,12 @@ Using the first match ...</code></pre>
 </div>
 </div>
 </section>
-<section id="distribution-of-penguin-flipper-lengths" class="level3" data-number="4.7.4">
-<h3 data-number="4.7.4" class="anchored" data-anchor-id="distribution-of-penguin-flipper-lengths"><span class="header-section-number">4.7.4</span> Distribution of penguin flipper lengths</h3>
+</section>
+<section id="plots-that-show-the-distribution-of-data" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="plots-that-show-the-distribution-of-data"><span class="header-section-number">4.9</span> Plots that show the distribution of data</h2>
 <p>The distribution of a data set is often a useful thing to know. Around which value are the data grouped, how widely spread are they and are the values symmetrically or asymmetrically distributed around the central value? A number of plot types can show this for us. Here we illustrate histograms, density plots, box plots, violin plots and ridge plots.</p>
-<section id="histogram" class="level4" data-number="4.7.4.1">
-<h4 data-number="4.7.4.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">4.7.4.1</span> Histogram</h4>
+<section id="histogram" class="level3" data-number="4.9.1">
+<h3 data-number="4.9.1" class="anchored" data-anchor-id="histogram"><span class="header-section-number">4.9.1</span> Histogram</h3>
 <p>First, let’s do a basic histogram. For this we use <code>geom_histogram()</code>. In the <code>ggplot</code> line, in the <code>aes()</code> argument, we need only specify the variable that maps to x, since the software will count how many observations lie within specific narrow ranges of the variable, called bins. Those bin counts will be the y variable of the histogram. To find the distribution of flipper length, we use <code>flipper_length_mmm</code> as the x variable. So we could try</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -946,8 +958,8 @@ Using the first match ...</code></pre>
 </div>
 <p>Different fill colours <em>would</em> be useful if the different penguin species had distinctive dominant colours, but that isn’t the case!</p>
 </section>
-<section id="density-plot" class="level4" data-number="4.7.4.2">
-<h4 data-number="4.7.4.2" class="anchored" data-anchor-id="density-plot"><span class="header-section-number">4.7.4.2</span> Density plot</h4>
+<section id="density-plot" class="level3" data-number="4.9.2">
+<h3 data-number="4.9.2" class="anchored" data-anchor-id="density-plot"><span class="header-section-number">4.9.2</span> Density plot</h3>
 <p>An alternative to a histogram, the density plot, gives us a smoothed version of the histogram. The vertical axis on these is not a count, but a measure of the concentration of the data.</p>
 <p>Here is one with overlapping density plots</p>
 <div class="cell">
@@ -991,8 +1003,8 @@ Using the first match ...</code></pre>
 </div>
 <p>Which is more useful in this case: the overlapping plots on one chart, or the separate charts done using <code>facet_wrap()</code>? Whatever you think here, the answer in other cases will sometimes be one, sometimes the other. Now you have the tools to enable you to try both and make the best choice.</p>
 </section>
-<section id="box-plots" class="level4" data-number="4.7.4.3">
-<h4 data-number="4.7.4.3" class="anchored" data-anchor-id="box-plots"><span class="header-section-number">4.7.4.3</span> Box plots</h4>
+<section id="box-plots" class="level3" data-number="4.9.3">
+<h3 data-number="4.9.3" class="anchored" data-anchor-id="box-plots"><span class="header-section-number">4.9.3</span> Box plots</h3>
 <p>Box plots are a really useful way to summarize the distribution of numerical response data such as <code>flipper_length_mm</code> across different categorical variables, such as <code>species</code>. We use <code>geom_boxplot()</code> to produce them.</p>
 <p>Let’s do a basic box plot of flipper lengths for each penguin species:</p>
 <div class="cell">
@@ -1033,8 +1045,8 @@ Using the first match ...</code></pre>
 </div>
 </div>
 </section>
-<section id="violin-plot-using-geom_violin" class="level4" data-number="4.7.4.4">
-<h4 data-number="4.7.4.4" class="anchored" data-anchor-id="violin-plot-using-geom_violin"><span class="header-section-number">4.7.4.4</span> Violin Plot using <code>geom_violin()</code></h4>
+<section id="violin-plot-using-geom_violin" class="level3" data-number="4.9.4">
+<h3 data-number="4.9.4" class="anchored" data-anchor-id="violin-plot-using-geom_violin"><span class="header-section-number">4.9.4</span> Violin Plot using <code>geom_violin()</code></h3>
 <p>This is a variant on the box plot. Each ‘violin’ is a sideways density plot of the distribution of the data for each species, with its own mirror image to make it look a bit like a violin. The code for these is exactly as for box plots except we use <code>geom_violin()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -1068,8 +1080,8 @@ Using the first match ...</code></pre>
 </div>
 </div>
 </section>
-<section id="ridge-plot" class="level4" data-number="4.7.4.5">
-<h4 data-number="4.7.4.5" class="anchored" data-anchor-id="ridge-plot"><span class="header-section-number">4.7.4.5</span> Ridge plot</h4>
+<section id="ridge-plot" class="level3" data-number="4.9.5">
+<h3 data-number="4.9.5" class="anchored" data-anchor-id="ridge-plot"><span class="header-section-number">4.9.5</span> Ridge plot</h3>
 <p>This is a variant on the density plot, that is most useful when you have lots of categorical variables. We have only three here, the three penguin species, but let’s try it anyway.</p>
 <p>For this, we need the <code>ggridges</code> package. This is one of many packages that extend the power of ggplot, and so work in much the same way:</p>
 <div class="cell">
@@ -1097,8 +1109,8 @@ Using the first match ...</code></pre>
 <p>Now try producing graphs like the ones above, but for body mass rather than flipper length.</p>
 </section>
 </section>
-<section id="bar-chart-with-error-bar" class="level3" data-number="4.7.5">
-<h3 data-number="4.7.5" class="anchored" data-anchor-id="bar-chart-with-error-bar"><span class="header-section-number">4.7.5</span> Bar chart with error bar</h3>
+<section id="bar-chart-with-error-bar" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="bar-chart-with-error-bar"><span class="header-section-number">4.10</span> Bar chart with error bar</h2>
 <p>There are different ways to produce this commonly used way to summarise data. For example we might use one to compare the mean flipper lengths of the different penguin species. For a bar chart of these to be of any use at all, it needs to include error bars that show standard deviations of the samples, standard errors of the means, or confidence intervals (Why?). Which you use depends on the story you are trying to tell.</p>
 <p>First, we will add error bars that are ± one standard deviation of the samples.</p>
 <p>I usually first create a summary of the data, in which we calculate the means and appropriate error for each species for whichever variable I am interested in, then feed this summary table to <code>ggplot</code> and use <code>geom_col()</code> to plot the bars, with <code>geom_errorbar()</code> on top of that to plot the error bars.</p>
@@ -1135,8 +1147,8 @@ Using the first match ...</code></pre>
 </div>
 </div>
 </div>
-<section id="standard-deviation-or-standard-error" class="level4" data-number="4.7.5.1">
-<h4 data-number="4.7.5.1" class="anchored" data-anchor-id="standard-deviation-or-standard-error"><span class="header-section-number">4.7.5.1</span> Standard deviation or standard error?</h4>
+<section id="standard-deviation-or-standard-error" class="level3" data-number="4.10.1">
+<h3 data-number="4.10.1" class="anchored" data-anchor-id="standard-deviation-or-standard-error"><span class="header-section-number">4.10.1</span> Standard deviation or standard error?</h3>
 <p>The error bars in the plot above are ± one standard deviation. A standard deviation gives us an idea of the spread of values within a sample or population. Remember that if a population is normally distributed about its mean, there is a roughly 95% probability that a random chosen individual will lie within two standard deviations of the mean.</p>
 <p>So standard deviations of samples are useful. They are a useful way to summarise the variability of the sample, they tell us about the likely variability of the next sample, and they are our best estimate of the variability of the population from which the sample was drawn.</p>
 <p>Sometimes, though, we want to know more than that. We might want to know how closely a sample mean is likely o be to the true mean of the population from which the sample was drawn, and perhaps to get an idea as to whether two or more populations are different, given the means of samples drawn from those populations. For this, we need not the standard deviation but the <em>standard error</em>. These are the error bars that are most commonly displayed on bar charts when you see them in papers.</p>
@@ -1236,7 +1248,6 @@ Using the first match ...</code></pre>
 </div>
 
 
-</section>
 </section>
 </section>
 
