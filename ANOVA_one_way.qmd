@@ -7,7 +7,7 @@ source(here::here("_common.R"))
 
 \vspace{-10mm}
 
-For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ANOVA-one-way/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look.
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ANOVA-one-way/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look. Once the folder is downloaded, unzip it if you need to, put it somewhere sensible on your laptop then  open the project from within RStudio using File/Open Project, whereupon you navigate to the project folder and then click on the .Rproj file.
 
 ## Introduction
 

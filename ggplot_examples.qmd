@@ -1,18 +1,21 @@
 # Building plots using the package `ggplot2`
 
-For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ggplot2/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look.
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ggplot2/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look. Once the folder is downloaded, unzip it if you need to, put it somewhere sensible on your laptop then  open the project from within RStudio using `File/Open Project`, whereupon you navigate to the project folder and then click on the .Rproj file.
 
 In this exercise we are going to produce and improve a variety of useful and widely used plots using the package `ggplot2` which is part of the larger `tidyverse` package.
 
 You will see that the code to do each plot is very similar, whatever the type of plot, and that plots can be built up from very basic forms to become really attractive, informative versions with very little additional effort.
 
-You need to read the examples in this worksheet and then fill in the missing code or alter what is provided already in the empty code chunks of the accompanying template script. Instructions for getting that are given below.
+You need to read the examples in this worksheet and then fill in the missing code or alter what is provided already in the empty code chunks of the  template notebook in the project folder you have downloaded. 
 
-As you complete each code chunk, try it out by pressing the green arrow at the top right of the chunk. Sometimes you might want to try out an individual line. You can do that by placing the cursor anywhere in the line and pressing `Controll-Entr` (windows) or `Command-Enter` (Mac)
+As you complete each code chunk, try it out by pressing the green arrow at the top right of the chunk. Sometimes you might want to try out an individual line. You can do that by placing the cursor anywhere in the line and pressing `Control-Entr` (Windows) or `Command-Enter` (Mac)
 
-Remember that the template is a markdown document, so you can add extra text between the code chunks to explain to yourself what is going on. You can format this test, if you wish, according to the very basic markdown rules for doing this. See Help/Markdown Quick Reference. This formatting is only useful if you 'knit' the script, by pressing the knit button at the top of the script pane. Try this! I suggest you knit to html. This is how the worksheet you are working from was produced.
+Remember that the template is a quarto document, so you can add extra text between the code chunks to explain to yourself what is going on. You can format this text, if you wish, according to the very basic markdown rules for doing this. See `Help/Markdown Quick Reference`. This formatting is only useful if you 'knit' the script, by pressing the knit button at the top of the script pane. Try this! I suggest you knit to html. This is how the worksheet you are working from was produced.
 
-## Load packages
+
+## Preliminaries
+
+### Load packages
 
 ```{r}
 # install.packages("name of package") # run this line once, if you need to, for any of the packages that need to be installed
@@ -22,17 +25,9 @@ library(palmerpenguins)
 library(devtools)
 ```
 
-## Get the template script
 
-This next chunk will download the template file that you need to fill in as you work through this worksheet, and put it in the scripts subfolder within your project folder. For it to work, you need to be 'working in your Project' - in which case the name of the project will appear in the top right of the main RStudio window, and if you have a subfolder within the project folder called 'scripts'. If any of that is not true, it needs to be sorted now!
 
-```{r}
-file_url <- "https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd"
-file_dest <- here("scripts","my_ggplot_examples.rmd")
-download.file(file_url,file_dest)
-```
-
-## Load the Palmer penguin data
+### Load the Palmer penguin data
 
 For this exercise we use the Palmer penguins data set which comes with the package palmerpenguins
 
@@ -53,52 +48,35 @@ For more detailed meta-information on the data we just type the name of the data
 ?penguins
 ```
 
-## Summary stats on all the numeric columns
 
-This is in general useful to get, at least for the columns that contain numerical data, since it shows which columns contains NAs,which is R-speak for missing data. They are how R represents what would be empty cells in an Excel spreadsheet.
+### Remove the rows with NAs
 
-```{r}
-summary(penguins)
-```
+We note from the output of the `glimpse()` function that some columns contain NAs,which is R-speak for missing data. They are how R represents what would be empty cells in an Excel spreadsheet. Let's remove those rows.
 
-We see that there are some rows with NAs in for a few of the columns. We need to be aware of this when doing calculations with the data, such as taking means.
-
-Here, we will remove those rows:
-
-## Remove the rows with NAs
 
 ```{r}
 penguins <- penguins |>
   drop_na()
 ```
 
-## How many observations are there for each species?
-
-Note the use of the pipe operator `|>`, here and throughout. Think of it as meaning `and then`. It feeds the output of one line into the function of the next line, where it is used as that function's first argument.
-
-```{r}
-penguins |>
-  count(species)
-```
-
-## Mean value for each numerical variable, for each species
+### Mean value for each numerical variable, for each species
 
 Here is an example of the use of the `group_by()` then `summarise()` combination, whereby data is first grouped, here by species, then summary statistics (of your choice) are calculated for each group.
 
-In this example the data are grouped by species, then the mean value of all the columns that contain numerical data are calculated, not just an overall value for the whole column, but for each species
+In this example the data are grouped by species, the sample size is found then the mean value of all the columns that contain numerical data are calculated, not just an overall value for the whole column, but for each species
 
 ```{r}
-penguins |>
+summary_by_species <- penguins |>
   group_by(species) |>
-  summarize(across(where(is.numeric), mean, na.rm = TRUE)) |>
+  summarize(n = n(),
+            across(where(is.numeric), mean, na.rm = TRUE)) |>
   ungroup() # good practice to include this at the end.
+summary_by_species
 ```
 
 ## Scatter plots
 
-Is flipper length correlated with body mass?
-
-We could a do correlation test to find this out, but let us first plot the data. We will show here how an elegant plot can be built up, starting from a very basic one, so that you see what each line of code for the finished version actually does. In the chunks below, run each one in turn to see the effect of each successive change that you make.
+Suppose we want to know whether flipper length is correlated with body mass. We could a do correlation test to find this out, but let us first plot the data. We will show here how an elegant plot can be built up, starting from a very basic one, so that you see what each line of code for the finished version actually does. In the chunks below, run each one in turn to see the effect of each successive change that you make.
 
 First we feed the penguin data to the function `ggplot()`, and use its `aes()` argument to tell it which variables are to be 'mapped' to which aesthetic (which means, roughly speaking, 'visible') features of the plot, such as the x-axis, the y-axis, point and line colours, fill colours, symbol types and size etc:
 
