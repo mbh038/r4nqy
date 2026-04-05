@@ -1,5 +1,17 @@
 # Simple linear regression
 
+```{r}
+#| include: false
+source(here::here("_common.R"))
+```
+
+
+```{r}
+#| label: xkcd1725
+knitr::include_graphics(here("figures","linear_regression_2x_xkcd1725.png"))
+```
+
+
 For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/Linear-regression/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 
 ## Introduction

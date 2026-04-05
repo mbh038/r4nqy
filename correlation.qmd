@@ -1,5 +1,11 @@
 # Correlation
 
+```{r}
+#| include: false
+source(here::here("_common.R"))
+```
+
+
 ```{r, include=FALSE}
 options(tinytex.verbose = TRUE)
 ```

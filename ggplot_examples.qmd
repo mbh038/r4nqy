@@ -4,7 +4,7 @@ For this chapter you will find it useful to have [this RStudio project folder](h
 
 In this exercise we are going to produce and improve a variety of useful and widely used plots using the package `ggplot2` which is part of the larger `tidyverse` package.
 
-You will see that the code to do each plot is very similar, whatever the type of plot, and that plots can be built up from very basic forms to become really attractive, informative versions with very little additional effort.
+You will see that the code needed to make each plot is very similar, whatever the type of plot, and that plots can be built up from very basic forms to become really attractive, informative versions with very little additional effort.
 
 You need to read the examples in this worksheet and then fill in the missing code or alter what is provided already in the empty code chunks of the  template notebook in the project folder you have downloaded. 
 
@@ -29,7 +29,7 @@ library(devtools)
 
 ### Load the Palmer penguin data
 
-For this exercise we use the Palmer penguins data set which comes with the package `palmerpenguins`
+To illustrate the use of the ggplot2 package we use the Palmer penguins data set which comes with the package `palmerpenguins`
 
 Here we load the data into this R session (you will now see it in the Environment pane) and we inspect it using the function `glimpse()`.
 
@@ -65,6 +65,7 @@ First we feed the penguin data to the function `ggplot()`, and use its `aes()` a
 
 ```{r}
 #| label: which-variables
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g))
 ```
@@ -75,6 +76,7 @@ There are lots of geom types, but for a scatter plot we use `geom_point()`:
 
 ```{r}
 #| label: scatter-plot
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g)) +
   geom_point()
@@ -84,6 +86,7 @@ This gives us a recognisable scatter plot, but it is deficient in a number of wa
 
 ```{r}
 #| label: scatter-plot-by-species
+
 penguins |>
   ggplot(aes(x = flipper_length_mm,y = body_mass_g, colour = species)) +
   geom_point()
@@ -95,6 +98,7 @@ Now we add labels, titles and so on, using the line `labs(...)`. Note how we can
 
 ```{r}
 #| label: add-labels-and-titles
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g,colour=species)) +
   geom_point() +
@@ -112,6 +116,7 @@ Now we use a `theme` to alter the overall look of the figure. There are several 
 
 ```{r}
 #| label: add-theme
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g,colour=species)) +
   geom_point() +
@@ -127,6 +132,7 @@ Now we reposition the legend. We don't have to, but we might not like the defaul
 
 ```{r}
 #| label: place-the-legend
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g,colour=species)) +
   geom_point() +
@@ -143,6 +149,7 @@ Nicer colours. If you don't like the default colours offered by R, there are sev
 
 ```{r}
 #| label: nicer-colours
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g,colour=species)) +
   geom_point() +
@@ -160,6 +167,7 @@ If we like, we can add best fit lines to each subset of the data, using `geom_sm
 
 ```{r}
 #| label: add-best-fit-lines
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g,colour=species)) +
   geom_point() +
@@ -180,6 +188,7 @@ Modify the code of the previous plot so that you now plot bill length vs flipper
 
 ```{r}
 #| label: bill-length-vs-flipper-length
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=bill_length_mm,colour=species)) +
   geom_point() +
@@ -202,6 +211,7 @@ Let us include the information of which island the penguins come from by making 
 
 ```{r}
 #| label: islands-and-species
+
 penguins |>
   ggplot(aes(x=flipper_length_mm,y=bill_length_mm,colour=species,shape=island)) +
   geom_point() +
@@ -377,7 +387,7 @@ Let's do a basic box plot of flipper lengths for each penguin species:
 #| label: box-plot-basic
 
 penguins |>
-  ggplot(aes(x=species,y=flipper_length_mm,fill=species)) +
+  ggplot(aes(x=species,y=flipper_length_mm)) +
   geom_boxplot()
 ```
 
@@ -392,8 +402,8 @@ Now let's use what we have done before to add code lines that
 #| label: box-plot-improved
 
 penguins |>
-  ggplot(aes(x=species,y=flipper_length_mm,fill=species)) +
-  geom_boxplot() +
+  ggplot(aes(x=species,y=flipper_length_mm)) +
+  geom_boxplot() + 
   labs(x = "Species",
        y = "Flipper length (mm)",
        title="Penguin flipper lengths") +
@@ -401,6 +411,27 @@ penguins |>
   theme_bw() +
   theme(legend.position = "none") # no legend needed
 ```
+
+A problem with box plots is that they do not indicate the sample size and, while they do indicate whether a sample is roughly symmetrically distributed or not, they don't show whether or not that distribution is bimodal. 
+
+To get round both problems we can add the data points themselves with some sideways jitter so that they don't all fall on top of each other.
+
+```{r}
+#| label: box-plot-with-jitter
+
+penguins |>
+  ggplot(aes(x=species,y=flipper_length_mm)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  labs(x = "Species",
+       y = "Flipper length (mm)",
+       title="Penguin flipper lengths") +
+  scale_fill_brewer(palette="Set2") +
+  theme_bw() +
+  theme(legend.position = "none") # no legend needed
+```
+
+
 
 ### Violin Plot using `geom_violin()`
 

@@ -1,0 +1,7 @@
+# mixed_effects_mbh
+
+In many observational studies there will be numerous factors that affect an outcome of interest, but we may only be interested in the impact of a few of these, perhaps of only one. 
+
+A mixed effects analysis allows us to focus on the factors of interest while controlling for those that are not of interest.
+
+
