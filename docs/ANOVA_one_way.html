@@ -731,9 +731,9 @@ P value adjustment: tukey method for comparing a family of 3 estimates </code></
 </section>
 <section id="reporting-the-result." class="level3" data-number="8.2.8">
 <h3 data-number="8.2.8" class="anchored" data-anchor-id="reporting-the-result."><span class="header-section-number">8.2.8</span> Reporting the Result.</h3>
-<p>We try to use plain English to report our results, while still telling the reader what test was used and the key outputs of the test. Try to report the name of the test, the test statistic, the degrees of freedom, and the p-value. if. the p-value is really small then it is common to report it as p&lt;0.01, or p&lt;0.001. No one cares if it is a billionth or a squillionth. It just matters that is t is <em>really</em> small, if that is the case. If it is only just below 0.05, then I would report it in full, so we might write p = 0.018. If p &gt; 0.05 then conventiallly it is not reported, except to say p &gt; 0.05.</p>
+<p>We try to use plain English to report our results, while still telling the reader what test was used and the key outputs of the test. Try to report the name of the test, the test statistic, the degrees of freedom, the p-value and, crucially, in some way indicate the effect size. A good way to indicate the estimated value, the precision of that estimate and the significance all in one is to report the confidence interval. If the p-value is really small then it is common to report it as p&lt;0.01, or p&lt;0.001. No one cares if it is a billionth or a squillionth. It just matters that is t is <em>really</em> small, if that is the case. If it is only just below 0.05, then I would report it in full, so we might write p = 0.018. If p &gt; 0.05 then conventiallly it is not reported, except to say p &gt; 0.05.</p>
 <p>In this case, we might say something like:</p>
-<p><em>We find evidence that there is a difference between the body masses of females of the penguin species Adelie, Chinstrap and Gentoo (ANOVA, df = 2, 162, F = 393, p &lt; 0.001). In particular Gentoo are more than 1 kg heavier than the other two (p&lt; 0.001) while the difference between Chinstrap and Adelie is smaller, at 158 g, but still significant (p = 0.018).</em></p>
+<p><em>We find evidence that there is a difference between the body masses of females of the penguin species Adelie, Chinstrap and Gentoo (ANOVA, df = 2, 162, F = 393, p &lt; 0.001). In particular Gentoo are more than 1 kg heavier than the other two (p&lt; 0.001) while the difference between Chinstrap and Adelie is smaller, at 158 ± (SE)58 g , but still significant (p = 0.018).</em></p>
 </section>
 </section>
 <section id="summary-of-the-anova-workflow" class="level2" data-number="8.3">
@@ -743,8 +743,8 @@ P value adjustment: tukey method for comparing a family of 3 estimates </code></
 <li>Check assumptions / diagnostics using <code>autoplot(females.model)</code></li>
 <li>Test the overall effect of group using <code>anova(females.model)</code></li>
 <li>If significant (or if you have planned comparisons with a reference or control level), examine the model coefficients and/or estimated means using <code>summary(females.model)</code></li>
-<li>Do post-hoc pairwise comparisons using <code>emmeans()</code> in the manner shown in <span class="citation" data-cites="post-hoc">(<a href="references.html#ref-post-hoc" role="doc-biblioref"><strong>post-hoc?</strong></a>)</span></li>
-<li>Report effect sizes and confidence intervals</li>
+<li>Do post-hoc pairwise comparisons using <code>emmeans()</code> in the manner shown in <a href="#sec-post-hoc-tests" class="quarto-xref"><span>Section 8.2.7</span></a></li>
+<li>Report effect sizes and/or confidence intervals</li>
 </ul>
 
 

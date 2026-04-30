@@ -814,7 +814,7 @@ $ Species &lt;chr&gt; "Achillea millefolium", "Centaurea nigra", "Lathyrus prate
 <section id="diversity-index" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="diversity-index"><span class="header-section-number">17.5</span> Diversity Index</h2>
 <p>‘<em>Better stories can be told about Simpson’s index than about Shannon’s index, and still grander narratives about rarefaction (Hurlbert 1971). However, these indices are all very closely related (Hill 1973), and there is no reason to despise one more than others (but if you are a graduate student, don’t drag me in, but obey your Professor’s orders).</em>’</p>
-<p>If we have abundance data. or each species at a site, for example percentage cover, we have more information than if had simply had presence-absence data. Hence, not surprisingly, w can Given the proportion <span class="math inline">\(p_i\)</span> of each of several species <span class="math inline">\(i\)</span> within a population, we can estimate the so-called diversity of the population in one of several ways from proportions <span class="math inline">\(\hat p_i\)</span> of each species within a sample. The proportions can be of total counts or of total percentage cover.</p>
+<p>If we have abundance data for each species at a site, for example percentage cover, we have more information than if we simply had presence-absence data. Hence, not surprisingly, we can do more with it. Given the proportion <span class="math inline">\(p_i\)</span> of each of several species <span class="math inline">\(i\)</span> within a population, we can estimate the so-called diversity of the population in one of several ways from the proportions <span class="math inline">\(\hat p_i\)</span> of each species within a sample. The proportions can be of total counts or of total percentage cover.</p>
 <section id="shannons-diversity-index" class="level3" data-number="17.5.1">
 <h3 data-number="17.5.1" class="anchored" data-anchor-id="shannons-diversity-index"><span class="header-section-number">17.5.1</span> Shannon’s Diversity Index</h3>
 <p>This calculates <span class="math inline">\(H\)</span> where</p>
@@ -826,15 +826,15 @@ $ Species &lt;chr&gt; "Achillea millefolium", "Centaurea nigra", "Lathyrus prate
 <p>These are based on the quantity</p>
 <p><span class="math display">\[D=\sum_ip_i^2\]</span></p>
 <p>Simpson’s index is <span class="math inline">\(1-D\)</span> and varies from 0 to 1 while the inverse Simpson’s index is <span class="math inline">\(1/D\)</span></p>
-<p>Note how this measure <span class="math inline">\(D\)</span> makes sense as a diversity index. If a site had one species that comprised 100% of the cover of the site, ie <span class="math inline">\(p = 1\)</span> for that species and <span class="math inline">\(p = 0\)</span> for every other species, then the diversity of that site would be low, right? The value of <span class="math inline">\(D\)</span> would be 1 and the Simpson’s index value would thus be zero.</p>
+<p>Note how this measure <span class="math inline">\(1-D\)</span> makes sense as a diversity index. If a site had one species that comprised 100% of the cover of the site, ie <span class="math inline">\(p = 1\)</span> for that species and <span class="math inline">\(p = 0\)</span> for every other species, then the diversity of that site would be low, right? The value of <span class="math inline">\(D\)</span> would be 1 and the Simpson’s index value <span class="math inline">\(1-D\)</span> would thus be zero.</p>
 <p>On the other hand, if we had a more diverse site with each of ten species having a percentage cover of 10%, so that each of the <span class="math inline">\(p_i\)</span> would be 0.1, then the value of <span class="math inline">\(D\)</span> would be <span class="math inline">\(\sum_ip_i^2=10\times 0.1^2=0.1\)</span> This would give a Simpson’s diversity index value of 0.9.</p>
 <p>Try this out for a site with two species, or five, or 100, each with equal cover <span class="math inline">\(p_n\)</span>. What values do you get in these cases for the Simpson’s index?</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 7%">
-<col style="width: 44%">
-<col style="width: 31%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 36%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">

@@ -8,6 +8,8 @@ library(ggthemes)
 library(gt)
 ```
 
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/two-sample-tests/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look. Once the folder is downloaded, unzip it if you need to, put it somewhere sensible on your laptop then  open the project from within RStudio using File/Open Project, whereupon you navigate to the project folder and then click on the .Rproj file.
+
 In this chapter we consider tests for difference where there are two levels being compared.
 
 ## Two sample t-test: the parametric case
@@ -403,9 +405,7 @@ And yet, these non-parametric tests are usually run on the output of Likert *sca
 
 It turns out that you actually get much the same results with Likert scale data if you analyse them using supposedly inappropriate parametric tests such as a 2-sample *t*-test as you do if you use a non-parametric test such as the one we considered here, the Mann-Whitney test.
 
-A study by De Winter and Dodou (2010) shows this convincingly.
-
-de Winter, J. F. C., & Dodou, D. (2010). Five-Point Likert Items: t test versus Mann-Whitney-Wilcoxon (Addendum added October 2012). Practical Assessment, Research, and Evaluation,15, 1–16. https://doi.org/10.7275/bj1p-ts64
+The study by De Winter and Dodou [-@dewinter2010] shows this convincingly.
 
 For an enlightening discussion of this paper, see [this blog by Jim Frost](https://statisticsbyjim.com/hypothesis-testing/analyze-likert-scale-data/)
 

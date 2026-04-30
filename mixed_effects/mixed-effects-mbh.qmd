@@ -1,7 +1,19 @@
-# mixed_effects_mbh
+# Mixed effects analyses
 
-In many observational studies there will be numerous factors that affect an outcome of interest, but we may only be interested in the impact of a few of these, perhaps of only one. 
+In an ANOVA analysis we assume that all observations are independent. In ecology or zoology studies, however, that is often not true. We may well take several measurements along a transect, then repeat over many transects, or several in a field or rocky shore and repeat over many fields or rocky shores, and so on. Or, we may measure the same object at several points in time. Each time we do this we are collecting groups of measurements, whether from each transect, each field, shore or object measured over time. These are likely to be more strongly correlated with each other than they are with measurements from some other group.
 
-A mixed effects analysis allows us to focus on the factors of interest while controlling for those that are not of interest.
+If we don't take this grouping into account, then we will be guilty of the sin of pseudo-replication and will over estimate the effective sample size. That will increase the Type 1 error rate, so that false positives are more likely.
+
+A common way to get round the pseudoreplication issue is to calculate mean values within the groups. But if we do that we are losing information as to the spread of values within each group. Our study also loses usefulness in other ways in that we are then unable to make specific predictions for each individual involved in a longitudinal study. We would only have an average for the whole group.
+
+In a mixed-effects analysis we can take account of this additional level of correlation within groups. 
+
+To better understand this, let us take an example
+
+Suppose an ivestigator wished to study the impact of intensive farming on the diversity of dung beetles. She carried out her study on two adjacent dairy farms, one intensively managed with liberal use of pesticides and artificial fertilizers, the other managed organically. On each farm she randomly chose six fields then in each of those fields she picked the cow pats closest to each of 20 randomly selected locations. In each cow pat she identified the dung beetles present and thus determined the species richness in the cow pat.
+
+We can do this in two ways. 
+
+Most simply we can assume that 
 
 

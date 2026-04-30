@@ -152,7 +152,7 @@ dune |>
 
 '*Better stories can be told about Simpson's index than about Shannon's index, and still grander narratives about rarefaction (Hurlbert 1971). However, these indices are all very closely related (Hill 1973), and there is no reason to despise one more than others (but if you are a graduate student, don't drag me in, but obey your Professor's orders).*'
 
-If we have abundance data. or each species at a site, for example percentage cover, we have more information than if had simply had presence-absence data. Hence, not surprisingly, w can Given the proportion $p_i$ of each of several species $i$ within a population, we can estimate the so-called diversity of the population in one of several ways from proportions $\hat p_i$ of each species within a sample. The proportions can be of total counts or of total percentage cover.
+If we have abundance data for each species at a site, for example percentage cover, we have more information than if we simply had presence-absence data. Hence, not surprisingly, we can do more with it. Given the proportion $p_i$ of each of several species $i$ within a population, we can estimate the so-called diversity of the population in one of several ways from the proportions $\hat p_i$ of each species within a sample. The proportions can be of total counts or of total percentage cover.
 
 ### Shannon's Diversity Index
 
@@ -170,14 +170,14 @@ $$D=\sum_ip_i^2$$
 
 Simpson's index is $1-D$ and varies from 0 to 1 while the inverse Simpson's index is $1/D$
 
-Note how this measure $D$ makes sense as a diversity index. If a site had one species that comprised 100% of the cover of the site, ie $p = 1$ for that species and $p = 0$ for every other species, then the diversity of that site would be low, right? The value of $D$ would be 1 and the Simpson's index value would thus be zero.
+Note how this measure $1-D$ makes sense as a diversity index. If a site had one species that comprised 100% of the cover of the site, ie $p = 1$ for that species and $p = 0$ for every other species, then the diversity of that site would be low, right? The value of $D$ would be 1 and the Simpson's index value $1-D$ would thus be zero.
 
 On the other hand, if we had a more diverse site with each of ten species having a percentage cover of 10%, so that each of the $p_i$ would be 0.1, then the value of $D$ would be $\sum_ip_i^2=10\times 0.1^2=0.1$ This would give a Simpson's diversity index value of 0.9.
 
 Try this out for a site with two species, or five, or 100, each with equal cover $p_n$. What values do you get in these cases for the Simpson's index?
 
 | $N$ species | $p$  | $D$                               | Simpson's Index = $1-D$ |
-|-------------|------|-----------------------------------|-------------------------|
+|--------------|--------------|---------------------------|------------------|
 | 2           | 0.5  | $p_1^2 + p_2^2 = 0.5$             | $1-0.5 = 0.5$           |
 | 5           | 0.2  | $p_1^2 + \cdots p_5^2 = 0.2$      | $1-0.2 = 0.8$.          |
 | 100         | 0.01 | $p_1^2 + \cdots p_{100}^2 = 0.01$ | $1-0.01 = 0.99$.        |

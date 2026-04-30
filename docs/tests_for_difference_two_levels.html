@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -518,6 +538,7 @@ window.Quarto = {
 </header>
 
 
+<p>For this chapter you will find it useful to have <a href="https://github.com/mbh038/two-sample-tests/archive/refs/heads/main.zip">this RStudio project folder</a> if you wish to follow along and/or see how a complete script might look. Once the folder is downloaded, unzip it if you need to, put it somewhere sensible on your laptop then open the project from within RStudio using File/Open Project, whereupon you navigate to the project folder and then click on the .Rproj file.</p>
 <p>In this chapter we consider tests for difference where there are two levels being compared.</p>
 <section id="two-sample-t-test-the-parametric-case" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="two-sample-t-test-the-parametric-case"><span class="header-section-number">6.1</span> Two sample t-test: the parametric case</h2>
@@ -729,7 +750,7 @@ Figure&nbsp;6.3: The data points show mean values, the error bars show plus or m
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99099, p-value = 0.003838</code></pre>
+W = 0.99666, p-value = 0.3893</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -737,7 +758,7 @@ W = 0.99099, p-value = 0.003838</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.95527, p-value = 3.583e-11</code></pre>
+W = 0.95071, p-value = 7.375e-12</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a high <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, and a very low <em>p</em>-value for the data that we knew were not.</p>
@@ -1012,8 +1033,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The eagle eyed among you may have spotted a massive flaw in the line of argument presented above. We said that ordinal data can’t be added up, can’t be used to calculate averages and so on. Thus we can’t run parametric tests on them and have to look for alternatives, namely, non-parametric tests.</p>
 <p>And yet, these non-parametric tests are usually run on the output of Likert <em>scales</em> such as we have considered here, where for each person we have a number of Likert <em>Items</em> (ie individual questions) that together constitute the <em>scale</em>, that each generate a score 1-5, then we <em>add up the scores</em> to get a total score. But that means we are adding up ordinal data!!!</p>
 <p>It turns out that you actually get much the same results with Likert scale data if you analyse them using supposedly inappropriate parametric tests such as a 2-sample <em>t</em>-test as you do if you use a non-parametric test such as the one we considered here, the Mann-Whitney test.</p>
-<p>A study by De Winter and Dodou (2010) shows this convincingly.</p>
-<p>de Winter, J. F. C., &amp; Dodou, D. (2010). Five-Point Likert Items: t test versus Mann-Whitney-Wilcoxon (Addendum added October 2012). Practical Assessment, Research, and Evaluation,15, 1–16. https://doi.org/10.7275/bj1p-ts64</p>
+<p>The study by De Winter and Dodou <span class="citation" data-cites="dewinter2010">(<a href="references.html#ref-dewinter2010" role="doc-biblioref">2010</a>)</span> shows this convincingly.</p>
 <p>For an enlightening discussion of this paper, see <a href="https://statisticsbyjim.com/hypothesis-testing/analyze-likert-scale-data/">this blog by Jim Frost</a></p>
 </section>
 </section>
@@ -1209,6 +1229,11 @@ alternative hypothesis: true location is not equal to 0</code></pre>
 <p>Note that the output from both these one-sample tests, where the one sample is the vector of differences and the threshold with which it is compared is zero, is exactly the same as the output of the two-sample tests where the two samples were the vectors between which we were interested in detecting a difference, ie the August and November values. This is not surprising since the two cases are just two ways of doing exactly the same thing, which is to ask if there is evidence from the sample for a difference in the population between the August and November concentrations of aluminium.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-dewinter2010" class="csl-entry" role="listitem">
+De Winter, J F C, and D Dodou. 2010. <span>“Five-Point Likert Items: T Test Versus Mann-Whitney-Wilcoxon (Addendum Added October 2012).”</span> <em>Practical Assessment, Research, and Evaluation</em> 15: 11–11. <a href="https://doi.org/10.7275/bj1p-ts64">https://doi.org/10.7275/bj1p-ts64</a>.
+</div>
+</div>
 </section>
 </section>
 
