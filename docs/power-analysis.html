@@ -397,6 +397,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -507,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(mass<span class="sc">~</span>treatment,<span class="at">data=</span>trial_data)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.001536109</code></pre>
+<pre><code>[1] 0.003400025</code></pre>
 </div>
 </div>
 <p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>

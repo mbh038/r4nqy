@@ -397,6 +397,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -502,47 +508,51 @@ $ Callcusp &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.1192678 
-Run 1 stress 0.1183186 
+Run 1 stress 0.1809577 
+Run 2 stress 0.1192678 
 ... New best solution
-... Procrustes: rmse 0.02026967  max resid 0.06495912 
-Run 2 stress 0.1183186 
-... Procrustes: rmse 2.3448e-05  max resid 7.63332e-05 
+... Procrustes: rmse 7.026429e-06  max resid 2.136714e-05 
 ... Similar to previous best
-Run 3 stress 0.1192679 
-Run 4 stress 0.1192679 
-Run 5 stress 0.2045511 
-Run 6 stress 0.1192678 
+Run 3 stress 0.1192678 
+... Procrustes: rmse 4.715113e-05  max resid 0.0001470924 
+... Similar to previous best
+Run 4 stress 0.1183186 
+... New best solution
+... Procrustes: rmse 0.02027389  max resid 0.06498273 
+Run 5 stress 0.1192678 
+Run 6 stress 0.1192679 
 Run 7 stress 0.1183186 
-... Procrustes: rmse 9.791026e-06  max resid 3.066986e-05 
+... Procrustes: rmse 2.035915e-05  max resid 6.39537e-05 
 ... Similar to previous best
-Run 8 stress 0.1886532 
-Run 9 stress 0.1192679 
-Run 10 stress 0.1192678 
-Run 11 stress 0.1192678 
-Run 12 stress 0.1808911 
-Run 13 stress 0.1183186 
+Run 8 stress 0.2075713 
+Run 9 stress 0.1183186 
 ... New best solution
-... Procrustes: rmse 2.502022e-06  max resid 6.314402e-06 
+... Procrustes: rmse 7.208708e-06  max resid 2.404655e-05 
 ... Similar to previous best
-Run 14 stress 0.1886532 
+Run 10 stress 0.1192679 
+Run 11 stress 0.1192679 
+Run 12 stress 0.2998049 
+Run 13 stress 0.1183186 
+... Procrustes: rmse 7.629039e-06  max resid 2.308664e-05 
+... Similar to previous best
+Run 14 stress 0.1183186 
+... Procrustes: rmse 9.394894e-06  max resid 3.125286e-05 
+... Similar to previous best
 Run 15 stress 0.1183186 
-... Procrustes: rmse 5.575474e-06  max resid 1.91878e-05 
+... Procrustes: rmse 3.094349e-06  max resid 1.06005e-05 
 ... Similar to previous best
 Run 16 stress 0.1183186 
-... Procrustes: rmse 2.517134e-05  max resid 7.536271e-05 
+... Procrustes: rmse 7.501378e-06  max resid 2.04243e-05 
 ... Similar to previous best
-Run 17 stress 0.1183186 
-... Procrustes: rmse 3.119591e-06  max resid 8.304296e-06 
+Run 17 stress 0.1192678 
+Run 18 stress 0.1192679 
+Run 19 stress 0.1183186 
+... Procrustes: rmse 6.099787e-06  max resid 1.810604e-05 
 ... Similar to previous best
-Run 18 stress 0.1183186 
-... New best solution
-... Procrustes: rmse 2.559705e-06  max resid 9.041902e-06 
-... Similar to previous best
-Run 19 stress 0.1192678 
 Run 20 stress 0.1183186 
-... Procrustes: rmse 6.305738e-06  max resid 2.066122e-05 
+... Procrustes: rmse 3.814868e-06  max resid 1.309122e-05 
 ... Similar to previous best
-*** Best solution repeated 2 times</code></pre>
+*** Best solution repeated 7 times</code></pre>
 </div>
 </div>
 <div class="cell">

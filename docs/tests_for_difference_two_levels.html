@@ -446,6 +446,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -750,7 +756,7 @@ Figure&nbsp;6.3: The data points show mean values, the error bars show plus or m
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99666, p-value = 0.3893</code></pre>
+W = 0.99692, p-value = 0.4657</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -758,7 +764,7 @@ W = 0.99666, p-value = 0.3893</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.95071, p-value = 7.375e-12</code></pre>
+W = 0.94818, p-value = 3.187e-12</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a high <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, and a very low <em>p</em>-value for the data that we knew were not.</p>

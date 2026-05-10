@@ -66,6 +66,7 @@ book:
       - qq_plots.qmd
       - power-analysis.qmd
       - error_bars.qmd
+      - bootstrap.qmd
     - part: "References"
       chapters:
       - references.qmd

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – From questions to data to answers using R</title>
+<title>25&nbsp; The bootstrap - a way to estimate a confidence interval – From questions to data to answers using R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,7 +64,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./bootstrap.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./error_bars.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -101,7 +116,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./bootstrap.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -384,7 +399,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link">
+  <a href="./bootstrap.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></span></a>
   </div>
 </li>
@@ -401,7 +416,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -412,15 +427,24 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#summary-statistics-of-the-data" id="toc-summary-statistics-of-the-data" class="nav-link active" data-scroll-target="#summary-statistics-of-the-data"><span class="header-section-number">25.1</span> Summary statistics of the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">25.2</span> Plot the data</a></li>
+  <li><a href="#take-bootstrap-samples" id="toc-take-bootstrap-samples" class="nav-link" data-scroll-target="#take-bootstrap-samples"><span class="header-section-number">25.3</span> Take bootstrap samples</a></li>
+  <li><a href="#find-the-se-and-ci-of-the-mean" id="toc-find-the-se-and-ci-of-the-mean" class="nav-link" data-scroll-target="#find-the-se-and-ci-of-the-mean"><span class="header-section-number">25.4</span> Find the SE and CI of the mean</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/bootstrap.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./qq_plots.html">Additional help</a></li><li class="breadcrumb-item"><a href="./bootstrap.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></h1>
 </div>
 
 
@@ -437,78 +461,111 @@ div.csl-indent {
 </header>
 
 
-<p>Books on using R</p>
-<p><span class="citation" data-cites="beckerman2017">(<a href="references.html#ref-beckerman2017" role="doc-biblioref">Beckerman et al. 2017</a>)</span></p>
-<p>This book is the one whose approach to the use of R aligns most closely with this one. It has very litle statistics</p>
-<p><span class="citation" data-cites="crawley2014">(<a href="references.html#ref-crawley2014" role="doc-biblioref">Crawley 2014</a>)</span><br>
-This is a statistics book that focuses on the needs of ecologists, with R code throughout.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-beckerman2017" class="csl-entry" role="listitem">
-Beckerman, Andrew, Dylan Childs, Owen Petchey, Andrew P. Beckerman,
-Dylan Z. Childs, and Owen L. Petchey. 2017. <span>“Introducing
-Statistics in r.”</span> In. <a href="https://doi.org/10.1093/acprof:oso/9780198787839.003.0005">https://doi.org/10.1093/acprof:oso/9780198787839.003.0005</a>.
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ref-crawley2014" class="csl-entry" role="listitem">
-Crawley, Michael J. 2014. <em>Statistics: An Introduction Using r</em>.
-2nd ed. Wiley Blackwell.
+<p>Suppose we have some body fat data, with measurements of the percentage body fat taken from 20 adults.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filepath&lt;-here("data","body_fat.csv")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">pc_fat=</span><span class="fu">c</span>(<span class="fl">25.3</span>,<span class="fl">29.3</span>,<span class="fl">37.7</span>,<span class="fl">32.8</span>,<span class="fl">24.6</span>,<span class="fl">26.5</span>,<span class="fl">21.2</span>,<span class="fl">28.4</span>,<span class="dv">24</span>,<span class="fl">28.7</span>,<span class="fl">37.4</span>,<span class="fl">30.7</span>,<span class="fl">36.7</span>,<span class="fl">28.2</span>,<span class="fl">26.4</span>,<span class="fl">37.1</span>,<span class="fl">31.1</span>,<span class="fl">43.1</span>,<span class="fl">34.1</span>,<span class="fl">26.7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ref-cumming2007" class="csl-entry" role="listitem">
-Cumming, Geoff, Fiona Fidler, and David L. Vaux. 2007. <span>“Error Bars
-in Experimental Biology.”</span> <em>Journal of Cell Biology</em> 177
-(1): 7–11. <a href="https://doi.org/10.1083/jcb.200611141">https://doi.org/10.1083/jcb.200611141</a>.
+<section id="summary-statistics-of-the-data" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="summary-statistics-of-the-data"><span class="header-section-number">25.1</span> Summary statistics of the data</h2>
+<p>First of all we would like to find the mean of the sample which will be our best estimate of the mean of the population.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"Mean = "</span>,<span class="fu">mean</span>(df<span class="sc">$</span>pc_fat)))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Mean = 30.5"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ref-dewinter2010" class="csl-entry" role="listitem">
-De Winter, J F C, and D Dodou. 2010. <span>“Five-Point Likert Items: T
-Test Versus Mann-Whitney-Wilcoxon (Addendum Added October 2012).”</span>
-<em>Practical Assessment, Research, and Evaluation</em> 15: 11–11. <a href="https://doi.org/10.7275/bj1p-ts64">https://doi.org/10.7275/bj1p-ts64</a>.
+<p>To estimate the precision of this estimate we need to calculate the standard error of the mean or a confidence interval, usually the 95% confidence interval. With the latter in particular this can be tricky if the data is a small data set or one that is not normally distributed.</p>
+<p>Is that the case here: let’s see:</p>
+</section>
+<section id="plot-the-data" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">25.2</span> Plot the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span><span class="fu">histogram</span>(df,pc_fat)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">&lt;-</span><span class="fu">qq_plot</span>(df,pc_fat)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1,p2,<span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="bootstrap_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
 </div>
-<div id="ref-freedman1991" class="csl-entry" role="listitem">
-Freedman, David, Robert Pisani, Roger Purves, and Ani Adhikari. 1991.
-<em>Statistics</em>. 2nd ed. W. W. Norton &amp; Company.
 </div>
-<div id="ref-gilbert2017" class="csl-entry" role="listitem">
-Gilbert, Francis, Peter McGregor, and Chris Barnard. 2017. <em>Asking
-Questions in Biology; a Guide to Hypothesis Testing, Experimental Design
-and Presentation in Practical Work and Research Projects</em>. 5th ed.
-Benjamin Cummings.
 </div>
-<div id="ref-holland2019" class="csl-entry" role="listitem">
-Holland, Steven M. 2019. <span>“Principal Components Analysis
-(PCA).”</span> <a href="http://strata.uga.edu/8370/handouts/pcaTutorial.pdf">http://strata.uga.edu/8370/handouts/pcaTutorial.pdf</a>.
+<p>These data are not looking very normally distributed. With a larger data set this might not matter, since the central limit theorem assures us that the sampling distribution of the mean will be asymptotically normally distributed. That means that it would be if the data set were large enough. However, n = 20 is probably not large enough.</p>
+<p>Why does this matter? Well, if we want to calculate a 95% confidence interval for our estimate of the population mean, then we usually assume that the sampling distribution is normally distributed, then take the 2.5% and 97.5% quantiles of that distribution as the lower and upper bounds of the confidence interval.</p>
+<p>We can’t do this if we can’t be sure that the sampling distribution <em>is</em> normally distributed.</p>
+<p>What do we do instead? We can use the <em>bootstrap</em> method developed by Efron, Tibshirani and others.</p>
+</section>
+<section id="take-bootstrap-samples" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="take-bootstrap-samples"><span class="header-section-number">25.3</span> Take bootstrap samples</h2>
+<p>The idea here is to repeatedly draw from our sample <em>with replacement</em> to create new samples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a single bootstrap sample of the original sample</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bootstrap_sample<span class="ot">&lt;-</span><span class="cf">function</span>(original_sample){</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (<span class="fu">sample</span>(original_sample,<span class="fu">length</span>(original_sample),<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># returns the means of N bootstrap samples</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>bootstrap_sampling_dist_of_means<span class="ot">&lt;-</span><span class="cf">function</span>(sample,N){</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">bootstrap_sample</span>(sample)))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># returns the bootstrap estimated mean and CI lower and upper bounds of the mean</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>bootstrap_sampling_dist_of_means_summary<span class="ot">&lt;-</span><span class="cf">function</span>(sample,N,CI){</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  a<span class="ot">&lt;-</span><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">bootstrap_sample</span>(sample)))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">mean</span>(a),<span class="fu">quantile</span>(a,<span class="fu">c</span>((<span class="dv">1</span><span class="sc">-</span>CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>,((CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">2</span>)))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ref-jovan2008" class="csl-entry" role="listitem">
-Jovan, Sarah. 2008. <span>“Lichen Bioindication of Biodiversity, Air
-Quality, and Climate: Baseline Results from Monitoring in Washington,
-Oregon, and California.”</span> <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>.
+</section>
+<section id="find-the-se-and-ci-of-the-mean" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="find-the-se-and-ci-of-the-mean"><span class="header-section-number">25.4</span> Find the SE and CI of the mean</h2>
+<p>We do this a large numbe of times, maybe 10000 times and for each bootstrap sample we calculate the mean, to create oveall a so-called sampling distribution of the means as shown in <a href="#fig-bootstrap-distribution" class="quarto-xref">Figure&nbsp;<span>25.1</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p3<span class="ot">&lt;-</span><span class="fu">histogram</span>(<span class="fu">tibble</span>(<span class="at">x=</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">10000</span>)),x)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>p4<span class="ot">&lt;-</span><span class="fu">qq_plot</span>(<span class="fu">tibble</span>(<span class="at">x=</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">10000</span>)),x)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3,p4,<span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-bootstrap-distribution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bootstrap-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="bootstrap_files/figure-html/fig-bootstrap-distribution-1.png" class="img-fluid figure-img" style="width:90.0%">
 </div>
-<div id="ref-lauber2009" class="csl-entry" role="listitem">
-Lauber, Christian L., Micah Hamady, Rob Knight, and Noah Fierer. 2009.
-<span>“Pyrosequencing-Based Assessment of Soil pH as a Predictor of Soil
-Bacterial Community Structure at the Continental Scale.”</span>
-<em>Applied and Environmental Microbiology</em> 75 (15): 5111–20. <a href="https://doi.org/10.1128/aem.00335-09">https://doi.org/10.1128/aem.00335-09</a>.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bootstrap-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25.1: (left) The ‘sampling’ distribution of the means of 10,000 bootstrap samples drawn with replacement from the origial sample. This distribution looks very like a normal distribution, as confirmed by the very linear QQ-plot on the right
+</figcaption>
+</figure>
 </div>
-<div id="ref-oh2023" class="csl-entry" role="listitem">
-Oh, Youjung, Sang Myeong Oh, Pil-Hun Chang, and Il-Ju Moon. 2023.
-<span>“Optimal Tropical Cyclone Size Parameter for Determining
-Storm-Induced Maximum Significant Wave Height.”</span> <em>Frontiers in
-Marine Science</em> 10 (February). <a href="https://doi.org/10.3389/fmars.2023.1134579">https://doi.org/10.3389/fmars.2023.1134579</a>.
 </div>
-<div id="ref-oksanen2004" class="csl-entry" role="listitem">
-Oksanen, Jari. 2004. <span>“Multivariate Analysis in Ecology - Lecture
-Notes.”</span> <a href="https://web.archive.org/web/20181024083948/http://cc.oulu.fi:80/~jarioksa/opetus/metodi/notes.pdf">https://web.archive.org/web/20181024083948/http://cc.oulu.fi:80/~jarioksa/opetus/metodi/notes.pdf</a>.
 </div>
-<div id="ref-pain2019" class="csl-entry" role="listitem">
-Pain, Deborah J., Rafael Mateo, and Rhys E. Green. 2019. <span>“Effects
-of Lead from Ammunition on Birds and Other Wildlife: A Review and
-Update.”</span> <em>Ambio</em> 48 (9): 935–53. <a href="https://doi.org/10.1007/s13280-019-01159-0">https://doi.org/10.1007/s13280-019-01159-0</a>.
-</div>
-<div id="ref-shlens2014" class="csl-entry" role="listitem">
-Shlens, Jonathon. 2014. <span>“A Tutorial on Principal Component
-Analysis.”</span> <a href="https://doi.org/10.48550/arXiv.1404.1100">https://doi.org/10.48550/arXiv.1404.1100</a>.
-</div>
+<p>We now simply find the mean, the standard deviation and the 2.5% and 97.5% quantiles of this distribution. We already have an estimate of the mean from the original sample, but the 2.5% and 97.5% percentiles give us estimates of the lower and upper bounds of the 95% confidence interval on that estimate of the mean. That, mostly, is what we want from the bootstrap method.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>op<span class="ot">&lt;-</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">2000</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mean_estimate<span class="ot">&lt;-</span><span class="fu">mean</span>(op)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#mean_se&lt;-sd(bootstrap_sampling_dist_of_means$x)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>mean_CI95<span class="ot">&lt;-</span><span class="fu">quantile</span>(op,<span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>mean_estimate</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 30.5</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#mean_se</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>mean_CI95</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  2.5% 97.5% </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  28.1  33.0</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">bootstrap_sampling_dist_of_means_summary</span>(df<span class="sc">$</span>pc_fat,<span class="dv">2000</span>,<span class="dv">95</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">##        2.5% 97.5% </span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  30.5  28.1  33.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -930,11 +987,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./bootstrap.html" class="pagination-link" aria-label="The bootstrap - a way to estimate a confidence interval">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The bootstrap - a way to estimate a confidence interval</span></span>
+      <a href="./error_bars.html" class="pagination-link" aria-label="Error bars">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Error bars</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -945,7 +1005,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) Michael Hunt</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mbh038/r4nqy/edit/main/bootstrap.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

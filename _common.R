@@ -43,6 +43,8 @@ suppressMessages(library(readxl))
 suppressMessages(library(terra))
 suppressMessages(library(sf))
 suppressMessages(library(rstatix))
+suppressMessages(library(gt))
+suppressMessages(library(dygraphs))
 
 # knitr chunk options ----------------------------------------------------------
 
