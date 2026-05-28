@@ -1,15 +1,6 @@
----
-title: "GLM introduction"
-format: html
-editor: visual
-execute: 
-  message: false
-  warning: false
-  echo: false
----
+# GLM introduction
 
-This chapter draws on Michael Crawley’s Statistics: An introduction using R, 2nd Ed, Wiley. 
----
+## This chapter draws on Michael Crawley’s Statistics: An introduction using R, 2nd Ed, Wiley.
 
 ```{r}
 library(tidyverse)
@@ -17,21 +8,22 @@ library(here)
 library(cowplot)
 options(kableExtra.auto_format = FALSE)
 library(kableExtra)
+library(gt)
 ```
 
 In many settings we have a response variable such as a weight, length or concentration that is a continuous real number.
 
-For many common analyses of those variables, such as t-test, regression, ANOVA, or in fact any manifestation of the linear model, the data needs to have the following attributes:
+For many common analyses of those variables, such as  at-test, regression, ANOVA, or in fact any manifestation of the linear model, the data needs to have the following attributes:
 
--   random sampling
--   constant variance
--   normally distributed errors
--   independent errors
--   additive effects
+- random sampling
+- constant variance
+- normally distributed errors
+- independent errors
+- additive effects
 
-If one or more of these assumptions is wrong, the analyses become unreliable in that the claims that they make will be based on assumptions that are false. 
+If one or more of these assumptions is wrong, the analyses become unreliable in that the claims that they make will be based on assumptions that are false.
 
-In ecology and many other fields,  this is very commonly the case.
+In ecology and many other fields, this is very commonly the case.
 
 Consider for example the variance of some commonly encountered types of data:
 
@@ -47,7 +39,7 @@ We said that this increase in variance with mean count value is found for count 
 
 **Proportion data**
 
-Sometimes, however, as well as knowing how often something did happen, we also know how often it did not happen. We can express each count as a *poportion* of the total. We could characterise the first counts as 'successes' and the second as 'failures', although this can sometimes be somewhat macabre in a medical context. Both counts are important to a full analysis of the data.
+Sometimes, however, as well as knowing how often something *did* happen, we also know how often it *did not* happen. We can express each count as a *poportion* of the total. We could characterise the first counts as 'successes' and the second as 'failures', although this can sometimes be somewhat macabre in a medical context. Both counts are important to a full analysis of the data.
 
 Examples are:
 
@@ -101,9 +93,9 @@ A more powerful and versatile approach is to use generalized linear models, comm
 
 A generalized linear model has three important properties:
 
--   the error structure
--   the linear predictor
--   the link function
+- the error structure
+- the linear predictor
+- the link function
 
 While none of these concepts is likely to be familiar, the ideas behind each of them are straightforward and it is worth getting to know what each one involves.
 
@@ -115,17 +107,18 @@ Often, this is not the case, certainly in ecology and in many studies within the
 
 The errors may be:
 
--   strongly skewed - a few errors are much larger (most common) or smaller than the rest
--   strongly kurtotic - much more scrunched up or spread out than would be consistent with a normal distribution
--   strictly bounded - they can't imply values beyond the realms of what is phyiscally possible, as in proportion data.
--   strictly positive - as with count data, where negative values are meaningless.
+- strongly skewed - a few errors are much larger (most common) or smaller than the rest
+- strongly kurtotic - much more scrunched up or spread out than would be consistent with a normal distribution
+- strictly bounded - they can't imply values beyond the realms of what is phyiscally possible, as in proportion data.
+- strictly positive - as with count data, where negative values are meaningless.
 
 Before the advent of GLMs, any of these error issues would have required the use either of a transformation of the response data or the use of non-parametric methods, whereby the response data were ranked and only those ranks were then used in subsequent analysis, the actual values being ignored, with consequent loss of power as a result of not using this information. A GLM allows one to specify a variety of commonly encountered types of error distribution:
 
--   Poisson errors - useful with count data
--   binomial errors - useful with proportion data
--   gamma errors - useful with data that show a constant coefficient of variation
--   exponential errors - useful with data on time to death (survival analysis)
+- Poisson errors - useful with count data
+- nagative binoliam date - useful for clumped count data wit high dispersion
+- binomial errors - useful with proportion data
+- gamma errors - useful with data that show a constant coefficient of variation
+- exponential errors - useful with data on time to death (survival analysis)
 
 In `R` the error structure is defined by means of the `family` argument, thus:
 
@@ -145,9 +138,8 @@ The response variable `z` can be continuous, leading to a regression analysis, o
 
 In a GLM, each observed value *y* is related to a predicted value, which is obtained by transformation of the value emerging from the *linear predictor* $\eta$. This linear predictor is a linear sum of the effects of one or more explanatory variables $x_j$. It is what you would see if you asked in R for `summary.lm`.
 
-$$
-\eta_i = \sum_{j=1}^px_{ib}\beta_j
-$$ The $x$s are the values of the *p* different explanatory variables and the $\beta$s are the (usually) unknown poarameters to be estimated from the data. The right-hand side of this equation is called the *linear structure*. Thre are as many terms in this as there are parameters to be estimated, that is *p*.
+$$\eta_i = \sum_{j=1}^px_{ib}\beta_j$$
+The $x$s are the values of the *p* different explanatory variables and the $\beta$s are the (usually) unknown poarameters to be estimated from the data. The right-hand side of this equation is called the *linear structure*. Thre are as many terms in this as there are parameters to be estimated, that is *p*.
 
 ## Fitted values
 
@@ -155,9 +147,7 @@ $$ The $x$s are the values of the *p* different explanatory variables and the $\
 
 *Deviance* is a generalisation of the concept of variance: it is a measure of the lack of fit of the model to the data.
 
-$$
-\text{deviance} = -2\times\text{log likelihood}
-$$
+$$\text{deviance} = -2\times\text{log likelihood}$$
 
 where the log likelihood depends on the model, *given the data*. Deviance is the same as variance when we have constant variance and normally distributed errors, as with linear regression, ANOVA and ANCOVA. That is, the appropriate measure of lack of it is $(y-\hat{y})^2$. For count data, however, we need another measure of lack of fit, which turns out to be $y\log(\frac{y}{\hat{y}})$. Other types of data need yet other measures of lack of it. Here is a summary table of them:
 
@@ -180,9 +170,8 @@ df |>
 
 The predicted value of *y* is related to the linear predictor value $\eta$ via the link function *g*:
 
-$$
-\eta = g(\mu)
-$$ What we mean by this is that the value of $\eta$ is obtained by transforming *y* by the link function, and the predicted value of *y* is obtained by applying the inverse of the link function to $\eta$.
+$$\eta = g(\mu)$$
+What we mean by this is that the value of $\eta$ is obtained by transforming *y* by the link function, and the predicted value of *y* is obtained by applying the inverse of the link function to $\eta$.
 
 In the case of the *identity link*, the linear predictor *is* the predicted value of *y*. Hence, in simple linear regression, we are in effect using a special case of the GLM, one where the link function is the *identity* ie do nothing.
 

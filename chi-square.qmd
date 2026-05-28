@@ -2,7 +2,6 @@
 
 For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/chi-square/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
 
-
 ```{r, include=FALSE}
 library(tidyverse)
 library(here)
@@ -21,10 +20,10 @@ theme_no_axes<-function(){
 
 A chi-square analysis is used when our data satisfy
 
-* they are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc.
-* Each independent observation must definitely belong to either one group or the other
-* there are no replicates. That is, for each category we just have one count.
-* No counts are too small. A rule of thumb is that all counts should be 5 ore more. 
+-   they are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc.
+-   Each independent observation must definitely belong to either one group or the other
+-   there are no replicates. That is, for each category we just have one count.
+-   No counts are too small. A rule of thumb is that all counts should be 5 ore more.
 
 What we do is compare the counts we got, the so-called *observable* values, to some *expected* values according either to chance or to some prior theory.
 
@@ -54,8 +53,7 @@ In a typical software implementation of the test, such as in R, we give it the c
 
 If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 generation shown in @fig-mendelian-inheritance with yellow being dominant, then the offspring in the F2 generation would in the long run be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
 
-Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 125 are yellow and 51 are green. These are the *observed* counts of yellow and green pea plants. 
-The *expected* counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F2 generation.
+Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 125 are yellow and 51 are green. These are the *observed* counts of yellow and green pea plants. The *expected* counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F2 generation.
 
 The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.
 
@@ -63,13 +61,13 @@ The data here are raw counts, and an individual pea plant offspring contributes 
 
 You would not normally do this, you would use software such as R, but for learning purposes let us go as far as we can in implementing a chi-square test on this data ourselves just to see the process behind it, then we can see how easy it is to do the test in R.
 
-What we need to do is to calculate from our data a number that tells us how likely is it that we would have got totals for yellow and green pea plants as far or further from the expected 3:1 ratio as we did, if the null hypothesis of Mendelian inheritance were correct. 
+What we need to do is to calculate from our data a number that tells us how likely is it that we would have got totals for yellow and green pea plants as far or further from the expected 3:1 ratio as we did, if the null hypothesis of Mendelian inheritance were correct.
 
 That is the very definition of a p-value! So that is what we need to calculate, a p-value.
 
 It turns out that this p-value an be calculated from a number derived from the data that we call the **chi-square statistic**. This number is defined in such a way that the further your actual counts are from thier expected values, the bigger it is.
 
-It is calculated by looking at the squared difference, for each count, between the observed value and the expected value. The squared thing is because we don't care if the observed value is less than or more than the expected value. It is by how much that matters. 
+It is calculated by looking at the squared difference, for each count, between the observed value and the expected value. The squared thing is because we don't care if the observed value is less than or more than the expected value. It is by how much that matters.
 
 Here is the expression for the chi-square statistic:
 
@@ -77,12 +75,11 @@ $$
 \begin{align}
 \chi^2 &= \sum_{i=\text{Y,G}}\frac{(O_i-E_i)^2}{E_i}\\ &=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
 \end{align}
-$$
-The first line is just a more compact way of witing the second line, where the $\sum$ symbol means 'sum over' a yellow peas term (Y) and a green peas term (G), as laid out in the second line. $O_\text{Y}$ and $O_\text{G}$ mean the observed numbers of yellow and green pea plants respectively, while $E_\text{Y}$ and $E_\text{G}$ mean the expected numbers of each.
+$$ The first line is just a more compact way of witing the second line, where the $\sum$ symbol means 'sum over' a yellow peas term (Y) and a green peas term (G), as laid out in the second line. $O_\text{Y}$ and $O_\text{G}$ mean the observed numbers of yellow and green pea plants respectively, while $E_\text{Y}$ and $E_\text{G}$ mean the expected numbers of each.
 
 Defined in this way, the chi-square statistic $\chi^2$is a number that will always be positive (because it is the sum of squared terms, and they are always positive, divided by an expected number, which can also only be positive) and will be bigger the further from the expected values our observed values turn out to be.
 
-It is also a number that will vary each time you repeat the study because while the expected values $E_i$ are fixed, the observed values $O_i$ will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calculate the chi-sqare statistic you would find that it follows one of a known family of distributions, the so-called (who would have thought it?) chi-square distributions, provided each count is greater than about five. 
+It is also a number that will vary each time you repeat the study because while the expected values $E_i$ are fixed, the observed values $O_i$ will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calculate the chi-sqare statistic you would find that it follows one of a known family of distributions, the so-called (who would have thought it?) chi-square distributions, provided each count is greater than about five.
 
 To determine which one among them is followed by our own chi-squared statistic we need to know one more thing, the so-called *degrees of freedom*. This is a term that crops up often when using statistical tests. Roughly speaking, it refers to the number of independent pieces of information that are used in arriving at a result, given whatever constraints surround the problem. In our case, the constraint was that there were 176 pea plants in total in the F2 generation. That meant that only one of the sub-totals for each of the colours could be freely chosen. Once it was known the other could be determined as the difference between it and the total: if there are 176 plants in total and 125 of them are yellow, then the green total *has* to be 176 - 125 = 51. So, in our case the degrees of freedom is one.
 
@@ -102,11 +99,9 @@ $$
 \end{align}
 $$
 
-
 ```{r}
 pchisq(1.48,1, lower.tail=FALSE)
 ```
-
 
 **Doing the chi-square test in R**
 
@@ -132,11 +127,9 @@ In this case, we see that the p-value is 0.223, which is large. We could very pl
 
 In English, we might report this result as:
 
-*We found counts of 125 yellow plants and 51 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 1.48, df = 1,  p=0.223).*
+*We found counts of 125 yellow plants and 51 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 1.48, df = 1, p=0.223).*
 
 Note that we do not say we have proved Mendelian inheritance to be correct. We haven't. We never prove things in science. We haven't said anything about the truth of the null hypothesis. All we can say is whether our data are or are not consistent with the null hypothesis. In this case they are. We then report the test we used and the values of the test statistic and p-value. Other tests might give you other details to report too.
-
-
 
 ### Exercises
 
@@ -217,10 +210,10 @@ Behind this the research purpose might be to investigate whether matching of mor
 
 A **Chi-Square independence analysis** can be used to investigate this. This type of analysis is used when you have
 
-* Count data - for example, how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?
-* Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.
-* Independent counts - each ladybird contributes to only one sub-total. For example, if it is red and found in a rural location, then it contributes to the count of red ladybirds found in a rural location, and not to any other sub-total, such as black ladybirds found in a rural location.
-* No replicates - for ach combination of the levels of the fators, we have just one count.
+-   Count data - for example, how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?
+-   Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.
+-   Independent counts - each ladybird contributes to only one sub-total. For example, if it is red and found in a rural location, then it contributes to the count of red ladybirds found in a rural location, and not to any other sub-total, such as black ladybirds found in a rural location.
+-   No replicates - for ach combination of the levels of the fators, we have just one count.
 
 All these are true for the ladybird study.
 

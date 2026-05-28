@@ -70,7 +70,7 @@ p2
 }
 ```
 
-```{r}
+```{r, echo = FALSE}
 p1<-histogram(df,pc_fat)
 p2<-qq_plot(df,pc_fat)
 grid.arrange(p1,p2,nrow=1)
@@ -112,7 +112,7 @@ bootstrap_sampling_dist_of_means_summary<-function(sample,N,CI){
 
 We do this a large numbe of times, maybe 10000 times and for each bootstrap sample we calculate the mean, to create oveall a so-called sampling distribution of the means as shown in @fig-bootstrap-distribution.
 
-```{r}
+```{r, echo = FALSE}
 #| label: fig-bootstrap-distribution
 #| fig-cap: "(left) The 'sampling' distribution of the means of 10,000 bootstrap samples drawn with replacement from the origial sample. This distribution looks very like a normal distribution, as confirmed by the very linear QQ-plot on the right"
 #| 
@@ -127,6 +127,7 @@ We now simply find the mean, the standard deviation and the 2.5% and 97.5% quant
 
 op<-bootstrap_sampling_dist_of_means(df$pc_fat,2000)
 mean_estimate<-mean(op)
+
 #mean_se<-sd(bootstrap_sampling_dist_of_means$x)
 mean_CI95<-quantile(op,c(0.025,0.975))
 

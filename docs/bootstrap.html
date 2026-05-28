@@ -486,9 +486,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plot-the-data" class="level2" data-number="25.2">
 <h2 data-number="25.2" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">25.2</span> Plot the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span><span class="fu">histogram</span>(df,pc_fat)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">&lt;-</span><span class="fu">qq_plot</span>(df,pc_fat)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1,p2,<span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -506,30 +503,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="25.3" class="anchored" data-anchor-id="take-bootstrap-samples"><span class="header-section-number">25.3</span> Take bootstrap samples</h2>
 <p>The idea here is to repeatedly draw from our sample <em>with replacement</em> to create new samples.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a single bootstrap sample of the original sample</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bootstrap_sample<span class="ot">&lt;-</span><span class="cf">function</span>(original_sample){</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (<span class="fu">sample</span>(original_sample,<span class="fu">length</span>(original_sample),<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># returns the means of N bootstrap samples</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>bootstrap_sampling_dist_of_means<span class="ot">&lt;-</span><span class="cf">function</span>(sample,N){</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">bootstrap_sample</span>(sample)))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># returns the bootstrap estimated mean and CI lower and upper bounds of the mean</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>bootstrap_sampling_dist_of_means_summary<span class="ot">&lt;-</span><span class="cf">function</span>(sample,N,CI){</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  a<span class="ot">&lt;-</span><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">bootstrap_sample</span>(sample)))</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">mean</span>(a),<span class="fu">quantile</span>(a,<span class="fu">c</span>((<span class="dv">1</span><span class="sc">-</span>CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>,((CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">2</span>)))</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a single bootstrap sample of the original sample</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bootstrap_sample<span class="ot">&lt;-</span><span class="cf">function</span>(original_sample){</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (<span class="fu">sample</span>(original_sample,<span class="fu">length</span>(original_sample),<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># returns the means of N bootstrap samples</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>bootstrap_sampling_dist_of_means<span class="ot">&lt;-</span><span class="cf">function</span>(sample,N){</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">bootstrap_sample</span>(sample)))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># returns the bootstrap estimated mean and CI lower and upper bounds of the mean</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>bootstrap_sampling_dist_of_means_summary<span class="ot">&lt;-</span><span class="cf">function</span>(sample,N,CI){</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  a<span class="ot">&lt;-</span><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span>N, <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">bootstrap_sample</span>(sample)))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">mean</span>(a),<span class="fu">quantile</span>(a,<span class="fu">c</span>((<span class="dv">1</span><span class="sc">-</span>CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">/</span><span class="dv">2</span>,((CI<span class="sc">/</span><span class="dv">100</span>)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">2</span>)))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="find-the-se-and-ci-of-the-mean" class="level2" data-number="25.4">
 <h2 data-number="25.4" class="anchored" data-anchor-id="find-the-se-and-ci-of-the-mean"><span class="header-section-number">25.4</span> Find the SE and CI of the mean</h2>
 <p>We do this a large numbe of times, maybe 10000 times and for each bootstrap sample we calculate the mean, to create oveall a so-called sampling distribution of the means as shown in <a href="#fig-bootstrap-distribution" class="quarto-xref">Figure&nbsp;<span>25.1</span></a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p3<span class="ot">&lt;-</span><span class="fu">histogram</span>(<span class="fu">tibble</span>(<span class="at">x=</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">10000</span>)),x)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>p4<span class="ot">&lt;-</span><span class="fu">qq_plot</span>(<span class="fu">tibble</span>(<span class="at">x=</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">10000</span>)),x)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3,p4,<span class="at">nrow=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-bootstrap-distribution" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -545,23 +539,24 @@ Figure&nbsp;25.1: (left) The ‘sampling’ distribution of the means of 10,000 
 </div>
 <p>We now simply find the mean, the standard deviation and the 2.5% and 97.5% quantiles of this distribution. We already have an estimate of the mean from the original sample, but the 2.5% and 97.5% percentiles give us estimates of the lower and upper bounds of the 95% confidence interval on that estimate of the mean. That, mostly, is what we want from the bootstrap method.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>op<span class="ot">&lt;-</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">2000</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mean_estimate<span class="ot">&lt;-</span><span class="fu">mean</span>(op)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#mean_se&lt;-sd(bootstrap_sampling_dist_of_means$x)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>mean_CI95<span class="ot">&lt;-</span><span class="fu">quantile</span>(op,<span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>mean_estimate</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 30.5</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#mean_se</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>mean_CI95</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  2.5% 97.5% </span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  28.1  33.0</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">bootstrap_sampling_dist_of_means_summary</span>(df<span class="sc">$</span>pc_fat,<span class="dv">2000</span>,<span class="dv">95</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">##        2.5% 97.5% </span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  30.5  28.1  33.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>op<span class="ot">&lt;-</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">2000</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mean_estimate<span class="ot">&lt;-</span><span class="fu">mean</span>(op)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#mean_se&lt;-sd(bootstrap_sampling_dist_of_means$x)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mean_CI95<span class="ot">&lt;-</span><span class="fu">quantile</span>(op,<span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>mean_estimate</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 30.5</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#mean_se</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>mean_CI95</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  2.5% 97.5% </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  28.1  33.0</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">bootstrap_sampling_dist_of_means_summary</span>(df<span class="sc">$</span>pc_fat,<span class="dv">2000</span>,<span class="dv">95</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="do">##        2.5% 97.5% </span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  30.5  28.1  33.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
