@@ -2681,7 +2681,7 @@ normal distribution?
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99043, p-value = 0.002466
+W = 0.99673, p-value = 0.4087
 \end{verbatim}
 
 \begin{Shaded}
@@ -2695,7 +2695,7 @@ W = 0.99043, p-value = 0.002466
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.95235, p-value = 1.285e-11
+W = 0.95624, p-value = 5.088e-11
 \end{verbatim}
 
 For the examples above, we see that Shapiro-Wilk test gave a high
@@ -4346,7 +4346,7 @@ plot (it's OK, but not ideal!):
 
 \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{ANOVA_one_way_files/figure-pdf/unnamed-chunk-6-1.pdf}
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, toprule=.15mm, breakable, opacityback=0, coltitle=black, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, arc=.35mm, leftrule=.75mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, titlerule=0mm, toptitle=1mm, opacitybacktitle=0.6, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, toprule=.15mm, breakable, bottomtitle=1mm, rightrule=.15mm, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, coltitle=black, bottomrule=.15mm, left=2mm, colframe=quarto-callout-note-color-frame]
 
 The box-plot shown above is OK, but it only crudely shows the
 distribution of the data annd it does not show the sample size. Consider
@@ -9603,7 +9603,7 @@ a fixed total of nest boxes, are best analysed as proportion data using
 the binomial distribution. This can also be handled within a GLM
 framework, but we shall not discuss it here.
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, opacitybacktitle=0.6, toptitle=1mm, rightrule=.15mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, toprule=.15mm, breakable, opacityback=0, coltitle=black, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{The Poisson distribution}, arc=.35mm, leftrule=.75mm, left=2mm]
+\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, titlerule=0mm, toptitle=1mm, opacitybacktitle=0.6, opacityback=0, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{The Poisson distribution}, toprule=.15mm, breakable, bottomtitle=1mm, rightrule=.15mm, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, coltitle=black, bottomrule=.15mm, left=2mm, colframe=quarto-callout-note-color-frame]
 
 In case you want to know, here is the mathematical form of the Poisson
 distribution for a random non-negative, discrete variable \(x\) that is
@@ -11787,40 +11787,53 @@ $ Callcusp <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 3
 
 \begin{verbatim}
 Run 0 stress 0.1192678 
-Run 1 stress 0.1192679 
-... Procrustes: rmse 0.0001687166  max resid 0.0005130387 
+Run 1 stress 0.1192678 
+... Procrustes: rmse 7.44909e-06  max resid 2.072723e-05 
 ... Similar to previous best
-Run 2 stress 0.1183186 
+Run 2 stress 0.1192679 
+... Procrustes: rmse 0.0001281209  max resid 0.0003903561 
+... Similar to previous best
+Run 3 stress 0.2719615 
+Run 4 stress 0.1192679 
+... Procrustes: rmse 9.483026e-05  max resid 0.0002890481 
+... Similar to previous best
+Run 5 stress 0.3014277 
+Run 6 stress 0.1183186 
 ... New best solution
-... Procrustes: rmse 0.02027032  max resid 0.06496201 
-Run 3 stress 0.1183186 
-... Procrustes: rmse 9.78224e-06  max resid 3.068334e-05 
+... Procrustes: rmse 0.02026848  max resid 0.06495442 
+Run 7 stress 0.1192678 
+Run 8 stress 0.1808911 
+Run 9 stress 0.1183186 
+... New best solution
+... Procrustes: rmse 2.087504e-05  max resid 6.670462e-05 
 ... Similar to previous best
-Run 4 stress 0.1808911 
-Run 5 stress 0.1183186 
-... Procrustes: rmse 1.42292e-06  max resid 4.188122e-06 
+Run 10 stress 0.1183186 
+... New best solution
+... Procrustes: rmse 4.084628e-06  max resid 1.293462e-05 
 ... Similar to previous best
-Run 6 stress 0.1192679 
-Run 7 stress 0.1808911 
-Run 8 stress 0.2075713 
-Run 9 stress 0.1886532 
-Run 10 stress 0.1192678 
 Run 11 stress 0.1183186 
-... Procrustes: rmse 1.615199e-05  max resid 5.034601e-05 
+... Procrustes: rmse 9.688333e-07  max resid 1.774722e-06 
 ... Similar to previous best
-Run 12 stress 0.1808911 
-Run 13 stress 0.1192679 
-Run 14 stress 0.1183186 
-... Procrustes: rmse 1.018206e-05  max resid 3.318493e-05 
+Run 12 stress 0.1183186 
+... New best solution
+... Procrustes: rmse 9.049803e-07  max resid 1.903941e-06 
 ... Similar to previous best
-Run 15 stress 0.1192678 
-Run 16 stress 0.1192678 
+Run 13 stress 0.1192678 
+Run 14 stress 0.2045511 
+Run 15 stress 0.1192679 
+Run 16 stress 0.1183186 
+... Procrustes: rmse 2.115681e-05  max resid 6.8284e-05 
+... Similar to previous best
 Run 17 stress 0.1183186 
-... Procrustes: rmse 1.739793e-05  max resid 5.354299e-05 
+... Procrustes: rmse 2.546109e-06  max resid 7.434926e-06 
 ... Similar to previous best
-Run 18 stress 0.1192678 
-Run 19 stress 0.1886532 
-Run 20 stress 0.1192678 
+Run 18 stress 0.1183186 
+... Procrustes: rmse 2.299455e-06  max resid 6.231094e-06 
+... Similar to previous best
+Run 19 stress 0.1192678 
+Run 20 stress 0.1183186 
+... Procrustes: rmse 4.871806e-06  max resid 1.546275e-05 
+... Similar to previous best
 *** Best solution repeated 5 times
 \end{verbatim}
 
@@ -12903,7 +12916,7 @@ our chosen significance level,
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.0009556529
+[1] 1.41916e-07
 \end{verbatim}
 
 Wht we want to know is: what is the chance that we would get the

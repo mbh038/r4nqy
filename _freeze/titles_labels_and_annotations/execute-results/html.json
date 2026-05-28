@@ -1,0 +1,17 @@
+{
+  "hash": "c14e0a36c70df47232cfd49546660eb7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Titles, labels and annotations\n\n\n\n\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n\n\n\n\nOften in plots one needs to use mathematical expressions, suffixes/superscripts, greeek letters or other unusual formatting.\n\nHere we show one way of doing this, using `bquote()`. Over the years I have found this to be the simplest way.\n\n## Use `bquote()`\n\nThe four rules\n\n* Strings – Require quotes wrapped w/ tilde separator (e.g., \"my text\"  ~).\n* Math Expressions – Unquoted & follow `?plotmath`\n* Numbers – Unquoted when part of math notation\n* Variables – Use .() (pass in string or numeric)\n\nExamples of all of these are shown in the labels, title and annotations included in the plot below:\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndf <- tibble(x=1:10,y=1:10)\ncor <- 0.456\ndf |>\n  ggplot(aes(x=x,y=y)) +\n  geom_point() +\n  labs( x = bquote(\"An axis label with suffix and superscript:\" ~ x[i]^2), \n        y = bquote(\"An axis label with greek letters:\" ~ alpha ~ Beta ~ mu ~ m),\n        title = bquote(\"Hello\"~ r[xy] == .(cor) ~ \"and\" ~ CO[2] ~ \"and\" ~ B^2 ~ \"and\" ~ m^{-1})) +\n  annotate(geom=\"text\", x = 5, y = 7, label =  deparse(bquote(\"Hello\" ~ r[xy] == 0.678 ~ \"and\" ~ B^2)), parse = TRUE) +\n  annotate(geom=\"text\", x = 7, y = 9, label =  bquote(\"A big annotation\"), size = 12) +\n  annotate(geom=\"text\", x = 7, y = 2, label =  bquote(\"A red annotation\"), colour = \"red\") +\n  theme_classic()\n```\n\n::: {.cell-output-display}\n![](titles_labels_and_annotations_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\n\n\n\n\n## ?plotmath\n\n`plotmath` expressions can be used for mathematical annotation in text within plots in R when writing titles, subtitles, axis labels, legends and annotations. It works in both base R graphics and ggplot2.\n\nIn the console pane, type `?plotmath` in the console pane to see the full list of options.\n\nSome key rules are:\n\n* subscripts: O[2] gives O~2~\n* superscripts: m^2 gives m^2^, m^{-1} gives m^-1^\n* Lower case Greek: alpha, beta etc gives $\\alpha, \\beta$ etc, so mu\n* Upper case Greek: Delta, Gamma etc gives $\\Delta, \\Gamma$ etc\n\n\n\n",
+    "supporting": [
+      "titles_labels_and_annotations_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
