@@ -22,7 +22,7 @@ df<-tibble(pc_fat=c(25.3,29.3,37.7,32.8,24.6,26.5,21.2,28.4,24,28.7,37.4,30.7,36
 
 ## Summary statistics of the data
 
-First of all we would like to find the mean  of the sample which will be our best estimate of the mean of the population.
+First of all we would like to find the mean of the sample which will be our best estimate of the mean of the population.
 
 ```{r,collapse=TRUE}
 print(paste0("Mean = ",mean(df$pc_fat)))
@@ -86,7 +86,7 @@ What do we do instead? We can use the *bootstrap* method developed by Efron, Tib
 
 ## Take bootstrap samples
 
-The idea here is to repeatedly draw from our sample _with replacement_ to create new samples. 
+The idea here is to repeatedly draw from our sample *with replacement* to create new samples.
 
 ```{r}
 # returns a single bootstrap sample of the original sample
@@ -105,8 +105,6 @@ bootstrap_sampling_dist_of_means_summary<-function(sample,N,CI){
   c(mean(a),quantile(a,c((1-CI/100)/2,((CI/100)+1)/2)))
 }
 ```
-
-
 
 ## Find the SE and CI of the mean
 
@@ -138,5 +136,3 @@ mean_CI95
 
 bootstrap_sampling_dist_of_means_summary(df$pc_fat,2000,95)
 ```
-
-

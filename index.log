@@ -1,23 +1,23 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.28)  28 NOV 2025 20:30
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.29)  28 MAY 2026 14:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **index.tex
 (./index.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-14>
+L3 programming layer <2026-01-19>
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrreprt.cls
-Document Class: scrreprt 2025/09/09 v3.48 KOMA-Script document class (report)
+Document Class: scrreprt 2026/02/02 v3.49.2 KOMA-Script document class (report)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrkbase.sty
-Package: scrkbase 2025/09/09 v3.48 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
+Package: scrkbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2025/09/09 v3.48 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+Package: scrbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2025/09/09 v3.48 KOMA-Script package (file load hooks)
+Package: scrlfile 2026/02/02 v3.49.2 KOMA-Script package (file load hooks)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
-Package: scrlfile-hook 2025/09/09 v3.48 KOMA-Script package (using LaTeX hooks)
+Package: scrlfile-hook 2026/02/02 v3.49.2 KOMA-Script package (using LaTeX hooks)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlogo.sty
-Package: scrlogo 2025/09/09 v3.48 KOMA-Script package (logo)
+Package: scrlogo 2026/02/02 v3.49.2 KOMA-Script package (logo)
 ))) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
@@ -25,7 +25,7 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
 Already applied: [0000/00/00] Usage of raw or classic option list on input line 370.
 )) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/tocbasic.sty
-Package: tocbasic 2025/09/09 v3.48 KOMA-Script package (handling toc-files)
+Package: tocbasic 2026/02/02 v3.49.2 KOMA-Script package (handling toc-files)
 \scr@dte@tocline@numberwidth=\skip49
 \scr@dte@tocline@numbox=\box53
 )
@@ -33,11 +33,11 @@ Package tocbasic Info: omitting babel extension for `toc'
 (tocbasic)             because of feature `nobabel' available
 (tocbasic)             for `toc' on input line 143.
 Class scrreprt Info: File `scrsize11pt.clo' used instead of
-(scrreprt)           file `scrsize11.clo' to setup font sizes on input line 2707.
+(scrreprt)           file `scrsize11.clo' to setup font sizes on input line 2710.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
-File: scrsize11pt.clo 2025/09/09 v3.48 KOMA-Script font size class option (11pt)
+File: scrsize11pt.clo 2026/02/02 v3.49.2 KOMA-Script font size class option (11pt)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/typearea.sty
-Package: typearea 2025/09/09 v3.48 KOMA-Script package (type area)
+Package: typearea 2026/02/02 v3.49.2 KOMA-Script package (type area)
 \ta@bcor=\skip50
 \ta@div=\count271
 Package typearea Info: You've used standard option `letterpaper'.
@@ -66,7 +66,7 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \topskip        = 11.0pt
 (typearea)              \footskip       = 47.6pt
 (typearea)              \baselineskip   = 13.6pt
-(typearea)              on input line 1807.
+(typearea)              on input line 1810.
 )
 \c@part=\count272
 \c@chapter=\count273
@@ -77,49 +77,49 @@ Package typearea Info: These are the values describing the layout:
 \c@subparagraph=\count278
 \scr@dte@chapter@maxnumwidth=\skip55
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\chapter on input line 6080.
+(scrreprt)           for `\chapter on input line 5934.
 \scr@dte@section@maxnumwidth=\skip56
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\section on input line 6091.
+(scrreprt)           for `\section on input line 5945.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\section on input line 6091.
+(scrreprt)           for `\section on input line 5945.
 \scr@dte@part@maxnumwidth=\skip57
 Class scrreprt Info: using compatibility default `afterindent=true'
-(scrreprt)           for `\part on input line 6100.
+(scrreprt)           for `\part on input line 5954.
 \scr@dte@subsection@maxnumwidth=\skip58
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\subsection on input line 6110.
+(scrreprt)           for `\subsection on input line 5964.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\subsection on input line 6110.
+(scrreprt)           for `\subsection on input line 5964.
 \scr@dte@subsubsection@maxnumwidth=\skip59
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\subsubsection on input line 6120.
+(scrreprt)           for `\subsubsection on input line 5974.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\subsubsection on input line 6120.
+(scrreprt)           for `\subsubsection on input line 5974.
 \scr@dte@paragraph@maxnumwidth=\skip60
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\paragraph on input line 6131.
+(scrreprt)           for `\paragraph on input line 5985.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\paragraph on input line 6131.
+(scrreprt)           for `\paragraph on input line 5985.
 \scr@dte@subparagraph@maxnumwidth=\skip61
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\subparagraph on input line 6141.
+(scrreprt)           for `\subparagraph on input line 5995.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\subparagraph on input line 6141.
+(scrreprt)           for `\subparagraph on input line 5995.
 \abovecaptionskip=\skip62
 \belowcaptionskip=\skip63
 \c@pti@nb@sid@b@x=\box54
 Package tocbasic Info: omitting babel extension for `lof'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lof' on input line 7348.
+(tocbasic)             for `lof' on input line 7225.
 \scr@dte@figure@maxnumwidth=\skip64
 \c@figure=\count279
 Package tocbasic Info: omitting babel extension for `lot'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lot' on input line 7361.
+(tocbasic)             for `lot' on input line 7238.
 \scr@dte@table@maxnumwidth=\skip65
 \c@table=\count280
-Class scrreprt Info: Redefining `\numberline' on input line 7532.
+Class scrreprt Info: Redefining `\numberline' on input line 7409.
 \bibindent=\dimen148
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
@@ -196,7 +196,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 )) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-11-14 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader) 
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
 \g__graphics_track_int=\count293
@@ -645,30 +645,290 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen260
 \c@nlinenum=\count340
 \TeXr@lab=\toks34
-) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+Package tocbasic Info: Loading of class-dependent code for package caption3
+(tocbasic)             prevented on line 50.
+
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen261
+\captionmargin=\dimen262
+\caption@leftmargin=\dimen263
+\caption@rightmargin=\dimen264
+\caption@width=\dimen265
+\caption@indent=\dimen266
+\caption@parindent=\dimen267
+\caption@hangindent=\dimen268
+)
+\c@caption@flags=\count341
+\c@continuedfloat=\count342
+Package caption Info: float package is loaded.
+Package caption Info: longtable package is loaded.
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
+Package caption Info: threeparttable package is loaded.
+Package caption Info: wrapfig package is loaded.
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
+Invalid UTF-8 byte or sequence at line 3 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 3 replaced by U+FFFD.
+Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks35
+\pgfutil@tempdima=\dimen269
+\pgfutil@tempdimb=\dimen270
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box80
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks36
+\pgfkeys@temptoks=\toks37
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks38
+))
+\pgf@x=\dimen271
+\pgf@y=\dimen272
+\pgf@xa=\dimen273
+\pgf@ya=\dimen274
+\pgf@xb=\dimen275
+\pgf@yb=\dimen276
+\pgf@xc=\dimen277
+\pgf@yc=\dimen278
+\pgf@xd=\dimen279
+\pgf@yd=\dimen280
+\w@pgf@writea=\write4
+\r@pgf@reada=\read3
+\c@pgf@counta=\count343
+\c@pgf@countb=\count344
+\c@pgf@countc=\count345
+\c@pgf@countd=\count346
+\t@pgf@toka=\toks39
+\t@pgf@tokb=\toks40
+\t@pgf@tokc=\toks41
+\pgf@sys@id@count=\count347
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-xetex.def
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+File: pgfsys-xetex.def 2025-08-29 v3.1.11a (3.1.11a)
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2025-08-29 v3.1.11a (3.1.11a)
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+)
+\pgfsys@objnum=\count348
+))) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count349
+\pgfsyssoftpath@bigbuffer@items=\count350
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen281
+\pgfmath@count=\count351
+\pgfmath@box=\box81
+\pgfmath@toks=\toks42
+\pgfmath@stack@operand=\toks43
+\pgfmath@stack@operation=\toks44
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count352
+)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen282
+\pgf@picmaxx=\dimen283
+\pgf@picminy=\dimen284
+\pgf@picmaxy=\dimen285
+\pgf@pathminx=\dimen286
+\pgf@pathmaxx=\dimen287
+\pgf@pathminy=\dimen288
+\pgf@pathmaxy=\dimen289
+\pgf@xx=\dimen290
+\pgf@xy=\dimen291
+\pgf@yx=\dimen292
+\pgf@yy=\dimen293
+\pgf@zx=\dimen294
+\pgf@zy=\dimen295
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen296
+\pgf@path@lasty=\dimen297
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen298
+\pgf@shorten@start@additional=\dimen299
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box82
+\pgf@hbox=\box83
+\pgf@layerbox@main=\box84
+\pgf@picture@serial@count=\count353
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen300
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen301
+\pgf@pt@y=\dimen302
+\pgf@pt@temp=\dimen303
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen304
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen305
+\pgf@sys@shading@range@num=\count354
+\pgf@shadingcount=\count355
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box85
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box86
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen306
+\pgf@nodesepend=\dimen307
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen308
+\pgffor@skip=\dimen309
+\pgffor@stack=\toks45
+\pgffor@toks=\toks46
+)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count356
+\pgfplotmarksize=\dimen310
+)
+\tikz@lastx=\dimen311
+\tikz@lasty=\dimen312
+\tikz@lastxsaved=\dimen313
+\tikz@lastysaved=\dimen314
+\tikz@lastmovetox=\dimen315
+\tikz@lastmovetoy=\dimen316
+\tikzleveldistance=\dimen317
+\tikzsiblingdistance=\dimen318
+\tikz@figbox=\box87
+\tikz@figbox@bg=\box88
+\tikz@tempbox=\box89
+\tikz@tempbox@bg=\box90
+\tikztreelevel=\count357
+\tikznumberofchildren=\count358
+\tikznumberofcurrentchild=\count359
+\tikz@fig@count=\count360
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count361
+\pgfmatrixcurrentcolumn=\count362
+\pgf@matrix@numberofcolumns=\count363
+)
+\tikz@expandcount=\count364
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks47
+\verbatim@line=\toks48
+\verbatim@in@stream=\read4
+)
+\tcb@titlebox=\box91
+\tcb@upperbox=\box92
+\tcb@lowerbox=\box93
+\tcb@phantombox=\box94
+\c@tcbbreakpart=\count365
+\c@tcblayer=\count366
+\c@tcolorbox@number=\count367
+\l__tcobox_tmpa_box=\box95
+\l__tcobox_tmpa_dim=\dimen319
+\tcb@temp=\box96
+\tcb@temp=\box97
+\tcb@temp=\box98
+\tcb@temp=\box99
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.9.0'
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
+Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tikzfill/tikzfill-common.sty
+Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.tex
+File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
+\l__tikzfill_img_box=\box100
+)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.9.0'
+)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/pdfcol/pdfcol.sty
+Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdfcol Info: Interface disabled because of missing PDF mode of pdfTeX.
+)
+Package pdfcol Info: pdfTeX's color stacks are not available.
+\tcb@testbox=\box101
+\tcb@totalupperbox=\box102
+\tcb@totallowerbox=\box103
+)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/fontawesome5.sty
+Package: fontawesome5 2022/05/02 v5.15.4 Font Awesome 5
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/fontawesome5-utex-helper.sty
+Package: fontawesome5-utex-helper 2022/05/02 v5.15.4 uTeX helper for fontawesome5
+LaTeX Font Info:    Trying to load font information for TU+fontawesomefree on input line 69.
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/tufontawesomefree.fd)
+LaTeX Font Info:    Trying to load font information for TU+fontawesomebrands on input line 70.
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/tufontawesomebrands.fd))) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
-(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode not found.
 )) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
@@ -676,64 +936,64 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count341
+\c@section@level=\count368
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen261
-\Hy@linkcounter=\count342
-\Hy@pagecounter=\count343
+\@linkdim=\dimen320
+\Hy@linkcounter=\count369
+\Hy@pagecounter=\count370
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count344
+\Hy@SavedSpaceFactor=\count371
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4066.
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Option `unicode' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count345
+Package hyperref Info: Bookmarks ON on input line 4468.
+\c@Hy@tempcnt=\count372
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip19
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
-\XeTeXLinkMargin=\dimen262
+LaTeX Info: Redefining \url on input line 4807.
+\XeTeXLinkMargin=\dimen321
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count346
-\Field@Width=\dimen263
-\Fld@charsize=\dimen264
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count347
-\c@Item=\count348
-\c@Hfootnote=\count349
+\Fld@menulength=\count373
+\Field@Width=\dimen322
+\Fld@charsize=\dimen323
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
+\Hy@abspage=\count374
+\c@Item=\count375
+\c@Hfootnote=\count376
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
-File: hxetex.def 2025-07-12 v7.01o Hyperref driver for XeTeX
-\pdfm@box=\box80
-\c@Hy@AnnotLevel=\count350
-\HyField@AnnotCount=\count351
-\Fld@listcount=\count352
-\c@bookmark@seq@number=\count353
+File: hxetex.def 2026-01-29 v7.01p Hyperref driver for XeTeX
+\pdfm@box=\box104
+\c@Hy@AnnotLevel=\count377
+\HyField@AnnotCount=\count378
+\Fld@listcount=\count379
+\c@bookmark@seq@number=\count380
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -744,97 +1004,66 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip88
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
-\BKM@id=\count354
-)) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen265
-\captionmargin=\dimen266
-\caption@leftmargin=\dimen267
-\caption@rightmargin=\dimen268
-\caption@width=\dimen269
-\caption@indent=\dimen270
-\caption@parindent=\dimen271
-\caption@hangindent=\dimen272
-Package caption Info: Unknown document class (or package),
-(caption)             standard defaults will be used.
-Package caption Info: \@makecaption = \long macro:#1#2->\@abovecaptionbreak \vskip \abovecaptionskip \@abovecaptionbreak \@@makecaption \@firstofone {#1}{#2}\@belowcaptionbreak \vskip \belowcaptionskip \@belowcaptionbreak  on input line 1175.
-)
-
-Package caption Warning: Unknown document class (or package),
-(caption)                standard defaults will be used.
-See the caption package documentation for explanation.
-
-\c@caption@flags=\count355
-\c@continuedfloat=\count356
-Package caption Info: float package is loaded.
-Package caption Info: hyperref package is loaded.
-Package caption Info: longtable package is loaded.
-(/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-)
-Package caption Info: threeparttable package is loaded.
-Package caption Info: wrapfig package is loaded.
-)
-\@float@every@codelisting=\toks35
-\c@codelisting=\count357
+\BKM@id=\count381
+))
+\@float@every@codelisting=\toks49
+\c@codelisting=\count382
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count358
+\c@subfigure=\count383
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count359
+\c@subtable=\count384
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 242.
+Package hyperref Info: Option `colorlinks' set `true' on input line 266.
 No file index.aux.
 \openout1 = `index.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 256.
-LaTeX Font Info:    ... okay on input line 256.
-Package scrbase Info: activating english \abstractname on input line 256.
-Package scrbase Info: activating english \partname on input line 256.
-Package scrbase Info: activating english \chaptername on input line 256.
-Package scrbase Info: activating english \appendixname on input line 256.
-Package scrbase Info: activating english \figurename on input line 256.
-Package scrbase Info: activating english \tablename on input line 256.
-Package scrbase Info: activating english \contentsname on input line 256.
-Package scrbase Info: activating english \listfigurename on input line 256.
-Package scrbase Info: activating english \listtablename on input line 256.
-Package scrbase Info: activating english \bibname on input line 256.
-Package scrbase Info: activating english \indexname on input line 256.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 280.
+LaTeX Font Info:    ... okay on input line 280.
+Package scrbase Info: activating english \abstractname on input line 280.
+Package scrbase Info: activating english \partname on input line 280.
+Package scrbase Info: activating english \chaptername on input line 280.
+Package scrbase Info: activating english \appendixname on input line 280.
+Package scrbase Info: activating english \figurename on input line 280.
+Package scrbase Info: activating english \tablename on input line 280.
+Package scrbase Info: activating english \contentsname on input line 280.
+Package scrbase Info: activating english \listfigurename on input line 280.
+Package scrbase Info: activating english \listtablename on input line 280.
+Package scrbase Info: activating english \bibname on input line 280.
+Package scrbase Info: activating english \indexname on input line 280.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 256.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 280.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 256.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 280.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 256.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 280.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 256.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 280.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 256.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 280.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 256.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 280.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 256.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 280.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -862,7 +1091,7 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 256.
+(Font)              scaled to size 10.95pt on input line 280.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -898,15 +1127,15 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 256.
+(Font)              scaled to size 10.95pt on input line 280.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 256.
+(Font)              `operators' in the math version `normal' on input line 280.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 256.
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 280.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 256.
+(Font)              `operators' in the math version `bold' on input line 280.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 256.
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 280.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -972,13 +1201,13 @@ Package fontspec Info:
 (fontspec)             <->s*[1.000096766517402]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 256.
+(Font)              `symbols' in the math version `normal' on input line 280.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 256.
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 280.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 256.
+(Font)              `symbols' in the math version `bold' on input line 280.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 256.
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 280.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -1038,23 +1267,25 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9998967671640342]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 256.
+(Font)              `largesymbols' in the math version `normal' on input line 280.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 256.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 280.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 256.
+(Font)              `largesymbols' in the math version `bold' on input line 280.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 256.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 280.
 Package microtype Info: Patching varwidth to enable character protrusion.
-\MT@vwid@leftmargin=\dimen273
-\MT@vwid@rightmargin=\dimen274
-LaTeX Info: Redefining \microtypecontext on input line 256.
-Package microtype Info: Applying patch `item' on input line 256.
-Package microtype Info: Applying patch `toc' on input line 256.
-Package microtype Info: Applying patch `eqnum' on input line 256.
-Package microtype Info: Applying patch `footnote' on input line 256.
-Package microtype Info: Applying patch `verbatim' on input line 256.
-LaTeX Info: Redefining \microtypesetup on input line 256.
+\MT@vwid@leftmargin=\dimen324
+\MT@vwid@rightmargin=\dimen325
+LaTeX Info: Redefining \microtypecontext on input line 280.
+Package microtype Info: Applying patch `item' on input line 280.
+Package microtype Info: Applying patch `toc' on input line 280.
+Package microtype Info: Applying patch `eqnum' on input line 280.
+
+Package microtype Warning: Unable to apply patch `footnote' on input line 280.
+
+Package microtype Info: Applying patch `verbatim' on input line 280.
+LaTeX Info: Redefining \microtypesetup on input line 280.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1063,45 +1294,46 @@ Package microtype Info: No adjustment of kerning.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
 File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Modern Roman (RS)
 )
-Package hyperref Info: Link coloring ON on input line 256.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring ON on input line 280.
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 258.
+(Font)              scaled to size 14.4pt on input line 282.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 258.
+(Font)              scaled to size 10.0pt on input line 282.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 258.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 258.
+(Font)              scaled to size 7.0pt on input line 282.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 282.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.4013pt on input line 258.
+(Font)              scaled to size 14.4013pt on input line 282.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 258.
+(Font)              scaled to size 10.00092pt on input line 282.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 258.
+(Font)              scaled to size 7.00064pt on input line 282.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 258.
+(Font)              scaled to size 14.39845pt on input line 282.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 258.
+(Font)              scaled to size 9.99893pt on input line 282.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 258.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 258.
+(Font)              scaled to size 6.99925pt on input line 282.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 282.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 258.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 282.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1111,10 +1343,10 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 
 ]
-Package tocbasic Info: character protrusion at toc deactivated on input line 263.
+Package tocbasic Info: character protrusion at toc deactivated on input line 287.
 No file index.toc.
-\tf@toc=\write4
-\openout4 = `index.toc'.
+\tf@toc=\write5
+\openout5 = `index.toc'.
 
 [2
 
@@ -1124,14 +1356,14 @@ No file index.toc.
 part I.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 295.
+(scrkbase)              on input line 331.
 [4
 
 ]
 File: test_finder_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
 <test_finder_files/figure-latex/mermaid-figure-1.png>
 
-Overfull \hbox (1301.43773pt too wide) in paragraph at lines 305--306
+Overfull \hbox (1301.43773pt too wide) in paragraph at lines 345--346
 [][] 
  []
 
@@ -1144,7 +1376,7 @@ Overfull \vbox (1068.38855pt too high) has occurred while \output is active []
 part II.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 309.
+(scrkbase)              on input line 349.
 [8
 
 ]
@@ -1152,432 +1384,440 @@ chapter 1.
 [9
 
 ] [10] [11]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 514--514
-[]\TU/lmtt/m/n/10.95 $ Sepal.Length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 514--514
-[]\TU/lmtt/m/n/10.95 $ Sepal.Width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 514--514
-[]\TU/lmtt/m/n/10.95 $ Petal.Length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 514--514
-[]\TU/lmtt/m/n/10.95 $ Petal.Width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 514--514
-[]\TU/lmtt/m/n/10.95 $ Species      <chr> "setosa", "setosa", "setosa", "setosa", "setosa", "setosa~[] 
- []
-
-[12]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 547--547
-[]\TU/lmtt/m/n/10.95 $ id           <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 547--547
-[]\TU/lmtt/m/n/10.95 $ sepal_length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 547--547
-[]\TU/lmtt/m/n/10.95 $ sepal_width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 547--547
-[]\TU/lmtt/m/n/10.95 $ petal_length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 547--547
-[]\TU/lmtt/m/n/10.95 $ petal_width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 547--547
-[]\TU/lmtt/m/n/10.95 $ species      <chr> "setosa", "setosa", "setosa", "setosa", "setosa", "setosa~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 573--573
-[]\TU/lmtt/m/n/10.95 $ sepal_length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 573--573
-[]\TU/lmtt/m/n/10.95 $ sepal_width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 573--573
-[]\TU/lmtt/m/n/10.95 $ petal_length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 573--573
-[]\TU/lmtt/m/n/10.95 $ petal_width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 573--573
-[]\TU/lmtt/m/n/10.95 $ species      <chr> "setosa", "setosa", "setosa", "setosa", "setosa", "setosa~[] 
- []
-
-[13]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 602--602
-[]\TU/lmtt/m/n/10.95 $ sepal_length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 602--602
-[]\TU/lmtt/m/n/10.95 $ sepal_width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 602--602
-[]\TU/lmtt/m/n/10.95 $ petal_length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 602--602
-[]\TU/lmtt/m/n/10.95 $ petal_width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 602--602
-[]\TU/lmtt/m/n/10.95 $ species      <chr> "setosa", "setosa", "setosa", "setosa", "setosa", "setosa~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 622--622
-[]\TU/lmtt/m/n/10.95 $ sepal_length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 622--622
-[]\TU/lmtt/m/n/10.95 $ sepal_width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 622--622
-[]\TU/lmtt/m/n/10.95 $ petal_length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.~[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 622--622
-[]\TU/lmtt/m/n/10.95 $ petal_width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.~[] 
- []
-
-[14] [15]
-File: workflow_files/figure-pdf/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use workflow_files/figure-pdf/unnamed-chunk-9-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 704--707
-
- []
-
-[16]
-File: workflow_files/figure-pdf/unnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use workflow_files/figure-pdf/unnamed-chunk-10-1.pdf>
-[17]
-File: workflow_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (type pdf)
-<use workflow_files/figure-pdf/unnamed-chunk-11-1.pdf>
-[18]
-File: workflow_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (type pdf)
-<use workflow_files/figure-pdf/unnamed-chunk-12-1.pdf>
-[19] [20]
-File: workflow_files/figure-pdf/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use workflow_files/figure-pdf/unnamed-chunk-14-1.pdf>
-[21]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.665pt on input line 926.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.475pt on input line 926.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.95099pt on input line 926.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.66568pt on input line 926.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.4755pt on input line 926.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.94882pt on input line 926.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.66417pt on input line 926.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.47441pt on input line 926.
-[22] [23] [24] [25]
 chapter 2.
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <20.74> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1058.
-[26
+[12
 
 ]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+chapter 3.
+[13
+
+] [14] [15] [16]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 714--714
+[]\TU/lmtt/m/n/10.95 $ garden.id       <chr> "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", ~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 715--715
+[]\TU/lmtt/m/n/10.95 $ garden.location <chr> "West", "West", "West", "West", "West", "West", "West"~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 716--716
+[]\TU/lmtt/m/n/10.95 $ ozone           <dbl> 61.7, 64.0, 72.4, 56.8, 52.4, 44.8, 70.4, 67.6, 68.8, ~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 743--743
+[]\TU/lmtt/m/n/10.95 $ species           <chr> "Adelie", "Adelie", "Adelie", "Adelie", "Adelie", "A~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 744--744
+[]\TU/lmtt/m/n/10.95 $ island            <chr> "Torgersen", "Torgersen", "Torgersen", "Torgersen", ~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 745--745
+[]\TU/lmtt/m/n/10.95 $ bill_length_mm    <dbl> 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 746--746
+[]\TU/lmtt/m/n/10.95 $ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 747--747
+[]\TU/lmtt/m/n/10.95 $ flipper_length_mm <dbl> 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 748--748
+[]\TU/lmtt/m/n/10.95 $ body_mass_g       <dbl> 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 749--749
+[]\TU/lmtt/m/n/10.95 $ sex               <chr> "male", "female", "female", "female", "male", "femal~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 750--750
+[]\TU/lmtt/m/n/10.95 $ year              <dbl> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007~[] 
+ []
+
+[17]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 793--793
+[]\TU/lmtt/m/n/10.95 $ species           <chr> "Adelie", "Adelie", "Adelie", "Adelie", "Adelie", "A~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 794--794
+[]\TU/lmtt/m/n/10.95 $ island            <chr> "Torgersen", "Torgersen", "Torgersen", "Torgersen", ~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 795--795
+[]\TU/lmtt/m/n/10.95 $ bill_length_mm    <dbl> 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 796--796
+[]\TU/lmtt/m/n/10.95 $ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 797--797
+[]\TU/lmtt/m/n/10.95 $ flipper_length_mm <dbl> 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 798--798
+[]\TU/lmtt/m/n/10.95 $ body_mass_g       <dbl> 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 799--799
+[]\TU/lmtt/m/n/10.95 $ sex               <chr> "male", "female", "female", "female", "male", "femal~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 800--800
+[]\TU/lmtt/m/n/10.95 $ year              <dbl> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007~[] 
+ []
+
+[18]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 819--819
+[]\TU/lmtt/m/n/10.95 $ bill_length_mm    <dbl> 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 820--820
+[]\TU/lmtt/m/n/10.95 $ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 821--821
+[]\TU/lmtt/m/n/10.95 $ flipper_length_mm <dbl> 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18~[] 
+ []
+
+
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 822--822
+[]\TU/lmtt/m/n/10.95 $ body_mass_g       <dbl> 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250~[] 
+ []
+
+[19]
+File: workflow_files/figure-pdf/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use workflow_files/figure-pdf/unnamed-chunk-9-1.pdf>
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 910--913
+
+ []
+
+[21]
+File: workflow_files/figure-pdf/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use workflow_files/figure-pdf/unnamed-chunk-10-1.pdf>
+File: workflow_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use workflow_files/figure-pdf/unnamed-chunk-11-1.pdf>
+[22]
+File: workflow_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (type pdf)
+<use workflow_files/figure-pdf/unnamed-chunk-12-1.pdf>
+[23] [24]
+File: workflow_files/figure-pdf/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use workflow_files/figure-pdf/unnamed-chunk-14-1.pdf>
+[25]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.665pt on input line 1143.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 1143.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.95099pt on input line 1143.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.66568pt on input line 1143.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.4755pt on input line 1143.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.94882pt on input line 1143.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.66417pt on input line 1143.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.47441pt on input line 1143.
+[26] [27] [28] [29]
+chapter 4.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <20.74> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1277.
+[30
+
+]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1349--1349
 []\TU/lmtt/m/n/10.95 $ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1350--1350
 []\TU/lmtt/m/n/10.95 $ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1351--1351
 []\TU/lmtt/m/n/10.95 $ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, ~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1352--1352
 []\TU/lmtt/m/n/10.95 $ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, ~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1353--1353
 []\TU/lmtt/m/n/10.95 $ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1354--1354
 []\TU/lmtt/m/n/10.95 $ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, ~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1355--1355
 []\TU/lmtt/m/n/10.95 $ sex               <fct> male, female, female, NA, female, male, female, male~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 1149--1149
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 1356--1356
 []\TU/lmtt/m/n/10.95 $ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007~[] 
  []
 
-[27] [28] [29]
-File: ggplot_examples_files/figure-pdf/which variables-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/which variables-1.pdf>
-[30]
-File: ggplot_examples_files/figure-pdf/scatter plot-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/scatter plot-1.pdf>
-File: ggplot_examples_files/figure-pdf/scatter plot by species-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/scatter plot by species-1.pdf>
+
+Overfull \hbox (82.12482pt too wide) in paragraph at lines 1374--1374
+[]  \TU/lmtt/m/n/10.95 palmerpenguins        /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library[] 
+ []
+
+
+Overfull \hbox (82.12482pt too wide) in paragraph at lines 1375--1375
+[]  \TU/lmtt/m/n/10.95 datasets              /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library[] 
+ []
+
 [31]
-File: ggplot_examples_files/figure-pdf/add labels and titles-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/add labels and titles-1.pdf>
+File: ggplot_examples_files/figure-pdf/which-variables-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/which-variables-1.pdf>
 [32]
-File: ggplot_examples_files/figure-pdf/add theme-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/add theme-1.pdf>
+File: ggplot_examples_files/figure-pdf/scatter-plot-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/scatter-plot-1.pdf>
 [33]
-File: ggplot_examples_files/figure-pdf/place the legend-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/place the legend-1.pdf>
+File: ggplot_examples_files/figure-pdf/scatter-plot-by-species-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/scatter-plot-by-species-1.pdf>
 [34]
-File: ggplot_examples_files/figure-pdf/nicer colours-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/nicer colours-1.pdf>
+File: ggplot_examples_files/figure-pdf/add-labels-and-titles-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/add-labels-and-titles-1.pdf>
 [35]
-File: ggplot_examples_files/figure-pdf/add best fit lines-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/add best fit lines-1.pdf>
+File: ggplot_examples_files/figure-pdf/add-theme-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/add-theme-1.pdf>
 [36]
-File: ggplot_examples_files/figure-pdf/bill length vs flipper length-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/bill length vs flipper length-1.pdf>
+File: ggplot_examples_files/figure-pdf/place-the-legend-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/place-the-legend-1.pdf>
 [37]
-File: ggplot_examples_files/figure-pdf/islands and species-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/islands and species-1.pdf>
+File: ggplot_examples_files/figure-pdf/nicer-colours-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/nicer-colours-1.pdf>
 [38]
-File: ggplot_examples_files/figure-pdf/awful histogram-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/awful histogram-1.pdf>
+File: ggplot_examples_files/figure-pdf/add-best-fit-lines-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/add-best-fit-lines-1.pdf>
 [39]
-File: ggplot_examples_files/figure-pdf/better histogram-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/better histogram-1.pdf>
+File: ggplot_examples_files/figure-pdf/bill-length-vs-flipper-length-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/bill-length-vs-flipper-length-1.pdf>
 [40]
-File: ggplot_examples_files/figure-pdf/hist for each species-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/hist for each species-1.pdf>
+File: ggplot_examples_files/figure-pdf/islands-and-species-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/islands-and-species-1.pdf>
 [41]
-File: ggplot_examples_files/figure-pdf/hist with facet wrap different colours-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/hist with facet wrap different colours-1.pdf>
+File: ggplot_examples_files/figure-pdf/awful-histogram-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/awful-histogram-1.pdf>
 [42]
-File: ggplot_examples_files/figure-pdf/hist with facet wrap and no colour-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/hist with facet wrap and no colour-1.pdf>
+File: ggplot_examples_files/figure-pdf/better-histogram-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/better-histogram-1.pdf>
 [43]
-File: ggplot_examples_files/figure-pdf/hist with facet wrap and one colour-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/hist with facet wrap and one colour-1.pdf>
+File: ggplot_examples_files/figure-pdf/hist-for-each-species-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/hist-for-each-species-1.pdf>
 [44]
+File: ggplot_examples_files/figure-pdf/hist-with-facet-wrap-different-colours-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/hist-with-facet-wrap-different-colours-1.pdf>
+[45]
+File: ggplot_examples_files/figure-pdf/hist-with-facet-wrap-and-no-colour-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/hist-with-facet-wrap-and-no-colour-1.pdf>
+[46]
+File: ggplot_examples_files/figure-pdf/hist-with-facet-wrap-and-one-colour-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/hist-with-facet-wrap-and-one-colour-1.pdf>
+[47]
 File: ggplot_examples_files/figure-pdf/density-1.pdf Graphic file (type pdf)
 <use ggplot_examples_files/figure-pdf/density-1.pdf>
-[45]
-File: ggplot_examples_files/figure-pdf/density with facet wrap-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/density with facet wrap-1.pdf>
-[46]
-File: ggplot_examples_files/figure-pdf/box plot basic-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/box plot basic-1.pdf>
-[47]
-File: ggplot_examples_files/figure-pdf/box plot improved-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/box plot improved-1.pdf>
 [48]
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1797.
-File: ggplot_examples_files/figure-pdf/violin basic-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/violin basic-1.pdf>
+File: ggplot_examples_files/figure-pdf/density-with-facet-wrap-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/density-with-facet-wrap-1.pdf>
 [49]
-File: ggplot_examples_files/figure-pdf/violin improved-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/violin improved-1.pdf>
+File: ggplot_examples_files/figure-pdf/box-plot-basic-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/box-plot-basic-1.pdf>
 [50]
-File: ggplot_examples_files/figure-pdf/unnamed-chunk-9-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/unnamed-chunk-9-1.pdf>
-[51] [52]
-File: ggplot_examples_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/unnamed-chunk-11-1.pdf>
+File: ggplot_examples_files/figure-pdf/box-plot-improved-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/box-plot-improved-1.pdf>
+[51]
+File: ggplot_examples_files/figure-pdf/box-plot-with-jitter-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/box-plot-with-jitter-1.pdf>
+[52]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1952.
+File: ggplot_examples_files/figure-pdf/violin-basic-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/violin-basic-1.pdf>
 [53]
-File: ggplot_examples_files/figure-pdf/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/unnamed-chunk-13-1.pdf>
+File: ggplot_examples_files/figure-pdf/violin-improved-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/violin-improved-1.pdf>
 [54]
-File: ggplot_examples_files/figure-pdf/unnamed-chunk-14-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/unnamed-chunk-14-1.pdf>
-[55]
-File: ggplot_examples_files/figure-pdf/unnamed-chunk-15-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/unnamed-chunk-15-1.pdf>
-[56]
-File: ggplot_examples_files/figure-pdf/unnamed-chunk-16-1.pdf Graphic file (type pdf)
-<use ggplot_examples_files/figure-pdf/unnamed-chunk-16-1.pdf>
-[57] [58]
-chapter 3.
+File: ggplot_examples_files/figure-pdf/ridge-plot-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/ridge-plot-1.pdf>
+[55] [56]
+File: ggplot_examples_files/figure-pdf/sd-error-bars-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/sd-error-bars-1.pdf>
+[57]
+File: ggplot_examples_files/figure-pdf/bar-chart-wth-se-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/bar-chart-wth-se-1.pdf>
+[58]
+File: ggplot_examples_files/figure-pdf/add-fill-colour-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/add-fill-colour-1.pdf>
+[59]
+File: ggplot_examples_files/figure-pdf/brewer-fill-colours-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/brewer-fill-colours-1.pdf>
+[60]
+File: ggplot_examples_files/figure-pdf/all-bars-same-colour-1.pdf Graphic file (type pdf)
+<use ggplot_examples_files/figure-pdf/all-bars-same-colour-1.pdf>
+[61] [62]
+chapter 5.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2077.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2232.
 File: titles_labels_and_annotations_files/figure-pdf/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use titles_labels_and_annotations_files/figure-pdf/unnamed-chunk-2-1.pdf>
-[59
+[63
 
-] [60]
+] [64]
 part III.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 2140.
-[61
+(scrkbase)              on input line 2295.
+[65
 
 ]
-chapter 4.
-File: tests_for_difference_two_levels_files/figure-latex/mermaid-figure-1.png Graphic file (type bmp)
-<tests_for_difference_two_levels_files/figure-latex/mermaid-figure-1.png>
-
-Overfull \hbox (1310.86746pt too wide) in paragraph at lines 2154--2155
-[][] 
- []
-
-[62
-
-]
-Overfull \vbox (1122.54472pt too high) has occurred while \output is active []
-
-[63]
+chapter 6.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <12> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 2168.
-[64] [65] [66] [67]
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 2319.
+[66
 
-LaTeX Warning: Reference `fig-histograms' on page 68 undefined on input line 2378.
+] [67] [68] [69]
+
+LaTeX Warning: Reference `fig-histograms' on page 70 undefined on input line 2529.
 
 File: tests_for_difference_two_levels_files/figure-pdf/fig-histograms-1.pdf Graphic file (type pdf)
 <use tests_for_difference_two_levels_files/figure-pdf/fig-histograms-1.pdf>
-[68]
+[70]
 File: tests_for_difference_two_levels_files/figure-pdf/fig-boxplot-1.pdf Graphic file (type pdf)
 <use tests_for_difference_two_levels_files/figure-pdf/fig-boxplot-1.pdf>
+[71]
 
-LaTeX Warning: Reference `fig-means-se' on page 69 undefined on input line 2435.
+LaTeX Warning: Reference `fig-means-se' on page 72 undefined on input line 2586.
 
 File: tests_for_difference_two_levels_files/figure-pdf/fig-means-se-1.pdf Graphic file (type pdf)
 <use tests_for_difference_two_levels_files/figure-pdf/fig-means-se-1.pdf>
-[69] [70]
-File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-5-1.pdf Graphic file (type pdf)
-<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-5-1.pdf>
-[71] [72]
-File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-7-1.pdf Graphic file (type pdf)
-<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-7-1.pdf>
-[73] [74]
-Overfull \hbox (110.86859pt too wide) in paragraph at lines 2693--2693
+[72] [73]
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-4-1.pdf>
+[74] [75]
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-6-1.pdf>
+[76] [77]
+Overfull \hbox (110.86859pt too wide) in paragraph at lines 2838--2838
 []\TU/lmtt/m/n/10.95 alternative hypothesis: true difference in means between group No and group Yes is not equal to 0[] 
  []
 
-[75]
+[78]
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 2802.
-[76]
-Overfull \hbox (107.21465pt too wide) detected at line 2882
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 2953.
+[79]
+Overfull \hbox (107.21465pt too wide) detected at line 3033
 [] [] [] [] []
  []
 
-[77] [78] [79]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 2998--2998
+[80] [81] [82]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3145--3145
 []\TU/lmtt/m/n/10.95 $ id          <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 2998--2998
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3146--3146
 []\TU/lmtt/m/n/10.95 $ scale       <chr> "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS"~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 2998--2998
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3147--3147
 []\TU/lmtt/m/n/10.95 $ marine      <chr> "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "Yes",~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 2998--2998
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3148--3148
 []\TU/lmtt/m/n/10.95 $ total_score <dbl> 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51, 54~[] 
  []
 
-File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (type pdf)
-<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-12-1.pdf>
-[80]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 3070--3070
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-11-1.pdf>
+[83]
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3217--3217
 []\TU/lmtt/m/n/10.95 $ id          <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 3070--3070
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3218--3218
 []\TU/lmtt/m/n/10.95 $ scale       <chr> "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS", "WEMWBS"~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 3070--3070
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3219--3219
 []\TU/lmtt/m/n/10.95 $ marine      <chr> "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "Yes",~[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 3070--3070
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3220--3220
 []\TU/lmtt/m/n/10.95 $ total_score <dbl> 48, 51, 37, 39, 38, 40, 54, 39, 54, 39, 51, 50, 49, 51, 54~[] 
  []
 
-[81] [82] [83] [84]
-Underfull \hbox (badness 2486) in paragraph at lines 3268--3273
+[84] [85] [86] [87]
+Underfull \hbox (badness 2486) in paragraph at lines 3414--3419
 \TU/lmr/m/n/10.95 production in a poplar coppice culture: I. Seasonal variation in leaf, wood and
  []
 
 
-Underfull \hbox (badness 2564) in paragraph at lines 3268--3273
+Underfull \hbox (badness 2564) in paragraph at lines 3414--3419
 \TU/lmr/m/n/10.95 bark concentrations’, Environmental Pollution, 131(3), pp. 485–494. Available at:
  []
 
-[85] [86]
-File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-18-1.pdf Graphic file (type pdf)
-<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-18-1.pdf>
-[87] [88] [89] [90]
-chapter 5.
-[91
+[88] [89]
+File: tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-17-1.pdf Graphic file (type pdf)
+<use tests_for_difference_two_levels_files/figure-pdf/unnamed-chunk-17-1.pdf>
+[90] [91] [92] [93]
+chapter 7.
+[94
 
 ]
-File: ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (type pdf)
-<use ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-1-1.pdf>
-[92]
-File: ANOVA_how_it_works_files/figure-pdf/SST plot-1.pdf Graphic file (type pdf)
-<use ANOVA_how_it_works_files/figure-pdf/SST plot-1.pdf>
-[93] [94] [95]
-File: ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use ANOVA_how_it_works_files/figure-pdf/unnamed-chunk-4-1.pdf>
-[96] [97]
+
+LaTeX Warning: Reference `fig-species-boxplot' on page 95 undefined on input line 3735.
+
+File: ANOVA_how_it_works_penguins_files/figure-pdf/fig-species-boxplot-1.pdf Graphic file (type pdf)
+<use ANOVA_how_it_works_penguins_files/figure-pdf/fig-species-boxplot-1.pdf>
+[95]
+File: ANOVA_how_it_works_penguins_files/figure-pdf/fig-grand-mean-1.pdf Graphic file (type pdf)
+<use ANOVA_how_it_works_penguins_files/figure-pdf/fig-grand-mean-1.pdf>
+File: ANOVA_how_it_works_penguins_files/figure-pdf/fig-SSE-SSG-plot-1.pdf Graphic file (type pdf)
+<use ANOVA_how_it_works_penguins_files/figure-pdf/fig-SSE-SSG-plot-1.pdf>
+[96] [97] [98]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 7.1 on input line 3888.
+
+[99]
 
 ! Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
@@ -1586,18 +1826,18 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.3897 \end{align*}
+l.3946 \end{align*}
                    
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
  
 Here is how much of TeX's memory you used:
- 26133 strings out of 470134
- 521131 string characters out of 5475466
- 1212805 words of memory out of 5000000
- 54333 multiletter control sequences out of 15000+600000
- 634330 words of font info for 100 fonts, out of 8000000 for 9000
+ 41190 strings out of 470129
+ 862098 string characters out of 5475410
+ 1550811 words of memory out of 5000000
+ 69137 multiletter control sequences out of 15000+600000
+ 635446 words of font info for 104 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 108i,8n,114p,11208b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on index.pdf (97 pages).
+ 108i,8n,114p,11208b,577s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on index.pdf (99 pages).

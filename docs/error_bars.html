@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 </style>
 
 
@@ -487,7 +488,7 @@ Figure&nbsp;24.1: Means with error bars for three cases of sample size: <em>n</e
 </div>
 </div>
 </div>
-<p><a href="#fig-descriptive-error-bars" class="quarto-xref">Figure&nbsp;<span>24.1</span></a> above shows means with error bars for three cases of sample size: <em>n</em> = 3, <em>n</em> = 10, and <em>n</em> = 30. The small black dots are data points and the large black dots represent the sample means. The red bars against each sample show range, while the blue bars show standard deviation (SD). The mean <span class="math inline">\(\bar{y}\)</span> and SD have been made to be the same for every case here, but notice how much the range increases with <span class="math inline">\(n\)</span>. This happens because larger samples are more likely to capture extreme values within a population than small samples. Note also that although the range error bars encompass all of the experimental results, they do not necessarily cover all the results that could possibly occur. The population may include larger or smaller individuals than those included in the sample.</p>
+<p><a href="#fig-descriptive-error-bars" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-descriptive-error-bars</span></a> above shows means with error bars for three cases of sample size: <em>n</em> = 3, <em>n</em> = 10, and <em>n</em> = 30. The small black dots are data points and the large black dots represent the sample means. The red bars against each sample show range, while the blue bars show standard deviation (SD). The mean <span class="math inline">\(\bar{y}\)</span> and SD have been made to be the same for every case here, but notice how much the range increases with <span class="math inline">\(n\)</span>. This happens because larger samples are more likely to capture extreme values within a population than small samples. Note also that although the range error bars encompass all of the experimental results, they do not necessarily cover all the results that could possibly occur. The population may include larger or smaller individuals than those included in the sample.</p>
 <p>SD error bars include about two thirds of the sample, and 2 x SD error bars would encompass roughly 95% of the sample.</p>
 </section>
 <section id="inferential-error-bars" class="level2" data-number="24.3">
@@ -496,14 +497,14 @@ Figure&nbsp;24.1: Means with error bars for three cases of sample size: <em>n</e
 <h3 data-number="24.3.1" class="anchored" data-anchor-id="the-standard-error"><span class="header-section-number">24.3.1</span> The standard error</h3>
 <p>Often in biology and ecology one wants to know if two or more samples of data provide convincing evidence that the populations from which they have been drawn are different. One wants to <em>infer</em> from what we know to be the case for the samples, (that they have this or that sample means and standard deviations), to a statement about their respective populations. To indicate this in a figure, we can use either of two other types of error bar: the <em>standard error of the mean</em> or the <em>confidence interval</em>.</p>
 <p>If we know these then we know, roughly speaking, the range of values within which the means of the whole populations from which we drew our samples might plausibly lie, and thus whether we can reasonably reject the claim that there is no difference between these, so that the samples must have effectively been drawn from the same population.</p>
-<p>Supposing, in a hypothetical world, you could take sample after sample from a population, each sample presumed to be independent of all the others, and all of size <em>n</em> replicates. Each would most likely have a different mean from all the others, but the collection of sample means would be normally distributed around the true population mean. The ‘standard error of the mean’ is the standard deviation of <em>this</em> distribution, which is often referred to as the <strong>sampling distribution</strong>. This is the ‘typical’ or roughly speaking the average deviation between a randomly chosen sample mean and the true, population mean. It is given by</p>
+<p>Supposing, in a hypothetical world, you could take sample after sample from a population, each sample presumed to be independent of all the others, and all of size <em>n</em> replicates. Each would most likely have a different mean from all the others, but the collection of sample means would be normally distributed around the true population mean. The <q>standard error of the mean</q> is the standard deviation of <em>this</em> distribution, which is often referred to as the <strong>sampling distribution</strong>. This is the <q>typical</q> or roughly speaking the average deviation between a randomly chosen sample mean and the true, population mean. It is given by</p>
 <p><span class="math display">\[SE = \frac{SD}{\sqrt{n}} \]</span></p>
 <p>where SD is the standard deviation of an individual sample and <em>n</em> is the sample size. Thus, unlike the standard deviation of a sample, the standard error of the mean of the samples <em>does</em> systematically get smaller as the sample size <em>n</em> increases. This is another way of saying that, the larger a sample is, the closer its mean is likely to be to the population mean. Another thing to notice is that the SE is proportional to the SD, which is to say that sample means are more likely to be a close approximation to the population mean if the spread of values within the population, and thus the sample, is small. Smaller SD means smaller SE. Who knew?</p>
 </section>
 <section id="the-confidence-interval" class="level3" data-number="24.3.2">
 <h3 data-number="24.3.2" class="anchored" data-anchor-id="the-confidence-interval"><span class="header-section-number">24.3.2</span> The confidence interval</h3>
 <p>The confidence interval is an inferential tool, like the standard error and unlike the standard deviation. That means, we repeat, that it does not so much indicate the spread of values in a sample or estimate the spread of values in a population - that is what the standard deviation does. Instead, like the standard error, it indicates the range of values within which the true mean of a population might plausibly lie.</p>
-<p>What do we mean by plausibly? Well, we could mean, say, that we are confident that the true mean would be in the interval 95% of the time if we calculated it again and again, as in <a href="#fig-confidence-interval" class="quarto-xref">Figure&nbsp;<span>24.2</span></a>.</p>
+<p>What do we mean by plausibly? Well, we could mean, say, that we are confident that the true mean would be in the interval 95% of the time if we calculated it again and again, as in <a href="#fig-confidence-interval" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-confidence-interval</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-confidence-interval" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -529,23 +530,23 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
 <h3 data-number="24.3.3" class="anchored" data-anchor-id="how-to-interpret-figures"><span class="header-section-number">24.3.3</span> How to interpret figures</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ndmersogup" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ndmersogup table {
+<div id="ienfkkjeww" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ienfkkjeww table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ndmersogup thead, #ndmersogup tbody, #ndmersogup tfoot, #ndmersogup tr, #ndmersogup td, #ndmersogup th {
+#ienfkkjeww thead, #ienfkkjeww tbody, #ienfkkjeww tfoot, #ienfkkjeww tr, #ienfkkjeww td, #ienfkkjeww th {
   border-style: none;
 }
 
-#ndmersogup p {
+#ienfkkjeww p {
   margin: 0;
   padding: 0;
 }
 
-#ndmersogup .gt_table {
+#ienfkkjeww .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -571,12 +572,12 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-left-color: #D3D3D3;
 }
 
-#ndmersogup .gt_caption {
+#ienfkkjeww .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ndmersogup .gt_title {
+#ienfkkjeww .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -588,7 +589,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-bottom-width: 0;
 }
 
-#ndmersogup .gt_subtitle {
+#ienfkkjeww .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -600,7 +601,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-top-width: 0;
 }
 
-#ndmersogup .gt_heading {
+#ienfkkjeww .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -612,13 +613,13 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-right-color: #D3D3D3;
 }
 
-#ndmersogup .gt_bottom_border {
+#ienfkkjeww .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ndmersogup .gt_col_headings {
+#ienfkkjeww .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -633,7 +634,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-right-color: #D3D3D3;
 }
 
-#ndmersogup .gt_col_heading {
+#ienfkkjeww .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -653,7 +654,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   overflow-x: hidden;
 }
 
-#ndmersogup .gt_column_spanner_outer {
+#ienfkkjeww .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -665,15 +666,15 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   padding-right: 4px;
 }
 
-#ndmersogup .gt_column_spanner_outer:first-child {
+#ienfkkjeww .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ndmersogup .gt_column_spanner_outer:last-child {
+#ienfkkjeww .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ndmersogup .gt_column_spanner {
+#ienfkkjeww .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -685,11 +686,11 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   width: 100%;
 }
 
-#ndmersogup .gt_spanner_row {
+#ienfkkjeww .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ndmersogup .gt_group_heading {
+#ienfkkjeww .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -715,7 +716,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   text-align: left;
 }
 
-#ndmersogup .gt_empty_group_heading {
+#ienfkkjeww .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -730,15 +731,15 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   vertical-align: middle;
 }
 
-#ndmersogup .gt_from_md > :first-child {
+#ienfkkjeww .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ndmersogup .gt_from_md > :last-child {
+#ienfkkjeww .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ndmersogup .gt_row {
+#ienfkkjeww .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -757,7 +758,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   overflow-x: hidden;
 }
 
-#ndmersogup .gt_stub {
+#ienfkkjeww .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -770,7 +771,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   padding-right: 5px;
 }
 
-#ndmersogup .gt_stub_row_group {
+#ienfkkjeww .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -784,15 +785,15 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   vertical-align: top;
 }
 
-#ndmersogup .gt_row_group_first td {
+#ienfkkjeww .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ndmersogup .gt_row_group_first th {
+#ienfkkjeww .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ndmersogup .gt_summary_row {
+#ienfkkjeww .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -802,16 +803,16 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   padding-right: 5px;
 }
 
-#ndmersogup .gt_first_summary_row {
+#ienfkkjeww .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ndmersogup .gt_first_summary_row.thick {
+#ienfkkjeww .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ndmersogup .gt_last_summary_row {
+#ienfkkjeww .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -821,7 +822,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-bottom-color: #D3D3D3;
 }
 
-#ndmersogup .gt_grand_summary_row {
+#ienfkkjeww .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -831,7 +832,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   padding-right: 5px;
 }
 
-#ndmersogup .gt_first_grand_summary_row {
+#ienfkkjeww .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,7 +842,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-top-color: #D3D3D3;
 }
 
-#ndmersogup .gt_last_grand_summary_row_top {
+#ienfkkjeww .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -851,11 +852,11 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-bottom-color: #D3D3D3;
 }
 
-#ndmersogup .gt_striped {
+#ienfkkjeww .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ndmersogup .gt_table_body {
+#ienfkkjeww .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -864,7 +865,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-bottom-color: #D3D3D3;
 }
 
-#ndmersogup .gt_footnotes {
+#ienfkkjeww .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -878,7 +879,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-right-color: #D3D3D3;
 }
 
-#ndmersogup .gt_footnote {
+#ienfkkjeww .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -887,7 +888,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   padding-right: 5px;
 }
 
-#ndmersogup .gt_sourcenotes {
+#ienfkkjeww .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -901,7 +902,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   border-right-color: #D3D3D3;
 }
 
-#ndmersogup .gt_sourcenote {
+#ienfkkjeww .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -909,72 +910,72 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
   padding-right: 5px;
 }
 
-#ndmersogup .gt_left {
+#ienfkkjeww .gt_left {
   text-align: left;
 }
 
-#ndmersogup .gt_center {
+#ienfkkjeww .gt_center {
   text-align: center;
 }
 
-#ndmersogup .gt_right {
+#ienfkkjeww .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ndmersogup .gt_font_normal {
+#ienfkkjeww .gt_font_normal {
   font-weight: normal;
 }
 
-#ndmersogup .gt_font_bold {
+#ienfkkjeww .gt_font_bold {
   font-weight: bold;
 }
 
-#ndmersogup .gt_font_italic {
+#ienfkkjeww .gt_font_italic {
   font-style: italic;
 }
 
-#ndmersogup .gt_super {
+#ienfkkjeww .gt_super {
   font-size: 65%;
 }
 
-#ndmersogup .gt_footnote_marks {
+#ienfkkjeww .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ndmersogup .gt_asterisk {
+#ienfkkjeww .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ndmersogup .gt_indent_1 {
+#ienfkkjeww .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ndmersogup .gt_indent_2 {
+#ienfkkjeww .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ndmersogup .gt_indent_3 {
+#ienfkkjeww .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ndmersogup .gt_indent_4 {
+#ienfkkjeww .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ndmersogup .gt_indent_5 {
+#ienfkkjeww .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ndmersogup .katex-display {
+#ienfkkjeww .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ndmersogup div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ienfkkjeww div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -992,24 +993,24 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="ID">B-A</td>
-<td class="gt_row gt_right" headers="estimate">0.663</td>
-<td class="gt_row gt_right" headers="p_value">3.18e-02</td>
-<td class="gt_row gt_right" headers="LB">0.0583</td>
-<td class="gt_row gt_right" headers="UB">1.27</td>
+<td class="gt_row gt_right" headers="estimate">-0.531</td>
+<td class="gt_row gt_right" headers="p_value">0.4822</td>
+<td class="gt_row gt_right" headers="LB">-2.049</td>
+<td class="gt_row gt_right" headers="UB">0.987</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="ID">C-B</td>
-<td class="gt_row gt_right" headers="estimate">0.485</td>
-<td class="gt_row gt_right" headers="p_value">9.22e-02</td>
-<td class="gt_row gt_right" headers="LB">-0.0803</td>
-<td class="gt_row gt_right" headers="UB">1.05</td>
+<td class="gt_row gt_right" headers="estimate">1.675</td>
+<td class="gt_row gt_right" headers="p_value">0.0318</td>
+<td class="gt_row gt_right" headers="LB">0.155</td>
+<td class="gt_row gt_right" headers="UB">3.196</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="ID">C-A</td>
-<td class="gt_row gt_right" headers="estimate">1.149</td>
-<td class="gt_row gt_right" headers="p_value">7.68e-05</td>
-<td class="gt_row gt_right" headers="LB">0.5880</td>
-<td class="gt_row gt_right" headers="UB">1.71</td>
+<td class="gt_row gt_right" headers="estimate">1.144</td>
+<td class="gt_row gt_right" headers="p_value">0.0807</td>
+<td class="gt_row gt_right" headers="LB">-0.147</td>
+<td class="gt_row gt_right" headers="UB">2.435</td>
 </tr>
 </tbody>
 </table>
@@ -1026,6 +1027,7 @@ Figure&nbsp;24.2: Means and 95% CIs for 20 independent sets of results, each of 
 </div>
 </div>
 </div>
+<p>Note that where the confdence intervals straddle zero, meaning that zero i a plausible value for the respective difference, the corresponding p-value is greater than 0.05</p>
 
 
 </section>

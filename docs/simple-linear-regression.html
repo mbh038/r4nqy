@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -535,7 +536,7 @@ window.Quarto = {
 <h2 data-number="13.2" class="anchored" data-anchor-id="simple-linear-regression---plant-growth"><span class="header-section-number">13.2</span> Simple Linear Regression - plant growth</h2>
 <p>As a first example, we ask the question: does plant growth rate depend on soil moisture content?</p>
 <p>We predict that more moisture will probably allow higher growth rates. We note that this means there will be a clear relationship between the variables, one that should be apparent if we plot the response (dependent) variable - plant growth rate - against the explanatory (independent) variable - soil moisture content. We note that both the explanatory variable and the dependent variables are <em>continuous</em> - they do not have categories.</p>
-<p>What we might want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable, using a linear model. Just as ofen, we simply want to determine the sensitivity of the dependent variable to changes in the independent variable. In practice, this means drawing a ‘best fit’ straight line through the data and determining the intercept and gradient of this line. It is the gradient that tells us the sensitivity of the dependent variable to chnges in the independent variable, and that is what we most often look out for in the analysis.</p>
+<p>What we might want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable, using a linear model. Just as ofen, we simply want to determine the sensitivity of the dependent variable to changes in the independent variable. In practice, this means drawing a <q>best fit</q> straight line through the data and determining the intercept and gradient of this line. It is the gradient that tells us the sensitivity of the dependent variable to chnges in the independent variable, and that is what we most often look out for in the analysis.</p>
 <section id="load-packages" class="level3" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">13.2.1</span> Load packages</h3>
 <div class="cell">
@@ -595,7 +596,7 @@ $ plant.growth.rate     &lt;dbl&gt; 21.3, 27.0, 39.0, 30.2, 37.1, 43.2, 22.7, 40
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_pgr<span class="ot">&lt;-</span><span class="fu">lm</span>(plant.growth.rate <span class="sc">~</span> soil.moisture.content, <span class="at">data =</span> plants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This reads: ‘Fit a linear model, where we hypothesize that plant growth rate is a function of soil moisture content, using the variables from the <code>plants</code> data frame.’</p>
+<p>This reads: <q>Fit a linear model, where we hypothesize that plant growth rate is a function of soil moisture content, using the variables from the <code>plants</code> data frame.</q></p>
 </section>
 <section id="check-assumptions" class="level3" data-number="13.2.5">
 <h3 data-number="13.2.5" class="anchored" data-anchor-id="check-assumptions"><span class="header-section-number">13.2.5</span> Check assumptions</h3>
@@ -641,7 +642,7 @@ Residuals             48    775      16
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>The F value here is an example of a ‘test statistic’, a number that a test calculates from the data, from which it is possible to further calulate how likely it is that you would have got the data you got if the null hypothesis were true. This particular test statistic is the ratio of the variation in the data that is explained by the explanatory variable to the leftover variance. The bigger it is, the better the job that the explanatory variable is doing at explaining the variation in the dependent variable. The p value, which here is effectively zero, is the chance you would have got an F value this big or bigger from the data in the sample if in fact there were no relationship between plant growth rate and soil moisture content. If the p value is small (and by that we usually mean less than 0.05) then we can reject the null hypothesis that there is no relationship between plant growth rate and soil moisture content.</p>
+<p>The F value here is an example of a <q>test statistic</q>, a number that a test calculates from the data, from which it is possible to further calulate how likely it is that you would have got the data you got if the null hypothesis were true. This particular test statistic is the ratio of the variation in the data that is explained by the explanatory variable to the leftover variance. The bigger it is, the better the job that the explanatory variable is doing at explaining the variation in the dependent variable. The p value, which here is effectively zero, is the chance you would have got an F value this big or bigger from the data in the sample if in fact there were no relationship between plant growth rate and soil moisture content. If the p value is small (and by that we usually mean less than 0.05) then we can reject the null hypothesis that there is no relationship between plant growth rate and soil moisture content.</p>
 <p>Hence, in this case, we emphatically reject the null: there is clear evidence that plant growth rate is at least in part explained by soil moisture content.</p>
 <p>Now we use the <code>summary()</code> function:</p>
 <div class="cell">
@@ -691,7 +692,7 @@ F-statistic:  156 on 1 and 48 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 </div>
-<p>This gives both a straight line and the ‘standard error’ of that line - meaning, roughly speaking, the wiggle room within which the ‘true’ line , for the population as opposed to this sample drawn from it, probably lies.</p>
+<p>This gives both a straight line and the <q>standard error</q> of that line - meaning, roughly speaking, the wiggle room within which the <q>true</q> line , for the population as opposed to this sample drawn from it, probably lies.</p>
 </section>
 <section id="report-the-result" class="level3" data-number="13.2.8">
 <h3 data-number="13.2.8" class="anchored" data-anchor-id="report-the-result"><span class="header-section-number">13.2.8</span> Report the result</h3>

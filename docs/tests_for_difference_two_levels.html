@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -579,7 +580,7 @@ window.Quarto = {
 </section>
 <section id="the-data" class="level3" data-number="6.1.4">
 <h3 data-number="6.1.4" class="anchored" data-anchor-id="the-data"><span class="header-section-number">6.1.4</span> The data</h3>
-<p>Suppose we had our data arranged in a spreadsheet in three columns, one giving the garden ID, G1 to G20, one telling us whether pesticides were used in the garden, yes or no, and one telling us the masses in grams of the snail shells from each garden. Afficioados of R will see that this is ‘tidy’ data. Each variable (ID, pesticide use, shell mass) occurs in only one column, rather than being spread across several. It turns out that this way of storing your data makes it much easier to analyse.</p>
+<p>Suppose we had our data arranged in a spreadsheet in three columns, one giving the garden ID, G1 to G20, one telling us whether pesticides were used in the garden, yes or no, and one telling us the masses in grams of the snail shells from each garden. Afficioados of R will see that this is <q>tidy</q> data. Each variable (ID, pesticide use, shell mass) occurs in only one column, rather than being spread across several. It turns out that this way of storing your data makes it much easier to analyse.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># there should be a 'garden_snails.csv' file in your data folder</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -651,7 +652,7 @@ window.Quarto = {
 <section id="step-two-plot-the-data" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="step-two-plot-the-data"><span class="header-section-number">6.2.2</span> Step Two: Plot the data</h3>
 <p>Remember, before we do any statistical analysis, it is almost always a good idea to plot the data in some way. We can often get a very good idea as to the answer to our research question just from the plots we do.</p>
-<p>In <a href="#fig-histograms" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>, we will use <code>ggplot()</code> in R to plot a histogram of ozone levels, one for each side of the city. We will stack the histograms one above the other, all the better to help us spot any differences between east and west.</p>
+<p>In <a href="#fig-histograms" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-histograms</span></a>, we will use <code>ggplot()</code> in R to plot a histogram of ozone levels, one for each side of the city. We will stack the histograms one above the other, all the better to help us spot any differences between east and west.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>snails <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>shell_mass_g)) <span class="sc">+</span></span>
@@ -692,7 +693,7 @@ Figure&nbsp;6.2: Side-byside box and whisker plots of the distribution of values
 </div>
 </div>
 </div>
-<p>or as a dot plot of the means with standard errors of the mean included as error bars, as in <a href="#fig-means-se" class="quarto-xref">Figure&nbsp;<span>6.3</span></a></p>
+<p>or as a dot plot of the means with standard errors of the mean included as error bars, as in <a href="#fig-means-se" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-means-se</span></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for this chart we will use the summary table that we created above.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -756,7 +757,7 @@ Figure&nbsp;6.3: The data points show mean values, the error bars show plus or m
     Shapiro-Wilk normality test
 
 data:  example1
-W = 0.99692, p-value = 0.4657</code></pre>
+W = 0.99795, p-value = 0.8154</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -764,7 +765,7 @@ W = 0.99692, p-value = 0.4657</code></pre>
     Shapiro-Wilk normality test
 
 data:  example2
-W = 0.94818, p-value = 3.187e-12</code></pre>
+W = 0.95625, p-value = 5.106e-11</code></pre>
 </div>
 </div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a high <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, and a very low <em>p</em>-value for the data that we knew were not.</p>
@@ -790,7 +791,7 @@ W = 0.94818, p-value = 3.187e-12</code></pre>
 <h4 data-number="6.2.3.2" class="anchored" data-anchor-id="graphical-methods---the-quantile-quantile-or-qq-plot."><span class="header-section-number">6.2.3.2</span> Graphical methods - the quantile-quantile or QQ plot.</h4>
 <p>Confession: I don’t normally bother with numerical tests for normality such as Shapiro-Wilk. I usually use a graphical method instead.</p>
 <p>We have already seen two ways of plotting the data that might help suggest whether it is plausible that the data are drawn from normally distributed populations. Histograms and box plots both indicate how data is distributed, and for normally distributed data both would be symmetrical. Well, they would be, more or less, if the data set was large enough but for small data sets it can be quite hard to tell from either type of plot whether the data are drawn from a normally distributed population.</p>
-<p>A better type of plot for making this judgement call is the quantile-quantile or ‘qq’ plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.</p>
+<p>A better type of plot for making this judgement call is the quantile-quantile or <q>qq</q> plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>snails <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>shell_mass_g)) <span class="sc">+</span></span>
@@ -810,7 +811,7 @@ W = 0.94818, p-value = 3.187e-12</code></pre>
 <p>For an overview of how normally distributed and non-normally distributed data looks when plotted in histograms, box plots and quantile-quantile plots, see <a href="https://rpubs.com/mbh038/725314">this review</a></p>
 </section>
 <section id="the-thinking-about-the-data-normality-test" class="level4" data-number="6.2.3.3">
-<h4 data-number="6.2.3.3" class="anchored" data-anchor-id="the-thinking-about-the-data-normality-test"><span class="header-section-number">6.2.3.3</span> The ‘thinking about the data’ normality test</h4>
+<h4 data-number="6.2.3.3" class="anchored" data-anchor-id="the-thinking-about-the-data-normality-test"><span class="header-section-number">6.2.3.3</span> The <q>thinking about the data</q> normality test</h4>
 <p>As you might have guessed, this isn’t a test as such, but a suggestion that you think about what kind of data you have: is it likely to be normally distributed within its subgroups or not? If the data are numerical values of some physical quantity that is the result of many independent processes, and if the data are not bounded on either side (say by 0 and 100 as for exam scores) then it is quite likely that that they are. If they are count data, or ordinal data, then it is quite likely that they are not.</p>
 <p>This way of thinking may be all you can do when data sets are very small and any of the more robust tests for normality presented here leave you not much the wiser.</p>
 </section>
@@ -872,7 +873,7 @@ sample estimates:
 <ul>
 <li><em>Yes. We see this in two ways. First the p value is much less than 0.05 and second, the 95% confidence interval does not encompass zero. In a way, the confidence interval is giving us more information than the p-value, since not only can we deduce whether there is evidence for a significant difference, we can also see how big that difference is and how precisely we know it.</em></li>
 </ul></li>
-<li>What does the word ‘Welch’ tell you - Google it or look it up in the help for <code>t.test()</code>.
+<li>What does the word <q>Welch</q> tell you - Google it or look it up in the help for <code>t.test()</code>.
 <ul>
 <li><em>It tells us that a variant of the t-test is being used in which it does not matter if the two. samples have difference variances (spreads).</em></li>
 </ul></li>
@@ -908,24 +909,24 @@ sample estimates:
 <p><span class="math display">\[
 \bar{X} = \frac{5+3+3+4+5}{5} = \frac{20}{5}=4
 \]</span></p>
-<p>But trying doing the same to five responses of a Likert scale survey. Say the responses you had to five Likert items (individual questions) were “strongly disagree”, “strongly agree”, “mildly disagree”, “strongly disagree” and “don’t care either way”. If you tried to calculate a ‘mean’ response you would be attempting to add up all these responses and to divide the ‘sum’ by five, like this:</p>
+<p>But trying doing the same to five responses of a Likert scale survey. Say the responses you had to five Likert items (individual questions) were <q>strongly disagree</q>, <q>strongly agree</q>, <q>mildly disagree</q>, <q>strongly disagree</q> and <q>don’t care either way</q>. If you tried to calculate a <q>mean</q> response you would be attempting to add up all these responses and to divide the <q>sum</q> by five, like this:</p>
 <p><span class="math display">\[\text{mean response}=\frac{\text{stongly disagree}+\text{strongly agree}+\text{mildly disagree}+\text{stongly disagree}+\text{don't care either way}}{5} = ?
-\]</span> This sum makes no sense, I hope you will agree. It makes no sense, not because we are using words to describe our responses, but because, as these are ordinal data, we do not know the size of the gaps between the different points on the scale. Is the difference in agreement between the lowest two, “strongly disagree” and “midly disagree” the same as the gap between the highest two, “mildly agree” and “strongly agree”? We don’t know, mainly because ‘agreement’ is not something that can be measured easily using something like a weighing machine. And if we don’t know, then we shouldn’t really be adding these responses up or dividing them by anything.</p>
-<p>Nevertheless, ordinal data are very common, since they are typically what is generated by survey data, where for example repondents may answer a series of questions (‘items’), each with typically five possible responses, but maybe more or fewer, these responses being ordinal in the sense that there is a definite order to them. They might encompass responses like those above, say, or something similar like “very unhappy” to “very happy”. They are also common in clinical and veterinary practice where ordinal pain scores are widely used - patients being asked (if they are human) or assessed as to their level of pain on a scale of 1-10, for example. Note that even if the pain value is recorded as a number it is actually a label, that could just as well have been recorded as one of a series of letters, A, B, C etc or emojis, or any symbol you like. You can’t take the average of a set of faces!</p>
+\]</span> This sum makes no sense, I hope you will agree. It makes no sense, not because we are using words to describe our responses, but because, as these are ordinal data, we do not know the size of the gaps between the different points on the scale. Is the difference in agreement between the lowest two, <q>strongly disagree</q> and <q>midly disagree</q> the same as the gap between the highest two, <q>mildly agree</q> and <q>strongly agree</q>? We don’t know, mainly because <q>agreement</q> is not something that can be measured easily using something like a weighing machine. And if we don’t know, then we shouldn’t really be adding these responses up or dividing them by anything.</p>
+<p>Nevertheless, ordinal data are very common, since they are typically what is generated by survey data, where for example repondents may answer a series of questions (<q>items</q>), each with typically five possible responses, but maybe more or fewer, these responses being ordinal in the sense that there is a definite order to them. They might encompass responses like those above, say, or something similar like <q>very unhappy</q> to <q>very happy</q>. They are also common in clinical and veterinary practice where ordinal pain scores are widely used - patients being asked (if they are human) or assessed as to their level of pain on a scale of 1-10, for example. Note that even if the pain value is recorded as a number it is actually a label, that could just as well have been recorded as one of a series of letters, A, B, C etc or emojis, or any symbol you like. You can’t take the average of a set of faces!</p>
 <p>Thus, formally, we need another kind of test for a difference. Broadly, we need to use some form of <em>non-parametric</em> test where we do not assume that the data has any form of distribution, and where, often, we do not use the actual values of the measurements in our dataset but instead use only their <em>ranks</em>. The smallest value would be given rank 1, the next rank 2 and so on.</p>
 <p>There are many non-parametric tests out there. Here we will look at only one - the <strong>Wilcoxon Rank Sum Test</strong>, often referred to as a <strong>Mann-Whitney U</strong> test for a difference. We can use this for the scenario we have painted above, where we have two sets of data and we wish to know if these provide evidence that the populations from which the samples have been drawn are in fact different.</p>
 <section id="example" class="level3" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="example"><span class="header-section-number">6.5.1</span> Example</h3>
 <p>This example uses actual data gathered by a student at Newquay University Centre.</p>
 <p>The student wished to assess peoples’ sense of wellbeing using two different sets of questions designed to assess this. The scales chosen were the Warwick–Edinburgh Mental Well-being Scale (WEMWBS) and the New Ecological Paradigm (NEP) Scale. The student wished in particular to determine whether this sense of well-being was affected by whether a person often and actively frequented the coast and made it and the sea a substantive part of their life in one way or another. ie to find out whether there was evidence to support the notion that it could be good for your mental wellbeing to be by the sea and to make it part of your life.</p>
-<p>Each scale used consists of 15 questions or ‘Likert items’, each of which is answered on a 5 point ordinal scale, where a score of 1 indicates lowest wellbeing and a score of 5 indicates highest wellbeing. Thus each respondent could score anything from 15 to 75.</p>
-<p>The student got responses from 374 people, 86 of whom were not “marine” users, while the other 288 say that they <em>were</em> marine users. The total scores from each respondent were recorded for each type of survey and stored in the file <code>wellness.csv</code> which you should find on the module Moodle site / Teams page. Please put this file in the <code>data</code> folder of your R project.</p>
+<p>Each scale used consists of 15 questions or <q>Likert items</q>, each of which is answered on a 5 point ordinal scale, where a score of 1 indicates lowest wellbeing and a score of 5 indicates highest wellbeing. Thus each respondent could score anything from 15 to 75.</p>
+<p>The student got responses from 374 people, 86 of whom were not <q>marine</q> users, while the other 288 say that they <em>were</em> marine users. The total scores from each respondent were recorded for each type of survey and stored in the file <code>wellness.csv</code> which you should find on the module Moodle site / Teams page. Please put this file in the <code>data</code> folder of your R project.</p>
 </section>
 <section id="script" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="script"><span class="header-section-number">6.5.2</span> Script</h3>
 <p>Code chunks for a script to carry out the analysis of this data are provided below. To use them you should create a new Quarto document using File/New File/Quarto document, from which you delete all the exemplar material below the yaml section at the top. The first few chunks of this script carry out the same old-same old that we see in script after script: load packages, load data, summarise data , plot data. Copy and paste any chunks you want to use into your own script then adapt them as necessary.</p>
 <p>You can run your script by running each chunk in sequence, which you do by clicking the green arrow in the top-right corner of each chunk.</p>
-<p>Try also to ‘Render’ the script by clicking on the Render button at the top of the script pane.</p>
+<p>Try also to <q>Render</q> the script by clicking on the Render button at the top of the script pane.</p>
 <section id="load-packages" class="level4" data-number="6.5.2.1">
 <h4 data-number="6.5.2.1" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">6.5.2.1</span> Load packages</h4>
 <div class="cell">
@@ -936,7 +937,7 @@ sample estimates:
 <section id="load-data" class="level4" data-number="6.5.2.2">
 <h4 data-number="6.5.2.2" class="anchored" data-anchor-id="load-data"><span class="header-section-number">6.5.2.2</span> Load data</h4>
 <p>Our data set is in a <code>.csv</code> file which we have placed in the data folder within our project folder.</p>
-<p>Note that this data set has been stored in ‘tidy’ form: each variable appears in only column, and each observation appears in only one row.</p>
+<p>Note that this data set has been stored in <q>tidy</q> form: each variable appears in only column, and each observation appears in only one row.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"wellness.csv"</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>wellness<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
@@ -1039,7 +1040,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The eagle eyed among you may have spotted a massive flaw in the line of argument presented above. We said that ordinal data can’t be added up, can’t be used to calculate averages and so on. Thus we can’t run parametric tests on them and have to look for alternatives, namely, non-parametric tests.</p>
 <p>And yet, these non-parametric tests are usually run on the output of Likert <em>scales</em> such as we have considered here, where for each person we have a number of Likert <em>Items</em> (ie individual questions) that together constitute the <em>scale</em>, that each generate a score 1-5, then we <em>add up the scores</em> to get a total score. But that means we are adding up ordinal data!!!</p>
 <p>It turns out that you actually get much the same results with Likert scale data if you analyse them using supposedly inappropriate parametric tests such as a 2-sample <em>t</em>-test as you do if you use a non-parametric test such as the one we considered here, the Mann-Whitney test.</p>
-<p>The study by De Winter and Dodou <span class="citation" data-cites="dewinter2010">(<a href="references.html#ref-dewinter2010" role="doc-biblioref">2010</a>)</span> shows this convincingly.</p>
+<p>The study by De Winter and Dodou <span class="citation" data-cites="dewinter2010">(<a href="#ref-dewinter2010" role="doc-biblioref">2010</a>)</span> shows this convincingly.</p>
 <p>For an enlightening discussion of this paper, see <a href="https://statisticsbyjim.com/hypothesis-testing/analyze-likert-scale-data/">this blog by Jim Frost</a></p>
 </section>
 </section>
@@ -1061,17 +1062,17 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>So, you typically use this test when you would like to use the paired t-test, but you cannot because one or both of the data sets is way off being normally distributed or is ordinal.</p>
 <section id="null-hypotheses" class="level4" data-number="6.6.3.1">
 <h4 data-number="6.6.3.1" class="anchored" data-anchor-id="null-hypotheses"><span class="header-section-number">6.6.3.1</span> Null Hypotheses</h4>
-<p>In both the t-test and the Wilcoxon signed rank tests, the null hypothesis is the usual ‘nothing going on’, ‘there is no difference’ scenario, but there is a subtle difference between them that reflects the different information that they use. In the Wilcoxon signed rank test the null is that the difference between the <em>medians</em> of pairs of observations is zero. This is different from the null hypothesis of the paired t–test, which is that the difference between the <em>means</em> of pairs is zero.</p>
+<p>In both the t-test and the Wilcoxon signed rank tests, the null hypothesis is the usual <q>nothing going on</q>, <q>there is no difference</q> scenario, but there is a subtle difference between them that reflects the different information that they use. In the Wilcoxon signed rank test the null is that the difference between the <em>medians</em> of pairs of observations is zero. This is different from the null hypothesis of the paired t–test, which is that the difference between the <em>means</em> of pairs is zero.</p>
 </section>
 <section id="test-output" class="level4" data-number="6.6.3.2">
 <h4 data-number="6.6.3.2" class="anchored" data-anchor-id="test-output"><span class="header-section-number">6.6.3.2</span> Test output</h4>
-<p>Both tests will give a p value. This is the probability that the mean (t-test) or median (Wilcoxon signed rank) paired differences between the corresponding before and after sample elements would be equal to or greater than it actually is for the data if the null hypothesis were true. If the p value is less than some pre-decided ‘significance level’, usually taken to be 0.05, then we reject the null hypothesis. If it is not, then we fail to reject the null hypothesis.</p>
+<p>Both tests will give a p value. This is the probability that the mean (t-test) or median (Wilcoxon signed rank) paired differences between the corresponding before and after sample elements would be equal to or greater than it actually is for the data if the null hypothesis were true. If the p value is less than some pre-decided <q>significance level</q>, usually taken to be 0.05, then we reject the null hypothesis. If it is not, then we fail to reject the null hypothesis.</p>
 </section>
 </section>
 <section id="example-1" class="level3" data-number="6.6.4">
 <h3 data-number="6.6.4" class="anchored" data-anchor-id="example-1"><span class="header-section-number">6.6.4</span> Example</h3>
 <p>We will use as an example a data set from Laureysens et al.&nbsp;(2004) that has measurements of metal content in the wood of 13 poplar clones growing in a polluted area, once from each clone in August and once again from each of them in November. The idea was to investigate the extent to which poplars could absorb metals from the soil and thus be useful in cleaning that up. Under a null hypothesis, there would be no change in the metal concentrations in the plant tissue of each clone between August and November. Under an alternate hypothesis, there would be.</p>
-<p>Laureysens, I. et al.&nbsp;(2004) ‘Clonal variation in heavy metal accumulation and biomass production in a poplar coppice culture: I. Seasonal variation in leaf, wood and bark concentrations’, Environmental Pollution, 131(3), pp.&nbsp;485–494. Available at: https://doi.org/10.1016/j.envpol.2004.02.009.</p>
+<p>Laureysens, I. et al.&nbsp;(2004) <q>Clonal variation in heavy metal accumulation and biomass production in a poplar coppice culture: I. Seasonal variation in leaf, wood and bark concentrations</q>, Environmental Pollution, 131(3), pp.&nbsp;485–494. Available at: https://doi.org/10.1016/j.envpol.2004.02.009.</p>
 <p>Concentrations of aluminum (in micrograms of Al per gram of wood) are shown below.</p>
 <p><strong>Load packages</strong></p>
 <div class="cell">
@@ -1106,7 +1107,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p><strong>Plot the data</strong></p>
 <p>Before we do any test on some data to find evidence for a difference or a trend, it is a good idea to plot the data. This will reveal whatever patterns there are in the data and how likely they are to reveal a truth about the population from which they have been drawn.</p>
 <p><strong>Tidy the data</strong></p>
-<p>In this case there is work to do before we can plot the data. The problem is that the data is ‘untidy’. The two levels of the factor <code>month</code> are spread across two columns, August and November. For plotting purposes it will be useful to ‘tidy’ the data so that there is only one column containing both levels of <code>month</code> and another containing the aluminium concentrations. The function <code>pivot_longer()</code> can do this for us:</p>
+<p>In this case there is work to do before we can plot the data. The problem is that the data is <q>untidy</q>. The two levels of the factor <code>month</code> are spread across two columns, August and November. For plotting purposes it will be useful to <q>tidy</q> the data so that there is only one column containing both levels of <code>month</code> and another containing the aluminium concentrations. The function <code>pivot_longer()</code> can do this for us:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 4
@@ -1235,7 +1236,7 @@ alternative hypothesis: true location is not equal to 0</code></pre>
 <p>Note that the output from both these one-sample tests, where the one sample is the vector of differences and the threshold with which it is compared is zero, is exactly the same as the output of the two-sample tests where the two samples were the vectors between which we were interested in detecting a difference, ie the August and November values. This is not surprising since the two cases are just two ways of doing exactly the same thing, which is to ask if there is evidence from the sample for a difference in the population between the August and November concentrations of aluminium.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-dewinter2010" class="csl-entry" role="listitem">
 De Winter, J F C, and D Dodou. 2010. <span>“Five-Point Likert Items: T Test Versus Mann-Whitney-Wilcoxon (Addendum Added October 2012).”</span> <em>Practical Assessment, Research, and Evaluation</em> 15: 11–11. <a href="https://doi.org/10.7275/bj1p-ts64">https://doi.org/10.7275/bj1p-ts64</a>.
 </div>

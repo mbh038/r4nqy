@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -536,7 +537,7 @@ window.Quarto = {
 <h2 data-number="9.1" class="anchored" data-anchor-id="factorial-experiments-and-model-simplification"><span class="header-section-number">9.1</span> Factorial experiments and model simplification</h2>
 <p>The best model is the one that adequately explains the data with fewest parameters. This means with the smallest possible number of degrees of freedom.</p>
 <p>If we have a very large number of parameters, a model can fit any data set but be of limited use in generalising beyond it (we will have overfitted the data). If we have too few we will not explain much of the variance of the data. A balance must be struck. Hence we want the <em>minimal</em> <em>adequate</em> model.</p>
-<p>As Einstein almost said, a model should be as simple as possible, but no simpler. (Not to be outdone, the British statistician George Box also had a pithy saying about models: “All models are wrong, but some are useful”.)</p>
+<p>As Einstein almost said, a model should be as simple as possible, but no simpler. (Not to be outdone, the British statistician George Box also had a pithy saying about models: <q>All models are wrong, but some are useful</q>.)</p>
 <p>A <strong>factorial</strong> experiment has two or more factors, each with two or more levels, plus replication for each combination of factor levels. This means that we can investigate whether statistical interactions occur in which the effect of one factor depends on the value of another factor.</p>
 <p>We take an example from a farm-trial of animal diets. There are two factors: <code>diet</code> and <code>supplement</code>. <code>diet</code> is a factor with three levels: <code>barley</code>, <code>oats</code> and <code>wheat</code>, where <code>barley</code> is the diet that has always been used and the other two are potential alternatives. The purpose of the trial is to see if their use makes a difference to growth outcomes. <code>supplement</code> is a factor with four levels: <code>control</code>, <code>agrimore</code>, <code>supergain</code> and <code>supersupp</code>, where <code>control</code> could mean the absence of any supplement or the supplement used up to now, whose effects we are hoping to improve upon through use of one of the others included in the trial. The response variable <code>gain</code> is weight gain after 6 weeks. There were 48 individual cows in total with 4 for each combination of <code>diet</code> and <code>supplement</code>. Having the same number of replicates for each combination of levels means that this is a <em>balanced</em> design.</p>
 <div class="cell">
@@ -567,7 +568,7 @@ window.Quarto = {
 </section>
 <section id="open-your-project" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="open-your-project"><span class="header-section-number">9.3</span> Open your Project</h2>
-<p>You should be working within a folder that you have designated as what RStudio calls a ‘Project’. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a <code>notebooks</code> folder for notrbooks like the one you are working from, and a <code>data</code> folder for all the data files. You will also see, at the top level of the Project, the <code>.RProj</code> file. You can see all this in the Files pane, bottom-right.</p>
+<p>You should be working within a folder that you have designated as what RStudio calls a <q>Project</q>. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a <code>notebooks</code> folder for notrbooks like the one you are working from, and a <code>data</code> folder for all the data files. You will also see, at the top level of the Project, the <code>.RProj</code> file. You can see all this in the Files pane, bottom-right.</p>
 </section>
 <section id="load-packages" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">9.4</span> Load packages</h2>
@@ -635,7 +636,7 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 </div>
 <p>Do you see how the variable types of the <code>supplement</code> and <code>diet</code> columns have been changed to <code>&lt;fct&gt;</code>? It worked!</p>
 <p>To get <code>control</code> to be the reference level of <code>supplement</code> we needed to force the issue in this way. If we hadn’t then <code>agrimore</code> would have been regarded as such, since it is alphabetically the first among the levels of <code>supplement</code>. We didn’t need to do this for <code>diet</code>, since the stipulated ordering of the levels is just the alphabetical order and so we would have had that by default anyway. Sometimes, though, it doesn’t hurt to throw in a little redundancy for the sake of clarity.</p>
-<p>So, now we have <code>control</code> as the reference level for <code>supplement</code> and <code>barley</code> as the reference level for <code>diet</code>. Now we can see more easily in our analysis what difference is made to weight gain when we change diet or supplement or both from a ‘business as usual’ combination of a <code>barley</code>diet and the <code>control</code> supplement.</p>
+<p>So, now we have <code>control</code> as the reference level for <code>supplement</code> and <code>barley</code> as the reference level for <code>diet</code>. Now we can see more easily in our analysis what difference is made to weight gain when we change diet or supplement or both from a <q>business as usual</q> combination of a <code>barley</code>diet and the <code>control</code> supplement.</p>
 </section>
 </section>
 <section id="summarise-the-data" class="level2" data-number="9.7">
@@ -766,7 +767,7 @@ $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22
 </div>
 </div>
 </div>
-<p>Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by <span class="citation" data-cites="cumming2007">(<a href="references.html#ref-cumming2007" role="doc-biblioref">Cumming, Fidler, and Vaux 2007</a>)</span></p>
+<p>Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by <span class="citation" data-cites="cumming2007">(<a href="#ref-cumming2007" role="doc-biblioref">Cumming, Fidler, and Vaux 2007</a>)</span></p>
 <p>This interaction plot is useful in that we see that both diet and supplement have an effect on growth and that the effect of one is altered little by the value of the other, the result of which is that the lines are more or less parallel. This suggests that we have <em>main effects</em> of both diet and supplement, but little or no <em>interaction</em> between them.</p>
 <section id="questions" class="level3" data-number="9.8.1">
 <h3 data-number="9.8.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">9.8.1</span> Questions</h3>
@@ -851,8 +852,8 @@ Multiple R-squared:  0.8607,    Adjusted R-squared:  0.8182
 F-statistic: 20.22 on 11 and 36 DF,  p-value: 3.295e-12</code></pre>
 </div>
 </div>
-<p>This is a complex model as there are 12 estimated parameters: 6 main effects and 6 interactions. Notice that although the ‘controls’ for diet and supplement (<code>barley</code> and <code>control</code>) do not appear to be in the table, they are there really, in the first row.</p>
-<p>The value 23.30 kg in the first row of the Estimate column on the left, labelled ‘Intercept()’ gives us the actual weight gain outcome for the combination of the two control levels, <code>barley</code> as diet and <code>control</code> as supplement. Check that this value tallies with what is shown in summary tables above, and in the interaction plot.</p>
+<p>This is a complex model as there are 12 estimated parameters: 6 main effects and 6 interactions. Notice that although the <q>controls</q> for diet and supplement (<code>barley</code> and <code>control</code>) do not appear to be in the table, they are there really, in the first row.</p>
+<p>The value 23.30 kg in the first row of the Estimate column on the left, labelled <q>Intercept()</q> gives us the actual weight gain outcome for the combination of the two control levels, <code>barley</code> as diet and <code>control</code> as supplement. Check that this value tallies with what is shown in summary tables above, and in the interaction plot.</p>
 <p>The weight gain values for all the other combinations of the levels of each factor are given as differences from this reference level.</p>
 <p>So for example in row two, where diet is changed from barley to oats but supplement is still control, the value in the table is -2.8. This means that the weight gain when the diet is changed to oats but the supplement left as the control is 2.80 kg less than the reference value, and so must be 23.30-2.80 = 20.50 kg. This agrees with the value in the summary table of mean values that was calculated above, and tallies with the interaction plot.</p>
 <p>In row seven we see that the effect of the interaction between the diet <code>oats</code> and the supplement <code>agrimore</code> is - 0.247. This means that on going from the reference levels of barley and control, for which the gain is 23.30, the change in gain is not just the sum of the two main effects (-2.80 for switch of diet to oats and +3.05 for switch of supplement to agrimore, but is modified by their interaction, of size - 0.247. Hence the mean gain for a diet of oats <em>and</em> a supplement of agrimore is the intercept value plus the sum of the two main effects, plus the interaction term: 23.297 - 2.803 + 3.052 - 0.247 = 23.299)</p>
@@ -1037,7 +1038,7 @@ F-statistic: 48.76 on 5 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Well, that all looks fine. In particular, from the top-left figure we see that the variance of the residuals is more or less constant and from the top-right figure, the quantile-quantile plot, we get a pretty good approximation of a straight line which tells us that the residuals are more or less normally distributed. These are two key assumptions that must be at least approximately satisfied by data if it is going to make any sense to use a linear model to analyse it. We won’t discuss here the other two diagnostic plots, but they look fine too. So we are good to go using ANOVA with this data.</p>
 <p>Back to interpreting the output of the ANOVA:</p>
-<p>It is clear that we need to retain all three levels of diet since the effect values of each differ from each other by an amount that is several times the standand errors, so that <em>t</em> &gt;&gt; 1. It is not clear that we need all the levels of supplement, however. <code>supersupp</code> is not obviously different from <code>agrimore</code> (difference = -0.727 with standard error = 0.509), yet both are clearly different from <code>control</code>. However <code>supergrain</code> is not obviously different from <code>control</code> (difference = -0.68, error = 0.509). Hence we are tempted to try a new model with just two levels of the factor supplement which we might sensibly call “best”, by which we mean <code>agrimore</code> or <code>supersupp</code>, and “worst” by which we mean <code>control</code> or <code>supergrain</code>. We’ll name this new factor <code>supp2</code>.</p>
+<p>It is clear that we need to retain all three levels of diet since the effect values of each differ from each other by an amount that is several times the standand errors, so that <em>t</em> &gt;&gt; 1. It is not clear that we need all the levels of supplement, however. <code>supersupp</code> is not obviously different from <code>agrimore</code> (difference = -0.727 with standard error = 0.509), yet both are clearly different from <code>control</code>. However <code>supergrain</code> is not obviously different from <code>control</code> (difference = -0.68, error = 0.509). Hence we are tempted to try a new model with just two levels of the factor supplement which we might sensibly call <q>best</q>, by which we mean <code>agrimore</code> or <code>supersupp</code>, and <q>worst</q> by which we mean <code>control</code> or <code>supergrain</code>. We’ll name this new factor <code>supp2</code>.</p>
 <p>This code chunk amends the <code>weights</code> data frame by adding a new column to it called <code>supp2</code> in which the values are either <code>best</code> if the supplement is agrimore or supersupp, or <code>worst</code> if the supplement is either of the other two</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>weights <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
@@ -1075,7 +1076,7 @@ $ supp2      &lt;chr&gt; "worst", "worst", "worst", "worst", "worst", "worst", "
 </div>
 </div>
 </div>
-<p>From this we can see that diet clearly makes a difference to weight gain, since the three lines are separated by a distance much larger than the standard errors, and also that the best supplement clearly makes a difference since there is a consistent drop on going from ‘best’ to ‘worst’, again by an amount that is much larger than the error bars, and there is clearly no interaction between diet and supplement, since the lines are parallel within the wiggle-room allowed by the error bars, which means that the effect of diet does not depend on supplement, and the effect of supplement does not depend on diet.</p>
+<p>From this we can see that diet clearly makes a difference to weight gain, since the three lines are separated by a distance much larger than the standard errors, and also that the best supplement clearly makes a difference since there is a consistent drop on going from <q>best</q> to <q>worst</q>, again by an amount that is much larger than the error bars, and there is clearly no interaction between diet and supplement, since the lines are parallel within the wiggle-room allowed by the error bars, which means that the effect of diet does not depend on supplement, and the effect of supplement does not depend on diet.</p>
 <p>Now we will make the simpler model, calling it model_2 (for comparison with the first additive model, model_1)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># additive model whee the supplements have been condensed from four to two: best and worst</span></span>
@@ -1128,7 +1129,7 @@ F-statistic: 76.76 on 3 and 44 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>line three <code>dietwheat</code> tells us that there is a significant drop in weight gain of 5.99 kg when diet is changed to wheat.</li>
 <li>line four <code>supp2worst</code> tells us that there is a significant drop in wight gain of 2.68 kg when supplement is changed to worst.</li>
 </ul>
-<p>In all cases, p&lt; 0.001, as indicated not only by the number in the Pr(&gt;|t|) column, but also by the ‘***’ in the right-most column of the table.</p>
+<p>In all cases, p&lt; 0.001, as indicated not only by the number in the Pr(&gt;|t|) column, but also by the <q>***</q> in the right-most column of the table.</p>
 </section>
 <section id="reporting-the-results" class="level2" data-number="9.12">
 <h2 data-number="9.12" class="anchored" data-anchor-id="reporting-the-results"><span class="header-section-number">9.12</span> Reporting the results</h2>
@@ -1136,7 +1137,7 @@ F-statistic: 76.76 on 3 and 44 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>If we were reporting this as a statistical test, we might say something like: A diet of barley with a supplement of agrimore or supersupp was to offer significant improvements over alternatives. There was no evidence of any interaction between diet and supplement. (ANOVA 2-way, F<sub>3,44</sub> = 76.76, p &lt; 0.001)</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-cumming2007" class="csl-entry" role="listitem">
 Cumming, Geoff, Fiona Fidler, and David L. Vaux. 2007. <span>“Error Bars in Experimental Biology.”</span> <em>Journal of Cell Biology</em> 177 (1): 7–11. <a href="https://doi.org/10.1083/jcb.200611141">https://doi.org/10.1083/jcb.200611141</a>.
 </div>

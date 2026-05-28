@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -508,51 +509,48 @@ $ Callcusp &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(dune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.1192678 
-Run 1 stress 0.1809577 
-Run 2 stress 0.1192678 
+Run 1 stress 0.1183186 
 ... New best solution
-... Procrustes: rmse 7.026429e-06  max resid 2.136714e-05 
+... Procrustes: rmse 0.02027385  max resid 0.06497646 
+Run 2 stress 0.1183186 
+... New best solution
+... Procrustes: rmse 2.711684e-05  max resid 8.053899e-05 
 ... Similar to previous best
 Run 3 stress 0.1192678 
-... Procrustes: rmse 4.715113e-05  max resid 0.0001470924 
-... Similar to previous best
 Run 4 stress 0.1183186 
-... New best solution
-... Procrustes: rmse 0.02027389  max resid 0.06498273 
-Run 5 stress 0.1192678 
-Run 6 stress 0.1192679 
-Run 7 stress 0.1183186 
-... Procrustes: rmse 2.035915e-05  max resid 6.39537e-05 
+... Procrustes: rmse 6.214913e-06  max resid 2.101094e-05 
 ... Similar to previous best
-Run 8 stress 0.2075713 
-Run 9 stress 0.1183186 
-... New best solution
-... Procrustes: rmse 7.208708e-06  max resid 2.404655e-05 
+Run 5 stress 0.1183186 
+... Procrustes: rmse 2.324645e-05  max resid 6.851863e-05 
 ... Similar to previous best
-Run 10 stress 0.1192679 
-Run 11 stress 0.1192679 
-Run 12 stress 0.2998049 
-Run 13 stress 0.1183186 
-... Procrustes: rmse 7.629039e-06  max resid 2.308664e-05 
+Run 6 stress 0.2075713 
+Run 7 stress 0.1192678 
+Run 8 stress 0.1192678 
+Run 9 stress 0.2075713 
+Run 10 stress 0.1192678 
+Run 11 stress 0.1183186 
+... Procrustes: rmse 2.505711e-05  max resid 8.371498e-05 
 ... Similar to previous best
-Run 14 stress 0.1183186 
-... Procrustes: rmse 9.394894e-06  max resid 3.125286e-05 
+Run 12 stress 0.1183186 
+... Procrustes: rmse 2.225901e-05  max resid 7.410179e-05 
 ... Similar to previous best
+Run 13 stress 0.1808911 
+Run 14 stress 0.1192679 
 Run 15 stress 0.1183186 
-... Procrustes: rmse 3.094349e-06  max resid 1.06005e-05 
+... New best solution
+... Procrustes: rmse 2.734178e-06  max resid 6.838651e-06 
 ... Similar to previous best
 Run 16 stress 0.1183186 
-... Procrustes: rmse 7.501378e-06  max resid 2.04243e-05 
+... Procrustes: rmse 7.476859e-06  max resid 2.29321e-05 
 ... Similar to previous best
-Run 17 stress 0.1192678 
-Run 18 stress 0.1192679 
-Run 19 stress 0.1183186 
-... Procrustes: rmse 6.099787e-06  max resid 1.810604e-05 
-... Similar to previous best
+Run 17 stress 0.1812933 
+Run 18 stress 0.1192678 
+Run 19 stress 0.1192678 
 Run 20 stress 0.1183186 
-... Procrustes: rmse 3.814868e-06  max resid 1.309122e-05 
+... New best solution
+... Procrustes: rmse 1.811549e-06  max resid 5.768718e-06 
 ... Similar to previous best
-*** Best solution repeated 7 times</code></pre>
+*** Best solution repeated 1 times</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -573,7 +571,7 @@ Run 20 stress 0.1183186
 </section>
 <section id="how-well-does-the-nmds-plot-reflect-true-patterns-in-the-data" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="how-well-does-the-nmds-plot-reflect-true-patterns-in-the-data"><span class="header-section-number">20.2</span> How well does the NMDS plot reflect true patterns in the data?</h2>
-<p>This can be quantified by calculating the ‘stress’ of the process. A low value indicates that the NMDS ordination plot is capturing the true patterns in the data well. Anything above about 0.2 means that it is doing a poor job and that you may need to transform the data in some way and try again.</p>
+<p>This can be quantified by calculating the <q>stress</q> of the process. A low value indicates that the NMDS ordination plot is capturing the true patterns in the data well. Anything above about 0.2 means that it is doing a poor job and that you may need to transform the data in some way and try again.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ord<span class="sc">$</span>stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

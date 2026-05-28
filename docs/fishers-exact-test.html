@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -598,7 +599,7 @@ X ∼ \text{Hypergeometric} (N=20, K=11, n=10)
 \]</span> and then</p>
 <ul>
 <li>In the same way we calculate the probabilities of all possible tables, given the constraints of the marginal totals, then we</li>
-<li>Sum the probabilities of all tables that are as or more ‘extreme’ than the observed table ie whose probability is less than or equal to that of the observed table.</li>
+<li>Sum the probabilities of all tables that are as or more <q>extreme</q> than the observed table ie whose probability is less than or equal to that of the observed table.</li>
 <li>The resulting sum is the <em>p</em>-value of the observed table, given the marginal totals.<br>
 </li>
 <li>If this <em>p</em>-value is less than a predetermined threshold value (the value chosen is usually 0.05) then we reject the null hypothesis and regard the data as providing evidence for an association between the factors. That is we reject the idea that they are independent of each other. In the case presented above, that means we reject the idea</li>

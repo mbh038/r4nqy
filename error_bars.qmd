@@ -164,7 +164,7 @@ Confidence intervals around an estimated value tell us several things:
 ### How to interpret figures
 
 ```{r}
-N <- 100
+N <- 20
 as <- rnorm(N, mean = 0.0, sd = 2)
 bs <- rnorm(N, mean = 0.5, sd = 2)
 cs <- rnorm(N, mean = 1.0, sd = 2)
@@ -213,5 +213,5 @@ theme_cowplot() +
 
 ```
 
-
+Note that where the confdence intervals straddle zero, meaning that zero i a plausible value for the respective difference, the corresponding p-value is greater than 0.05
 
