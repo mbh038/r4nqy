@@ -17,7 +17,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -585,9 +584,7 @@ The Poisson distribution
 </div>
 <div class="callout-body-container callout-body">
 <p>In case you want to know, here is the mathematical form of the Poisson distribution for a random non-negative, discrete variable <span class="math inline">x</span> that is distributed according to this distribution. It is specified entirely by its mean value <span class="math inline">\lambda</span>, which is also the value of its variance. Hence, the variance increases with the mean.</p>
-<p><span class="math display">
-P(x) = \frac{e^{-\lambda}\lambda^x}{x!}
-</span></p>
+<p><span class="math display">P(x) = \frac{e^{-\lambda}\lambda^x}{x!}</span></p>
 <p>We won’t here go into the details of the Poisson distribution, but will limit ourselves to presenting three examples of it, for mean count values of 2, 4 and 6. The <em>x</em> axes show the range of possible counts, and the <em>y</em> axis shows the probability of each value.</p>
 <p>These examples illustrate why the Poisson distribution is a good choice for use with unbounded (That is, no upper bound. There is a bound of zero at the lower end) count data since it overcomes all the issues discussed above:</p>
 <ul>
@@ -670,7 +667,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <span><span class="va">max.size</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">soay</span><span class="op">$</span><span class="va">body.size</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Make the new.x values.</strong></p>
-<p>We use the <q>body.size</q> variable name to name the column just as it is in the orginal data</p>
+<p>We use the ‘body.size’ variable name to name the column just as it is in the orginal data</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new.x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>body.size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">min.size</span>, <span class="va">max.size</span>, length.out <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

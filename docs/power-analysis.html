@@ -20,7 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -466,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In what follows we focus on a simple study that seeks to detect a difference between two populations, but the ideas generalise to other designs.</p>
 <p>Suppose we have a magic soil supplement that we hope will enhance the growth rate of tomato plants, make us rich and pay for a comfortable retirement.</p>
 <p>Before riches, however, we have to be sure that it has the desired effect. For the supplement to be a money spinner let’s suppose that we need it to enhance the growth rate of plants by 10% and so we must do a study to see if this is in fact the case.</p>
-<p>In a properly randomised design, we take <em>N</em> plants and give them <q>normal</q> plant food, and another <em>N</em> plants and give them the normal food plus our supplement. We keep all other conditions the same for the two groups of plants.</p>
+<p>In a properly randomised design, we take <em>N</em> plants and give them ‘normal’ plant food, and another <em>N</em> plants and give them the normal food plus our supplement. We keep all other conditions the same for the two groups of plants.</p>
 <p>After 30 days, the plants grown with the usual food grow with a mean mass of 300g and a standard deviation of 30g. The other plants will need to have a mean mass of at least 330g, and we will suppose that they too will have a standard deviation of 30g.</p>
 <section id="simulation-of-one-trial" class="level2" data-number="23.1">
 <h2 data-number="23.1" class="anchored" data-anchor-id="simulation-of-one-trial"><span class="header-section-number">23.1</span> Simulation of one trial</h2>
@@ -517,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 0.01817549</code></pre>
 </div>
 </div>
-<p>Wht we want to know is: what is the chance that we would get the <q>correct</q> result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>
+<p>Wht we want to know is: what is the chance that we would get the ‘correct’ result, which in our case is that there <em>is</em> a difference and which would be indicated to us by the p-value being less than our chosen significance level (for brevity’s sake, let’s just assume from now on that we chose this to be 0.05), so that we (correctly) reject the null hypothesis of there being no difference.</p>
 </section>
 <section id="simulation-of-many-trials" class="level2" data-number="23.2">
 <h2 data-number="23.2" class="anchored" data-anchor-id="simulation-of-many-trials"><span class="header-section-number">23.2</span> Simulation of many trials</h2>
@@ -527,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the function we carry out a <em>t</em>-test for each pair of samples to determine whether we can reject the null hypothesis that the treated plants are drawn from a population with the same mass as the untreated plants.</p>
 <p>We know that the null hypothesis is false because we have drawn our samples from populations that <em>do</em> differ in their mean values. We want to see if our test correctly rejects the null so that we detect the effect, which here is the mass difference between the means of the two groups of plants.</p>
 <p>If the <em>p</em>-value is less than our chosen significance level then we reject the null, if not, we do not.</p>
-<p>Rejecting the null in this case means we have a <q>True Positive</q> and so we make our function return the logical value TRUE in that case. Failing to reject the null in this case is a mistake. We call this kind of mistake a ’False Negative” and when this happens me make out function return the logical value FALSE.</p>
+<p>Rejecting the null in this case means we have a ‘True Positive’ and so we make our function return the logical value TRUE in that case. Failing to reject the null in this case is a mistake. We call this kind of mistake a ’False Negative” and when this happens me make out function return the logical value FALSE.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>effect_detected<span class="ot">&lt;-</span><span class="cf">function</span>(m1,sd1,delta,N,alpha){</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  pop1<span class="ot">&lt;-</span><span class="fu">rnorm</span>(N,m1,sd1)</span>

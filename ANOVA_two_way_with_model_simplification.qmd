@@ -33,13 +33,13 @@ knitr::include_graphics(myimages)
 
 To follow through this exercise, you should have an RStudio project folder that contains:
 
--   In the Project/scripts folder:
+- In the Project/scripts folder:
 
-    -   `ANOVA_two_way_template.Rmd` (the script where you fill in the code chunks)
+  - `ANOVA_two_way_template.Rmd` (the script where you fill in the code chunks)
 
--   In the Project/data folder
+- In the Project/data folder
 
-    -   `growth.csv`
+  - `growth.csv`
 
 You can download a complete project folder with these files in from [here](https://github.com/mbh038/ANOVA-two-way-with-model-simplification/archive/refs/heads/main.zip)
 
@@ -168,13 +168,13 @@ This interaction plot is useful in that we see that both diet and supplement hav
 
 What could the line plot look like if:
 
--   There were no main effect of both diet and supplement, and no interaction
+- There were no main effect of both diet and supplement, and no interaction
 
--   There were a main effect of diet, no main effect of supplement and no interaction?
+- There were a main effect of diet, no main effect of supplement and no interaction?
 
--   There were no main effect of diet, a main effect of supplement and no interaction?
+- There were no main effect of diet, a main effect of supplement and no interaction?
 
--   There were main effects of both and an interaction between them?
+- There were main effects of both and an interaction between them?
 
 The plots tell you a great deal about what main effects and/or interactions there may be.
 
@@ -349,10 +349,10 @@ summary(model_2)
 
 In this table,
 
--   line one `(Intercept)` tells us that the mean weight gain when on the barley diet and best supplement is 25.76 kg
--   line two `dietoats` tells us that there is a significant drop in weight gain of 3.1 kg when diet is changed to oats.
--   line three `dietwheat` tells us that there is a significant drop in weight gain of 5.99 kg when diet is changed to wheat.
--   line four `supp2worst` tells us that there is a significant drop in wight gain of 2.68 kg when supplement is changed to worst.
+- line one `(Intercept)` tells us that the mean weight gain when on the barley diet and best supplement is 25.76 kg
+- line two `dietoats` tells us that there is a significant drop in weight gain of 3.1 kg when diet is changed to oats.
+- line three `dietwheat` tells us that there is a significant drop in weight gain of 5.99 kg when diet is changed to wheat.
+- line four `supp2worst` tells us that there is a significant drop in wight gain of 2.68 kg when supplement is changed to worst.
 
 In all cases, p\< 0.001, as indicated not only by the number in the Pr(\>\|t\|) column, but also by the '\*\*\*' in the right-most column of the table.
 

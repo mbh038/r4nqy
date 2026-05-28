@@ -58,10 +58,10 @@ soay |>
 
 A few things stand out from this plot:
 
--   There is a clear trend: as the ewe's body mass increases, so does the number of offspring tend to increase. That makes sense: a heavier ewe would have more resources to support one lamb after another.
--   The trend is *not* linear. There is a clear upwards curve.
--   The spread of values increases as the mother's body mass increases. This is common with count data.
--   There are no negative response values - while a ewe could have no lambs, it definitely cannot have a negative number of lambs.
+- There is a clear trend: as the ewe's body mass increases, so does the number of offspring tend to increase. That makes sense: a heavier ewe would have more resources to support one lamb after another.
+- The trend is *not* linear. There is a clear upwards curve.
+- The spread of values increases as the mother's body mass increases. This is common with count data.
+- There are no negative response values - while a ewe could have no lambs, it definitely cannot have a negative number of lambs.
 
 ## The wrong way to analyse the data - do a linear model
 
@@ -103,9 +103,9 @@ However, one out four is not good enough, as Meatloaf didn't quite say. The line
 
 The linear model is based on the errors of the data being normally distributed, but this is very often not the case for count data, for at least these obvious reasons:
 
--   The normal; distribution concerns continuous variables that may be fractional, whereas count data are discrete 0, 1, 2... Ewes cannot give birth to 2.5 offspring.
--   The normal distribution allows negative values, whereas count data cannot be negative. They can be zero, but not negative. You can't find -2 limpets in a quadrat, witness -3 instances of a behaviour or give birth to -1 offspring!
--   The normal distribution is symmetrical whereas count data very often are not symmetrically distributed, in part because negative values are not possible but occasional very large values are.
+- The normal; distribution concerns continuous variables that may be fractional, whereas count data are discrete 0, 1, 2... Ewes cannot give birth to 2.5 offspring.
+- The normal distribution allows negative values, whereas count data cannot be negative. They can be zero, but not negative. You can't find -2 limpets in a quadrat, witness -3 instances of a behaviour or give birth to -1 offspring!
+- The normal distribution is symmetrical whereas count data very often are not symmetrically distributed, in part because negative values are not possible but occasional very large values are.
 
 Hence, the normal distribution is just not a very good model for many kinds of count data. The Poisson distribution, on the other hand *is* a good starting point for the analysis of *certain* kinds of count data. We mean by that the kind where, while we may know how often something did happen, we do not know how often it *did not* happen, and where occasional large count values are possible ie there is no upper bound to possible count values. This might include, say, counting meiofauna on a microscope slide, offspring (!), goals per game in football, decays per given time interval in a radioactive sample, mutations per unit length in a strand of DNA, and many, many more.
 
@@ -116,16 +116,14 @@ Instances where we *do* also know how often something did not happen, as well as
 
 In case you want to know, here is the mathematical form of the Poisson distribution for a random non-negative, discrete variable $x$ that is distributed according to this distribution. It is specified entirely by its mean value $\lambda$, which is also the value of its variance. Hence, the variance increases with the mean.
 
-$$
-P(x) = \frac{e^{-\lambda}\lambda^x}{x!}
-$$
+$$P(x) = \frac{e^{-\lambda}\lambda^x}{x!}$$
 
 We won't here go into the details of the Poisson distribution, but will limit ourselves to presenting three examples of it, for mean count values of 2, 4 and 6. The *x* axes show the range of possible counts, and the *y* axis shows the probability of each value.
 
 These examples illustrate why the Poisson distribution is a good choice for use with unbounded (That is, no upper bound. There is a bound of zero at the lower end) count data since it overcomes all the issues discussed above:
 
--   only discrete values 0, 1, 2,... are possible. These are bounded at zero. High count values are possible but are increasingly unlikely.
--   the variance of the the distribution increases as the mean value increases - in fact, the variance and the mean are equal. We see this as a fattening of the distribution as the mean count value increases.
+- only discrete values 0, 1, 2,... are possible. These are bounded at zero. High count values are possible but are increasingly unlikely.
+- the variance of the the distribution increases as the mean value increases - in fact, the variance and the mean are equal. We see this as a fattening of the distribution as the mean count value increases.
 
 ```{r, echo = FALSE}
 N <- 10000

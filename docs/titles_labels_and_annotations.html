@@ -20,7 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -495,7 +494,7 @@ window.Quarto = {
 <h2 data-number="5.1" class="anchored" data-anchor-id="use-bquote"><span class="header-section-number">5.1</span> Use <code>bquote()</code></h2>
 <p>The four rules</p>
 <ul>
-<li>Strings – Require quotes wrapped w/ tilde separator (e.g., <q>my text</q> ~).</li>
+<li>Strings – Require quotes wrapped w/ tilde separator (e.g., “my text” ~).</li>
 <li>Math Expressions – Unquoted &amp; follow <code>?plotmath</code></li>
 <li>Numbers – Unquoted when part of math notation</li>
 <li>Variables – Use .() (pass in string or numeric)</li>

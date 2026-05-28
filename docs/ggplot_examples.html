@@ -20,7 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -515,7 +514,7 @@ window.Quarto = {
 <p>You will see that the code needed to make each plot is very similar, whatever the type of plot, and that plots can be built up from very basic forms to become really attractive, informative versions with very little additional effort.</p>
 <p>You need to read the examples in this worksheet and then fill in the missing code or alter what is provided already in the empty code chunks of the template notebook in the project folder you have downloaded.</p>
 <p>As you complete each code chunk, try it out by pressing the green arrow at the top right of the chunk. Sometimes you might want to try out an individual line. You can do that by placing the cursor anywhere in the line and pressing <code>Control-Entr</code> (Windows) or <code>Command-Enter</code> (Mac)</p>
-<p>Remember that the template is a quarto document, so you can add extra text between the code chunks to explain to yourself what is going on. You can format this text, if you wish, according to the very basic markdown rules for doing this. See <code>Help/Markdown Quick Reference</code>. This formatting is only useful if you <q>knit</q> the script, by pressing the knit button at the top of the script pane. Try this! I suggest you knit to html. This is how the worksheet you are working from was produced.</p>
+<p>Remember that the template is a quarto document, so you can add extra text between the code chunks to explain to yourself what is going on. You can format this text, if you wish, according to the very basic markdown rules for doing this. See <code>Help/Markdown Quick Reference</code>. This formatting is only useful if you ‘knit’ the script, by pressing the knit button at the top of the script pane. Try this! I suggest you knit to html. This is how the worksheet you are working from was produced.</p>
 <section id="preliminaries" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">4.1</span> Preliminaries</h2>
 <section id="load-packages" class="level3" data-number="4.1.1">
@@ -576,7 +575,7 @@ Using the first match ...</code></pre>
 <section id="scatter-plots" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="scatter-plots"><span class="header-section-number">4.2</span> Scatter plots</h2>
 <p>Suppose we want to know whether flipper length is correlated with body mass. We could a do correlation test to find this out, but let us first plot the data. We will show here how an elegant plot can be built up, starting from a very basic one, so that you see what each line of code for the finished version actually does. In the chunks below, run each one in turn to see the effect of each successive change that you make.</p>
-<p>First we feed the penguin data to the function <code>ggplot()</code>, and use its <code>aes()</code> argument to tell it which variables are to be <q>mapped</q> to which aesthetic (which means, roughly speaking, <q>visible</q>) features of the plot, such as the x-axis, the y-axis, point and line colours, fill colours, symbol types and size etc:</p>
+<p>First we feed the penguin data to the function <code>ggplot()</code>, and use its <code>aes()</code> argument to tell it which variables are to be ‘mapped’ to which aesthetic (which means, roughly speaking, ‘visible’) features of the plot, such as the x-axis, the y-axis, point and line colours, fill colours, symbol types and size etc:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -655,7 +654,7 @@ Using the first match ...</code></pre>
 </div>
 </div>
 </div>
-<p>Now we reposition the legend. We don’t have to, but we might not like the default position of the legend. If not, we can move or even remove it using another <code>theme()</code> line. The position argument of this can be <q>none</q> if you want to remove it, top”, <q>bottom</q>, <q>left</q>, <q>right</q> or a numerical vector in relative coordinates, where c(0,0) means bottom left within the plot, and c(1,1) means top-right. This is what we use here. Play around with different values.</p>
+<p>Now we reposition the legend. We don’t have to, but we might not like the default position of the legend. If not, we can move or even remove it using another <code>theme()</code> line. The position argument of this can be “none” if you want to remove it, top”, “bottom”, “left”, “right” or a numerical vector in relative coordinates, where c(0,0) means bottom left within the plot, and c(1,1) means top-right. This is what we use here. Play around with different values.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
@@ -959,7 +958,7 @@ Using the first match ...</code></pre>
 <p>Now let’s use what we have done before to add code lines that</p>
 <ul>
 <li>include suitable axis labels and a title</li>
-<li>give the same <q>theme</q> ie overall look as the previous graphs</li>
+<li>give the same ‘theme’ ie overall look as the previous graphs</li>
 <li>fill the boxes with the same colour for each species.</li>
 <li>remove the legend that you now have, because you don’t need it (Why?). Use <code>theme(legend.position="none")</code> to do this.</li>
 </ul>
@@ -1005,7 +1004,7 @@ Using the first match ...</code></pre>
 </section>
 <section id="violin-plot-using-geom_violin" class="level3" data-number="4.3.4">
 <h3 data-number="4.3.4" class="anchored" data-anchor-id="violin-plot-using-geom_violin"><span class="header-section-number">4.3.4</span> Violin Plot using <code>geom_violin()</code></h3>
-<p>This is a variant on the box plot. Each <q>violin</q> is a sideways density plot of the distribution of the data for each species, with its own mirror image to make it look a bit like a violin. The code for these is exactly as for box plots except we use <code>geom_violin()</code>.</p>
+<p>This is a variant on the box plot. Each ‘violin’ is a sideways density plot of the distribution of the data for each species, with its own mirror image to make it look a bit like a violin. The code for these is exactly as for box plots except we use <code>geom_violin()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
@@ -1184,7 +1183,7 @@ Using the first match ...</code></pre>
 </div>
 </div>
 </div>
-<p>If you don’t like the colours of the palette <q>Set2</q> you can try another one. To find out what palettes are available, remember, you can type <code>?scale_fill_brewer()</code> into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the Palettes section.</p>
+<p>If you don’t like the colours of the palette “Set2” you can try another one. To find out what palettes are available, remember, you can type <code>?scale_fill_brewer()</code> into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the Palettes section.</p>
 <p>If you agree that having different fill colours for the bars is actually confusing and brings no information to the plot that we do not already know, you can modify the previous plot in the manner that you did for the separate histograms:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>

@@ -20,7 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -491,7 +490,7 @@ div.csl-indent {
 <li>zeros are difficult to handle in transformations</li>
 </ul>
 <p>All the issues can be handled if instead we use a generalised linear models (GLM)</p>
-<p>This example is taken from Crawley <span class="citation" data-cites="crawley2014">(<a href="#ref-crawley2014" role="doc-biblioref">2014</a>)</span>, p247.</p>
+<p>This example is taken from Crawley <span class="citation" data-cites="crawley2014">(<a href="references.html#ref-crawley2014" role="doc-biblioref">2014</a>)</span>, p247.</p>
 <p>Suppose we are investigating the effect on species richness in some plots that have different total biomass and one of three different levels of soil acidity: low, medium and high pH. Richness values have been counted on each of 90 plots, 30 with each level of soil pH.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># these are the packages we will need for this script</span></span>
@@ -513,7 +512,7 @@ $ Species &lt;dbl&gt; 30, 39, 44, 35, 25, 29, 23, 18, 19, 12, 39, 35, 30, 30, 33
 </div>
 </div>
 <p>We have one response variable <code>Species</code> which is a count, and two predictors: <code>Biomass</code> which is a continuous numerical variable and <code>pH</code> which has been recorded as an ordinal variable with three levels (low, mid, high).</p>
-<p>First, a bit of housekeeping. We ensure that the levels of pH are logged in R’s brain in the ordering that makes sense, that is, <q>low</q>, then <q>medium</q> then <q>high</q>, and not as R would unless we did something about it, which is to do so alphabetically” <q>high</q> then <q>low</q> then <q>medium</q>.</p>
+<p>First, a bit of housekeeping. We ensure that the levels of pH are logged in R’s brain in the ordering that makes sense, that is, “low”, then “medium” then “high”, and not as R would unless we did something about it, which is to do so alphabetically” “high” then “low” then “medium”.</p>
 <p>This minor but important task often comes up when dealing with a categorical variable that has several levels, so this small chunk of code is worth remembering:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> species <span class="sc">|&gt;</span></span>
@@ -660,7 +659,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-crawley2014" class="csl-entry" role="listitem">
 Crawley, Michael J. 2014. <em>Statistics: An Introduction Using r</em>. 2nd ed. Wiley Blackwell.
 </div>
