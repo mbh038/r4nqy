@@ -538,7 +538,7 @@ Figure&nbsp;25.1: (left) The <q>sampling</q> distribution of the means of 10,000
 </div>
 </div>
 </div>
-<p>We now simply find the mean, the standard deviation and the 2.5% and 97.5% quantiles of this distribution. We already have an estimate of the mean from the original sample, but the 2.5% and 97.5% percentiles give us estimates of the lower and upper bounds of the 95% confidence interval on that estimate of the mean. That, mostly, is what we want from the bootstrap method..</p>
+<p>We now simply find the mean, the standard deviation and the 2.5% and 97.5% quantiles of this distribution. We already have an estimate of the mean from the original sample, but the 2.5% and 97.5% percentiles give us estimates of the lower and upper bounds of the 95% confidence interval on that estimate of the mean. That, mostly, is what we want from the bootstrap method.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>op<span class="ot">&lt;-</span><span class="fu">bootstrap_sampling_dist_of_means</span>(df<span class="sc">$</span>pc_fat,<span class="dv">2000</span>)</span>
