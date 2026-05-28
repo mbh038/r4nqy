@@ -7,7 +7,7 @@ source(here::here("_common.R"))
 
 \vspace{-10mm}
 
-For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ANOVA-one-way/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look. Once the folder is downloaded, unzip it if you need to, put it somewhere sensible on your laptop then  open the project from within RStudio using File/Open Project, whereupon you navigate to the project folder and then click on the .Rproj file.
+For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/ANOVA-one-way/archive/refs/heads/main.zip) if you wish to follow along and/or see how a complete script might look. Once the folder is downloaded, unzip it if you need to, put it somewhere sensible on your laptop then open the project from within RStudio using File/Open Project, whereupon you navigate to the project folder and then click on the .Rproj file.
 
 ## Introduction
 
@@ -52,7 +52,6 @@ To see if there is evidence from the data to reject this null, we will follow a 
 
 For the penguin data, getting it was easy as it came with the `palmerpenguins` package.
 
-
 ### A first look at the data
 
 First we need to get the data! The data set we want comes as part of the `palmerpenguins` package, so we load that here along wih the `tidyverse` and `ggfortify` packages, the latter becuase it has the function `autoplot()` which we will use for diagnostics.
@@ -70,9 +69,10 @@ The `palmerpenguins` package comes with two in-built data sets on penguins. The 
 ```{r}
 glimpse(penguins)
 ```
+
 ### Filter and clean the data
 
-With any data set there is normally some sort of cleaning or preparation that you have to do before you can plot or analyse it. That may mean narrowing down to certain species, dates, sites etc, transforming the data in some way or dealing with missing data. 
+With any data set there is normally some sort of cleaning or preparation that you have to do before you can plot or analyse it. That may mean narrowing down to certain species, dates, sites etc, transforming the data in some way or dealing with missing data.
 
 To prepare the penguin data for our purposes here, we narrow the full data set down to just the females, using the `filter()` function, and then make sure there are no lines with missing values, using `drop_na()`. We save this cleaned data set in an object called `females`.
 
@@ -81,6 +81,7 @@ females <- penguins |>
   filter(sex == "female") |>
   drop_na()
 ```
+
 ### Summary - group by species
 
 Here we use the famliar `group_by()` and `summarise()` construction to find the mean body mass for the females of each species. We also calculate the standard error of those means and the number of individuals in each group.
@@ -109,8 +110,8 @@ females  |>
        y = "Body mass (g)") +
   theme_bw()
 ```
-::: callout-note
 
+::: callout-note
 The box-plot shown above is OK, but it only crudely shows the distribution of the data annd it does not show the sample size. Consider this alternative plot. More code is needed to make it, but it gives you an idea of what can be done with `ggplot`. The plot shows mean values and standard devation error bars above a cloud of the actual data points for each species, where some sideways jitter has been added to these so that they do not lie on top of one another.
 
 Unlike the box plot, this plot gives you a clear sense of the sample sizes and of the actual distribution of data within each sample.
@@ -130,7 +131,6 @@ females  |>
   theme_bw()
 ```
 :::
-
 
 From the summary table and the plot, what do you think? Do the masses differ between the species?
 
@@ -222,7 +222,6 @@ To find the answer to that, we do post-hoc tests:
 
 A final step of most ANOVA analyses is to perform so-called post-hoc ('after the fact') tests which make pairwise comparisons between all possible pairs of levels. These tell us what the differences are between those pairs and whether these differences are significant. Whatever method is used for this, it needs to take account of the danger of making Type-one errors that arises when multiple pair-wise tests are done. The study-wide Type-One error rate needs to be controlled and kept below 0.05 (or whatver significance level you have set).
 
-
 A commonly used way to do this is to use the `emmeans` package
 
 ```{r}
@@ -233,7 +232,6 @@ pairs(emm, adjust = "tukey")
 ```
 
 THis gives all pairwise comparisons between groups with Tukey-adjusted p-values (equivalent to Tukey's HSD, but more flexible) to keep the study-wide error rate down despite multiple pairwise testing.
-
 
 In each row of the `estimate` column of the output we are given the difference between the mean masses of the females of the two species named in the `contrast` column, where the mean of the second named species is subtracted from the mean of the first. A negative difference means that the mean of the second named species is greater than that of the first. So, we see that Gentoo females in the sample were on average 1310.9 g heavier than Adelie females.
 
@@ -250,10 +248,11 @@ In this case, we might say something like:
 *We find evidence that there is a difference between the body masses of females of the penguin species Adelie, Chinstrap and Gentoo (ANOVA, df = 2, 162, F = 393, p \< 0.001). In particular Gentoo are more than 1 kg heavier than the other two (p\< 0.001) while the difference between Chinstrap and Adelie is smaller, at 158 ± (SE)58 g , but still significant (p = 0.018).*
 
 ## Summary of the ANOVA workflow
+
 In summary, once you have created the ANOVA object `females.model` using `lm()`, the sequence of steps is:
 
-* Check assumptions / diagnostics using `autoplot(females.model)`
-* Test the overall effect of group using `anova(females.model)`
-* If significant (or if you have planned comparisons with a reference or control level), examine the model coefficients and/or estimated means using `summary(females.model)`
-* Do post-hoc pairwise comparisons using `emmeans()` in the manner shown in @sec-post-hoc-tests
-* Report effect sizes and/or confidence intervals
+-   Check assumptions / diagnostics using `autoplot(females.model)`
+-   Test the overall effect of group using `anova(females.model)`
+-   If significant (or if you have planned comparisons with a reference or control level), examine the model coefficients and/or estimated means using `summary(females.model)`
+-   Do post-hoc pairwise comparisons using `emmeans()` in the manner shown in @sec-post-hoc-tests
+-   Report effect sizes and/or confidence intervals

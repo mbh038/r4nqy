@@ -119,7 +119,7 @@ p4<-qq_plot(tibble(x=bootstrap_sampling_dist_of_means(df$pc_fat,10000)),x)
 grid.arrange(p3,p4,nrow=1)
 ```
 
-We now simply find the mean, the standard deviation and the 2.5% and 97.5% quantiles of this distribution. We already have an estimate of the mean from the original sample, but the 2.5% and 97.5% percentiles give us estimates of the lower and upper bounds of the 95% confidence interval on that estimate of the mean. That, mostly, is what we want from the bootstrap method.
+We now simply find the mean, the standard deviation and the 2.5% and 97.5% quantiles of this distribution. We already have an estimate of the mean from the original sample, but the 2.5% and 97.5% percentiles give us estimates of the lower and upper bounds of the 95% confidence interval on that estimate of the mean. That, mostly, is what we want from the bootstrap method..
 
 ```{r,collapse=TRUE}
 
