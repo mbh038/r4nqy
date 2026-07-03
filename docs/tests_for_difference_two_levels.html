@@ -651,7 +651,7 @@ window.Quarto = {
 <section id="step-two-plot-the-data" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="step-two-plot-the-data"><span class="header-section-number">6.2.2</span> Step Two: Plot the data</h3>
 <p>Remember, before we do any statistical analysis, it is almost always a good idea to plot the data in some way. We can often get a very good idea as to the answer to our research question just from the plots we do.</p>
-<p>In <a href="#fig-histograms" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>, we will use <code>ggplot()</code> in R to plot a histogram of ozone levels, one for each side of the city. We will stack the histograms one above the other, all the better to help us spot any differences between east and west.</p>
+<p>In <a href="#fig-histograms" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-histograms</span></a>, we will use <code>ggplot()</code> in R to plot a histogram of ozone levels, one for each side of the city. We will stack the histograms one above the other, all the better to help us spot any differences between east and west.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>snails <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>shell_mass_g)) <span class="sc">+</span></span>
@@ -692,7 +692,7 @@ Figure&nbsp;6.2: Side-byside box and whisker plots of the distribution of values
 </div>
 </div>
 </div>
-<p>or as a dot plot of the means with standard errors of the mean included as error bars, as in <a href="#fig-means-se" class="quarto-xref">Figure&nbsp;<span>6.3</span></a></p>
+<p>or as a dot plot of the means with standard errors of the mean included as error bars, as in <a href="#fig-means-se" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-means-se</span></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for this chart we will use the summary table that we created above.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1039,7 +1039,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The eagle eyed among you may have spotted a massive flaw in the line of argument presented above. We said that ordinal data can’t be added up, can’t be used to calculate averages and so on. Thus we can’t run parametric tests on them and have to look for alternatives, namely, non-parametric tests.</p>
 <p>And yet, these non-parametric tests are usually run on the output of Likert <em>scales</em> such as we have considered here, where for each person we have a number of Likert <em>Items</em> (ie individual questions) that together constitute the <em>scale</em>, that each generate a score 1-5, then we <em>add up the scores</em> to get a total score. But that means we are adding up ordinal data!!!</p>
 <p>It turns out that you actually get much the same results with Likert scale data if you analyse them using supposedly inappropriate parametric tests such as a 2-sample <em>t</em>-test as you do if you use a non-parametric test such as the one we considered here, the Mann-Whitney test.</p>
-<p>The study by De Winter and Dodou <span class="citation" data-cites="dewinter2010">(<a href="references.html#ref-dewinter2010" role="doc-biblioref">2010</a>)</span> shows this convincingly.</p>
+<p>The study by De Winter and Dodou <span class="citation" data-cites="dewinter2010">(<a href="#ref-dewinter2010" role="doc-biblioref">2010</a>)</span> shows this convincingly.</p>
 <p>For an enlightening discussion of this paper, see <a href="https://statisticsbyjim.com/hypothesis-testing/analyze-likert-scale-data/">this blog by Jim Frost</a></p>
 </section>
 </section>
@@ -1235,7 +1235,7 @@ alternative hypothesis: true location is not equal to 0</code></pre>
 <p>Note that the output from both these one-sample tests, where the one sample is the vector of differences and the threshold with which it is compared is zero, is exactly the same as the output of the two-sample tests where the two samples were the vectors between which we were interested in detecting a difference, ie the August and November values. This is not surprising since the two cases are just two ways of doing exactly the same thing, which is to ask if there is evidence from the sample for a difference in the population between the August and November concentrations of aluminium.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-dewinter2010" class="csl-entry" role="listitem">
 De Winter, J F C, and D Dodou. 2010. <span>“Five-Point Likert Items: T Test Versus Mann-Whitney-Wilcoxon (Addendum Added October 2012).”</span> <em>Practical Assessment, Research, and Evaluation</em> 15: 11–11. <a href="https://doi.org/10.7275/bj1p-ts64">https://doi.org/10.7275/bj1p-ts64</a>.
 </div>

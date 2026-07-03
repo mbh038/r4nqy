@@ -211,11 +211,9 @@ Similarly, when we calculate SSF, which measures the deviation of the group mean
 
 Finally, SSE, which measure deviation around the group means will have *n*-*k* degrees of freedom, since the sum of each of the deviations around one of the group means must sum to zero, and so when all but one of them have been calculated, the final one is pre-determined. There are $k$ group means, so the total degrees of freedom for SSE is *n*-*k*.
 
-The degrees of freedom are additive: 
-$$
+The degrees of freedom are additive: $$
 df(\text{SST}) = df(\text{SSE}) + df(\text{SSF})
-$$ 
-Check:
+$$ Check:
 
 $$
 \begin{align*}

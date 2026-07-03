@@ -273,7 +273,7 @@
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
-\subtitle{A guide for students at Newquay University Centre}
+\subtitle{A guide for students at CCUC: Newquay}
 \author{Michael Hunt}
 \date{}
 
@@ -295,9 +295,9 @@
 \markboth{Introduction}{Introduction}
 
 This is a compilation of the methods for data analysis that you are
-likely to find useful in completing your studies at Newquay University
-Centre. It is by no means exhaustive, but should address most of your
-needs, most of the time.
+likely to find useful in completing your studies at CCUC: Newquay. It is
+by no means exhaustive, but should address most of your needs, most of
+the time.
 
 Data analysis in the life sciences is only part of the wider process of
 forming and then answering as best we can well-formed questions about
@@ -4346,7 +4346,7 @@ plot (it's OK, but not ideal!):
 
 \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{ANOVA_one_way_files/figure-pdf/unnamed-chunk-6-1.pdf}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, leftrule=.75mm, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, titlerule=0mm, opacityback=0, colframe=quarto-callout-note-color-frame, breakable, bottomtitle=1mm, toptitle=1mm, coltitle=black, arc=.35mm, toprule=.15mm, left=2mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, leftrule=.75mm, titlerule=0mm, arc=.35mm, opacitybacktitle=0.6, left=2mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, opacityback=0, rightrule=.15mm, colback=white, bottomtitle=1mm, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, toprule=.15mm, breakable, coltitle=black]
 
 The box-plot shown above is OK, but it only crudely shows the
 distribution of the data annd it does not show the sample size. Consider
@@ -9603,7 +9603,7 @@ a fixed total of nest boxes, are best analysed as proportion data using
 the binomial distribution. This can also be handled within a GLM
 framework, but we shall not discuss it here.
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, leftrule=.75mm, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{The Poisson distribution}, titlerule=0mm, opacityback=0, colframe=quarto-callout-note-color-frame, breakable, bottomtitle=1mm, toptitle=1mm, coltitle=black, arc=.35mm, toprule=.15mm, left=2mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, leftrule=.75mm, titlerule=0mm, arc=.35mm, opacitybacktitle=0.6, left=2mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, opacityback=0, rightrule=.15mm, colback=white, bottomtitle=1mm, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{The Poisson distribution}, toprule=.15mm, breakable, coltitle=black]
 
 In case you want to know, here is the mathematical form of the Poisson
 distribution for a random non-negative, discrete variable \(x\) that is
@@ -9611,9 +9611,7 @@ distributed according to this distribution. It is specified entirely by
 its mean value \(\lambda\), which is also the value of its variance.
 Hence, the variance increases with the mean.
 
-\[
-P(x) = \frac{e^{-\lambda}\lambda^x}{x!}
-\]
+\[P(x) = \frac{e^{-\lambda}\lambda^x}{x!}\]
 
 We won't here go into the details of the Poisson distribution, but will
 limit ourselves to presenting three examples of it, for mean count

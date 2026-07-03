@@ -1,0 +1,52 @@
+
+
+**`sf` strengths**
+
+- Tight tidyverse integration — you can pipe through `dplyr::filter()`, `mutate()`, `left_join()` etc. directly on sf objects
+- More intuitive for pure vector work (attributes + geometry feel like a normal data frame)
+- Better for reading/writing a wide range of vector formats via GDAL
+- More mature ecosystem for statistical spatial methods (`spdep`, `spatstat`, `gstat` all expect sf or sp objects)
+- Easier to work with CRS metadata and transformations for vector data
+
+**`terra` strengths**
+
+- The natural home for raster data — far faster and more memory-efficient than the old `raster` package it replaced
+- Unified API for both raster (`SpatRaster`) and vector (`SpatVector`) operations, which is convenient when mixing the two
+- Much faster for raster-heavy operations (focal, zonal stats, extract) — written largely in C++
+- Better at handling large rasters that don't fit in memory
+- `extract()` for pulling raster values at points/polygons is cleaner than alternatives
+
+**`sf` weaknesses**
+
+- No native raster support — you need `stars` or `terra` alongside it
+- Can be slower for very large vector datasets
+
+**`terra` weaknesses**
+
+- `SpatVector` is not a data frame — tidyverse workflows are awkward or require conversion
+- Less interoperable with the broader R spatial/stats ecosystem
+- Some find the API less intuitive for pure vector work
+
+---
+
+**The pragmatic answer: use both, with clear roles**
+
+This is genuinely the standard approach in modern R spatial work, not a workaround. The conversion between them is trivial:
+
+```r
+sf_obj  -> terra: vect(sf_obj)
+terra_obj -> sf:  st_as_sf(terra_obj)
+```
+
+A sensible division of labour for your kind of work:
+
+| Task | Package |
+|---|---|
+| Reading/filtering vector data (NNR boundaries, occurrence records) | `sf` |
+| Tidyverse-style attribute manipulation | `sf` |
+| Loading and processing land cover rasters | `terra` |
+| Cropping/masking rasters to a boundary | `terra` |
+| Extracting raster values at occurrence points | `terra` |
+| Writing outputs (GeoPackage, GeoTIFF) | either |
+
+The only time you'd want to commit to `terra`-only for vector data is if you're doing tightly coupled raster–vector operations in a loop where repeated conversion would add overhead. For most analytical scripts that's not a concern.

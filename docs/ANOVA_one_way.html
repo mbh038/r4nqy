@@ -677,7 +677,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The F value here is huge and the p-value is tiny, so tiny that it is essentially zero. Thus we can confidently reject the null hypothesis and assert that there is evidence from the data that body mass of females differs between at least one pair of species. Which two, or between all of them, and by how much we don’t yet know. This first step just tells us whether there is some difference somewhere. If there were no evidence of any difference we would stop the analysis right here.</p>
 <p>But there is a difference in this case, so we continue.</p>
 <p><strong>The detailed picture</strong></p>
-<p>If we are interested in the differences between a control level and all the other levels, then the <code>summary()</code> analysis outlined in the next section is what we need. If on the other hand all we are interested in is whether there are any statistically significant pairwise differences that are big enough to be important, then we can skip this section and go on to <a href="#sec-post-hoc-tests" class="quarto-xref"><span>Section 8.2.7</span></a>.</p>
+<p>If we are interested in the differences between a control level and all the other levels, then the <code>summary()</code> analysis outlined in the next section is what we need. If on the other hand all we are interested in is whether there are any statistically significant pairwise differences that are big enough to be important, then we can skip this section and go on to <a href="#sec-post-hoc-tests" class="quarto-xref"><span class="quarto-unresolved-ref">sec-post-hoc-tests</span></a>.</p>
 <p>If we do want know differences relativ to some control, we use the <code>summary()</code> function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(females.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -749,7 +749,7 @@ P value adjustment: tukey method for comparing a family of 3 estimates </code></
 <li>Check assumptions / diagnostics using <code>autoplot(females.model)</code></li>
 <li>Test the overall effect of group using <code>anova(females.model)</code></li>
 <li>If significant (or if you have planned comparisons with a reference or control level), examine the model coefficients and/or estimated means using <code>summary(females.model)</code></li>
-<li>Do post-hoc pairwise comparisons using <code>emmeans()</code> in the manner shown in <a href="#sec-post-hoc-tests" class="quarto-xref"><span>Section 8.2.7</span></a></li>
+<li>Do post-hoc pairwise comparisons using <code>emmeans()</code> in the manner shown in <a href="#sec-post-hoc-tests" class="quarto-xref"><span class="quarto-unresolved-ref">sec-post-hoc-tests</span></a></li>
 <li>Report effect sizes and/or confidence intervals</li>
 </ul>
 
