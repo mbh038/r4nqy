@@ -1,0 +1,50 @@
+---
+title: "Defra Natural Capital and Ecosystem Assessment (NCEA)"
+date: "09/03/2026"
+format: html
+editor: visual
+---
+
+## Where to find the data
+The data are now available through Defra’s data services platform
+[NCEA Search Service Home](https://environment.data.gov.uk/natural-capital-ecosystem-assessment)
+
+There are now data for rivers, small streams, lakes, chemicals in estuarine sediment, saltmarsh and seagrass. If you use NCEA as a search term, the main datasets will be at the top of the list. 
+
+## Topical questions for which one might use the data
+
+Here are some areas of possibility for projects, mainly using the data from the EA river surveillance network – broken down into 4 themes. These are by no means limiting – there are hundreds of other possibilities and some can certainly be extended to other networks (e.g. chemicals in estuarine sediment). There’s also no reason why the EA data could not be combined with datasets from elsewhere.
+
+### Composite assessments and indices
+1. Can diatom and macrophyte data be combined to create a composite indicator of eutrophication pressure?
+2. Can integrated ecosystem condition data (e.g. water quality, biological integrity, habitat structure) help refine classification of ecological status beyond existing frameworks (e.g. WFD classes)?
+3. How do alternative methods (e.g., weighted average of multiple quality elements) for summarising WFD status classifications for surface waters in England compare to the ‘one-out all-out’ approach?
+4. Can invasive and non-native species (INNS) presence data be incorporated into a composite macrophyte condition assessments?
+ 
+### Multivariate analyses
+1. How has species richness (of macrophyte, macroinvertebrate and phytobenthos communities) changed over time?
+2. Are there common spatial or temporal patterns across multiple priority or hazardous chemicals?
+3. Are there spatial or temporal patterns in condition that emerge when data types are considered together?
+4. To what extent are sites with poor water quality associated with poor habitat quality?
+5. Is there an associated between river reaches with poor quality assessments for phosphate and macrophytes?
+6. Can we identify typologies or clusters of sites based on physical site characteristics?
+7. Can we identify typologies or clusters of sites based on provision of ecosystem services?
+8. Is it possible to represent variability across multiple variables by deriving a smaller number of variables through ordination?
+9. How is the fingerprint of new and emerging chemicals of concern changing spatially or over time?
+ 
+### Multiple causal factors
+1. Can we quantify the strength and nature of relationships between pressures (e.g. land use, nutrient loads, temperature) and ecological response (e.g. macrophyte diversity)?
+2. How do water quality and river flow interact to affect macroinvertebrate community composition? Can we disentangle their combined and individual contributions?
+3. What factors mediate or exacerbate the influence of a certain pressure (e.g., phosphate concentration) on ecological conditions or service delivery?
+4. What factors drive high-performing or resilient catchments? Can these sites be used as case studies, benchmarks, or inform management activity?
+5. What is the risk of algal blooms in English lakes under different climate scenarios?
+6. Which sites have better or worse condition than expected based on known pressures? Are there additional factors which can explain these patterns?
+ 
+### Controlling for nuisance variables
+1. What benefit have Environmental Land Management (ELM) schemes had on river water quality?
+2. What effect do interventions to improve river habitat have on fish abundance?
+3. What are the effects of reservoirs on the condition of downstream freshwater ecosystems?
+4. Have abstraction licence reductions been successful in reducing ecological impacts of low flows?
+5. How does proximity to sewer outflows impact ecosystem services in downstream reaches?
+6. What is the relationship between RMNI and orthophosphate concentration, taking into account the level of shading?
+7. What is the impact of abstraction on migratory fish species?
