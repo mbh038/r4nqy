@@ -11,16 +11,16 @@ source(here::here("_common.R"))
 
 This is intended as a rough outline of the sequence of steps one commonly goes through when working on notebooks:
 
--   Before you start on the notebook, ask yourself: am I working in a Project?. If not, fix this!
--   What is my question? Am I clear about what I want the notebook to do?
--   Load packages
--   Load data
--   Inspect data
--   Clean up or tidy or manipulate the data in some way - whatever it takes to get it in the form needed for the analysis steps
--   Summarise the data
--   Plot the data
--   Do statistical analysis
--   Decide what all this has told you and report it in plain English.
+- Before you start on the notebook, ask yourself: am I working in a Project?. If not, fix this!
+- What is my question? Am I clear about what I want the notebook to do?
+- Load packages
+- Load data
+- Inspect data
+- Clean up or tidy or manipulate the data in some way - whatever it takes to get it in the form needed for the analysis steps
+- Summarise the data
+- Plot the data
+- Do statistical analysis
+- Decide what all this has told you and report it in plain English.
 
 Details will differ from notebook to notebook, but this sequence of steps is very common.
 
@@ -100,8 +100,6 @@ library(tidyverse) # some actual R code
 ## Load Packages
 
 R is a very powerful statistical programming language, but anyone using it typically enhances it in ways that suit them by adding in extra functions and data sets. This is done by loading so-called **packages**. There are thousands of these, contributed by a host of subject specialists around the world. It is *totally normal* to use a few packages when doing an analysis in R.
-
-
 
 You will nearly always want the first five packages, and often you will appreciate the sixth, `janitor`. Others, such as `vegan` will be useful from time to time, depending on what you are doing. If any of these lines throw an error, it is most likely because of a typo or because you have not yet installed that package. Do so in the console pane (not in this notebook!) using the function `install.packages("name of package")`. Then run this whole chunk again.
 
@@ -230,9 +228,9 @@ A couple of points could be made about this type of plot:
 
 First, what about those error bars? Three types of error bar are in common usage and there are arguments in favour and against the use of each of them:
 
--   the *standard deviation* tells us about the spread of values in a sample, and is an estimate of the spread of values in a population;\
--   the *standard error of the mean*, as used here, is an estimate of the precision with which the sample means estimates the respective population means for each of the species.
--   the *confidence interval*, typically a *95% confidence interval*, gives us the region within which we are (say) 95% confident that the true species mean body mass might plausibly lie.
+- the *standard deviation* tells us about the spread of values in a sample, and is an estimate of the spread of values in a population;\
+- the *standard error of the mean*, as used here, is an estimate of the precision with which the sample means estimates the respective population means for each of the species.
+- the *confidence interval*, typically a *95% confidence interval*, gives us the region within which we are (say) 95% confident that the true species mean body mass might plausibly lie.
 
 Which type of error bar is best to use depends on what story you want to tell. Here, because we are interested in whether there is evidence of a difference in the mean body mass of different species, we have gone for the standard eror of the mean.
 
